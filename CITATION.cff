@@ -15,6 +15,14 @@ license: MIT
 license-url: "https://opensource.org/licenses/MIT"
 version: 1.0.0
 repository-code: "https://github.com/piranfar/PlasmidCall"
+doi: "10.5281/zenodo.22086356"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22086356"
+    description: "Concept DOI, resolves to the current version of the data deposit"
+  - type: doi
+    value: "10.5281/zenodo.22086357"
+    description: "Version 1.0.0 of the data deposit, as used in the manuscript"
 keywords:
   - antimicrobial resistance
   - plasmid

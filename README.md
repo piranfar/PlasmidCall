@@ -1,5 +1,9 @@
 # PlasmidCall
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22086356.svg)](https://doi.org/10.5281/zenodo.22086356)
+[![Code licence: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
+[![Data licence: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey.svg)](LICENSE-DATA)
+
 Code, frozen models and derived data for a study of **where antimicrobial resistance
 determinants sit in bacterial genomes**, and of how well automated methods recover that
 placement from short-read assemblies.
@@ -63,7 +67,8 @@ the MD5 of every file as verified at acquisition, in
 `docs/results/supplementary_data/Supplementary_Data_1.tsv`. Not redistributed.
 
 **The bulk evidence.** The parsed classifier calls, the 150 assemblies, the execution receipts
-and the joined truth table are in the Zenodo deposit, which is the citable archive for the data.
+and the joined truth table are in the Zenodo deposit at https://doi.org/10.5281/zenodo.22086356, which is the
+citable archive for the data.
 The native unparsed tool outputs, about 31 GB, are retained by the author and available on
 request; no published value depends on them.
 
@@ -87,7 +92,8 @@ labelling recovers known structure blind, **not as new genetics**.
 
 ## Citation
 
-See `CITATION.cff`.
+Cite the data deposit as **https://doi.org/10.5281/zenodo.22086356** and, once it exists, the
+accompanying article. Machine-readable metadata is in `CITATION.cff`.
 
 ## Getting started
 
