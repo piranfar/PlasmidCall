@@ -1,0 +1,82 @@
+{
+ "encoding_version": "v1.2-General",
+ "immutable": true,
+ "n_features": 102,
+ "tool_order": [
+  "HyAsP",
+  "MOB-recon",
+  "PLASMe",
+  "PlaScope",
+  "Plasmer",
+  "PlasmidEC",
+  "PlasmidFinder",
+  "Platon",
+  "RFPlasmid",
+  "geNomad",
+  "gplas2",
+  "plASgraph2"
+ ],
+ "vocabulary": [
+  "chromosome",
+  "plasmid",
+  "unknown",
+  "unclassified",
+  "repeat",
+  "FAILED",
+  "MISSING"
+ ],
+ "vocabulary_note": "Fixed at freeze time, NOT learned from data. A tool call outside this vocabulary sets no one-hot column: it becomes an all-zero block, which is an absent vote, never a negative one.",
+ "abstention_states": [
+  "repeat",
+  "unclassified",
+  "unknown"
+ ],
+ "non_voting_states": [
+  "FAILED",
+  "MISSING",
+  "repeat",
+  "unclassified",
+  "unknown",
+  "<empty string>"
+ ],
+ "block_layout": [
+  {
+   "block": "one_hot",
+   "columns": "0..83",
+   "rule": "index = tool_position * 7 + vocabulary_position"
+  },
+  {
+   "block": "abstention_indicator",
+   "columns": "84..95",
+   "rule": "index = 84 + tool_position"
+  },
+  {
+   "block": "panel_summary",
+   "columns": "96..101",
+   "order": [
+    "n_plasmid",
+    "n_chrom",
+    "n_valid",
+    "frac_plasmid",
+    "frac_chrom",
+    "agreement"
+   ]
+  }
+ ],
+ "missingness_rule": "FAILED and MISSING each occupy their own one-hot column and are excluded from n_valid. They are never converted into a chromosome vote. Only PlasmidFinder/FAILED occurs in the training data (218 CP2 contigs) and carries a fitted weight.",
+ "neutrality_rule": "A one-hot block set to raw zero is NOT neutral after StandardScaler: each column becomes (0 - mean)/scale, so an absent tool still shifts the logit - measured at up to 2.97 logits before correction, with an arbitrary per-tool sign. Therefore any tool in a state NOT observed during training has its 8 raw columns overwritten with the training means, so the post-scaling block is exactly 0.0 and its logit contribution is exactly 0.0. States observed in training keep their learned encoding. Neutralisation is a strict no-op on the training data.",
+ "neutrality_scope": "The tool block (7 one-hot + 1 abstention indicator) is made exactly neutral. The panel-summary block is NOT frozen: an absent tool is excluded from n_valid, so those features honestly report a smaller panel. That residual is measured and reported in P1.12_V1.2_NEUTRALITY_PROOF.json rather than hidden.",
+ "division_by_zero_rule": "when n_valid == 0, frac_plasmid and frac_chrom are 0.0 by definition",
+ "preprocessing": [
+  "SimpleImputer(strategy=median, add_indicator=False)",
+  "StandardScaler()",
+  "LogisticRegression(max_iter=4000, C=1.0, solver=lbfgs, random_state=20260821)"
+ ],
+ "preprocessing_note": "The imputer is retained for schema stability. encode() never emits NaN, so it is a no-op on well-formed input; it exists so that a malformed upstream row degrades to the training median rather than crashing.",
+ "probability_orientation": "predict_proba(...)[:, 1]; higher means more plasmid-like",
+ "threshold": 0.9285,
+ "class_rule": {
+  "plasmid_selected": "probability >= 0.9285",
+  "not_selected": "probability < 0.9285 - no positive plasmid evidence; NEVER a chromosome call"
+ }
+}

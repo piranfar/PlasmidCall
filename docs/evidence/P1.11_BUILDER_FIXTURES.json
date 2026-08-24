@@ -1,0 +1,303 @@
+{
+ "suite": "P1.11 selective-classification and builder fixtures",
+ "modules_under_test": [
+  "scripts/p1_12/build_p111_contig_table.py",
+  "scripts/p1_12/evaluate_p111_locked_v2.py"
+ ],
+ "exercises_production_functions": true,
+ "truth_consumed": false,
+ "n_fixtures": 48,
+ "n_passed": 48,
+ "n_failed": 0,
+ "verdict": "PASS",
+ "fixtures": [
+  {
+   "fixture": "1  valid below-threshold score -> valid not-selected",
+   "expected": "not_selected",
+   "observed": "not_selected",
+   "pass": true
+  },
+  {
+   "fixture": "2  score exactly at threshold -> positive",
+   "expected": "plasmid_selected",
+   "observed": "plasmid_selected",
+   "pass": true
+  },
+  {
+   "fixture": "3  NaN score -> model abstention",
+   "expected": "model_abstain",
+   "observed": "model_abstain",
+   "pass": true
+  },
+  {
+   "fixture": "4  absent score -> model abstention",
+   "expected": "model_abstain",
+   "observed": "model_abstain",
+   "pass": true
+  },
+  {
+   "fixture": "5  infinite score -> model abstention",
+   "expected": "model_abstain",
+   "observed": "model_abstain",
+   "pass": true
+  },
+  {
+   "fixture": "   exact 0.0 is a real score, not missing",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "6  abstained rows are excluded from selective PPV/recall denominators",
+   "expected": "3",
+   "observed": "3",
+   "pass": true
+  },
+  {
+   "fixture": "6b selective_PPV = TP/(TP+FP) over evaluable rows only",
+   "expected": "0.5",
+   "observed": "0.5",
+   "pass": true
+  },
+  {
+   "fixture": "6c selective_recall = TP/(TP+FN) over evaluable rows only",
+   "expected": "0.5",
+   "observed": "0.5",
+   "pass": true
+  },
+  {
+   "fixture": "6d no abstained row entered the confusion matrix",
+   "expected": "0",
+   "observed": "0",
+   "pass": true
+  },
+  {
+   "fixture": "7  abstention decreases reported coverage",
+   "expected": "0.6",
+   "observed": "0.6",
+   "pass": true
+  },
+  {
+   "fixture": "7b abstention_rate = n_model_abstain / n_truth_eligible",
+   "expected": "0.4",
+   "observed": "0.4",
+   "pass": true
+  },
+  {
+   "fixture": "8  zero predictions cannot produce a valid PPV result",
+   "expected": "None",
+   "observed": "None",
+   "pass": true
+  },
+  {
+   "fixture": "8b zero predictions cannot produce a valid recall result",
+   "expected": "None",
+   "observed": "None",
+   "pass": true
+  },
+  {
+   "fixture": "9  missing annotation_state column -> non-zero exit",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "9b failure explains the required upstream fix",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "10 successful zero-ARG annotation -> ok / false",
+   "expected": "('ok', 'false')",
+   "observed": "('ok', 'false')",
+   "pass": true
+  },
+  {
+   "fixture": "10b successful ARG-bearing annotation -> ok / true",
+   "expected": "('ok', 'true')",
+   "observed": "('ok', 'true')",
+   "pass": true
+  },
+  {
+   "fixture": "11 failed annotation -> failed / NA",
+   "expected": "('failed', 'NA')",
+   "observed": "('failed', 'NA')",
+   "pass": true
+  },
+  {
+   "fixture": "12 missing annotation -> missing / NA",
+   "expected": "('missing', 'NA')",
+   "observed": "('missing', 'NA')",
+   "pass": true
+  },
+  {
+   "fixture": "13 unparseable annotation -> unparseable / NA",
+   "expected": "('unparseable', 'NA')",
+   "observed": "('unparseable', 'NA')",
+   "pass": true
+  },
+  {
+   "fixture": "   absence of an ARG is never inferred from a failure",
+   "expected": "False",
+   "observed": "False",
+   "pass": true
+  },
+  {
+   "fixture": "14 router abstains for every invalid annotation state",
+   "expected": "{'routing_abstain'}",
+   "observed": "{'routing_abstain'}",
+   "pass": true
+  },
+  {
+   "fixture": "14b router emits no model and no call when it abstains",
+   "expected": "{('', '')}",
+   "observed": "{('', '')}",
+   "pass": true
+  },
+  {
+   "fixture": "14c each abstention reason is preserved, not pooled",
+   "expected": "['annotation_failed', 'annotation_missing', 'annotation_unparseable']",
+   "observed": "['annotation_failed', 'annotation_missing', 'annotation_unparseable']",
+   "pass": true
+  },
+  {
+   "fixture": "15 standalone v1.2 remains AVAILABLE when annotation fails",
+   "expected": "{'available'}",
+   "observed": "{'available'}",
+   "pass": true
+  },
+  {
+   "fixture": "15b a valid standalone v1.2 call is not suppressed by AMRFinder failure",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "15c model-score abstention and routing abstention are separate fields",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "   v1.1 is injected, so it abstains rather than being fabricated",
+   "expected": "model_abstain",
+   "observed": "model_abstain",
+   "pass": true
+  },
+  {
+   "fixture": "16 builder emits no truth column",
+   "expected": "False",
+   "observed": "False",
+   "pass": true
+  },
+  {
+   "fixture": "16b builder guard rejects a truth-derived input path",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "16c builder source opens no PAF / assembly report / GBFF",
+   "expected": "False",
+   "observed": "False",
+   "pass": true
+  },
+  {
+   "fixture": "V  exactly one row per assembled contig",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  no duplicate (isolate, contig_id) keys",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  row counts reconcile with assembly FASTA files",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  every panel call is within the frozen 7-term vocabulary",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  terminal tool failures surface as FAILED, not as a call",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  all required panel-call columns exist",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  score availability is explicit",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  every NaN or missing score maps to model_abstain",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  no abstention maps to a Boolean negative",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  annotation_state uses only the locked vocabulary",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  ARG_bearing_bool is nullable",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  no row has invalid annotation plus ARG_bearing_bool=false",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  AMRFinder failure states propagate to every relevant contig",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  successful zero-hit isolates remain ok",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  router and model abstention are separate fields",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "V  no truth field or reference-derived contig label is consumed",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  }
+ ]
+}

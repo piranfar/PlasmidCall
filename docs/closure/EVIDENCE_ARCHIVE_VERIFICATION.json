@@ -1,0 +1,89 @@
+{
+ "archive": "P1.13_EVIDENCE_ARCHIVE.tar.zst",
+ "bytes": 15427604570,
+ "sha256": "76201303af2a0322c03bb5e570d3174c20465736535ca089d2e4b9e235dd85d2",
+ "sha256_recorded_on_host": "76201303af2a0322c03bb5e570d3174c20465736535ca089d2e4b9e235dd85d2",
+ "download_intact": true,
+ "members": 87962,
+ "internal_manifest_rows": 87961,
+ "internal_manifest_covers_all_other_members": true,
+ "frozen_artefacts_verified_from_inside_archive": {
+  "P1.13_FROZEN_PREDICTIONS.tsv": {
+   "member": "p113/frozen/P1.13_FROZEN_PREDICTIONS.tsv",
+   "bytes": 7855439,
+   "sha256": "3bc733c0adab6e3864412e056597d931dd1f28d6e6dfb0238c4c915d07799c80",
+   "recorded_in_results_freeze": "3bc733c0adab6e3864412e056597d931dd1f28d6e6dfb0238c4c915d07799c80",
+   "matches": true,
+   "data_rows": 19320
+  }
+ },
+ "parsed_tool_calls": {
+  "tools": 12,
+  "files": 1800,
+  "rows_per_tool": [
+   19320
+  ],
+  "total_rows": 231840,
+  "expected": 231840,
+  "reconciles": true,
+  "derivation": "12 tools x 150 isolates, each file carrying one row per contig, 12 tools x 19320 contigs = 231840 parsed calls"
+ },
+ "post_truth_artefacts_absent": {
+  "absent": [
+   "P113_TRUTH_JOINED.tsv",
+   "P113_ERROR_CATALOGUE.tsv",
+   "P113_PRIMARY_METRICS.tsv",
+   "P113_COMPARATOR_METRICS.tsv",
+   "RESULTS_FROZEN.json"
+  ],
+  "present": [],
+  "reason": "the archive captures the evidence tree as it stood at the prediction freeze, before truth acquisition was authorised. Post-truth artefacts were created afterwards and were never added to it. The small ones are held in this repository; the joined truth-prediction table and the per-contig error catalogue exist only on the execution host, with their digests recorded in RESULTS_FROZEN.json.",
+  "consequence": "terminating the execution host without first copying those two files would lose the only extant copies. Their digests would survive, so the loss would be detectable, but not repairable."
+ },
+ "companion_downloads_verified": {
+  "P1.13_EVIDENCE_ARCHIVE.tar.zst": {
+   "item": "evidence_archive",
+   "sha256": "76201303af2a0322c03bb5e570d3174c20465736535ca089d2e4b9e235dd85d2",
+   "matches": true
+  },
+  "P113_TIER1_EVIDENCE.tar.zst": {
+   "item": "tier1_evidence",
+   "bytes": 28292987,
+   "sha256": "4531ff03c25a020016d0d31f41bcea4c47c7b7fdb5adfef7ee94771b1f053c65",
+   "matches": true
+  },
+  "P113_TIER2_ASSEMBLIES.tar.zst": {
+   "item": "tier2_assemblies",
+   "bytes": 393096026,
+   "sha256": "0d66b4315d54deb79c5b7de2d47f4bb06d9c6aa08b83a9ca2a90e101ff5a72e6",
+   "matches": true
+  },
+  "P1.13_READS_MANIFEST.sha256": {
+   "item": "reads_manifest",
+   "bytes": 60988,
+   "sha256": "f42a193f1d675c8935923408560c012f6bb632b2b7dac734d304ebdf41c1dbdd",
+   "rows": 604,
+   "matches": true
+  }
+ },
+ "listed_for_preservation_but_absent": [
+  {
+   "item": "joined_truth_table",
+   "file": "P113_TRUTH_JOINED.tsv",
+   "sha256_recorded": "42a73d74ee01a6d4f1cc7f29da9bbacdfb8a327760c318d34fea5b4f63f488ae",
+   "receipt_asserted_verified": false
+  }
+ ],
+ "only_on_the_execution_host": {
+  "files": [
+   "P113_ERROR_CATALOGUE.tsv",
+   "P113_TRUTH_JOINED.tsv"
+  ],
+  "note": "P113_PRIMARY_METRICS.tsv, P113_COMPARATOR_METRICS.tsv and RESULTS_FROZEN.json are absent from the archive but ARE held in this repository, so they are not at risk.",
+  "why_it_matters": "P113_TRUTH_JOINED.tsv is the scored table from which every reported metric is computed and against which both independent verifiers re-derived their values. Without it a third party can check the derived metric tables but cannot re-derive them from the scored data. P113_ERROR_CATALOGUE.tsv holds the per-contig error records. Both have digests recorded in RESULTS_FROZEN.json, so their loss would be detectable but not repairable.",
+  "action": "copy both files off the execution host before terminating it."
+ },
+ "elapsed_s": 88.6,
+ "failures": [],
+ "verdict": "EVIDENCE_ARCHIVE_VERIFIED"
+}

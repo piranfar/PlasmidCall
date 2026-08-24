@@ -1,0 +1,217 @@
+# =============================================================================================
+# P1.11 PRE-TRUTH EVALUATION ADDENDUM
+# Frozen BEFORE acquire_truth_v2.py was run. No P1.11 truth existed or was accessed.
+# =============================================================================================
+addendum_id: P1.11_PRE_TRUTH_EVALUATION_ADDENDUM
+version: "1.0"
+status: FROZEN - dated and hashed before truth acquisition
+declared_on: 2026-08-22
+supplements:
+  - docs/plans/P1.11_PROSPECTIVE_EVALUATION_AMENDMENT.yaml
+  - docs/plans/P1.11_SELECTIVE_CLASSIFICATION_ADDENDUM.yaml
+  - docs/plans/P1.11_STATUS_RECONCILIATION_AMENDMENT.yaml
+binds_to_freeze:
+  freeze_id: P1.11-PREDICTION-FREEZE-001
+  predictions_frozen_json: f0551fa15a9eb0b281f2f88b0990c2bfa6510a9b8ef5d9dfac8a2e69a4fc5124
+  frozen_prediction_table: 0767da157051ff469b8830982aa168c558ce5b4cb6e1bc82ba81d4e9acb3e40d
+
+truth_state_at_freezing_of_this_addendum:
+  acquired: false
+  constructed: false
+  accessed: false
+  statement: >-
+    P1.11 truth has not been acquired, constructed, or accessed by the evaluation workflow. Every
+    decision below was made from prediction-side artefacts, the frozen P1.10 comparator code and
+    the frozen parser semantics.
+
+# ---------------------------------------------------------------------------- 1. twelve tools
+
+twelve_tool_evaluation:
+  principle: >-
+    No universal non-plasmid-to-negative rule is applied. Each tool's native semantics are
+    resolved by the FROZEN parser (env/run/parsers.py, PARSER_VERSION p19c4-parsers/1.7) into the
+    7-term model1_code vocabulary; that parser is where the tool-specific contract lives. The
+    evaluation layer then applies exactly the mapping the frozen P1.10 comparator used.
+
+  recovered_p110_mapping:
+    source_line: >-
+      scripts/p1_10/evaluate_model1_p110.py:197 -
+      df["tool_%s_call" % t] = X[t].map({"plasmid": 1, "chromosome": 0}).fillna(-1)
+    source_metrics: >-
+      scripts/p1_10/evaluate_model1_p110.py metrics() counts only call==1 and call==0; call<0 is
+      counted as `un` and EXCLUDED from TP/FP/TN/FN
+    therefore:
+      plasmid: positive
+      chromosome: negative
+      unknown / unclassified / repeat / FAILED / MISSING: tool_abstain (excluded)
+    empirically_verified_against_stored_P1_10_results: >-
+      CP1 n=130: PlaScope excluded 2, PlasmidFinder 4, gplas2 12, plASgraph2 16, all other tools 0.
+      TP+FP+TN+FN < n exactly where abstaining states occur. This confirms exclusion rather than
+      coercion to negative.
+    ported_unchanged: true
+
+  unavoidable_P1_11_difference_recorded_before_truth:
+    what: >-
+      P1.10's published tool `recall` was computed as d(tp, npos) where npos counts ALL
+      truth-positive rows in the population, INCLUDING rows the tool abstained on.
+    consequence: >-
+      That quantity is DEPLOYMENT YIELD under this addendum's vocabulary, not selective recall.
+      P1.11 reports BOTH. Any comparison with a published P1.10 tool recall must be made against
+      deployment_yield, not selective_recall, and the tables state which is which.
+    not_a_choice_made_to_improve_results: >-
+      The difference was discovered by reading the frozen P1.10 code before truth access and is
+      recorded here rather than silently reconciled.
+
+  per_tool_documentation:
+    table: docs/evidence/P1.11_TOOL_STATE_MAPPING.json
+    columns: [tool_name, native_state, model1_code, evaluation_state, reason, tool_contract,
+              P1.10_source, documentation_source]
+    n_rows: 39
+    implementation: scripts/p1_12/p111_tool_evaluation.py
+  positive_only_detectors:
+    PlasmidFinder: >-
+      a POSITIVE-ONLY replicon-marker detector. Its native no_replicon_hit is mapped by the frozen
+      parser to chromosome, i.e. a NEGATIVE, not an abstention. That is the tool's documented
+      prediction contract as encoded in P1.10 and is ported unchanged. It is the reason
+      PlasmidFinder shows very high PPV with low recall, and it is NOT a choice made here.
+    HyAsP: >-
+      an assembly-graph binner that partitions every contig. not_in_any_putative_plasmid is an
+      explicit not-plasmid decision, mapped to chromosome (negative).
+    geNomad: not_plasmid is an explicit binary negative, mapped to chromosome.
+  genuine_no_call_states:
+    PLASMe: outside_plasme_domain_lt1000 - the contig is outside the tool's declared domain
+    plASgraph2: ambiguous - the tool's own explicit ambiguous state
+    PlaScope: unclassified - ambiguous plasmid fraction
+    gplas2: excluded_lt1000, plasmid_unbinned, repeat, chromosome_repeat
+    PlasmidEC / Plasmer: contig absent from the tool's output
+
+  reported_estimands:
+    1A_method_specific_selective:
+      per_tool: [TP, FP, TN, FN, selective_PPV, selective_recall, specificity, selective_F1,
+                 coverage, n_tool_abstain, abstention_rate, deployment_yield]
+      denominator: rows the tool actually classified
+    1B_pairwise_common_support:
+      rule: >-
+        for every PlasmidCall-versus-tool comparison, restrict to rows evaluable by BOTH methods;
+        report the common-support denominator, both methods' metrics on exactly those rows, and
+        paired differences with isolate-clustered CIs
+      must_not_replace_1A: true
+  populations: [CP2, CP1]
+
+deployment_yield_definition:
+  formula: TP / (all truth-positive eligible contigs)
+  semantics: abstentions remain uncaptured
+  role: an operational complement to selective recall, never a replacement
+  frozen_before_truth: true
+
+# ---------------------------------------------------------------------------- 2-3. metrics
+
+selective_F1:
+  formula: 2 * PPV * recall / (PPV + recall)
+  undefined_when: PPV or recall is undefined, or their sum is zero
+  name_used_everywhere: selective_F1
+
+paired_comparison_rule:
+  resampling_unit: isolate
+  n_boot: 4000
+  seed: 20260821
+  interval: percentile 2.5 and 97.5
+  reported_deltas: [delta_PPV, delta_recall, delta_specificity, delta_F1, delta_coverage,
+                    delta_deployment_yield]
+  denominator: >-
+    the common evaluable rows for the pair, stated explicitly with every comparison
+  P_delta_gt_0: >-
+    reported as a DESCRIPTIVE bootstrap probability. It is NOT a frequentist p-value and is not
+    used as an uncorrected significance claim across the comparison panel.
+
+# ---------------------------------------------------------------------------- 4-5. continuous
+
+continuous_score_evaluation:
+  applies_to: [v1.1 M2_score, v1.2-General probability, router selected score where well-defined]
+  metrics: [AUROC, AUPRC]
+  ci: isolate-clustered bootstrap, n=4000, seed 20260821, percentile 2.5/97.5
+  paired: delta_AUROC and delta_AUPRC where models are evaluated on the same rows
+  prohibition: >-
+    AUROC and AUPRC are threshold-independent summaries. They must NOT be used to select any new
+    P1.11 threshold.
+  not_computed_for: categorical tools, which have no genuine continuous score
+
+calibration:
+  applies_to: frozen continuous model scores only, WITHOUT recalibration
+  metrics: [Brier score, calibration intercept, calibration slope, expected calibration error]
+  ece_bins: exactly 10 equal-frequency bins
+  reliability_table: observed fraction and mean score for those same 10 bins
+  bootstrap: Brier, intercept and slope by isolate, n=4000, seed 20260821
+  prohibited: [Platt scaling, isotonic regression, any post-truth recalibration]
+  naming: >-
+    described as EMPIRICAL SCORE CALIBRATION. The frozen scores are not asserted to be calibrated
+    probabilities, and are not called probabilities unless the analysis supports it.
+
+# ---------------------------------------------------------------------------- 6-7. strata
+
+exploratory_strata:
+  status: EXPLORATORY, non-gating, cannot replace or redefine confirmatory analyses
+  strata:
+    - MOB-recon provenance OK versus RECOVERED_OK
+    - the named six isolates with incomplete tool evidence
+    - ARG-bearing versus non-ARG
+    - contig length bins 1-<2kb, 2-<5kb, 5-<10kb, >=10kb
+    - species with at least 10 isolates AND both truth classes; remainder pooled as `other`
+    - RefSeq versus GenBank truth source, descriptive only
+  per_subgroup_report: [denominator, isolate_count, truth_positive_count, coverage, PPV, recall]
+  instability_rule: >-
+    suppress the ESTIMATE as unstable when a subgroup has fewer than 20 evaluable contigs or lacks
+    either truth class; still report the counts.
+
+frontier_and_crossover:
+  decision: OMITTED FROM P1.11
+  reason: >-
+    constructing a confirmatory frontier or locating a 0.98 crossover on P1.11 requires scanning
+    thresholds against P1.11 truth, which is threshold optimisation on the confirmatory cohort.
+  reported_from: the development analysis only, where they were originally derived
+  P1_11_evaluates_only: [0.9285 v1.2-General, 0.9524 v1.1 standard, 0.9605 v1.1 high-confidence,
+                         the frozen router]
+  permitted: [P1.11 score-distribution plot, threshold-independent AUROC and AUPRC]
+  forbidden: any P1.11 threshold optimisation
+
+# ---------------------------------------------------------------------------- 8. hierarchy
+
+evidence_hierarchy:
+  CONFIRMATORY: >-
+    the previously frozen analyses A, A2, B and C at their frozen operating points. Unchanged.
+  PRESPECIFIED_SECONDARY: >-
+    12-tool metrics, selective_F1, paired comparisons, AUROC/AUPRC, calibration and deployment
+    yield - all frozen by THIS addendum before truth access.
+  EXPLORATORY: >-
+    provenance, incomplete-evidence, length, species and truth-source strata.
+  rule: no exploratory result may rescue a failed confirmatory claim.
+
+# ---------------------------------------------------------------------------- 10. presentation
+
+presentation_rules:
+  order: [confirmatory selective PPV and recall at frozen operating points,
+          direct comparison with the 12 tools,
+          coverage and abstention,
+          prespecified secondary discrimination and calibration,
+          exploratory subgroups]
+  lead_with: confirmatory estimands in abstract, main Results and principal figures
+  language_discipline: >-
+    a model is not described as poor, failed, unreliable, inferior or non-generalizable on the
+    basis of a secondary or exploratory result alone. Report estimate, denominator, CI and
+    comparison first. Distinguish a failed confirmatory claim from statistical uncertainty, low
+    coverage, subgroup heterogeneity and exploratory observation.
+  overlapping_CI: not treated as proof of no difference
+  superiority: claimed only where the prespecified paired comparison supports it
+  calibration_vs_discrimination: reported as separate properties, never substituted
+  prohibited: [new composite ranking score, changing the frozen operating point,
+               changing the denominator, changing the primary estimand for presentation]
+  outputs: [concise main-text confirmatory table, complete secondary and exploratory
+            Supplementary tables, manuscript summary leading with the strongest supported
+            confirmatory finding, a proportionate limitations paragraph]
+  machine_readable_package: all results preserved even when only a subset appears in the main text
+
+fixtures:
+  per_tool_state_mapping: docs/evidence/P1.11_TOOL_MAPPING_FIXTURES.json
+  n: 59
+  passed: 59
+  failed: 0

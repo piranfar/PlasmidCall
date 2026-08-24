@@ -1,0 +1,987 @@
+{
+ "manifest": "P1.13 prediction-freeze candidate",
+ "status": "CANDIDATE_ONLY_NOT_FROZEN",
+ "not_frozen_statement": "PREDICTIONS_FROZEN.json has NOT been created. No truth has been acquired, joined or scored. This manifest is a proposal awaiting explicit owner approval.",
+ "generated_utc": "2026-08-24T00:29:05Z",
+ "counts": {
+  "n_all_contigs": 19320,
+  "n_eligible_ge_1kb": 9784,
+  "n_isolates": 150
+ },
+ "coverage_gate": {
+  "v1.2-General": {
+   "overall_coverage": 1.0,
+   "overall_min": 0.99,
+   "overall_pass": true,
+   "min_per_isolate": 1.0,
+   "per_isolate_min": 0.95,
+   "n_isolates_below_min": 0,
+   "per_isolate_pass": true,
+   "n_isolates_zero_coverage": 0,
+   "zero_coverage_pass": true,
+   "verdict": "PASS"
+  },
+  "v1.1": {
+   "overall_coverage": 1.0,
+   "overall_min": 0.95,
+   "overall_pass": true,
+   "min_per_isolate": 1.0,
+   "per_isolate_min": 0.9,
+   "n_isolates_below_min": 0,
+   "per_isolate_pass": true,
+   "n_isolates_zero_coverage": 0,
+   "zero_coverage_pass": true,
+   "verdict": "PASS"
+  },
+  "router": {
+   "routed_coverage": 1.0,
+   "routed_min": 0.95,
+   "verdict": "PASS"
+  },
+  "overall_verdict": "PASS",
+  "failed_gates": [],
+  "gate_source": "docs/plans/P1.11_SELECTIVE_CLASSIFICATION_ADDENDUM.yaml (coverage_gate, FROZEN)",
+  "thresholds_applied": {
+   "v1.2-General": {
+    "overall": 0.99,
+    "per_isolate": 0.95
+   },
+   "v1.1": {
+    "overall": 0.95,
+    "per_isolate": 0.9
+   },
+   "router": {
+    "routed": 0.95
+   },
+   "isolates_with_zero_coverage_max": 0
+  }
+ },
+ "model_coverage": {
+  "v1.2-General": {
+   "n_eligible": 9784,
+   "n_score_evaluable": 9784,
+   "n_model_abstain": 0,
+   "coverage": 1.0,
+   "abstention_rate": 0.0,
+   "min_per_isolate": 1.0,
+   "median_per_isolate": 1.0,
+   "n_isolates": 150,
+   "n_isolates_zero_coverage": 0,
+   "n_isolates_below_0_95": 0,
+   "n_isolates_below_0_90": 0
+  },
+  "v1.1": {
+   "n_eligible": 9784,
+   "n_score_evaluable": 9784,
+   "n_model_abstain": 0,
+   "coverage": 1.0,
+   "abstention_rate": 0.0,
+   "min_per_isolate": 1.0,
+   "median_per_isolate": 1.0,
+   "n_isolates": 150,
+   "n_isolates_zero_coverage": 0,
+   "n_isolates_below_0_95": 0,
+   "n_isolates_below_0_90": 0
+  }
+ },
+ "tool_evidence_completeness": {
+  "note": "SEPARATE from model coverage. A finite model score does not imply the expected tool evidence was available.",
+  "n_expected": 117408,
+  "n_available": 115220,
+  "fraction_available": 0.9813641319160534,
+  "by_tool": {
+   "HyAsP": {
+    "n_expected": 9784,
+    "n_available": 9784,
+    "fraction_available": 1.0,
+    "n_FAILED": 0,
+    "n_MISSING": 0
+   },
+   "MOB-recon": {
+    "n_expected": 9784,
+    "n_available": 8924,
+    "fraction_available": 0.9121013900245298,
+    "n_FAILED": 860,
+    "n_MISSING": 0
+   },
+   "PLASMe": {
+    "n_expected": 9784,
+    "n_available": 9784,
+    "fraction_available": 1.0,
+    "n_FAILED": 0,
+    "n_MISSING": 0
+   },
+   "PlaScope": {
+    "n_expected": 9784,
+    "n_available": 9784,
+    "fraction_available": 1.0,
+    "n_FAILED": 0,
+    "n_MISSING": 0
+   },
+   "Plasmer": {
+    "n_expected": 9784,
+    "n_available": 9784,
+    "fraction_available": 1.0,
+    "n_FAILED": 0,
+    "n_MISSING": 0
+   },
+   "PlasmidEC": {
+    "n_expected": 9784,
+    "n_available": 9784,
+    "fraction_available": 1.0,
+    "n_FAILED": 0,
+    "n_MISSING": 0
+   },
+   "PlasmidFinder": {
+    "n_expected": 9784,
+    "n_available": 9554,
+    "fraction_available": 0.9764922322158627,
+    "n_FAILED": 230,
+    "n_MISSING": 0
+   },
+   "Platon": {
+    "n_expected": 9784,
+    "n_available": 9784,
+    "fraction_available": 1.0,
+    "n_FAILED": 0,
+    "n_MISSING": 0
+   },
+   "RFPlasmid": {
+    "n_expected": 9784,
+    "n_available": 9784,
+    "fraction_available": 1.0,
+    "n_FAILED": 0,
+    "n_MISSING": 0
+   },
+   "geNomad": {
+    "n_expected": 9784,
+    "n_available": 9784,
+    "fraction_available": 1.0,
+    "n_FAILED": 0,
+    "n_MISSING": 0
+   },
+   "gplas2": {
+    "n_expected": 9784,
+    "n_available": 8686,
+    "fraction_available": 0.8877759607522485,
+    "n_FAILED": 1098,
+    "n_MISSING": 0
+   },
+   "plASgraph2": {
+    "n_expected": 9784,
+    "n_available": 9784,
+    "fraction_available": 1.0,
+    "n_FAILED": 0,
+    "n_MISSING": 0
+   }
+  },
+  "by_isolate": {
+   "SAMD00499712": {
+    "n_expected": 1824,
+    "n_available": 1824,
+    "fraction_available": 1.0
+   },
+   "SAMD00565567": {
+    "n_expected": 2028,
+    "n_available": 2028,
+    "fraction_available": 1.0
+   },
+   "SAMD00577372": {
+    "n_expected": 780,
+    "n_available": 780,
+    "fraction_available": 1.0
+   },
+   "SAMD00577373": {
+    "n_expected": 480,
+    "n_available": 480,
+    "fraction_available": 1.0
+   },
+   "SAMD00623430": {
+    "n_expected": 1716,
+    "n_available": 1716,
+    "fraction_available": 1.0
+   },
+   "SAMD00748008": {
+    "n_expected": 540,
+    "n_available": 540,
+    "fraction_available": 1.0
+   },
+   "SAMEA117852477": {
+    "n_expected": 1608,
+    "n_available": 1608,
+    "fraction_available": 1.0
+   },
+   "SAMEA121008655": {
+    "n_expected": 396,
+    "n_available": 363,
+    "fraction_available": 0.9166666666666666
+   },
+   "SAMN10435561": {
+    "n_expected": 552,
+    "n_available": 552,
+    "fraction_available": 1.0
+   },
+   "SAMN10435572": {
+    "n_expected": 1284,
+    "n_available": 1284,
+    "fraction_available": 1.0
+   },
+   "SAMN12405233": {
+    "n_expected": 240,
+    "n_available": 220,
+    "fraction_available": 0.9166666666666666
+   },
+   "SAMN13382572": {
+    "n_expected": 1188,
+    "n_available": 1188,
+    "fraction_available": 1.0
+   },
+   "SAMN13382579": {
+    "n_expected": 1080,
+    "n_available": 1080,
+    "fraction_available": 1.0
+   },
+   "SAMN13382581": {
+    "n_expected": 1200,
+    "n_available": 1200,
+    "fraction_available": 1.0
+   },
+   "SAMN13382597": {
+    "n_expected": 1320,
+    "n_available": 1320,
+    "fraction_available": 1.0
+   },
+   "SAMN15488622": {
+    "n_expected": 288,
+    "n_available": 240,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN17766463": {
+    "n_expected": 708,
+    "n_available": 708,
+    "fraction_available": 1.0
+   },
+   "SAMN17766480": {
+    "n_expected": 1008,
+    "n_available": 1008,
+    "fraction_available": 1.0
+   },
+   "SAMN17766507": {
+    "n_expected": 912,
+    "n_available": 912,
+    "fraction_available": 1.0
+   },
+   "SAMN18917024": {
+    "n_expected": 528,
+    "n_available": 528,
+    "fraction_available": 1.0
+   },
+   "SAMN22837217": {
+    "n_expected": 396,
+    "n_available": 396,
+    "fraction_available": 1.0
+   },
+   "SAMN23424528": {
+    "n_expected": 420,
+    "n_available": 420,
+    "fraction_available": 1.0
+   },
+   "SAMN23424532": {
+    "n_expected": 816,
+    "n_available": 816,
+    "fraction_available": 1.0
+   },
+   "SAMN23424534": {
+    "n_expected": 1068,
+    "n_available": 1068,
+    "fraction_available": 1.0
+   },
+   "SAMN23485811": {
+    "n_expected": 732,
+    "n_available": 610,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN26198497": {
+    "n_expected": 1104,
+    "n_available": 1104,
+    "fraction_available": 1.0
+   },
+   "SAMN26198498": {
+    "n_expected": 792,
+    "n_available": 792,
+    "fraction_available": 1.0
+   },
+   "SAMN26567300": {
+    "n_expected": 1572,
+    "n_available": 1572,
+    "fraction_available": 1.0
+   },
+   "SAMN26567301": {
+    "n_expected": 1224,
+    "n_available": 1224,
+    "fraction_available": 1.0
+   },
+   "SAMN26796324": {
+    "n_expected": 1452,
+    "n_available": 1452,
+    "fraction_available": 1.0
+   },
+   "SAMN26796377": {
+    "n_expected": 1884,
+    "n_available": 1884,
+    "fraction_available": 1.0
+   },
+   "SAMN26796439": {
+    "n_expected": 648,
+    "n_available": 648,
+    "fraction_available": 1.0
+   },
+   "SAMN28626304": {
+    "n_expected": 360,
+    "n_available": 360,
+    "fraction_available": 1.0
+   },
+   "SAMN29503689": {
+    "n_expected": 1296,
+    "n_available": 1296,
+    "fraction_available": 1.0
+   },
+   "SAMN29503815": {
+    "n_expected": 924,
+    "n_available": 924,
+    "fraction_available": 1.0
+   },
+   "SAMN30692055": {
+    "n_expected": 1752,
+    "n_available": 1752,
+    "fraction_available": 1.0
+   },
+   "SAMN30974101": {
+    "n_expected": 888,
+    "n_available": 888,
+    "fraction_available": 1.0
+   },
+   "SAMN30974103": {
+    "n_expected": 1380,
+    "n_available": 1380,
+    "fraction_available": 1.0
+   },
+   "SAMN32542113": {
+    "n_expected": 732,
+    "n_available": 732,
+    "fraction_available": 1.0
+   },
+   "SAMN32676082": {
+    "n_expected": 900,
+    "n_available": 900,
+    "fraction_available": 1.0
+   },
+   "SAMN32762131": {
+    "n_expected": 240,
+    "n_available": 200,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN33238824": {
+    "n_expected": 504,
+    "n_available": 420,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN33404193": {
+    "n_expected": 216,
+    "n_available": 216,
+    "fraction_available": 1.0
+   },
+   "SAMN33434791": {
+    "n_expected": 180,
+    "n_available": 150,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN33741191": {
+    "n_expected": 132,
+    "n_available": 132,
+    "fraction_available": 1.0
+   },
+   "SAMN33741207": {
+    "n_expected": 396,
+    "n_available": 330,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN33741209": {
+    "n_expected": 396,
+    "n_available": 396,
+    "fraction_available": 1.0
+   },
+   "SAMN33741222": {
+    "n_expected": 468,
+    "n_available": 468,
+    "fraction_available": 1.0
+   },
+   "SAMN35638176": {
+    "n_expected": 216,
+    "n_available": 216,
+    "fraction_available": 1.0
+   },
+   "SAMN35676739": {
+    "n_expected": 228,
+    "n_available": 228,
+    "fraction_available": 1.0
+   },
+   "SAMN35677795": {
+    "n_expected": 1440,
+    "n_available": 1440,
+    "fraction_available": 1.0
+   },
+   "SAMN36766197": {
+    "n_expected": 1968,
+    "n_available": 1968,
+    "fraction_available": 1.0
+   },
+   "SAMN36766202": {
+    "n_expected": 2100,
+    "n_available": 2100,
+    "fraction_available": 1.0
+   },
+   "SAMN36766205": {
+    "n_expected": 1752,
+    "n_available": 1752,
+    "fraction_available": 1.0
+   },
+   "SAMN36766227": {
+    "n_expected": 744,
+    "n_available": 744,
+    "fraction_available": 1.0
+   },
+   "SAMN37639060": {
+    "n_expected": 840,
+    "n_available": 770,
+    "fraction_available": 0.9166666666666666
+   },
+   "SAMN37639065": {
+    "n_expected": 84,
+    "n_available": 70,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN38182635": {
+    "n_expected": 480,
+    "n_available": 480,
+    "fraction_available": 1.0
+   },
+   "SAMN38203345": {
+    "n_expected": 204,
+    "n_available": 204,
+    "fraction_available": 1.0
+   },
+   "SAMN38231263": {
+    "n_expected": 312,
+    "n_available": 312,
+    "fraction_available": 1.0
+   },
+   "SAMN38562723": {
+    "n_expected": 360,
+    "n_available": 360,
+    "fraction_available": 1.0
+   },
+   "SAMN38673182": {
+    "n_expected": 240,
+    "n_available": 240,
+    "fraction_available": 1.0
+   },
+   "SAMN38999337": {
+    "n_expected": 588,
+    "n_available": 588,
+    "fraction_available": 1.0
+   },
+   "SAMN38999338": {
+    "n_expected": 1656,
+    "n_available": 1656,
+    "fraction_available": 1.0
+   },
+   "SAMN39334912": {
+    "n_expected": 192,
+    "n_available": 160,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN39551827": {
+    "n_expected": 312,
+    "n_available": 286,
+    "fraction_available": 0.9166666666666666
+   },
+   "SAMN39551828": {
+    "n_expected": 120,
+    "n_available": 100,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN39551830": {
+    "n_expected": 228,
+    "n_available": 190,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN39551832": {
+    "n_expected": 888,
+    "n_available": 888,
+    "fraction_available": 1.0
+   },
+   "SAMN39551833": {
+    "n_expected": 240,
+    "n_available": 240,
+    "fraction_available": 1.0
+   },
+   "SAMN39551834": {
+    "n_expected": 240,
+    "n_available": 240,
+    "fraction_available": 1.0
+   },
+   "SAMN39551839": {
+    "n_expected": 1212,
+    "n_available": 1212,
+    "fraction_available": 1.0
+   },
+   "SAMN39551846": {
+    "n_expected": 300,
+    "n_available": 250,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN39551854": {
+    "n_expected": 324,
+    "n_available": 270,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN39551859": {
+    "n_expected": 264,
+    "n_available": 264,
+    "fraction_available": 1.0
+   },
+   "SAMN39551862": {
+    "n_expected": 876,
+    "n_available": 876,
+    "fraction_available": 1.0
+   },
+   "SAMN39634308": {
+    "n_expected": 744,
+    "n_available": 744,
+    "fraction_available": 1.0
+   },
+   "SAMN39634309": {
+    "n_expected": 240,
+    "n_available": 200,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN39634310": {
+    "n_expected": 612,
+    "n_available": 612,
+    "fraction_available": 1.0
+   },
+   "SAMN39724761": {
+    "n_expected": 828,
+    "n_available": 828,
+    "fraction_available": 1.0
+   },
+   "SAMN39888444": {
+    "n_expected": 336,
+    "n_available": 308,
+    "fraction_available": 0.9166666666666666
+   },
+   "SAMN39939912": {
+    "n_expected": 252,
+    "n_available": 252,
+    "fraction_available": 1.0
+   },
+   "SAMN39998258": {
+    "n_expected": 216,
+    "n_available": 180,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN40123736": {
+    "n_expected": 360,
+    "n_available": 360,
+    "fraction_available": 1.0
+   },
+   "SAMN40123745": {
+    "n_expected": 324,
+    "n_available": 270,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN40123770": {
+    "n_expected": 912,
+    "n_available": 912,
+    "fraction_available": 1.0
+   },
+   "SAMN40323370": {
+    "n_expected": 480,
+    "n_available": 440,
+    "fraction_available": 0.9166666666666666
+   },
+   "SAMN40323371": {
+    "n_expected": 1044,
+    "n_available": 1044,
+    "fraction_available": 1.0
+   },
+   "SAMN41071126": {
+    "n_expected": 276,
+    "n_available": 253,
+    "fraction_available": 0.9166666666666666
+   },
+   "SAMN41071142": {
+    "n_expected": 264,
+    "n_available": 220,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN41479334": {
+    "n_expected": 240,
+    "n_available": 240,
+    "fraction_available": 1.0
+   },
+   "SAMN42382017": {
+    "n_expected": 372,
+    "n_available": 372,
+    "fraction_available": 1.0
+   },
+   "SAMN42392509": {
+    "n_expected": 396,
+    "n_available": 396,
+    "fraction_available": 1.0
+   },
+   "SAMN43047201": {
+    "n_expected": 240,
+    "n_available": 240,
+    "fraction_available": 1.0
+   },
+   "SAMN43844647": {
+    "n_expected": 624,
+    "n_available": 624,
+    "fraction_available": 1.0
+   },
+   "SAMN44510955": {
+    "n_expected": 744,
+    "n_available": 744,
+    "fraction_available": 1.0
+   },
+   "SAMN44589911": {
+    "n_expected": 516,
+    "n_available": 430,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN45712690": {
+    "n_expected": 552,
+    "n_available": 460,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN46230708": {
+    "n_expected": 468,
+    "n_available": 429,
+    "fraction_available": 0.9166666666666666
+   },
+   "SAMN46230709": {
+    "n_expected": 324,
+    "n_available": 324,
+    "fraction_available": 1.0
+   },
+   "SAMN46230710": {
+    "n_expected": 480,
+    "n_available": 480,
+    "fraction_available": 1.0
+   },
+   "SAMN46343359": {
+    "n_expected": 468,
+    "n_available": 468,
+    "fraction_available": 1.0
+   },
+   "SAMN46474773": {
+    "n_expected": 672,
+    "n_available": 672,
+    "fraction_available": 1.0
+   },
+   "SAMN46474823": {
+    "n_expected": 756,
+    "n_available": 756,
+    "fraction_available": 1.0
+   },
+   "SAMN46474946": {
+    "n_expected": 324,
+    "n_available": 270,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN46474952": {
+    "n_expected": 900,
+    "n_available": 900,
+    "fraction_available": 1.0
+   },
+   "SAMN46474961": {
+    "n_expected": 408,
+    "n_available": 340,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN46544982": {
+    "n_expected": 1332,
+    "n_available": 1332,
+    "fraction_available": 1.0
+   },
+   "SAMN46716616": {
+    "n_expected": 2748,
+    "n_available": 2748,
+    "fraction_available": 1.0
+   },
+   "SAMN46716619": {
+    "n_expected": 1752,
+    "n_available": 1752,
+    "fraction_available": 1.0
+   },
+   "SAMN46716648": {
+    "n_expected": 2136,
+    "n_available": 2136,
+    "fraction_available": 1.0
+   },
+   "SAMN46716649": {
+    "n_expected": 1632,
+    "n_available": 1496,
+    "fraction_available": 0.9166666666666666
+   },
+   "SAMN46778011": {
+    "n_expected": 1644,
+    "n_available": 1644,
+    "fraction_available": 1.0
+   },
+   "SAMN46862811": {
+    "n_expected": 720,
+    "n_available": 720,
+    "fraction_available": 1.0
+   },
+   "SAMN46862817": {
+    "n_expected": 1104,
+    "n_available": 1104,
+    "fraction_available": 1.0
+   },
+   "SAMN46862834": {
+    "n_expected": 636,
+    "n_available": 636,
+    "fraction_available": 1.0
+   },
+   "SAMN46862848": {
+    "n_expected": 468,
+    "n_available": 468,
+    "fraction_available": 1.0
+   },
+   "SAMN46897905": {
+    "n_expected": 552,
+    "n_available": 552,
+    "fraction_available": 1.0
+   },
+   "SAMN47264607": {
+    "n_expected": 420,
+    "n_available": 420,
+    "fraction_available": 1.0
+   },
+   "SAMN47264642": {
+    "n_expected": 336,
+    "n_available": 280,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN47788335": {
+    "n_expected": 888,
+    "n_available": 888,
+    "fraction_available": 1.0
+   },
+   "SAMN47788336": {
+    "n_expected": 672,
+    "n_available": 672,
+    "fraction_available": 1.0
+   },
+   "SAMN48144070": {
+    "n_expected": 1464,
+    "n_available": 1464,
+    "fraction_available": 1.0
+   },
+   "SAMN48144087": {
+    "n_expected": 576,
+    "n_available": 576,
+    "fraction_available": 1.0
+   },
+   "SAMN48185768": {
+    "n_expected": 708,
+    "n_available": 708,
+    "fraction_available": 1.0
+   },
+   "SAMN48324032": {
+    "n_expected": 1308,
+    "n_available": 1308,
+    "fraction_available": 1.0
+   },
+   "SAMN48324061": {
+    "n_expected": 1968,
+    "n_available": 1968,
+    "fraction_available": 1.0
+   },
+   "SAMN48387103": {
+    "n_expected": 636,
+    "n_available": 583,
+    "fraction_available": 0.9166666666666666
+   },
+   "SAMN48387105": {
+    "n_expected": 624,
+    "n_available": 624,
+    "fraction_available": 1.0
+   },
+   "SAMN48387112": {
+    "n_expected": 480,
+    "n_available": 480,
+    "fraction_available": 1.0
+   },
+   "SAMN48451385": {
+    "n_expected": 1860,
+    "n_available": 1860,
+    "fraction_available": 1.0
+   },
+   "SAMN48541670": {
+    "n_expected": 1860,
+    "n_available": 1860,
+    "fraction_available": 1.0
+   },
+   "SAMN48668204": {
+    "n_expected": 2040,
+    "n_available": 2040,
+    "fraction_available": 1.0
+   },
+   "SAMN48753775": {
+    "n_expected": 252,
+    "n_available": 210,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN48790648": {
+    "n_expected": 288,
+    "n_available": 240,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN48790898": {
+    "n_expected": 384,
+    "n_available": 320,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN49384630": {
+    "n_expected": 2244,
+    "n_available": 2244,
+    "fraction_available": 1.0
+   },
+   "SAMN49850453": {
+    "n_expected": 1260,
+    "n_available": 1050,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN49850454": {
+    "n_expected": 144,
+    "n_available": 120,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN49850455": {
+    "n_expected": 156,
+    "n_available": 130,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN49850456": {
+    "n_expected": 180,
+    "n_available": 180,
+    "fraction_available": 1.0
+   },
+   "SAMN49850457": {
+    "n_expected": 240,
+    "n_available": 200,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN49850458": {
+    "n_expected": 228,
+    "n_available": 190,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN49947234": {
+    "n_expected": 1008,
+    "n_available": 1008,
+    "fraction_available": 1.0
+   },
+   "SAMN50584031": {
+    "n_expected": 1332,
+    "n_available": 1332,
+    "fraction_available": 1.0
+   },
+   "SAMN50713126": {
+    "n_expected": 300,
+    "n_available": 300,
+    "fraction_available": 1.0
+   },
+   "SAMN51335551": {
+    "n_expected": 1044,
+    "n_available": 1044,
+    "fraction_available": 1.0
+   },
+   "SAMN51335576": {
+    "n_expected": 852,
+    "n_available": 852,
+    "fraction_available": 1.0
+   },
+   "SAMN54531395": {
+    "n_expected": 300,
+    "n_available": 250,
+    "fraction_available": 0.8333333333333334
+   },
+   "SAMN56510720": {
+    "n_expected": 300,
+    "n_available": 250,
+    "fraction_available": 0.8333333333333334
+   }
+  }
+ },
+ "annotation_state_distribution": {
+  "ok": 9784
+ },
+ "ARG_bearing_bool_distribution": {
+  "false": 9126,
+  "true": 658
+ },
+ "abstention_reasons": {},
+ "call_distributions": {
+  "v1.2-General": {
+   "not_selected": 8143,
+   "plasmid_selected": 1641
+  },
+  "v1.1": {
+   "not_selected": 9069,
+   "plasmid_selected": 71,
+   "high_confidence_plasmid": 644
+  },
+  "router": {
+   "not_selected": 8294,
+   "plasmid_selected": 1407,
+   "high_confidence_plasmid": 83
+  }
+ },
+ "deterministic_rebuild_identical": true,
+ "checksums": {
+  "candidate_contig_table": "440f16bc7002c15135ac73a233545613ad6869eddf7d421cca6dc0a1060114f8",
+  "v11_scores": "007d20bf2e0d7f068334c563e13451cd3e06e18a2181e6475ae3f77d58abdc3e",
+  "builder": "fd2dcf7535246775afe03091ccc0fa4d6a2db2819800b5f4bff9aa432b71bb09",
+  "v11_scorer": "e8f4f0a1f328983f898421bfbd1f6a87fd896cda1a1eaca26ef965c1a93da3fc",
+  "v11_estimator": "6c179825a6c608d0468d36c37e08d2511485f18a5c38d4c7369c93b12498c50f",
+  "v12_estimator": "f5d1cd1202b5077030a4512fb0c801abbdf39998b7c170acade03c268d68d74d",
+  "evaluator_v3": "2bc3bac0b773f45031093d8044975bedf9367bb9a99fd35cee637164f7535b03",
+  "router": "ba0572ec18c1a0d8ee90382131f2d715e98cf995bda5507986585c03eb47c8b2",
+  "encoding_freeze_v12": "dbcdd9517da59fc4a2f97a12bb43c69706c6eba96027d8e3e4d4ce00c3519dde",
+  "addendum": "379cc190309f7560c730378e779da6a4e681bb78ea68b657b6a87dd31bf17fde",
+  "cohort_v3": "874b0924deffef948dd50e00ee5c77c91d773354de4a1bb936162e4fec294205"
+ },
+ "thresholds": {
+  "v1.2-General": 0.9285,
+  "v1.1_standard": 0.9524,
+  "v1.1_high_confidence": 0.9605
+ },
+ "software": {
+  "python": "3.14.6",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "sklearn": "1.9.0",
+  "numpy": "2.5.0",
+  "pandas": "3.0.3"
+ },
+ "truth_state": {
+  "PREDICTIONS_FROZEN_json": "ABSENT",
+  "truth_acquired": false,
+  "truth_joined": false,
+  "truth_scored": false
+ }
+}

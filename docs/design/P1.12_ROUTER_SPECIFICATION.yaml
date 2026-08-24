@@ -1,0 +1,167 @@
+specification: PlasmidCall routed deployment system
+version: "1.0"
+status: FROZEN
+frozen_on: 2026-08-20
+implementation: scripts/p1_12/plasmidcall_router.py
+acceptance_fixtures: scripts/p1_12/router_fixtures.py
+fixture_result: 49 fixtures, 0 failed
+
+# ---------------------------------------------------------------------------- the rule
+
+routing_rule:
+  determined_exclusively_by: the frozen AMRFinderPlus core-ARG annotation rule
+  rule: "type == AMR AND subtype == AMR AND scope == core AND class != EFFLUX"
+  never_determined_by: [a model score, a length heuristic, a tool call, any model output]
+  decision_table:
+    - {annotation_state: core_arg_present, model: PlasmidCall v1.1,
+       routing_reason: core_arg_present}
+    - {annotation_state: core_arg_absent, model: PlasmidCall v1.2-General,
+       routing_reason: core_arg_absent}
+    - {annotation_state: annotation_failed, model: null,
+       routing_reason: annotation_failed_routing_abstain}
+    - {annotation_state: annotation_missing, model: null,
+       routing_reason: annotation_missing_routing_abstain}
+
+annotation_failure_handling:
+  rule: routing_abstain
+  rationale: >
+    A failed AMRFinderPlus annotation does not establish that a contig is ARG-bearing. Routing an
+    unknown contig to an ARG-domain model is not a conservative scientific inference - it asserts a
+    property that was never measured. Translating the failure into core_arg_absent would equally
+    move the contig into the general domain on the strength of a missing measurement. The router
+    therefore declines to choose.
+  on_abstain:
+    - retain the v1.1 score and class where computable
+    - retain the v1.2-General probability and class
+    - retain the AMRFinderPlus failure state
+    - expose both candidate outputs
+    - issue NO final routed class
+    - never translate the failure into core_arg_absent
+    - count it explicitly in router coverage and failure metrics
+    - metrics are undefined by construction for abstained contigs and are never imputed
+  distinct_states: >
+    core_arg_absent, annotation_failed and annotation_missing are three different states, recorded
+    differently. An empty AMRFinderPlus hit list is a real, successful, negative result and IS
+    core_arg_absent. Fixtures assert none of these collapse into one another.
+
+# ---------------------------------------------------------------------------- thresholds
+
+thresholds:
+  v1_1:
+    standard: 0.9524
+    high_confidence: 0.9605
+    classes:
+      high_confidence_plasmid: ">= 0.9605"
+      plasmid_selected: ">= 0.9524 and < 0.9605"
+      not_selected: "< 0.9524"
+  v1_2_general:
+    standard: 0.9285
+    classes:
+      plasmid_selected: ">= 0.9285"
+      not_selected: "< 0.9285"
+
+boundary_semantics: >
+  Thresholds are inclusive lower bounds. A score exactly at the threshold is selected. Fixtures
+  assert both sides of both boundaries.
+
+# ---------------------------------------------------------------------------- output
+
+output:
+  routed_class_source: >
+    routed_class is taken from the routed model ALONE. Where the two models disagree, the
+    non-routed model's class is still recorded, but it does not influence routed_class.
+  score_pooling: FORBIDDEN
+  retained_per_contig:
+    - routed_class
+    - routing_abstained
+    - model_selected
+    - routing_reason
+    - annotation_state
+    - v11_score
+    - v11_class
+    - v11_threshold
+    - v11_high_confidence_threshold
+    - v12_probability
+    - v12_class
+    - v12_threshold
+    - all 12 tool calls, verbatim, including FAILED and MISSING
+    - n_tools_failed
+    - n_tools_missing
+  not_selected_semantics: >
+    Never a chromosome call. No class emitted by either model is ever "chromosome"; a fixture
+    asserts this over the full range of both scores.
+
+# ---------------------------------------------------------------------------- fixtures
+
+fixture_coverage:
+  annotation_rule:
+    - core ARG hit maps to core_arg_present
+    - EFFLUX class is excluded
+    - non-core scope is excluded
+    - an empty hit list is a real negative and maps to core_arg_absent
+    - annotation could not run maps to annotation_failed
+    - annotation never attempted maps to annotation_missing
+  routing:
+    - positive fixture routes to v1.1
+    - negative fixture routes to v1.2-General
+    - missing-ARG is distinguished from failed annotation
+    - failed annotation routes to NO model
+    - missing annotation routes to NO model
+    - annotation failure is never translated to core_arg_absent
+    - annotation failure is never routed to the ARG-domain model
+    - the abstain record issues no final routed class
+    - the abstain record retains both candidate outputs and the failure state
+    - the abstain record tolerates an uncomputable v1.1 score
+    - coverage counts abstentions explicitly
+  thresholds:
+    - both sides of 0.9524, 0.9605 and 0.9285
+    - the frozen v1.2 threshold is exactly 0.9285
+  never_chromosome:
+    - no class is ever "chromosome" across the full score range
+  failure_states:
+    - FAILED is recorded, not dropped
+    - MISSING is recorded, not dropped
+    - FAILED is distinguishable from an explicit chromosome vote
+    - FAILED and MISSING are recorded as distinct states
+    - an OBSERVED failure state (PlasmidFinder/FAILED) carries its own fitted weight
+    - an UNOBSERVED state is neutral by construction and never a negative vote
+    - all 12 tools FAILED yields a probability, not a crash, and is not_selected
+  orientation:
+    - unanimous plasmid scores higher than unanimous chromosome
+    - unanimous plasmid is selected; unanimous chromosome is not_selected
+  provenance:
+    - every required field is retained
+    - all 12 tool calls are retained verbatim
+    - scores are never pooled
+  routed_class_isolation:
+    - an ARG-bearing contig takes the v1.1 class even when v1.2 disagrees
+    - a non-ARG contig takes the v1.2 class even when v1.1 disagrees
+
+missing_tool_neutrality:
+  defect_corrected: >
+    A one-hot block set to raw zero is NOT neutral after StandardScaler. Before correction an absent
+    tool shifted the logit by up to 2.97 with an arbitrary per-tool sign.
+  rule: >
+    A tool in a state NOT observed during training has its 8-column block imputed to the training
+    means, so the post-scaling block is exactly 0.0 and its logit contribution is exactly 0.0.
+    Observed states keep their learned encoding.
+  fixture_coverage:
+    - every unseen failure/missing state contributes exactly zero, measured through the scaler
+    - every neutralised block scales to exactly zero
+    - available tools keep their contributions bit-identical
+    - an observed state (PlasmidFinder/FAILED) keeps its learned encoding
+    - regression guard - un-neutralised raw-zero blocks are demonstrably NOT neutral
+    - 2, 3, 6 and 11 simultaneous failures each contribute exactly zero
+    - all 12 tools MISSING or FAILED yields a probability, not a crash, and is not_selected
+    - an out-of-vocabulary call is treated as unavailable, not as a vote
+
+known_limitation:
+  unobserved_states_are_neutral_by_construction: >
+    23 of the 24 FAILED/MISSING states never occurred in the training cohort, so they are neutral
+    by construction rather than by evidence. Only PlasmidFinder/FAILED (218 CP2 contigs) was
+    observed and fitted. The model cannot have learned to separate states it never saw.
+  severe_failure_sensitivity: >
+    The model degrades safely in PPV but sharply in recall. Losing PlaScope alone takes recall from
+    0.7764 to 0.2013, below the 0.50 primary floor; losing the worst four tools yields NO positive
+    calls at all. Panel completeness is an operational precondition, not a nicety, and must be
+    verified before a run is considered evaluable. See P1.12_V1.2_FAILURE_SENSITIVITY.tsv.

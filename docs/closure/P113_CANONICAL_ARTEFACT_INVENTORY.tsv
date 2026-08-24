@@ -1,0 +1,36 @@
+role	canonical_path	size_bytes	sha256	producing_stage	status	sensitivity_release_class	required_for_reproduction
+frozen prediction table	E:/AMR_Evidence_Data/P1.13/frozen/P1.13_FROZEN_PREDICTIONS.tsv	7855439	3bc733c0adab6e3864412e056597d931dd1f28d6e6dfb0238c4c915d07799c80	P1.13 freeze	FROZEN	public-after-approval	yes
+prediction-freeze receipt	E:/AMR_Evidence_Data/P1.13/frozen/PREDICTIONS_FROZEN.json	93002	98e7902ac09bcb54c759c119d6e273ce2474179fd908dee423b69ba414a9b482	P1.13 freeze	FROZEN	public-after-approval	yes
+candidate contig table	E:/AMR_Evidence_Data/P1.13/candidate/P1.13_candidate_contig_table.tsv	6238551	440f16bc7002c15135ac73a233545613ad6869eddf7d421cca6dc0a1060114f8	candidate pipeline	FROZEN	public-after-approval	yes
+candidate manifest	E:/AMR_Evidence_Data/P1.13/candidate/P1.13_PREDICTION_FREEZE_CANDIDATE_MANIFEST.json	22377	bbe15fc247163c604ca55135ab3d8031a57aa1ae62f6451794a269591e135708	candidate pipeline	FROZEN	public-after-approval	yes
+v1.1 scores	E:/AMR_Evidence_Data/P1.13/candidate/P1.13_v11_scores.tsv	1204943	007d20bf2e0d7f068334c563e13451cd3e06e18a2181e6475ae3f77d58abdc3e	candidate pipeline	FROZEN	public-after-approval	yes
+builder validation	E:/AMR_Evidence_Data/P1.13/candidate/P1.13_builder_validation.json	21191	fd12f228a8b26dadb7c67b6a60f4057e121f105dafd11618730545d7a0c03d1e	candidate pipeline	FROZEN	public-after-approval	no
+parsed call table	E:/AMR_Evidence_Data/P1.13/raw_as_executed/p113/inference/P1.13_predictions_normalised.tsv	33341945	e3e43a0269336f2e88a670ef1b226d5ed56e616557e72ece0e41d873ffb4f48f	parse_all (frozen parsers)	FROZEN	public-after-approval	yes
+cohort v3	E:/AMR_Evidence_Data/P1.13/raw_as_executed/p113/P1.13_SELECTED_COHORT_v3.tsv	83582	874b0924deffef948dd50e00ee5c77c91d773354de4a1bb936162e4fec294205	amendment 005	FROZEN	public-after-approval	yes
+v1.1 estimator	models/plasmidcall_v1.1/plasmidcall_v1_1_m2.pkl	167815	6c179825a6c608d0468d36c37e08d2511485f18a5c38d4c7369c93b12498c50f	P1.11 v11 scorer fit	FROZEN	public-after-approval	yes
+v1.2-General estimator	models/plasmidcall_v1.2-general/plasmidcall_v1_2_general.pkl	10073	f5d1cd1202b5077030a4512fb0c801abbdf39998b7c170acade03c268d68d74d	P1.12 freeze_v12	FROZEN	public-after-approval	yes
+v1.2 portable model	models/plasmidcall_v1.2-general/P1.12_V1.2_MODEL_PORTABLE.json	13110	0fbb44c9e7c3053bc2d7e8a6d77cee80be486c03817ab11c58323a6023270e81	P1.12 freeze_v12	FROZEN	public-after-approval	yes
+frozen design	docs/plans/P1.13_FROZEN_DESIGN.yaml	11933	163c50e95b1240360b296030d6ee2a843226af2785848c8c85cb3cf1c1d520fc	design	FROZEN	public-after-approval	yes
+amendment 004	docs/plans/P1.13_AMENDMENT_004.yaml	20222	dd3847dba3b0501cfbbddfd1f05d65ac31e85e41d2f2eaede229ec693005f323	execution integrity	FROZEN	public-after-approval	yes
+amendment 005	docs/plans/P1.13_AMENDMENT_005.yaml	8923	e8179885af63e56fd769643cc67bc97c7ce8a089c1206ae505c50f3a29902e1f	replacement	FROZEN	public-after-approval	yes
+assembly reconciliation	docs/evidence/P1.13_provenance/P1.13_ASSEMBLY_RECONCILIATION.json	6294	fba1e0c4c5df19dffca3794c5e15dc0797ff3c1e031a68b990af3563bd6bc1ad	reconciliation	FROZEN	public-after-approval	no
+panel failure review	docs/evidence/P1.13_provenance/P1.13_PANEL_FAILURE_REVIEW.md	2627	5304851ecdf27b7abdd05a44b863fe4e55d337e151cfed28df56a3286e89f720	review	FROZEN	public-after-approval	no
+panel dependency audit	docs/evidence/P1.13_provenance/P1.13_PANEL_DEPENDENCY_AUDIT.json	1612	ca8560e6a9c3d2a5014128776edf02455caddb1da271d527b8396fdbfd66f265	audit	FROZEN	public-after-approval	no
+replacement selection	docs/evidence/P1.13_provenance/P1.13_REPLACEMENT_SELECTION.json	1477	5b9685ab151439014126bd24201f87aa5c45697f3d15ecd80aded70521fe37cd	amendment 005	FROZEN	public-after-approval	yes
+cohort hash transition	docs/evidence/P1.13_provenance/COHORT_HASH_TRANSITION.json	833	78c40477b35b95dcbab3999dd595aff0c8335b7ca8b857531cb32bb505384cfc	amendment 005	FROZEN	public-after-approval	no
+freeze receipt (repo copy)	docs/evidence/P1.13_provenance/P1.13_PREDICTIONS_FROZEN_RECEIPT.json	93002	98e7902ac09bcb54c759c119d6e273ce2474179fd908dee423b69ba414a9b482	P1.13 freeze	FROZEN	public-after-approval	yes
+truth stop marker	docs/evidence/P1.13_provenance/P1.13_PREDICTIONS_FROZEN_AWAITING_TRUTH_AUTHORIZATION	946	196060f31352dbe35b010ed55084d86d3c3d2803b24c66c31e8468537dc2440f	freeze	ACTIVE-MARKER	public-after-approval	no
+builder (derived)	scripts/p1_13/build_p113_contig_table.py	23202	fd2dcf7535246775afe03091ccc0fa4d6a2db2819800b5f4bff9aa432b71bb09	derivation	FROZEN	public-after-approval	yes
+candidate pipeline (derived)	scripts/p1_13/p113_candidate_pipeline.py	13883	b3a0327d948c1a5e147f7ef8f8aa5c76e3241ffd46cf4d04dc8b8ce89b8e23ee	derivation	FROZEN	public-after-approval	yes
+freezer (derived)	scripts/p1_13/p113_freeze_predictions.py	18090	b0246dfdbaccf64f2913308701426869b5bac3ca5dde8fd6be2e61ba018941e8	derivation	FROZEN	public-after-approval	yes
+v11 scorer (byte-identical copy)	scripts/p1_13/v11_scorer_p111.py	16013	e8f4f0a1f328983f898421bfbd1f6a87fd896cda1a1eaca26ef965c1a93da3fc	P1.11 frozen	FROZEN	public-after-approval	yes
+encoder freeze_v12 (copy)	scripts/p1_13/freeze_v12.py	17950	15db49b2082ad36720b971d99fd456d0008dc3af3fb629f70358223b893657de	P1.12 frozen	FROZEN	public-after-approval	yes
+router (copy)	scripts/p1_13/plasmidcall_router.py	6463	ba0572ec18c1a0d8ee90382131f2d715e98cf995bda5507986585c03eb47c8b2	P1.11 frozen	FROZEN	public-after-approval	yes
+pairing validator	scripts/p1_13/p113_pairing.py	5141	24c203c674953d3f3bb015326f92874f8b358e54d7094a2f83b08d31938ed10b	amendment 003	FROZEN	public-after-approval	yes
+runner (as-executed)	scripts/p1_13/p113_run.sh	12772	620d3e6be75204ab07108c543beefe329e3275f5b8c4e948158cfef741f68c85	execution	FROZEN	public-after-approval	yes
+assembly acceptance gate	scripts/p1_13/p113_assembly_accept.py	10072	d32f54424dc2bd87c1e7f2c116a9db006584a6a8829c6d2fb0852028951e37b5	amendment 004	FROZEN	public-after-approval	yes
+assembly reconciler	scripts/p1_13/p113_asm_reconcile.py	7207	9f036d712faa12553dcecf9f64caa624bfc5e52ed520edb4d760d6c7f6f9ab7b	amendment 004	FROZEN	public-after-approval	yes
+builder fixtures receipt	docs/evidence/P1.13_BUILDER_FIXTURES.json	7395	a728b0e4a0d2c554922fca0975d4598450697213e02bfea458f1c57802671003	fixtures	FROZEN	public-after-approval	no
+depth covariate table	docs/evidence/P1.13_provenance/P1.13_DEPTH_COVARIATE.csv	7191	9395a094574ae3eaeb1282cb8b002a92a3afb4e78c459ebd99eb56013479b32b	amendment 004	FROZEN	public-after-approval	no
+reads manifest	docs/evidence/P1.13_provenance/P1.13_READS_MANIFEST.sha256	60988	f42a193f1d675c8935923408560c012f6bb632b2b7dac734d304ebdf41c1dbdd	archive	FROZEN	public-after-approval	yes
+archive note	docs/evidence/P1.13_provenance/P1.13_ARCHIVE_NOTE.md	1513	6e8f72f81702b2b3d0f81cd84424f1b3651975a99c6b011be80e8c87b52788d5	archive	FROZEN	public-after-approval	no

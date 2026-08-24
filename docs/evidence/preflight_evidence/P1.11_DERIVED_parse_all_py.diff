@@ -1,0 +1,25 @@
+--- p110/parse_all.py
++++ p112/parse_all.py
+@@ -4,7 +4,7 @@
+ import os, sys, json, csv, hashlib, glob, datetime
+ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+ import parsers as P
+-ROOT = sys.argv[1] if len(sys.argv) > 1 else "/data/trace-arg"; INF = f"{ROOT}/p110/inference"
++ROOT = sys.argv[1] if len(sys.argv) > 1 else "/data/trace-arg"; INF = f"{ROOT}/p112/inference"
+ def sha(p):
+     h = hashlib.sha256()
+     with open(p, "rb") as f:
+@@ -12,11 +12,11 @@
+     return h.hexdigest()
+ def contigs_of(s):
+     d = {}; name = None
+-    for l in open(f"{ROOT}/p110/assemblies/shortread/{s}/shortread.fasta"):
++    for l in open(f"{ROOT}/p112/assemblies/shortread/{s}/shortread.fasta"):
+         if l.startswith(">"): name = l[1:].strip().split()[0]; d[name] = 0
+         else: d[name] += len(l.strip())
+     return d
+-samples = sorted(os.listdir(f"{ROOT}/p110/assemblies/shortread"))
++samples = sorted(os.listdir(f"{ROOT}/p112/assemblies/shortread"))
+ rows = []; summary = {}
+ os.makedirs(f"{INF}/parsed", exist_ok=True)
+ for t, fn in P.PARSERS.items():

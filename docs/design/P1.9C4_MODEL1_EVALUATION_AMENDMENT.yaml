@@ -1,0 +1,54 @@
+# P1.9C4 MODEL 1 EVALUATION AMENDMENT — pre-registered evaluation of Model 1 on the FROZEN P1.9C3 truth
+# Frozen and hashed BEFORE any prediction was produced or inspected. Nothing here may change after predictions are seen.
+amendment_id: P1.9C4_MODEL1_EVALUATION_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-19'
+authorisation: 'Owner (2026-08-19): Option A; metrics, denominators, CIs, failure rules and reporting levels frozen before inspection'
+
+frozen_inputs:
+  truth: 'P1.9C3 FROZEN truth bundle sha256 c2c7a1aa4e49a6d47dd2ea10d808bf7fa09ea52155604541a6e7919fb9c90eda (truth/<sample>/truth_table.tsv)'
+  predictions: 'inference/P1.9C4_predictions_normalised.tsv produced under P1.9C4_MODEL1_INFERENCE_AMENDMENT (sha256 recorded in INFERENCE_MANIFEST before evaluation)'
+  arg_annotation: 'annotation/P1.9C4_arg_bearing.tsv produced under P1.9C4_ARG_ANNOTATION_AMENDMENT (sha256 recorded before evaluation)'
+  development_set: 'predictions.xlsx sha256 db558a67...46e091 (Model 1 fitting data; ARG-bearing rows, n=1,460)'
+  model_code: '05_models.py / 08_p17_frozen.py from the P1-P1.7 bundle; evaluation runs locally in the same Windows Python environment family (versions recorded)'
+  join_key: '(sample, contig_id) exact string match; identifier audit P1.9C3 PASS 8/8; any unmatched key -> STOP (identifier mismatch)'
+
+evaluation_sets_denominators:
+  primary: 'Product A contigs with length >= 1000 AND frozen truth in {chromosome, plasmid} AND ARG-bearing == True under the frozen AMRFinderPlus rule (count fixed by the annotation manifest before predictions are read)'
+  secondary: 'all 739 resolved contigs >= 1 kb (594 chromosome / 145 plasmid) regardless of ARG status'
+  reported_separately_never_merged: ['31 ambiguous', '4 unmapped', '1,296 contigs < 1 kb', 'contigs excluded from the primary set for lacking a qualifying ARG (= secondary minus primary)', 'per-tool FAILED / MISSING / abstention counts', 'M0/M2 unresolved (abstained) contigs']
+
+predictors_evaluated_all_predeclared:
+  M0: 'unfitted rule (agreement >= 0.90) applied to the 12 codes; unresolved when n_valid==0 or agreement<0.90; a tool state FAILED/MISSING is treated exactly like an abstention for n_valid ONLY in the sense that it is not a valid vote — it is additionally counted and reported as failure, and any contig with >=1 FAILED/MISSING tool is flagged'
+  M2_frozen: 'frozen spec fitted ONCE on the full development set (1,460 ARG-bearing rows, seed 20260816): inner StratifiedGroupKFold(4) OOF -> candidate threshold = smallest thr with inner-OOF PPV>=0.95 and >=10 calls; HGB fitted on all dev rows; applied to the cohort with that threshold. This is the deterministic realisation of the frozen specification, not retraining or tuning. Contigs with any FAILED/MISSING tool value are scored with the abstention encoding of that tool (as an unknown vote) AND flagged; a sensitivity line excluding flagged contigs is reported.'
+  two_stage: 'reported for the record only, labelled INVALIDATED lineage (rejector fitted on inner OOF of the dev set as in 08_p17_frozen.py)'
+  individual_tools: 'each of the 12 tools as a binary detector (context only; no claim)'
+  positive_class: plasmid
+
+metrics_frozen:
+  confusion_matrix: [TP, FP, TN, FN, unresolved_abstained, failed_or_missing_flagged]
+  plasmid_PPV_precision: TP/(TP+FP)
+  plasmid_recall_sensitivity: TP/(TP+FN)   # denominator = truth plasmids in the set (unresolved counted as not called)
+  specificity: TN/(TN+FP)
+  F1: 2*PPV*recall/(PPV+recall)
+  balanced_accuracy: (recall+specificity)/2
+  MCC: (TP*TN-FP*FN)/sqrt((TP+FP)(TP+FN)(TN+FP)(TN+FN))
+  prediction_coverage: (TP+FP+TN+FN)/n_set
+  abstention_or_failure_rate: unresolved/n_set and flagged/n_set (separately)
+  recall_among_covered: TP/(TP+FN restricted to called contigs) — reported alongside, never instead of, recall
+  levels: [contig, per_sample (8), per_replicon_event, cohort]
+  per_replicon_event: 'errors (FP, FN) collapsed by Product B replicon (truth best hit) per sample: number of replicons with >=1 FP, >=1 FN; plasmid replicons with >=1 TP (replicon-level detection)'
+  point_estimates: 'exact counts and ratios to 4 decimals; no rounding of counts'
+  confidence_intervals: 'cluster bootstrap over the 6 predeclared genome clusters (P1.9C1: C1={SAMN04014847,SAMN04014856}, C2={SAMN04014852,SAMN04014855}, C3={SAMD00056131}, C4={SAMN02991226}, C5={SAMN04014858}, C6={SAMN04014860}); 10,000 replicates, seed 20260816, percentile 95 %; n_clusters=6 reported next to every interval; intervals are informational and are NOT a pass/fail criterion'
+  target_statement: 'Model 1 target = PPV >= 0.95 with recall > 0.50 on the PRIMARY set; reported as MET / NOT MET on point estimates; secondary set reported as generalisation, not target'
+
+failure_and_missing_handling:
+  tool_failed_or_missing: 'never converted to a class or zero; recorded per contig-tool; contigs flagged; counts reported'
+  no_silent_removal: 'every contig of the 8 assemblies appears in exactly one reporting bucket'
+  no_retry_no_tuning: 'evaluation code is written and hashed before predictions are read; if a coding bug is found after, the fix is documented as an erratum with both results shown'
+
+outputs:
+  - deliverables/P1.9C4_model1_results.json (all metrics, all sets, all levels, CIs with n_clusters)
+  - deliverables/P1.9C4_model1_contig_table.tsv (per contig: truth, ARG flag, 12 codes, M0/M2 outputs, bucket)
+  - deliverables/P1.9C4_model1_per_sample.tsv, _per_replicon.tsv, _tool_coverage.tsv
+  - docs update: MODEL_VALIDATION_STATUS.md §1 (new subsection: external Tier-1 evaluation), decision gate, evidence record

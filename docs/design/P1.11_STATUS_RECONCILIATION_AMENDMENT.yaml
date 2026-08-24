@@ -1,0 +1,299 @@
+# =============================================================================================
+# P1.11 STATUS-RECONCILIATION AMENDMENT
+# Restoring valid MOB-recon evidence discarded by stale FAILED receipts
+# =============================================================================================
+amendment_id: P1.11_STATUS_RECONCILIATION_AMENDMENT
+version: "1.0"
+status: FROZEN - approved and frozen BEFORE any prediction rebuild and BEFORE any truth access
+declared_on: 2026-08-22
+supplements:
+  - docs/plans/P1.11_SELECTIVE_CLASSIFICATION_ADDENDUM.yaml
+  - docs/plans/P1.11_PROVENANCE_AND_FAILCLOSED_CORRECTION.yaml
+authorisation: >-
+  Owner, 2026-08-22: "I authorise option (b): restore the valid MOB-recon evidence for the 47
+  .done executions with stale FAILED receipts. This is a truth-blind provenance correction, not
+  model tuning. The decision is based only on terminal markers, output completeness, and parser
+  validity. No P1.11 truth has been accessed."
+
+# ---------------------------------------------------------------------------- timing
+
+timing:
+  approved_before: [prediction rebuild, prediction freeze, truth acquisition, truth joining,
+                    outcome scoring]
+  verified_at_approval:
+    PREDICTIONS_FROZEN_json: ABSENT
+    p112_truth_hold: ABSENT
+    p112_paf_gbff_assembly_report_files: 0
+    cohort_isolates_with_any_truth_artefact: 0 of 79
+  no_outcome_informed_this: >-
+    No model outcome, PPV, recall, truth label, expected class distribution or downstream
+    performance quantity informed this decision. P1.11 truth has not been acquired, constructed, or accessed by the evaluation workflow. The relevant claim is that no such
+    artefact was consumed by the P1.11 prediction workflow before freeze, not that reference-related
+    files cannot exist elsewhere on the host.
+    The rule below is stated entirely in terms of terminal markers, output-file completeness and
+    parser validity, and was fixed before any prediction was rebuilt.
+
+# ---------------------------------------------------------------------------- the incident
+
+incident:
+  what_happened: >-
+    Earlier in the P1.11 run, before the single-instance flock was in place, up to 14 concurrent
+    inference loops raced on the same tool/sample pairs. The frozen runner ends a successful run
+    with `chmod -R a-w $OUT`, and tools write inside the container as root. A second loop reaching
+    an already-completed pair could therefore neither clear nor rewrite the output directory and
+    exited 255. That later failed attempt OVERWROTE the receipt of the earlier successful run,
+    while the .done terminal marker from the successful run survived.
+  signature: exit_code 255 with a .done marker and complete output present
+  prior_record: docs/evidence/P1.11_ACQUISITION_CORRECTION_RECORD.md documents the same
+    concurrency class of defect; the flock fix is in scripts/p1_12/p111_infer.sh
+  how_it_surfaced: >-
+    Tool-evidence completeness for MOB-recon read 0.3534 while its terminal markers read 77 done /
+    2 failed. The two could not both be true, which forced the investigation.
+
+conflict_observed:
+  terminal_marker: .done (from the successful run)
+  receipt: status FAILED, exit_code 255 (written by a later blocked attempt)
+  native_output: present, complete and parseable by the frozen parser
+  consequence_if_uncorrected: >-
+    parse_all.py:25-28 reads the RECEIPT status and, when it is not OK, codes every contig of that
+    isolate FAILED. Valid MOB-recon evidence for 47 of 79 isolates was therefore discarded.
+
+affected_scope:
+  n_isolates: 47
+  tool: MOB-recon (runner key mobsuite)
+  n_assembled_contigs_affected: 11241
+  n_eligible_contigs_ge_1kb_affected: 4860
+  other_tools_affected: >-
+    NONE. The reconciliation hierarchy was audited across all 1027 execution units, not only
+    MOB-recon. No other tool has any (.done + receipt-failure) unit.
+  affected_isolates:
+    - SAMD00521008
+    - SAMD00819698
+    - SAMD01616568
+    - SAMN09400867
+    - SAMN12364538
+    - SAMN18912321
+    - SAMN26796540
+    - SAMN29503401
+    - SAMN29503460
+    - SAMN29503705
+    - SAMN34137716
+    - SAMN38448447
+    - SAMN38448477
+    - SAMN38448533
+    - SAMN38448564
+    - SAMN39842013
+    - SAMN41579872
+    - SAMN41579880
+    - SAMN41579881
+    - SAMN41579890
+    - SAMN41579893
+    - SAMN41579899
+    - SAMN41579913
+    - SAMN41579938
+    - SAMN44789742
+    - SAMN44789755
+    - SAMN46343046
+    - SAMN46343321
+    - SAMN49035614
+    - SAMN49035615
+    - SAMN49035618
+    - SAMN49035621
+    - SAMN50191066
+    - SAMN50713113
+    - SAMN50713118
+    - SAMN50713119
+    - SAMN50713130
+    - SAMN50713132
+    - SAMN51205862
+    - SAMN51205865
+    - SAMN51205867
+    - SAMN51205871
+    - SAMN51205872
+    - SAMN51205876
+    - SAMN51205882
+    - SAMN51205883
+    - SAMN51250221
+  note_on_list: >-
+    The authoritative list is the reconciliation audit receipt, which is generated from the
+    markers and receipts rather than transcribed. This enumeration is for human reading.
+
+# ---------------------------------------------------------------------------- the rule
+
+reconciliation_hierarchy:
+  scope: audited across ALL 1027 execution units, every tool, not only MOB-recon
+  rules:
+    - id: 1
+      rule: exactly one terminal marker must exist, .done or .failed
+      violation_behaviour: FAILED (fail closed)
+    - id: 2
+      rule: >-
+        if .failed exists, the effective execution state remains FAILED, even if residual or
+        partial output can be parsed
+    - id: 3
+      rule: if .done exists and the receipt also reports success, process normally as OK
+    - id: 4
+      rule: >-
+        if .done exists but the receipt reports failure, verify the required output-file set,
+        verify files are non-empty where required, run tool-specific structural/schema validation,
+        verify contig reconciliation, and parse the output successfully. If EVERY check passes,
+        assign the derived provenance state RECOVERED_OK; otherwise fail closed as FAILED.
+    - id: 5
+      rule: >-
+        RECOVERED_OK contributes its parsed biological calls to model1_code while remaining
+        distinguishable from ordinary OK in provenance and reporting
+    - id: 6
+      rule: a .failed execution is NEVER converted to RECOVERED_OK
+  tool_specific_structural_validation: >-
+    the frozen parser in env/run/parsers.py is the structural/schema validator - it raises
+    ParseError on malformed or absent mandatory output - and contig reconciliation requires the
+    parsed contig set to equal the assembled contig set exactly.
+  inputs_forbidden_to_the_rule:
+    - prediction scores
+    - truth labels
+    - expected class distributions
+    - downstream performance of any kind
+
+# ---------------------------------------------------------------------------- result
+
+global_audit_result:
+  n_units: 1027
+  crosstabulation:
+    done_plus_receipt_OK: 972
+    done_plus_receipt_FAILED: 47
+    failed_plus_receipt_FAILED: 8
+    failed_plus_receipt_OK: 0
+    marker_missing: 0
+    conflicting_markers: 0
+  effective_states:
+    OK: 972
+    RECOVERED_OK: 47
+    FAILED: 8
+  units_that_failed_to_recover: 0
+  by_tool_non_OK:
+    MOB-recon: {RECOVERED_OK: 47, FAILED: 2, OK: 30}
+    PlasmidFinder: {FAILED: 4, OK: 75}
+    gplas2: {FAILED: 2, OK: 77}
+
+genuine_failures_unchanged:
+  rule: rule 2 - never recovered
+  mob_recon: [SAMD00521018, SAMN51205863]
+  plasmidfinder: [SAMN29503401, SAMN29503705, SAMN38448533, SAMN53649220]
+  gplas2: [SAMD00521018, SAMN51205863]
+  total: 8
+  note: >-
+    residual MOB-recon output exists for the two .failed isolates and can be partially parsed.
+    It is NOT recovered. Rule 2 is applied without exception.
+
+# ---------------------------------------------------------------------------- verification
+
+independent_verification:
+  receipt: docs/evidence/P1.11_INDEPENDENT_RECOVERY_VERIFICATION.json
+  verdict: ALL_PASS
+  n_examined: 49
+  n_recovered: 47
+  n_correctly_not_recovered: 2
+  independence: >-
+    The verifier did NOT re-run the frozen parse_mobsuite to reach its decision. It derived every
+    call from FASTA RECORD MEMBERSHIP in mob/chromosome.fasta and mob/plasmid_*.fasta, rebuilt the
+    assembly universe by MEASURING sequence lengths rather than trusting header length= tokens,
+    and applied its own required-file rule, its own 24-column schema validation and its own
+    two-directional contig reconciliation. Only after its verdicts were fixed did it import the
+    frozen parser as a third opinion.
+  three_way_agreement:
+    derivations: [FASTA record membership, contig_report molecule_type column, frozen parse_mobsuite]
+    contigs_compared: 11241
+    disagreements: 0
+  totals_across_the_47:
+    assembled_contigs: 11241
+    eligible_ge_1kb: 4763
+    total_bp: 236934939
+    calls: {chromosome: 10353, plasmid: 888, unknown: 0}
+    contig_reconciliation: parsed == assembled in 47 of 47, both directions
+  positive_control:
+    units: the 30 mobsuite units that already carried receipt status OK
+    contigs: 6930
+    problems: 0
+    cross_check_disagreements: 0
+    purpose: shows the checker does not simply pass whatever it is shown
+  root_cause_corroborated_isolate_by_isolate: >-
+    In 47 of 47, the mob_recon output and the .done marker have mtimes PRECEDING the start_utc of
+    the failing receipt; the failing attempt lasted 1-3 seconds; and its log ends
+    "mob_suite.mob_recon ERROR: Error output directory exists, please specify a new directory or
+    use --force to overwrite". The blocked attempt aborted BEFORE touching the pre-existing output.
+    This is direct causal evidence, not inference from the exit code alone.
+
+  negative_control_finding: >-
+    IMPORTANT. Both genuine .failed isolates leave residual output that the frozen parser parses
+    WITHOUT raising - 115 and 82 contigs, 0 unknown. Trusting "the output parses" alone would have
+    wrongly recovered both. They are excluded by the marker gate (rule 2) and, independently, by
+    the required-file and leftover-__tmp checks. Rule 2 is therefore load-bearing rather than
+    merely conservative, and its two genuine failures carry exit_code 1 with a pandas
+    "No objects to concatenate" traceback - a real mid-pipeline abort, not the 255 clobber
+    signature.
+
+router_effect_clarification:
+  statement: >-
+    Router route-selection states changed on 0 contigs; routed Boolean outputs changed on 247
+    contigs because corrected MOB-recon evidence changed model scores.
+  explanation: >-
+    The router's ROUTE SELECTION depends on annotation state and ARG-bearing status, neither of
+    which this correction touched, so no contig changed which model scored it. What changed is the
+    SCORE that the already-selected model produced, and therefore the Boolean output at the locked
+    operating points.
+
+truth_access_statement: >-
+  P1.11 truth has not been acquired, constructed, or accessed by the evaluation workflow. The claim
+  is about what the P1.11 prediction workflow consumed before freeze; it is not a claim that
+  reference-related files cannot exist elsewhere on the host. Prior-phase P1.10 and P1.9C3 truth
+  artefacts do exist on the shared volume and were never read by any P1.11 step.
+
+# ---------------------------------------------------------------------------- immutability
+
+original_evidence_is_immutable:
+  statement: >-
+    The original receipts remain IMMUTABLE HISTORICAL EVIDENCE. No receipt, terminal marker,
+    attempt log or tool output was overwritten, deleted, edited or moved by this correction. The
+    stale FAILED/255 receipts are retained exactly as written, and remain the record of what the
+    later blocked attempt reported.
+  what_the_correction_does: >-
+    It adds a DERIVED provenance state computed from those immutable artefacts. The derivation is
+    recorded in a separate reconciliation receipt; the inputs are untouched.
+  superseded_parse_step: >-
+    env/run/parse_all.py is PRESERVED UNCHANGED. A superseding step consumes the reconciliation
+    receipt and re-emits the normalised call table; the original call table is retained and marked
+    invalid rather than deleted.
+
+# ---------------------------------------------------------------------------- invalidated
+
+superseded_candidates:
+  - artefact: candidate contig table built from native_call
+    sha256: f0c273e6f5c89702d9e5333a0b5a4629b647002e4db47caf5267a1aea7ae3545
+    manifest_sha256: 311c125a27729c4da30990f8af15b89773b8bb8e0f7fda0f2a670dd0962cab5d
+    status: INVALID_SUPERSEDED_DO_NOT_USE
+    reason: >-
+      the builder read native_call, the RAW per-tool vocabulary, instead of model1_code, the
+      normalised 7-term code the encoder consumes. Only 3 of ~130 native values coincide with the
+      vocabulary, so most tool evidence reached the model as unrecognised tokens and was absorbed
+      by direct-block neutrality. v1.2 positives read 196 against 808 with the correct column.
+  - artefact: candidate contig table built before stale-receipt reconciliation
+    sha256: b297134f92026414e929dbaa3b062b14c4137233aa0ebed3d992a0f2730a1580
+    manifest_sha256: bff98be97418196b401db643f07885c1d4f3ea7a175987dca6461791d551b455
+    status: INVALID_SUPERSEDED_DO_NOT_USE
+    reason: >-
+      correct call column, but built while 47 isolates' valid MOB-recon evidence was still being
+      discarded by stale receipts. MOB-recon availability read 0.3534 instead of its true value.
+
+superseded_candidates_prohibition: >-
+  Neither artefact may appear in manuscript tables, evaluation results, or the final evidence
+  package, except within this corrective audit trail.
+
+builder_vocabulary_guarantee:
+  reads_only: model1_code
+  constant: CALL_COLUMN = "model1_code" in scripts/p1_12/build_p111_contig_table.py
+  fail_loud_validation:
+    - load_calls refuses if the model1_code column is absent
+    - load_calls refuses if any value falls outside the frozen 7-term vocabulary
+    - a builder validation check asserts every emitted panel call is within the vocabulary
+    - a fixture fills native_call with an out-of-vocabulary token so a regression to the wrong
+      column fails loudly

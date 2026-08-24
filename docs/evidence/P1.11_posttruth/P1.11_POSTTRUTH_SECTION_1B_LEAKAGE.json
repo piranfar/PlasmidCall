@@ -1,0 +1,214 @@
+{
+ "label": "EXPLORATORY_POST-TRUTH_MANUSCRIPT_SUPPORT",
+ "section": "1b -- quantitative genomic-distance leakage audit",
+ "result_id": "P1.11-CORRECTED-TRUTH-ALL79",
+ "confirmatory_reproduced": {
+  "n": 7244,
+  "TP": 942,
+  "FP": 33,
+  "TN": 6002,
+  "FN": 267
+ },
+ "why_this_exists": "Section 1 found that zero retained isolates carry a near-identical development neighbour. That is a consequence of declustering the cohort before truth existed, so it is a design fact rather than a measurement. This section measures the actual genomic distance instead.",
+ "provenance": {
+  "source": "RECOVERED pre-truth skani screen; no alignment was recomputed",
+  "within_cohort_file": "p111/screen/p111_vs_p111.tsv",
+  "vs_consumed_file": "p111/screen/p111_vs_consumed.tsv",
+  "method": "skani 0.2.2, --min-af 15",
+  "pairs_read_external": 18103,
+  "pairs_read_internal": 40755,
+  "ani_scale": "percent (0-100); the frozen independence threshold 0.995 is 99.5%",
+  "reporting_floor_caveat": "skani only reports a pair when the aligned fraction reaches --min-af 15. An isolate with no reported neighbour is therefore BELOW that floor, which is a lower bound on distance and not an ANI of zero."
+ },
+ "external_distance_summary_percent_ANI": {
+  "n": 79,
+  "min": 98.07,
+  "p25": 98.91,
+  "median": 99.08,
+  "p75": 99.195,
+  "max": 99.48,
+  "mean": 99.0205
+ },
+ "internal_distance_summary_percent_ANI": {
+  "n": 79,
+  "min": 97.87,
+  "p25": 98.915,
+  "median": 99.13,
+  "p75": 99.2,
+  "max": 99.45,
+  "mean": 99.041
+ },
+ "n_isolates": 79,
+ "n_isolates_with_a_reported_external_neighbour": 79,
+ "n_isolates_with_no_reported_external_neighbour": 0,
+ "n_isolates_at_or_above_the_frozen_independence_threshold_99.5": 0,
+ "n_internal_pairs_at_or_above_99.5": 0,
+ "performance_by_distance_to_development_data": {
+  "<97.0": {
+   "n_isolates": 0,
+   "isolates": [],
+   "n_contigs": 0
+  },
+  "97.0-<98.0": {
+   "n_isolates": 0,
+   "isolates": [],
+   "n_contigs": 0
+  },
+  "98.0-<99.0": {
+   "n_isolates": 30,
+   "isolates": [
+    "SAMN10736992",
+    "SAMN12364538",
+    "SAMN18912321",
+    "SAMN26796540",
+    "SAMN29503401",
+    "SAMN38448477",
+    "SAMN38448533",
+    "SAMN39842013",
+    "SAMN39980286",
+    "SAMN40323362",
+    "SAMN41579880",
+    "SAMN41579881",
+    "SAMN41579893",
+    "SAMN41579913",
+    "SAMN44789755",
+    "SAMN49035615",
+    "SAMN50713130",
+    "SAMN51205862",
+    "SAMN51205863",
+    "SAMN51205865",
+    "SAMN51205868",
+    "SAMN51205872",
+    "SAMN51205882",
+    "SAMN51250218",
+    "SAMN51250221",
+    "SAMN51250222",
+    "SAMN51867602",
+    "SAMN53177110",
+    "SAMN53300882",
+    "SAMN53536567"
+   ],
+   "n_contigs": 2970,
+   "n_eligible": 2970,
+   "n_evaluable": 2970,
+   "n_truth_positive": 458,
+   "TP": 352,
+   "FP": 18,
+   "TN": 2494,
+   "FN": 106,
+   "selective_PPV": 0.9513513513513514,
+   "selective_recall": 0.7685589519650655,
+   "selective_F1": 0.8502415458937198,
+   "specificity": 0.9928343949044586,
+   "bootstrap": {
+    "PPV_ci95": [
+     0.9079,
+     0.9873
+    ],
+    "recall_ci95": [
+     0.6966,
+     0.8384
+    ],
+    "n_boot": 4000,
+    "seed": 20260821,
+    "resampling_unit": "isolate"
+   }
+  },
+  "99.0-<99.5": {
+   "n_isolates": 49,
+   "isolates": [
+    "SAMD00521008",
+    "SAMD00521018",
+    "SAMD00819698",
+    "SAMD01616568",
+    "SAMN09400867",
+    "SAMN29503460",
+    "SAMN29503705",
+    "SAMN34137716",
+    "SAMN38448447",
+    "SAMN38448564",
+    "SAMN41579872",
+    "SAMN41579890",
+    "SAMN41579899",
+    "SAMN41579938",
+    "SAMN41988840",
+    "SAMN44789742",
+    "SAMN46343046",
+    "SAMN46343321",
+    "SAMN49035614",
+    "SAMN49035618",
+    "SAMN49035621",
+    "SAMN50191066",
+    "SAMN50713113",
+    "SAMN50713118",
+    "SAMN50713119",
+    "SAMN50713132",
+    "SAMN50779107",
+    "SAMN51205867",
+    "SAMN51205871",
+    "SAMN51205875",
+    "SAMN51205876",
+    "SAMN51205880",
+    "SAMN51205883",
+    "SAMN51250220",
+    "SAMN51250223",
+    "SAMN51335557",
+    "SAMN51335558",
+    "SAMN52857380",
+    "SAMN52951588",
+    "SAMN53300881",
+    "SAMN53300905",
+    "SAMN53300911",
+    "SAMN53300925",
+    "SAMN53649220",
+    "SAMN54493115",
+    "SAMN54493196",
+    "SAMN56646525",
+    "SAMN59744460",
+    "SAMN61074893"
+   ],
+   "n_contigs": 4274,
+   "n_eligible": 4274,
+   "n_evaluable": 4274,
+   "n_truth_positive": 751,
+   "TP": 590,
+   "FP": 15,
+   "TN": 3508,
+   "FN": 161,
+   "selective_PPV": 0.9752066115702479,
+   "selective_recall": 0.7856191744340879,
+   "selective_F1": 0.8702064896755161,
+   "specificity": 0.9957422651149589,
+   "bootstrap": {
+    "PPV_ci95": [
+     0.9544,
+     0.991
+    ],
+    "recall_ci95": [
+     0.7299,
+     0.8426
+    ],
+    "n_boot": 4000,
+    "seed": 20260821,
+    "resampling_unit": "isolate"
+   }
+  },
+  ">=99.5 (above the frozen independence threshold)": {
+   "n_isolates": 0,
+   "isolates": [],
+   "n_contigs": 0
+  },
+  "no external neighbour reported": {
+   "n_isolates": 0,
+   "isolates": [],
+   "n_contigs": 0,
+   "meaning": "no external genome was reported for this isolate by the screen, i.e. no development or consumed genome aligned to it above the screen's --min-af 15 floor. This is a lower bound on distance, not an ANI of zero."
+  }
+ },
+ "spearman_rho_isolate_accuracy_versus_max_external_ANI": {
+  "rho": 0.1197,
+  "n_isolates": 79,
+  "interpretation": "descriptive only. A rho near zero indicates no monotone relationship between an isolate's genomic proximity to development data and how accurately PlasmidCall classifies its contigs. No hypothesis test is reported and none was prespecified."
+ },
+ "per_isolate_table": "POSTTRUTH/P1.11_leakage_distance_per_isolate.tsv"
+}

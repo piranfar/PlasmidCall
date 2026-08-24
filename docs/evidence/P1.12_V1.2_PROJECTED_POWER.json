@@ -1,0 +1,383 @@
+{
+ "observed_fp_rate_among_true_negatives": 0.004709576138147566,
+ "pass_rule": "PPV >= 0.95 AND recall > 0.50, CP2, threshold 0.9285",
+ "planning_N": 79,
+ "n_bootstrap": 4000,
+ "basis": "cluster bootstrap over the 39 P1.10 isolates, leave-one-isolate-out calls",
+ "tool_failure_method": "frozen model fed the tool as unavailable through apply_neutrality; NOT a zeroed one-hot block",
+ "status": "PLANNING ESTIMATE ONLY - not evidence about v1.2 performance",
+ "scenarios": {
+  "expected": {
+   "n_isolates": 79,
+   "recall_multiplier": 1.0,
+   "fp_rate_multiplier": 1.0,
+   "n_resamples": 4000,
+   "PPV_median": 0.9707050978535354,
+   "PPV_ci95": [
+    0.9486055582035613,
+    0.9883351007423118
+   ],
+   "recall_median": 0.7768595041322314,
+   "recall_ci95": [
+    0.7297068277595568,
+    0.821835019880392
+   ],
+   "P_PPV_ge_0.95": 0.96875,
+   "P_recall_gt_0.50": 1.0,
+   "P_PASS": 0.96875,
+   "description": "v1.2 behaves on P1.11 as it did out-of-fold on P1.10, complete 12-tool panel"
+  },
+  "modest_degradation": {
+   "n_isolates": 79,
+   "recall_multiplier": 0.9,
+   "fp_rate_multiplier": 1.25,
+   "n_resamples": 4000,
+   "PPV_median": 0.9597915280550011,
+   "PPV_ci95": [
+    0.9343861064702308,
+    0.9797050777302906
+   ],
+   "recall_median": 0.6987556473509293,
+   "recall_ci95": [
+    0.6543622328334527,
+    0.7432444519653821
+   ],
+   "P_PPV_ge_0.95": 0.78125,
+   "P_recall_gt_0.50": 1.0,
+   "P_PASS": 0.78125,
+   "description": "lose a tenth of true positives; false-positive rate a quarter higher"
+  },
+  "conservative_degradation": {
+   "n_isolates": 79,
+   "recall_multiplier": 0.8,
+   "fp_rate_multiplier": 1.75,
+   "n_resamples": 4000,
+   "PPV_median": 0.9376513459159324,
+   "PPV_ci95": [
+    0.9095809587663426,
+    0.9615809420608297
+   ],
+   "recall_median": 0.6212020870961268,
+   "recall_ci95": [
+    0.5788177339901478,
+    0.662764022613979
+   ],
+   "P_PPV_ge_0.95": 0.1705,
+   "P_recall_gt_0.50": 1.0,
+   "P_PASS": 0.1705,
+   "description": "lose a fifth of true positives; false-positive rate three quarters higher"
+  },
+  "sample_loss_15pct": {
+   "n_isolates": 67,
+   "recall_multiplier": 0.9,
+   "fp_rate_multiplier": 1.25,
+   "n_resamples": 4000,
+   "PPV_median": 0.9598514415400896,
+   "PPV_ci95": [
+    0.9333312731767615,
+    0.9817143258991361
+   ],
+   "recall_median": 0.6992829383459807,
+   "recall_ci95": [
+    0.6522104147257466,
+    0.745521147557319
+   ],
+   "P_PPV_ge_0.95": 0.77525,
+   "P_recall_gt_0.50": 1.0,
+   "P_PASS": 0.77525,
+   "description": "modest degradation plus 15% isolate attrition (79 -> 67)"
+  },
+  "single_tool_failure_worst": {
+   "n_isolates": 79,
+   "recall_multiplier": 1.0,
+   "fp_rate_multiplier": 1.0,
+   "n_resamples": 4000,
+   "PPV_median": 0.962457337883959,
+   "PPV_ci95": [
+    0.93795087903661,
+    0.9853493222106361
+   ],
+   "recall_median": 0.2020051783595823,
+   "recall_ci95": [
+    0.16907156686682756,
+    0.23744917650385242
+   ],
+   "P_PPV_ge_0.95": 0.849,
+   "P_recall_gt_0.50": 0.0,
+   "P_PASS": 0.0,
+   "description": "PlaScope unavailable for every contig - worst single tool in the corrected analysis"
+  },
+  "single_tool_failure_median": {
+   "n_isolates": 79,
+   "recall_multiplier": 1.0,
+   "fp_rate_multiplier": 1.0,
+   "n_resamples": 4000,
+   "PPV_median": 0.9682179341657208,
+   "PPV_ci95": [
+    0.9452355072463768,
+    0.9869084957845595
+   ],
+   "recall_median": 0.6678508076951288,
+   "recall_ci95": [
+    0.6122274237962214,
+    0.7256356360173475
+   ],
+   "P_PPV_ge_0.95": 0.94125,
+   "P_recall_gt_0.50": 1.0,
+   "P_PASS": 0.94125,
+   "description": "geNomad unavailable for every contig - a mid-severity tool"
+  },
+  "median_tool_failure_plus_modest": {
+   "n_isolates": 79,
+   "recall_multiplier": 0.9,
+   "fp_rate_multiplier": 1.25,
+   "n_resamples": 4000,
+   "PPV_median": 0.9556039401341041,
+   "PPV_ci95": [
+    0.9307559092693364,
+    0.9773542309102365
+   ],
+   "recall_median": 0.6008147484401964,
+   "recall_ci95": [
+    0.5468497232718595,
+    0.6530469754779189
+   ],
+   "P_PPV_ge_0.95": 0.672,
+   "P_recall_gt_0.50": 1.0,
+   "P_PASS": 0.672,
+   "description": "geNomad unavailable AND modest degradation"
+  }
+ },
+ "reference_v11_on_CP2_expected": {
+  "n_isolates": 79,
+  "recall_multiplier": 1.0,
+  "fp_rate_multiplier": 1.0,
+  "n_resamples": 4000,
+  "PPV_median": 0.97127923480033,
+  "PPV_ci95": [
+   0.9489783799505551,
+   0.9907598890411924
+  ],
+  "recall_median": 0.5274428418497066,
+  "recall_ci95": [
+   0.4592919251324597,
+   0.5953497657910485
+  ],
+  "P_PPV_ge_0.95": 0.97125,
+  "P_recall_gt_0.50": 0.7875,
+  "P_PASS": 0.76925
+ },
+ "sensitivity_grid": [
+  {
+   "recall_multiplier": 1.0,
+   "fp_rate_multiplier": 1.0,
+   "P_PASS": 0.97,
+   "PPV_median": 0.9710761909590688,
+   "recall_median": 0.7761645692031394
+  },
+  {
+   "recall_multiplier": 1.0,
+   "fp_rate_multiplier": 1.25,
+   "P_PASS": 0.8866666666666667,
+   "PPV_median": 0.9629831136904041,
+   "recall_median": 0.7767826136581646
+  },
+  {
+   "recall_multiplier": 1.0,
+   "fp_rate_multiplier": 1.5,
+   "P_PASS": 0.704,
+   "PPV_median": 0.9562009782246379,
+   "recall_median": 0.7767826136581646
+  },
+  {
+   "recall_multiplier": 1.0,
+   "fp_rate_multiplier": 1.75,
+   "P_PASS": 0.4786666666666667,
+   "PPV_median": 0.9492784380305603,
+   "recall_median": 0.7767826136581646
+  },
+  {
+   "recall_multiplier": 1.0,
+   "fp_rate_multiplier": 2.0,
+   "P_PASS": 0.25133333333333335,
+   "PPV_median": 0.9423793495124113,
+   "recall_median": 0.7767826136581646
+  },
+  {
+   "recall_multiplier": 1.0,
+   "fp_rate_multiplier": 2.5,
+   "P_PASS": 0.032,
+   "PPV_median": 0.9287710260313,
+   "recall_median": 0.7767826136581646
+  },
+  {
+   "recall_multiplier": 0.95,
+   "fp_rate_multiplier": 1.0,
+   "P_PASS": 0.954,
+   "PPV_median": 0.9694101258945151,
+   "recall_median": 0.7382269543581437
+  },
+  {
+   "recall_multiplier": 0.95,
+   "fp_rate_multiplier": 1.25,
+   "P_PASS": 0.8493333333333334,
+   "PPV_median": 0.9616234285299033,
+   "recall_median": 0.7381015569709837
+  },
+  {
+   "recall_multiplier": 0.95,
+   "fp_rate_multiplier": 1.5,
+   "P_PASS": 0.642,
+   "PPV_median": 0.9540677430341999,
+   "recall_median": 0.7381015569709837
+  },
+  {
+   "recall_multiplier": 0.95,
+   "fp_rate_multiplier": 1.75,
+   "P_PASS": 0.4013333333333333,
+   "PPV_median": 0.9467963033714208,
+   "recall_median": 0.7381015569709837
+  },
+  {
+   "recall_multiplier": 0.95,
+   "fp_rate_multiplier": 2.0,
+   "P_PASS": 0.186,
+   "PPV_median": 0.9397386090878994,
+   "recall_median": 0.7381015569709837
+  },
+  {
+   "recall_multiplier": 0.95,
+   "fp_rate_multiplier": 2.5,
+   "P_PASS": 0.016,
+   "PPV_median": 0.9256198347107438,
+   "recall_median": 0.7381015569709837
+  },
+  {
+   "recall_multiplier": 0.9,
+   "fp_rate_multiplier": 1.0,
+   "P_PASS": 0.9286666666666666,
+   "PPV_median": 0.9677950624142407,
+   "recall_median": 0.6994190795417872
+  },
+  {
+   "recall_multiplier": 0.9,
+   "fp_rate_multiplier": 1.25,
+   "P_PASS": 0.7926666666666666,
+   "PPV_median": 0.959585213840533,
+   "recall_median": 0.6985602230200673
+  },
+  {
+   "recall_multiplier": 0.9,
+   "fp_rate_multiplier": 1.5,
+   "P_PASS": 0.5533333333333333,
+   "PPV_median": 0.9516598232637548,
+   "recall_median": 0.6985602230200673
+  },
+  {
+   "recall_multiplier": 0.9,
+   "fp_rate_multiplier": 1.75,
+   "P_PASS": 0.318,
+   "PPV_median": 0.9441025349694491,
+   "recall_median": 0.6985602230200673
+  },
+  {
+   "recall_multiplier": 0.9,
+   "fp_rate_multiplier": 2.0,
+   "P_PASS": 0.132,
+   "PPV_median": 0.9365536815676,
+   "recall_median": 0.6985602230200673
+  },
+  {
+   "recall_multiplier": 0.9,
+   "fp_rate_multiplier": 2.5,
+   "P_PASS": 0.009333333333333334,
+   "PPV_median": 0.9216838701510914,
+   "recall_median": 0.6985602230200673
+  },
+  {
+   "recall_multiplier": 0.85,
+   "fp_rate_multiplier": 1.0,
+   "P_PASS": 0.8926666666666667,
+   "PPV_median": 0.9659312493396133,
+   "recall_median": 0.6609894230010261
+  },
+  {
+   "recall_multiplier": 0.85,
+   "fp_rate_multiplier": 1.25,
+   "P_PASS": 0.7166666666666667,
+   "PPV_median": 0.9573183520599251,
+   "recall_median": 0.6597402511573704
+  },
+  {
+   "recall_multiplier": 0.85,
+   "fp_rate_multiplier": 1.5,
+   "P_PASS": 0.4686666666666667,
+   "PPV_median": 0.9489916963226572,
+   "recall_median": 0.6597402511573704
+  },
+  {
+   "recall_multiplier": 0.85,
+   "fp_rate_multiplier": 1.75,
+   "P_PASS": 0.24,
+   "PPV_median": 0.940881677990188,
+   "recall_median": 0.6597402511573704
+  },
+  {
+   "recall_multiplier": 0.85,
+   "fp_rate_multiplier": 2.0,
+   "P_PASS": 0.092,
+   "PPV_median": 0.933053773888022,
+   "recall_median": 0.6597402511573704
+  },
+  {
+   "recall_multiplier": 0.85,
+   "fp_rate_multiplier": 2.5,
+   "P_PASS": 0.004666666666666667,
+   "PPV_median": 0.9175460073045132,
+   "recall_median": 0.6597402511573704
+  },
+  {
+   "recall_multiplier": 0.8,
+   "fp_rate_multiplier": 1.0,
+   "P_PASS": 0.8453333333333334,
+   "PPV_median": 0.9638760411898109,
+   "recall_median": 0.6220564858970093
+  },
+  {
+   "recall_multiplier": 0.8,
+   "fp_rate_multiplier": 1.25,
+   "P_PASS": 0.6313333333333333,
+   "PPV_median": 0.9547072097531158,
+   "recall_median": 0.6207571425579155
+  },
+  {
+   "recall_multiplier": 0.8,
+   "fp_rate_multiplier": 1.5,
+   "P_PASS": 0.3893333333333333,
+   "PPV_median": 0.9458644116110029,
+   "recall_median": 0.6207571425579155
+  },
+  {
+   "recall_multiplier": 0.8,
+   "fp_rate_multiplier": 1.75,
+   "P_PASS": 0.172,
+   "PPV_median": 0.9375,
+   "recall_median": 0.6207571425579155
+  },
+  {
+   "recall_multiplier": 0.8,
+   "fp_rate_multiplier": 2.0,
+   "P_PASS": 0.05333333333333334,
+   "PPV_median": 0.9291667080055163,
+   "recall_median": 0.6207571425579155
+  },
+  {
+   "recall_multiplier": 0.8,
+   "fp_rate_multiplier": 2.5,
+   "P_PASS": 0.0026666666666666666,
+   "PPV_median": 0.9127315608919382,
+   "recall_median": 0.6207571425579155
+  }
+ ],
+ "grid_note": "With a complete panel, P(PASS) is governed almost entirely by the false-positive-rate multiplier: recall has roughly 0.28 of headroom above its 0.50 bar while PPV has roughly 0.02 above its 0.95 floor. Tool failure inverts this - there recall collapses and becomes the binding constraint."
+}

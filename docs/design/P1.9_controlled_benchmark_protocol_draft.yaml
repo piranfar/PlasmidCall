@@ -1,0 +1,256 @@
+protocol: P1.9 controlled classification benchmark from complete genomes
+version: 0.1-DRAFT
+status: PROPOSED — OWNER APPROVAL PENDING. Design only; NOT executed.
+date: 2026-08-16
+purpose: >
+  Construct a leakage-controlled benchmark able to test the actual Model 1 task —
+  assigning short-read assembly contigs to plasmid, chromosome, mobile/plasmid-like
+  but chromosomal, or ambiguous/shared/unmapped, with explicit confidence — including
+  a deliberate mobile-chromosomal hard-negative layer that no public candidate provides.
+authorisation_note: >
+  Nothing in this file may be executed under the current authorisation. Execution
+  requires a separate approval gate, as does any download or import of external data.
+
+# ============================================================ 1
+genome_eligibility:
+  input_pool: approximately 385 complete genomes already held by the project
+  required_for_inclusion:
+    - closed chromosome (single circular contig, no gaps, no unresolved components)
+    - closed plasmids where plasmids are present
+    - explicit replicon identity per sequence (chromosome vs each plasmid)
+    - assembly status and completeness level recorded from the source record
+    - species and strain identity asserted with source and locator
+    - accession recorded (Assembly/BioSample/BioProject/ENA as available)
+  quality_controls:
+    - reject genomes with unresolved or unplaced components
+    - reject genomes whose replicon annotation is absent or self-contradictory
+    - record contamination and completeness estimates where available
+    - record assembly method and sequencing platform
+  states_are_distinct:
+    "Absent plasmid annotation is NOT evidence of a plasmid-free isolate.
+     Record: plasmid present / searched and none found / not searched / ambiguous."
+  outputs: [eligibility_table.csv, rejection_reasons.csv]
+
+# ============================================================ 2
+deduplication_and_clustering:
+  rationale: >
+    Splitting at isolate level is insufficient. Near-identical genomes and near-identical
+    plasmids recur across collections, so isolate-level splits leak.
+  genome_clustering:
+    method: whole-genome ANI (e.g. fastANI or skani), single-linkage
+    threshold: PREDECLARE before any evaluation (proposed 99.5% ANI)
+    unit: genome_cluster_id
+  plasmid_relatedness:
+    method: pairwise alignment of plasmid replicons; cluster by coverage and identity
+    threshold: PREDECLARE (proposed 95% identity over 80% of the shorter replicon)
+    unit: plasmid_cluster_id
+  split_rule:
+    level: genome_cluster_id — never isolate, never contig
+    partitions: [train, validation, test]
+    constraint: >
+      No genome_cluster_id and no plasmid_cluster_id may appear in more than one
+      partition. A plasmid cluster spanning two genome clusters forces those genome
+      clusters into the same partition.
+  leakage_checks_required:
+    - no shared isolate across partitions
+    - no shared replicon accession across partitions
+    - no cross-partition plasmid_cluster_id
+    - no cross-partition genome_cluster_id
+    - report the number of clusters, not only the number of isolates
+
+# ============================================================ 3
+short_read_representation:
+  designs_compared:
+    A_sequence_fragmentation:
+      description: cut closed replicons into contig-like fragments
+      can_validate:
+        - sequence-composition classifiers (k-mer, gene-content, homology)
+        - label assignment logic and the hard-negative layer
+      cannot_validate:
+        - graph-aware tools (gplasCC, plASgraph2, gplas2) in any realistic way
+        - coverage-based reasoning
+        - assembly-induced fragmentation and repeat collapse
+      reason: >
+        Fragmentation produces no assembly graph and no coverage signal. Any GFA
+        synthesised from fragments would encode the answer in its topology.
+      cost: low
+      simulator_dependence: none
+    B_read_simulation_then_assembly:
+      description: >
+        simulate Illumina reads from closed replicons at controlled depth and insert
+        size, assemble with the project's standard assembler, retain the GFA
+      can_validate:
+        - graph-aware reconstruction and classification, including gplasCC
+        - coverage-based reasoning
+        - realistic repeat collapse and fragmentation
+      cannot_validate:
+        - real library-preparation artefacts, real error profiles, real contamination
+      introduces:
+        - simulator dependence (error model, GC bias, insert distribution)
+        - assembler dependence (graph topology is assembler-specific)
+      cost: high
+  RECOMMENDED_PRIMARY: B_read_simulation_then_assembly
+  recommendation_rationale: >
+    Model 1's competitor set and its most promising component (gplasCC) are graph-aware.
+    A benchmark that cannot exercise the assembly graph cannot test them, and would
+    systematically favour sequence-only methods.
+  MANDATORY_SENSITIVITY_DESIGNS:
+    - name: two-assembler sensitivity
+      description: >
+        assemble every simulated sample with two assemblers (e.g. Unicycler and SKESA)
+        and report results per assembler. plasgraph2-datasets adopts exactly this
+        design, which makes results comparable.
+    - name: A_sequence_fragmentation as a floor
+      description: >
+        run design A in parallel as a graph-free control. A tool that performs equally
+        on A and B is not using graph information.
+    - name: depth sensitivity
+      description: at least two simulated depths, predeclared
+  real_data_anchor:
+    requirement: >
+      Simulation results MUST be anchored against at least one real short-read corpus
+      before any Model 1 claim is made. Simulation alone cannot support a PPV claim.
+
+# ============================================================ 4
+truth_assignment:
+  principle: exact alignment of contigs to the known closed replicons of their own isolate
+  classes:
+    - plasmid
+    - chromosome
+    - mobile_chromosomal            # plasmid-like or mobile, but chromosomal in this isolate
+    - ambiguous_shared              # maps comparably to chromosome and plasmid
+    - unmapped_or_failed            # no acceptable alignment, or below length threshold
+  PROHIBITED:
+    - forcing repeat-shared contigs into a binary label
+    - treating unmapped as chromosome
+    - treating absence from the plasmid set as chromosome
+  predeclared_parameters:            # all values are PROPOSED and must be frozen before use
+    aligner: minimap2 or nucmer — choose one and freeze
+    identity_threshold: 0.95
+    coverage_threshold: 0.80 of contig length, merged non-overlapping
+    competitive_mapping_rule: >
+      align each contig against the isolate's own chromosome AND its own plasmids in a
+      single competitive reference; assign to the replicon class with the higher merged
+      covered fraction
+    multi_mapping_rule: >
+      if the best chromosome and best plasmid covered fractions differ by less than a
+      predeclared margin (proposed 0.10), label ambiguous_shared
+    repeat_rule: >
+      a contig aligning to more than one location above threshold is marked as repeat
+      and retained with its repeat multiplicity; it is never silently deduplicated
+    minimum_contig_length: 1000 bp — reported separately from, not merged with, other exclusions
+    tie_handling: ambiguous_shared, never an arbitrary pick
+    circular_replicon_handling: >
+      permit alignments spanning the artificial origin by doubling the reference or
+      using a circular-aware aligner; record which method was used
+    integrated_element_handling: >
+      a plasmid-derived segment integrated into the chromosome is chromosomal in this
+      isolate and belongs to mobile_chromosomal, not plasmid
+  evalue_threshold: MUST BE PREDECLARED — left undocumented by the PlasEval truth code and
+    that omission is not to be repeated here
+  outputs: [truth_table.csv, truth_construction_receipt.json]
+
+# ============================================================ 5
+mobile_chromosomal_hard_negatives:
+  rationale: >
+    These sequences dominate current Model 1 false positives. Some receive near-unanimous
+    plasmid votes from the 12-tool ensemble, so vote-threshold adjustment cannot remove
+    them. A benchmark without this layer will overstate PPV.
+  layer_contents:
+    - IS-element-associated chromosomal contigs
+    - transposon-associated chromosomal contigs
+    - integron-associated chromosomal contigs
+    - prophage regions where relevant
+    - integrated plasmid-derived sequence
+    - conjugation and mobilisation genes located on the chromosome
+    - chromosomal replication-like or mobility-like regions
+  construction:
+    method: annotate closed chromosomes for mobile elements, then flag contigs overlapping
+      those regions above a predeclared fraction
+    tools: PREDECLARE (annotation source and version must be frozen)
+    note: >
+      This layer is a stratification label on top of the chromosome class. It never
+      changes a contig's primary class.
+  required_reporting:
+    - hard-negative false-positive rate reported SEPARATELY from overall FP rate
+    - overall PPV reported both including and excluding the hard-negative layer
+    - the number of hard negatives and their share of chromosomal contigs
+
+# ============================================================ 6
+evaluation:
+  units_reported_separately:
+    - contigs
+    - isolates
+    - replicons
+    - genome_clusters
+    - independent error events    # clustered FPs within one isolate/replicon are NOT independent
+  metrics:
+    counts: [TP, FP, TN, FN]
+    rates: [PPV, recall, specificity, NPV, F1]
+    coverage_of_decisions: [call_rate, abstention_rate]
+    stratified: [hard_negative_false_positive_rate, mobile_chromosomal_discrimination]
+  uncertainty:
+    method: isolate-cluster bootstrap
+    unit: genome_cluster_id
+    replicates: 10000
+    interval: percentile 95%
+    seed: PREDECLARE and record
+    undefined_replicates: counted and reported, never silently dropped
+  independence_warning: >
+    Four related false positives within one isolate are one error event, not four.
+    Report both the contig-level count and the independent-event count.
+
+# ============================================================ 7
+model_development_separation:
+  freeze_before_any_model_evaluation:
+    - benchmark construction rules
+    - truth assignment rules and every threshold
+    - genome and plasmid cluster definitions and the partition assignment
+    - evaluation metrics and their denominators
+    - the primary endpoint
+    - the success threshold
+  primary_endpoint: PPV at a predeclared operating point, with recall reported jointly
+  success_thresholds:
+    target: PPV >= 0.95 AND recall > 0.50
+    strong: PPV >= 0.95 AND recall >= 0.60
+  prohibited:
+    - selecting any threshold on the test partition
+    - selecting an operating point using data that were also used to fit
+    - reporting a post-hoc best configuration as if predeclared
+  lesson_recorded: >
+    The invalidated two-stage Model 1 result arose precisely from selecting a rejector
+    threshold on the same fitted and evaluated data. The freeze above exists to make
+    that failure structurally impossible.
+
+# ============================================================ 8
+gplascc_positioning:
+  principle: three distinct capabilities, evaluated separately, never conflated
+  A_plasmidCC_binary_classification:
+    what: plasmidCC per-contig plasmid/chromosome label
+    tests: the Model 1 classification task directly
+    status: NOT YET TESTED under a PPV >= 95% criterion
+  B_gplasCC_graph_reconstruction:
+    what: graph-aware binning of plasmid contigs into plasmid bins
+    tests: reconstruction quality
+    status: CONFIRMED for E. coli by P1.8B-R2; does not test classification
+  C_gplasCC_as_arbiter_or_rejector:
+    what: >
+      apply gplasCC to candidates produced by the validated high-precision M0 baseline,
+      to reject mobile-chromosomal false positives or to confirm candidate bins
+    tests: whether graph context raises recall while preserving PPV >= 95%
+    status: NOT YET TESTED — the most direct route to the unmet Model 1 recall target
+    design_requirement: >
+      the arbiter threshold must be selected on the training or validation partition only,
+      never on the test partition
+  prohibited_now:
+    - inserting gplasCC as an unvalidated 13th ensemble vote
+    - transferring the E. coli reconstruction result to any other species
+    - treating A, B and C as one validated capability
+
+# ============================================================
+stop_conditions:
+  - eligibility screening leaves too few genome clusters for a leakage-free split
+  - plasmid clustering forces nearly all genomes into one cluster
+  - simulated assemblies do not reproduce realistic fragmentation
+  - the hard-negative layer cannot be constructed reproducibly
+  - any rule above would have to change after results are seen

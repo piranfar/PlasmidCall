@@ -1,0 +1,130 @@
+protocol: P1.9 mobile-chromosomal hard-negative layer
+version: 1.0-FROZEN-BEFORE-EXECUTION
+status: PROPOSED — OWNER APPROVAL REQUIRED. Not executed.
+date: 2026-08-17
+
+purpose: >
+  Build a dedicated hard-negative stratum for the class of sequence that dominates Model 1's
+  false positives: chromosomal contigs that look like plasmid. Without this layer any
+  benchmark will overstate PPV, because the easy chromosomal background is trivially
+  separable and the hard cases are diluted into it.
+
+why_this_matters:
+  observed_failure_mechanism: >
+    Model 1's dominant false positives are short chromosomal contigs, mobile-element-rich
+    chromosomal sequence, IS- and transposon-associated sequence, and errors that cluster
+    within one isolate or replicon (e.g. the four related MGH97 contigs, which are ONE error
+    event, not four). Some receive near-unanimous plasmid votes from the 12-tool ensemble, so
+    vote-threshold adjustment cannot remove them.
+  consequence: >
+    PPV measured on a corpus without a hard-negative stratum is an optimistic estimate of PPV
+    on the sequence that actually breaks the model.
+
+# ============================================================ independence of variables
+variable_separation:
+  principle: >
+    Six variables are recorded independently and never collapsed. Collapsing any pair makes
+    the layer circular and destroys its diagnostic value.
+  variables:
+    replicon_truth: >
+      chromosome | plasmid | ambiguous_shared | unmapped_failed — from the clean-room
+      competitive alignment in P1.9_cleanroom_truth_protocol.yaml. This is ground truth.
+    mobile_element_evidence: >
+      annotation-derived: IS, transposase, integron, conjugation/mobility gene, prophage,
+      genomic island, integrated plasmid-derived region. Independent of any classifier.
+    plasmid_likeness: >
+      score from sequence-composition classifiers. An INPUT observation, not truth.
+    graph_evidence: >
+      coverage ratio to chromosomal background, node degree, component membership,
+      connectivity to plasmid-classified nodes.
+    model1_prediction: >
+      what the ensemble/model predicted. Recorded for analysis only.
+    error_status: >
+      derived LAST, by comparing model1_prediction with replicon_truth.
+  PROHIBITED: >
+    Hard negatives must NOT be defined from Model 1 errors. Defining the stratum by the
+    model's mistakes and then reporting the model's error rate on that stratum is circular
+    and would guarantee a bad-looking result that carries no information. The stratum is
+    defined by mechanism (annotation and truth), and the model's performance on it is then
+    measured.
+
+# ============================================================ evidence sources
+annotation_inputs:
+  note: tools and databases pinned at execution; versions recorded in the run receipt
+  insertion_sequences: ISEScan or ISfinder-based search
+  transposases: protein-level annotation (Prokka/Bakta) plus HMM search
+  integrons: IntegronFinder
+  conjugation_and_mobility: MOB-suite typer / CONJscan (relaxase, T4SS, oriT)
+  plasmid_replication_like: PlasmidFinder replicon markers found ON chromosomal sequence
+  prophage: PhiSpy or geNomad prophage module
+  genomic_islands: IslandPath-DIMOB or equivalent
+  integrated_plasmid_regions: alignment of the sample's own plasmid replicons back onto its
+    chromosome; retained regions above the frozen identity/coverage thresholds
+  chromosome_plasmid_shared_repeats: repeats aligning to both chromosome and plasmid within
+    the same isolate
+
+# ============================================================ subclasses
+subclasses:
+  MOBILE_CHROMOSOMAL_CONFIRMED:
+    rule: replicon_truth == chromosome AND >= 1 mobile_element_evidence hit above threshold
+  PLASMID_DERIVED_INTEGRATED:
+    rule: replicon_truth == chromosome AND the region aligns to a plasmid replicon of the
+          SAME isolate at >= 95% identity over >= 80% of the contig
+  REPEAT_SHARED:
+    rule: aligns above threshold to both chromosome and plasmid of the same isolate;
+          overlaps ambiguous_shared by construction and is reported as such
+  PROPHAGE_ASSOCIATED:
+    rule: replicon_truth == chromosome AND overlaps a predicted prophage over >= 50% of length
+  GENOMIC_ISLAND_ASSOCIATED:
+    rule: replicon_truth == chromosome AND overlaps a predicted genomic island >= 50%
+  MOBILITY_GENE_POSITIVE_CHROMOSOMAL:
+    rule: replicon_truth == chromosome AND carries relaxase / T4SS / oriT / replication marker
+  PLASMID_LIKE_NO_SPECIFIC_MECHANISM:
+    rule: replicon_truth == chromosome AND plasmid_likeness above the frozen percentile
+          WITHOUT any mechanistic annotation hit
+    note: >
+      The most interesting subclass. These are chromosomal contigs that look like plasmid to
+      composition classifiers with no identifiable mobile mechanism. If Model 1's residual
+      errors concentrate here, the failure is compositional rather than biological, and no
+      amount of mobile-element annotation will fix it.
+  NOT_HARD_NEGATIVE:
+    rule: replicon_truth == chromosome, no mobile evidence, plasmid_likeness below threshold
+  UNRESOLVED:
+    rule: annotation failed, contig too short for reliable annotation, or truth is
+          unmapped_failed
+    note: counted and reported; never silently folded into NOT_HARD_NEGATIVE
+
+assignment_rules:
+  precedence: >
+    A contig may satisfy several subclasses. Record ALL matches as boolean columns and assign
+    one primary subclass by the precedence order listed above (top to bottom). Both the
+    primary label and the full match set are retained.
+  thresholds_frozen_before_execution:
+    mobile_element_overlap_fraction: 0.30
+    prophage_overlap_fraction: 0.50
+    genomic_island_overlap_fraction: 0.50
+    integrated_plasmid_identity: 0.95
+    integrated_plasmid_coverage: 0.80
+    plasmid_likeness_percentile: 90   # within chromosomal contigs of the same sample
+  stratum_is_an_overlay: >
+    These subclasses annotate contigs whose primary class is already chromosome. They NEVER
+    change a contig's truth label.
+
+# ============================================================ evaluation
+required_reporting:
+  - hard-negative false-positive rate, reported SEPARATELY from the overall FP rate
+  - overall PPV reported BOTH including and excluding the hard-negative stratum
+  - counts and share of chromosomal contigs in each subclass
+  - per-subclass false-positive rate, so the failure mechanism is localised
+  - independent error events alongside contig counts: clustered errors within one isolate or
+    replicon are ONE event
+  - cluster-level bootstrap intervals, consistent with the sequence-independence protocol
+interpretation_guard: >
+  A high false-positive rate on this stratum is an expected and informative result, not a
+  failure of the benchmark. The stratum exists to make that rate visible instead of letting
+  it hide inside an aggregate PPV.
+
+stop_conditions:
+  - the stratum cannot be constructed reproducibly from annotation
+  - fewer than 50 contigs qualify across the whole cohort, making rates uninformative
+  - any subclass rule would have to change after results are seen

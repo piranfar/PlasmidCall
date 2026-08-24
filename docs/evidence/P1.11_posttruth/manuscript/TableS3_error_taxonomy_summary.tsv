@@ -1,0 +1,25 @@
+dimension	level	n_errors	n_FP	n_FN
+length_bin	1-<2kb	90	5	85
+length_bin	2-<5kb	87	17	70
+length_bin	5-<10kb	46	4	42
+length_bin	>=10kb	77	7	70
+ARG_state	false	264	15	249
+ARG_state	true	36	18	18
+vote_entropy_band	high(>=0.8)	233	9	224
+vote_entropy_band	low(<0.5)	19	8	11
+vote_entropy_band	moderate(0.5-0.8)	39	16	23
+vote_entropy_band	unanimous(0)	9	0	9
+reference_source	genbank	46	12	34
+reference_source	refseq	254	21	233
+mobrecon_provenance	FAILED	1	0	1
+mobrecon_provenance	OK	120	9	111
+mobrecon_provenance	RECOVERED_OK	179	24	155
+assembly_fragmentation	150-299	22	1	21
+assembly_fragmentation	50-149	257	28	229
+assembly_fragmentation	<50	12	0	12
+assembly_fragmentation	>=300	9	4	5
+truth_decision_reason	chromosome_fraction>=0.80	33		
+truth_decision_reason	plasmid_fraction>=0.80	267		
+circularity	circular	6		
+circularity	linear	294		
+species	Escherichia coli (E. coli)	300		

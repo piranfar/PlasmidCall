@@ -1,0 +1,133 @@
+biosample	taxon	check	source	result
+SAMD00499712	Citrobacter spp.	assembly_report_retrieved	NCBI assembly_report	yes
+SAMD00499712	Citrobacter spp.	biosample_agrees	NCBI assembly_report	OK
+SAMD00499712	Citrobacter spp.	assembly_accession_agrees	NCBI assembly_report	OK
+SAMD00499712	Citrobacter spp.	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMD00499712	Citrobacter spp.	organism_matches_taxon	NCBI assembly_report	OK (Citrobacter freundii (enterobacteria))
+SAMD00499712	Citrobacter spp.	genome_representation	NCBI assembly_report	OK (full)
+SAMN10435561	Citrobacter spp.	assembly_report_retrieved	NCBI assembly_report	yes
+SAMN10435561	Citrobacter spp.	biosample_agrees	NCBI assembly_report	OK
+SAMN10435561	Citrobacter spp.	assembly_accession_agrees	NCBI assembly_report	OK
+SAMN10435561	Citrobacter spp.	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMN10435561	Citrobacter spp.	organism_matches_taxon	NCBI assembly_report	OK (Citrobacter braakii (enterobacteria))
+SAMN10435561	Citrobacter spp.	genome_representation	NCBI assembly_report	OK (full)
+SAMN35677795	Enterobacter spp.	assembly_report_retrieved	NCBI assembly_report	yes
+SAMN35677795	Enterobacter spp.	biosample_agrees	NCBI assembly_report	OK
+SAMN35677795	Enterobacter spp.	assembly_accession_agrees	NCBI assembly_report	OK
+SAMN35677795	Enterobacter spp.	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMN35677795	Enterobacter spp.	organism_matches_taxon	NCBI assembly_report	OK (Enterobacter roggenkampii (enterobacteria))
+SAMN35677795	Enterobacter spp.	genome_representation	NCBI assembly_report	OK (full)
+SAMN39334912	Enterobacter spp.	assembly_report_retrieved	NCBI assembly_report	yes
+SAMN39334912	Enterobacter spp.	biosample_agrees	NCBI assembly_report	OK
+SAMN39334912	Enterobacter spp.	assembly_accession_agrees	NCBI assembly_report	OK
+SAMN39334912	Enterobacter spp.	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMN39334912	Enterobacter spp.	organism_matches_taxon	NCBI assembly_report	OK (Enterobacter asburiae (enterobacteria))
+SAMN39334912	Enterobacter spp.	genome_representation	NCBI assembly_report	OK (full)
+SAMD00577373	Enterococcus faecalis	assembly_report_retrieved	NCBI assembly_report	yes
+SAMD00577373	Enterococcus faecalis	biosample_agrees	NCBI assembly_report	OK
+SAMD00577373	Enterococcus faecalis	assembly_accession_agrees	NCBI assembly_report	OK
+SAMD00577373	Enterococcus faecalis	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMD00577373	Enterococcus faecalis	organism_matches_taxon	NCBI assembly_report	OK (Enterococcus faecalis (firmicutes))
+SAMD00577373	Enterococcus faecalis	genome_representation	NCBI assembly_report	OK (full)
+SAMD00748008	Enterococcus faecalis	assembly_report_retrieved	NCBI assembly_report	yes
+SAMD00748008	Enterococcus faecalis	biosample_agrees	NCBI assembly_report	OK
+SAMD00748008	Enterococcus faecalis	assembly_accession_agrees	NCBI assembly_report	OK
+SAMD00748008	Enterococcus faecalis	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMD00748008	Enterococcus faecalis	organism_matches_taxon	NCBI assembly_report	OK (Enterococcus faecalis (firmicutes))
+SAMD00748008	Enterococcus faecalis	genome_representation	NCBI assembly_report	OK (full)
+SAMD00565567	Enterococcus faecium	assembly_report_retrieved	NCBI assembly_report	yes
+SAMD00565567	Enterococcus faecium	biosample_agrees	NCBI assembly_report	OK
+SAMD00565567	Enterococcus faecium	assembly_accession_agrees	NCBI assembly_report	OK
+SAMD00565567	Enterococcus faecium	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMD00565567	Enterococcus faecium	organism_matches_taxon	NCBI assembly_report	OK (Enterococcus faecium (firmicutes))
+SAMD00565567	Enterococcus faecium	genome_representation	NCBI assembly_report	OK (full)
+SAMD00577372	Enterococcus faecium	assembly_report_retrieved	NCBI assembly_report	yes
+SAMD00577372	Enterococcus faecium	biosample_agrees	NCBI assembly_report	OK
+SAMD00577372	Enterococcus faecium	assembly_accession_agrees	NCBI assembly_report	OK
+SAMD00577372	Enterococcus faecium	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMD00577372	Enterococcus faecium	organism_matches_taxon	NCBI assembly_report	OK (Enterococcus faecium (firmicutes))
+SAMD00577372	Enterococcus faecium	genome_representation	NCBI assembly_report	OK (full)
+SAMN13382572	Klebsiella pneumoniae	assembly_report_retrieved	NCBI assembly_report	yes
+SAMN13382572	Klebsiella pneumoniae	biosample_agrees	NCBI assembly_report	OK
+SAMN13382572	Klebsiella pneumoniae	assembly_accession_agrees	NCBI assembly_report	OK
+SAMN13382572	Klebsiella pneumoniae	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMN13382572	Klebsiella pneumoniae	organism_matches_taxon	NCBI assembly_report	OK (Klebsiella pneumoniae (enterobacteria))
+SAMN13382572	Klebsiella pneumoniae	genome_representation	NCBI assembly_report	OK (full)
+SAMN13382579	Klebsiella pneumoniae	assembly_report_retrieved	NCBI assembly_report	yes
+SAMN13382579	Klebsiella pneumoniae	biosample_agrees	NCBI assembly_report	OK
+SAMN13382579	Klebsiella pneumoniae	assembly_accession_agrees	NCBI assembly_report	OK
+SAMN13382579	Klebsiella pneumoniae	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMN13382579	Klebsiella pneumoniae	organism_matches_taxon	NCBI assembly_report	OK (Klebsiella pneumoniae (enterobacteria))
+SAMN13382579	Klebsiella pneumoniae	genome_representation	NCBI assembly_report	OK (full)
+SAMEA121008655	Serratia spp.	assembly_report_retrieved	NCBI assembly_report	yes
+SAMEA121008655	Serratia spp.	biosample_agrees	NCBI assembly_report	OK
+SAMEA121008655	Serratia spp.	assembly_accession_agrees	NCBI assembly_report	OK
+SAMEA121008655	Serratia spp.	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMEA121008655	Serratia spp.	organism_matches_taxon	NCBI assembly_report	OK (Serratia plymuthica (enterobacteria))
+SAMEA121008655	Serratia spp.	genome_representation	NCBI assembly_report	OK (full)
+SAMN26796324	Serratia spp.	assembly_report_retrieved	NCBI assembly_report	yes
+SAMN26796324	Serratia spp.	biosample_agrees	NCBI assembly_report	OK
+SAMN26796324	Serratia spp.	assembly_accession_agrees	NCBI assembly_report	OK
+SAMN26796324	Serratia spp.	assembly_level	NCBI assembly_report	OK (Complete Genome)
+SAMN26796324	Serratia spp.	organism_matches_taxon	NCBI assembly_report	OK (Serratia marcescens (enterobacteria))
+SAMN26796324	Serratia spp.	genome_representation	NCBI assembly_report	OK (full)
+SAMD00499712	Citrobacter spp.	ENA_sample_accession	ENA filereport	OK (SAMD00499712)
+SAMD00499712	Citrobacter spp.	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMD00499712	Citrobacter spp.	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMD00499712	Citrobacter spp.	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMD00499712	Citrobacter spp.	ENA_library_strategy	ENA filereport	OK (WGS)
+SAMN10435561	Citrobacter spp.	ENA_sample_accession	ENA filereport	OK (SAMN10435561)
+SAMN10435561	Citrobacter spp.	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMN10435561	Citrobacter spp.	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMN10435561	Citrobacter spp.	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMN10435561	Citrobacter spp.	ENA_library_strategy	ENA filereport	OK (WGS)
+SAMN35677795	Enterobacter spp.	ENA_sample_accession	ENA filereport	OK (SAMN35677795)
+SAMN35677795	Enterobacter spp.	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMN35677795	Enterobacter spp.	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMN35677795	Enterobacter spp.	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMN35677795	Enterobacter spp.	ENA_library_strategy	ENA filereport	OK (WGS)
+SAMN39334912	Enterobacter spp.	ENA_sample_accession	ENA filereport	OK (SAMN39334912)
+SAMN39334912	Enterobacter spp.	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMN39334912	Enterobacter spp.	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMN39334912	Enterobacter spp.	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMN39334912	Enterobacter spp.	ENA_library_strategy	ENA filereport	OK (WGS)
+SAMD00577373	Enterococcus faecalis	ENA_sample_accession	ENA filereport	OK (SAMD00577373)
+SAMD00577373	Enterococcus faecalis	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMD00577373	Enterococcus faecalis	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMD00577373	Enterococcus faecalis	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMD00577373	Enterococcus faecalis	ENA_library_strategy	ENA filereport	OK (WGS)
+SAMD00748008	Enterococcus faecalis	ENA_sample_accession	ENA filereport	OK (SAMD00748008)
+SAMD00748008	Enterococcus faecalis	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMD00748008	Enterococcus faecalis	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMD00748008	Enterococcus faecalis	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMD00748008	Enterococcus faecalis	ENA_library_strategy	ENA filereport	OK (WGS)
+SAMD00565567	Enterococcus faecium	ENA_sample_accession	ENA filereport	OK (SAMD00565567)
+SAMD00565567	Enterococcus faecium	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMD00565567	Enterococcus faecium	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMD00565567	Enterococcus faecium	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMD00565567	Enterococcus faecium	ENA_library_strategy	ENA filereport	OK (WGS)
+SAMD00577372	Enterococcus faecium	ENA_sample_accession	ENA filereport	OK (SAMD00577372)
+SAMD00577372	Enterococcus faecium	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMD00577372	Enterococcus faecium	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMD00577372	Enterococcus faecium	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMD00577372	Enterococcus faecium	ENA_library_strategy	ENA filereport	OK (WGS)
+SAMN13382572	Klebsiella pneumoniae	ENA_sample_accession	ENA filereport	OK (SAMN13382572)
+SAMN13382572	Klebsiella pneumoniae	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMN13382572	Klebsiella pneumoniae	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMN13382572	Klebsiella pneumoniae	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMN13382572	Klebsiella pneumoniae	ENA_library_strategy	ENA filereport	OK (WGS)
+SAMN13382579	Klebsiella pneumoniae	ENA_sample_accession	ENA filereport	OK (SAMN13382579)
+SAMN13382579	Klebsiella pneumoniae	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMN13382579	Klebsiella pneumoniae	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMN13382579	Klebsiella pneumoniae	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMN13382579	Klebsiella pneumoniae	ENA_library_strategy	ENA filereport	OK (WGS)
+SAMEA121008655	Serratia spp.	ENA_sample_accession	ENA filereport	OK (SAMEA121008655)
+SAMEA121008655	Serratia spp.	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMEA121008655	Serratia spp.	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMEA121008655	Serratia spp.	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMEA121008655	Serratia spp.	ENA_library_strategy	ENA filereport	OK (WGS)
+SAMN26796324	Serratia spp.	ENA_sample_accession	ENA filereport	OK (SAMN26796324)
+SAMN26796324	Serratia spp.	ENA_instrument_platform	ENA filereport	OK (ILLUMINA)
+SAMN26796324	Serratia spp.	ENA_library_layout	ENA filereport	OK (PAIRED)
+SAMN26796324	Serratia spp.	ENA_library_source	ENA filereport	OK (GENOMIC)
+SAMN26796324	Serratia spp.	ENA_library_strategy	ENA filereport	OK (WGS)

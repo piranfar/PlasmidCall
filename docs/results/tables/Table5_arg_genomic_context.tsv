@@ -1,0 +1,25 @@
+grouping	stratum	contigs	plasmid_derived	chromosomal	plasmid_fraction
+all	all resistance-gene-bearing contigs	635	266	369	0.4189
+taxon	Citrobacter spp.	94	54	40	0.5745
+taxon	Enterococcus faecium	178	95	83	0.5337
+taxon	Klebsiella pneumoniae	138	62	76	0.4493
+taxon	Enterococcus faecalis	87	27	60	0.3103
+taxon	Enterobacter spp.	82	24	58	0.2927
+taxon	Serratia spp.	56	4	52	0.0714
+antimicrobial class	SULFONAMIDE	31	29	2	0.9355
+antimicrobial class	QUATERNARY AMMONIUM	20	18	2	0.9
+antimicrobial class	GLYCOPEPTIDE	32	28	4	0.875
+antimicrobial class	PHENICOL	39	32	7	0.8205
+antimicrobial class	LINCOSAMIDE/MACROLIDE/STREPTOGRAMIN	35	27	8	0.7714
+antimicrobial class	TRIMETHOPRIM	44	27	17	0.6136
+antimicrobial class	QUINOLONE	33	20	13	0.6061
+antimicrobial class	AMINOGLYCOSIDE	134	77	57	0.5746
+antimicrobial class	BETA-LACTAM	153	55	98	0.3595
+antimicrobial class	TETRACYCLINE	72	24	48	0.3333
+antimicrobial class	LINCOSAMIDE/STREPTOGRAMIN	33	6	27	0.1818
+antimicrobial class	MACROLIDE/STREPTOGRAMIN	29	4	25	0.1379
+antimicrobial class	FOSFOMYCIN	48	0	48	0.0
+antimicrobial class	NITROFURAN/PHENICOL/QUINOLONE/TETRACYCLINE	43	0	43	0.0
+glycopeptide operon	vanA-type	98	98	0	1.0
+glycopeptide operon	vanB-type	14	0	14	0.0
+glycopeptide operon	vanD-type	5	0	5	0.0

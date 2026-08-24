@@ -1,0 +1,191 @@
+contract: P1.9 clean-room controlled import
+version: 0.2
+status: DRAFT — OWNER APPROVAL REQUIRED
+date: 2026-08-17
+
+decision: CLEANROOM_IMPORT_READY_WITH_EXCLUSIONS
+decision_justification: >
+  The clean-room route is lawful and technically specified, the public accessions are
+  verified, and the runner that would execute it has passed a parallel acceptance test.
+  Unconditional CLEANROOM_IMPORT_READY is NOT issued, because independence from the
+  internal development benchmark cannot be tested at all until the owner supplies
+  Supplementary Table 1. The decision therefore carries mandatory exclusions and holds:
+  every sample whose independence cannot yet be established is held pending, and the
+  primary cohorts remain PENDING_INDEPENDENCE until both gates clear.
+
+# ---------------------------------------------------------------- cohorts
+candidate_cohorts:
+  cohort_1_primary_ecoli:      {candidates: 8,   units: biological_samples, status: PRIMARY_ECOLI_COHORT_PENDING_INDEPENDENCE}
+  cohort_2_cross_species:      {candidates: 254, species: 39, status: PENDING_INDEPENDENCE}
+  cohort_3_assembler_sensitivity: {candidates: same_samples, additional_units: 0}
+  cohort_4_training_compatibility: {candidates: 70, use: secondary_only, never_supports_external_validation: true}
+  cohort_5_complete_genome_control: {candidates: 137, minus_known_overlap: 1, ecoli_present: false}
+
+# ---------------------------------------------------------------- sources
+public_sources:
+  reads_and_metadata: NCBI SRA / ENA / DDBJ by accession
+  references: NCBI assemblies (chromosome and plasmid replicons)
+  method: published in doi:10.3389/fmicb.2023.1267695
+  accession_provenance: verified against NCBI E-utilities, not trusted from any repository file
+
+cleanroom_boundary:
+  PROHIBITED: >
+    Copying or reusing any derived artifact from fmfi-compbio/plasgraph2-datasets — GFA
+    graphs, label CSVs or alignment tables. Its licence is not documented; absence of a
+    licence is not permission.
+  PERMITTED: public primary records, the published method, and code written independently
+    by this project.
+  metadata_use: the accession list is factual metadata used as a pointer list only
+
+# ---------------------------------------------------------------- acquisition
+proposed_acquisition:
+  files: paired short-read run(s) per sample, plus the closed reference assembly per sample
+  samples_in_scope_after_exclusions: 412 of 436
+  estimated_download_volume:
+    short_reads_per_sample_gb: 0.5 - 1.5 (compressed FASTQ, bacterial isolate)
+    references_per_sample_mb: 5 - 10
+    total_estimate_gb: 250 - 600
+    note: an order-of-magnitude estimate from typical bacterial isolate run sizes; the exact
+          figure is computed from SRA run metadata BEFORE any byte is downloaded
+  storage_paths:
+    raw_immutable: warehouse_store/raw/<sha256[0:2]>/<sha256>   # content-addressed, write-once
+    working: outside Git, on the run volume
+    NOT_IN_GIT: reads, assemblies, graphs, references
+  immutable_raw_layer: true
+  checksums: SHA-256 for every acquired file, recorded before use; ENA/SRA-published MD5
+             compared where available
+  archive_safety_checks: container type, path traversal, compression ratio and size guards
+                         (implemented in scripts/p1_9/inspect_development_supplement.py for
+                          the XLSX case; same checks apply to downloaded archives)
+
+# ---------------------------------------------------------------- identity and independence
+accession_dereferencing: every accession resolved against the public archive; the resolved
+  record's own metadata is stored beside our copy
+sample_identity_reconciliation: linkage assertions with source, locator, method and confidence;
+  never name-similarity
+sequence_relatedness_tests: docs/plans/P1.9_sequence_independence_protocol.yaml
+cluster_definitions:
+  genome_cluster: single-linkage at ANI >= 99.5
+  plasmid_cluster: identity >= 0.95 over >= 0.80 of the shorter replicon
+exclusion_rules:
+  mandatory_now:
+    - 14 samples without public short reads (Boostrom2022, author-supplied)
+    - 10 samples with non-archival identifiers (ArredondoAlonso2018)
+    - 1 sample overlapping the 137-genome collection (SAMN02700075) — excluded from any
+      analysis that also uses CG137
+    - 70 plASgraph2 training samples — excluded from primary external validation of plASgraph2
+    - 120 Robertson2018 samples — excluded from the MOB-recon comparison only
+  pending_gates:
+    - all 436: independence from DEV_250 untestable until Supplementary Table 1 is supplied
+    - all 436: sequence relatedness untested
+  never: exclusion for poor performance, difficulty or fragmentation
+
+# ---------------------------------------------------------------- construction
+assembly_protocol: docs/plans/P1.9_cleanroom_truth_protocol.yaml
+gfa_protocol: assembler-native GFA; primary Unicycler, sensitivity SKESA; no post-hoc editing
+truth_protocol: same file; five labels; every threshold frozen before execution
+hard_negative_protocol: docs/plans/P1.9_mobile_chromosomal_hard_negative_protocol.yaml
+
+# ---------------------------------------------------------------- evaluation
+primary_cohorts: [cohort_1_primary_ecoli, cohort_2_cross_species]
+sensitivity_cohorts: [cohort_3_assembler_sensitivity]
+training_data_exclusions: cohort_4 never contributes to an external-validation claim
+evaluation_metrics:
+  counts: [TP, FP, TN, FN]
+  rates: [PPV, recall, specificity, NPV, F1]
+  coverage: [call_rate, abstention_rate]
+  stratified: [hard_negative_false_positive_rate, mobile_chromosomal_discrimination]
+  success_target: PPV >= 0.95 AND recall > 0.50 (strong: recall >= 0.60)
+cluster_bootstrap:
+  unit: genome_cluster_id
+  replicates: 10000
+  interval: percentile 95%
+  seed: predeclare and record
+  reporting: cluster count reported beside sample count
+
+# ---------------------------------------------------------------- execution
+local_runner:
+  start:  .\start.ps1  -ScheduleTsv <schedule.tsv> -RunId <id> -MaxParallel <n>
+  status: .\status.ps1 -RunDir <run-dir>
+  resume: .\resume.ps1 -RunDir <run-dir> [-RetryFailed] [-MaxParallel <n>]
+  stop:   .\stop.ps1   -RunDir <run-dir> [-Force]
+  verify: .\verify.ps1 -RunDir <run-dir>
+  slot_id: <sample_id>__<tool>__rep<replicate>
+  concurrency: configurable, hard maximum 16, centrally enforced
+retry_policy: manual only; resume.ps1 -RetryFailed; every retry appended to <slot>.retry.log
+stop_conditions:
+  - Supplementary Table 1 still unavailable at the point of an independence claim
+  - more than 10% of samples fail acquisition or assembly
+  - a frozen threshold would have to change after results are seen
+  - primary E. coli cohort falls below 5 independent genome clusters
+  - disk below 2 GB or Docker unreachable (runner refuses to start)
+reproducibility_package:
+  contents: schedule + frozen hash, all receipts, all logs, protocol files with hashes,
+            environment lock, container digest, truth tables, exclusion tables, verification
+            record, FILE_MANIFEST.tsv, SHA256SUMS.txt
+  manifest_rule: SHA256SUMS.txt never contains a line for itself
+
+remaining_approval_gates:
+  1: owner supplies Circling_in_on_plasmids_-_Supplementary_Tables_bbaf589.xlsx
+  2: owner approves bulk read acquisition and its volume
+  3: owner approves execution of the clean-room construction protocol
+  4: owner confirms the disposition of the 385-genome figure and the CG137 role
+
+# ================================================================ P1.9B.1 UPDATE
+p1_9b1_update:
+  date: 2026-08-17
+  decision: CLEANROOM_IMPORT_READY_WITH_EXCLUSIONS
+  development_crosswalk: 250/250 mapped (248 exact, 2 documented alias); 250/250 accessions VALIDATED_EXACT
+  independence_identifier_level:
+    DEV_250_x_PLASEVAL: 0
+    DEV_250_x_PG2: 0
+    DEV_250_x_CG137: 0
+    PLASEVAL_x_PG2: 0
+    PLASEVAL_x_CG137: 0
+    PG2_x_CG137: 1   # SAMN02700075
+  primary_ecoli_cohort: 8 of 8 eligible, zero overlaps, PENDING_SEQUENCE_DEDUPLICATION
+  crossspecies_stage1: 21 samples, 7 partitions x 3, 9 species, predeclared performance-blind rule
+  acquisition_tiers_frozen: docs/plans/P1.9_acquisition_tiers.csv
+  tier_sizes_measured: NO - ENA filereport returned no rows; sizes are literature-typical fallbacks
+  mandatory_before_acquisition:
+    - resolve exact per-run bytes
+    - owner approval per the standing storage rule
+    - designated target path with free space >= peak + 20%
+  remaining_gate: sequence-level independence (Mash/ANI/plasmid clustering) after download
+
+# ================================================================ P1.9C0 UPDATE
+p1_9c0_update:
+  date: 2026-08-17
+  status: SIZE RECOVERY COMPLETE - STOPPED FOR OWNER APPROVAL
+  correction: >
+    The P1.9B.1 tier sizes were UNMEASURED_FALLBACK because ENA filereport accepts only ONE
+    accession per call and the earlier batched call returned zero rows. All 524 runs across the
+    262-sample population are now measured individually; 0 unresolved.
+  size_basis: MEASURED_ENA_filereport
+  runs_measured: 524
+  runs_unresolved: 0
+  median_sample_compressed_gb: 1.034
+  max_sample_compressed_gb: 8.374
+  measured_tiers:
+    TIER_1_ecoli_primary:        {samples: 8,   download_gb: 11.1,  peak_gb: 81.7,   min_free_gb: 98.0}
+    TIER_2_crossspecies_stage1:  {samples: 21,  download_gb: 21.5,  peak_gb: 169.9,  min_free_gb: 203.8}
+    TIER_1_PLUS_TIER_2_concurrent: {samples: 29, download_gb: 32.6, peak_gb: 251.5,  min_free_gb: 301.8}
+    TIER_3_full_expansion:       {samples: 262, download_gb: 303.4, peak_gb: 2304.8, min_free_gb: 2765.8}
+  drive_E:
+    total_gb: 465.6
+    free_gb: 415.9
+    percent_free: 89.3
+    measured_programmatically: true
+  storage_separation:
+    repository: scripts, contracts, manifests, documentation, compact derived tables, hashes, receipts
+    data_root: E:\AMR_Evidence_Data\P1.9_cleanroom
+    data_root_created: false
+    path_access_test: create+write+delete OK, removed; no tree created
+  feasibility:
+    TIER_1: feasible - no threshold breached
+    TIER_2: feasible - no threshold breached (extracted+working 148.4 GB is marginal vs the 150 GB line)
+    TIER_1_PLUS_TIER_2_concurrent: BREACHES peak>200GB and extracted+working>150GB - run SEQUENTIALLY instead
+    TIER_3: NOT FEASIBLE on E: (2304.8 GB peak vs 415.9 GB free)
+  recommendation: Tier 1 alone first, then Tier 2 sequentially after Tier 1 raw reads are cleared
+  acquisition_approved: false
+  required_owner_response: "APPROVED DOWNLOAD TIER <N> / TARGET PATH / MAXIMUM DOWNLOAD / MAXIMUM PEAK DISK USAGE"

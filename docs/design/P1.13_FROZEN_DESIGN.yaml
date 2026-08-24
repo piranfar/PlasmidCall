@@ -1,0 +1,226 @@
+# =============================================================================================
+# P1.13-PROSPECTIVE-PUBLIC-MULTIGENUS-EXTERNAL-VALIDATION
+# Design frozen BEFORE any read download, assembly, panel execution or scoring.
+# No external truth has been constructed, accessed or joined.
+# =============================================================================================
+design_id: P1.13-PROSPECTIVE-PUBLIC-MULTIGENUS-EXTERNAL-VALIDATION
+version: "1.0"
+status: FROZEN - design and feasibility only; execution not started
+declared_on: 2026-08-22
+
+# ---------------------------------------------------------------- 1. scientific framing
+framing:
+  what_this_evaluates: >-
+    prospective generalisation of frozen PlasmidCall artefacts across difficult but
+    development-relevant taxa. It is a second, larger, public external validation. It does not
+    replace P1.11.
+  enterococcus_description: >-
+    a hard Gram-positive validation domain with historically underrepresented plasmids and
+    reduced tool performance.
+  enterococcus_is_NOT_described_as: out-of-distribution
+  why_that_wording_is_required: >-
+    Enterococcus is not out-of-distribution for this model. It is the LARGEST component of the
+    development collection. Any distributional novelty claim would be false.
+  development_composition_measured:
+    source: DEV_250, the isolate set of Teixeira et al. Brief Bioinform 2025;26(6):bbaf589
+    total_isolates: 250
+    by_genus: {Enterococcus: 157, Enterobacter: 29, Klebsiella: 29, Escherichia: 15,
+               Citrobacter: 14, Serratia: 5, Pluralibacter: 1}
+    target_taxa_present_in_development:
+      Enterococcus faecalis: 71     # largest single species in the whole development collection
+      Enterobacter spp.: 29
+      Klebsiella pneumoniae: 23
+      Citrobacter spp.: 14
+      Enterococcus faecium: 11
+      Serratia spp.: 5
+    conclusion: >-
+      every one of the six P1.13 target taxa is represented in model development. P1.13 therefore
+      tests generalisation to unseen ISOLATES of development-relevant taxa, not to unseen taxa.
+  what_may_be_claimed: prospective external validation on independent public isolates
+  what_may_not_be_claimed: out-of-distribution or novel-taxon generalisation
+
+# ---------------------------------------------------------------- 2. census verification
+census:
+  ncbi_column_resolution: BY HEADER NAME, never positional
+  ena_field_resolution: BY RETURNED HEADER NAME, never requested order
+  fail_loud: >-
+    a missing, duplicated or renamed column raises SchemaError. The two silent bugs that
+    previously returned zero candidates rather than an error are structurally prevented:
+    (a) NCBI `biosample` read positionally as column 4 when it is column 3;
+    (b) ENA returning run_accession first regardless of the requested field order.
+  assembly_summary_filters:
+    assembly_level: Complete Genome
+    version_status: latest
+    genome_rep: Full
+    asm_not_live_date: na            # excludes suppressed / replaced
+    excluded_from_refseq: na         # excludes anomalous
+    biosample: must be present and start with SAM
+  ena_filters:
+    instrument_platform: ILLUMINA     # verified in the response, not assumed from the query
+    library_layout: PAIRED
+    library_source: GENOMIC           # excludes metagenomic libraries
+    library_strategy: WGS
+    fastq_ftp: two mates present, md5 count equal to file count
+  file_availability_required: [genomic FASTA (.fna.gz), GBFF (.gbff.gz), assembly report (.txt)]
+  file_availability_method: one md5checksums.txt request per assembly
+  cross_check:
+    design: 2 isolates per taxon, deterministic by lexical BioSample, 12 total
+    ncbi_source: authoritative per-assembly assembly_report.txt
+    ena_source: ENA filereport for the exact run accession
+    checks_run: 132
+    problems: 0
+    note: >-
+      an initial cross-check via NCBI esummary failed on every lookup. That was a technical
+      failure, not a verification, and was replaced rather than reported.
+  counts:
+    ncbi_target_complete_latest_full_live: 6458
+    after_historical_exclusion: 6449
+    with_usable_illumina_wgs_paired_run: 1816
+    after_30x_coverage_floor: 1777
+    pool_2024_plus: 612
+    pool_2023_plus: 811
+    file_availability_pass: 811 of 811
+
+# ---------------------------------------------------------------- 3-4. cohort and eligibility
+cohort:
+  target_total: 150
+  target_per_taxon: 25
+  taxa: [Klebsiella pneumoniae, Enterobacter spp., Citrobacter spp., Serratia spp.,
+         Enterococcus faecium, Enterococcus faecalis]
+  first_choice_pool: release year >= 2024
+  authorised_fallback: release year 2023, same rules, every use recorded
+  fallback_does_not_extend_to: 2022 or earlier
+  achieved_total: 147
+  achieved_per_taxon: {Klebsiella pneumoniae: 25, Enterobacter spp.: 25, Citrobacter spp.: 25,
+                       Serratia spp.: 22, Enterococcus faecium: 25, Enterococcus faecalis: 25}
+  fallback_used: {Citrobacter spp.: 2, Serratia spp.: 8, Enterococcus faecium: 5,
+                  Enterococcus faecalis: 9, Klebsiella pneumoniae: 0, Enterobacter spp.: 0}
+  DEFICIT:
+    taxon: Serratia spp.
+    short_by: 3
+    cause: >-
+      only 33 Serratia candidates exist in the authorised 2023+ window after all exclusions, and
+      declustering at ANI 99.5 reduces them to 22 independent isolates.
+    options_not_taken:
+      - extending Serratia to release year 2022 would give 57 pre-declustering candidates, but
+        the frozen date rule authorises 2023 only, so this was NOT done unilaterally
+      - reallocating the 3 places to another taxon would change the frozen allocation
+    decision_required_from_operator: true
+eligibility_required:
+  - Complete Genome reference assembly
+  - exact BioSample linkage between reference and Illumina reads
+  - paired-end Illumina reads
+  - estimated coverage >= 30x, computed from ENA base_count and NCBI genome_size
+  - non-metagenomic isolate library (library_source GENOMIC, strategy WGS)
+  - valid assembly report, genomic FASTA and GBFF
+  - at least one usable sequencing run
+  - release date satisfying the frozen taxon date rule
+  - no prior use in any development, calibration or validation phase
+historical_exclusions:
+  sets: [DEV_250, P1.9, P1.10, P1.11]
+  identifiers_loaded: 583
+  the_1460_row_development_bundle: >-
+    verified to be the ARG-bearing CONTIG subset of predictions.xlsx, which is DEV_250. It
+    contributes no isolates beyond the 250 already excluded.
+  checked_on: [BioSample, assembly accession, BioProject, organism, genomic similarity]
+
+# ---------------------------------------------------------------- 5. genomic independence
+independence:
+  threshold_ANI: 99.5            # reused unchanged from P1.10/P1.11, not reselected
+  method: skani 0.2.2, --min-af 15, from the hash-pinned p19c2-cleanroom:1.0 image
+  invocation: identical to the frozen P1.11 run_screen.sh
+  required_against: [every development isolate, every P1.9/P1.10/P1.11 isolate,
+                     every earlier-selected P1.13 isolate within the same taxon]
+  dropped_for_ani_vs_consumed: 235
+  selection_rule:
+    1: apply all eligibility and historical-overlap exclusions
+    2: prioritise the most recent permitted release year
+    3: farthest-point genomic selection on the frozen distance (100 - ANI)
+    4: assembly accession lexical order as the final deterministic tie-breaker
+  seed_rule: lexically smallest assembly accession within the most recent pool
+  unreported_pairs: treated as maximally distant, being below skani's --min-af 15 floor
+  never_used_in_selection: [plasmid count, chromosome/plasmid truth, ARG content, tool output,
+                            model score, expected performance]
+  audit:
+    max_ANI_to_any_consumed_genome: 99.48
+    all_below_99.5_vs_consumed: true
+    max_within_taxon_ANI_among_selected: 99.48
+    all_below_99.5_within_taxon: true
+
+# ---------------------------------------------------------------- 6. database representation
+database_audit:
+  recorded_now: [image, image digest, database path, newest database file date]
+  deferred_to_execution: >-
+    whether each external reference genome or its plasmids is represented in each tool database.
+    Determining this requires searching the databases themselves. It is NOT inferred from release
+    date: a 2024 genome is not assumed absent from any database.
+  method_when_run: Mash/BLAST of each reference and its replicons against each tool database
+  role: covariate and sensitivity analysis
+  prohibited_use: >-
+    must not be used to delete inconvenient isolates after performance is known.
+
+# ---------------------------------------------------------------- 7. read-depth contract
+read_processing:
+  assembler: identical to P1.11 (Unicycler short-read only, frozen command)
+  coverage_estimate: ENA base_count divided by NCBI genome_size; uses no truth label
+  minimum_usable_coverage: 30x
+  downsample_target: 100x
+  downsample_seed: 20260821
+  raw_preserved: run accessions and fastq md5 retained; raw reads not overwritten
+  recorded: [pre- and post-downsampling read counts, pre- and post estimated coverage]
+  multiple_runs_rule: highest base_count, then lexically smallest run accession. Frozen before download.
+  prohibited: optimising depth using external performance
+
+# ---------------------------------------------------------------- 8. frozen model and panel
+frozen_artefacts_used_unchanged:
+  - v1.1 estimator
+  - v1.2-General estimator
+  - thresholds 0.9524, 0.9605, 0.9285
+  - frozen router
+  - feature order
+  - tool-state mappings
+  - missing/failure semantics
+  - status-reconciliation logic
+  - truth rules
+  - coverage gates
+  - the 12-tool panel
+  - AMRFinderPlus annotation logic
+prohibited: [retraining, recalibration, threshold selection, router modification, feature change,
+             tool substitution]
+freeze_order: external predictions frozen and hashed BEFORE external truth construction or any
+              prediction-to-truth join
+
+# ---------------------------------------------------------------- 9. endpoints
+primary_confirmatory:
+  model: v1.2-General over the complete cohort
+  selective_PPV: ">= 0.95"
+  selective_recall: "> 0.50"
+  coverage_gate: unchanged from P1.11
+  uncertainty: isolate-cluster bootstrap, 4000 replicates, previously frozen method
+prespecified_secondary:
+  [v1.2 by taxon, Enterococcus combined, Enterobacterales combined, v1.1, router,
+   12-tool comparisons, ARG-bearing plasmid localisation, AUROC/AUPRC, calibration,
+   deployment yield, database-representation stratum, release year, assembly quality,
+   contig length]
+per_taxon_gate: >-
+  each 25-isolate stratum is NOT required to pass the primary gate. Denominators and uncertainty
+  are reported for every stratum.
+hierarchy:
+  - P1.11 remains the first independent prospective validation
+  - P1.13 is a second, larger public multigenus external validation
+  - taxon-specific and representation analyses are secondary
+
+# ---------------------------------------------------------------- 10. projection
+projection:
+  anchor: P1.11 measured isolate-clustered intervals, scaled by sqrt(n_isolates)
+  whole_cohort: {isolates: 147, expected_eligible_contigs: 12143,
+                 expected_plasmid_positive: 2026, PPV_CI_halfwidth: 0.0142,
+                 PPV_lower_if_point_0.966: 0.9518}
+  enterococcus_combined: {isolates: 50, PPV_CI_halfwidth: 0.0243, PPV_lower_if_point_0.966: 0.9417}
+  per_taxon_25: {PPV_CI_halfwidth: 0.0344, PPV_lower_if_point_0.966: 0.9316}
+  warning: >-
+    the whole-cohort lower bound clears 0.95 only narrowly. If the true PPV were 0.960 rather than
+    0.966 the lower bound would fall below the floor and the primary endpoint would not
+    demonstrate it even with a point estimate above it. This is a known property of the design and
+    is recorded before any outcome is seen.
+  inputs_used: P1.11 estimates and truth-blind P1.13 genome sizes and counts only

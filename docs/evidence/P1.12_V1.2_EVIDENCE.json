@@ -1,0 +1,578 @@
+{
+ "per_isolate": {
+  "improved": 32,
+  "worsened": 3,
+  "unchanged": 4,
+  "isolates_with_plasmid": 39,
+  "worsened_detail": [
+   {
+    "sample": "SAMN49035622",
+    "n_contigs": 104,
+    "n_plasmid": 23,
+    "v11_recall": 0.43478260869565216,
+    "v12_recall": 0.391304347826087,
+    "delta": -0.04347826086956519,
+    "v11_FP": 0,
+    "v12_FP": 0
+   },
+   {
+    "sample": "SAMN49035625",
+    "n_contigs": 99,
+    "n_plasmid": 5,
+    "v11_recall": 1.0,
+    "v12_recall": 0.6,
+    "delta": -0.4,
+    "v11_FP": 0,
+    "v12_FP": 0
+   },
+   {
+    "sample": "SAMN55387717",
+    "n_contigs": 117,
+    "n_plasmid": 39,
+    "v11_recall": 0.5128205128205128,
+    "v12_recall": 0.46153846153846156,
+    "delta": -0.05128205128205121,
+    "v11_FP": 4,
+    "v12_FP": 3
+   }
+  ],
+  "median_v11_recall": 0.43478260869565216,
+  "median_v12_recall": 0.8461538461538461
+ },
+ "cluster_bootstrap": {
+  "n_resamples": 4000,
+  "v12_PPV": {
+   "median": 0.9710669077757685,
+   "ci95": [
+    0.9385957427698941,
+    0.9952177407296651
+   ]
+  },
+  "v12_recall": {
+   "median": 0.777400147843563,
+   "ci95": [
+    0.7104419620253165,
+    0.8388118482927827
+   ]
+  },
+  "delta_recall_vs_v11": {
+   "median": 0.24860074139821436,
+   "ci95": [
+    0.1693444036353158,
+    0.34121661649801455
+   ]
+  },
+  "delta_PPV_vs_v11": {
+   "median": -0.0001481706632305846,
+   "ci95": [
+    -0.022456736474768577,
+    0.017220981083657775
+   ]
+  },
+  "P_delta_recall_gt_0": 1.0,
+  "P_PPV_ge_0.95": 0.90875
+ },
+ "strata": [
+  {
+   "stratum": "length_1-10kb",
+   "n": 1489,
+   "n_plasmid": 431,
+   "v11_recall": 0.46867749419953597,
+   "v12_recall": 0.7424593967517401,
+   "v12_PPV": 0.963855421686747
+  },
+  {
+   "stratum": "length_10-50kb",
+   "n": 1244,
+   "n_plasmid": 165,
+   "v11_recall": 0.6727272727272727,
+   "v12_recall": 0.8424242424242424,
+   "v12_PPV": 0.9788732394366197
+  },
+  {
+   "stratum": "length_>=50kb",
+   "n": 1078,
+   "n_plasmid": 30,
+   "v11_recall": 0.6,
+   "v12_recall": 0.9,
+   "v12_PPV": 1.0
+  },
+  {
+   "stratum": "circular",
+   "n": 29,
+   "n_plasmid": 29,
+   "v11_recall": 0.5862068965517241,
+   "v12_recall": 0.9655172413793104,
+   "v12_PPV": 1.0
+  },
+  {
+   "stratum": "linear",
+   "n": 3782,
+   "n_plasmid": 597,
+   "v11_recall": 0.525963149078727,
+   "v12_recall": 0.7671691792294807,
+   "v12_PPV": 0.9682875264270613
+  },
+  {
+   "stratum": "gfa_isolated_deg0",
+   "n": 253,
+   "n_plasmid": 6,
+   "v11_recall": 0.0,
+   "v12_recall": 0.8333333333333334,
+   "v12_PPV": 1.0
+  },
+  {
+   "stratum": "gfa_connected_deg>0",
+   "n": 3558,
+   "n_plasmid": 620,
+   "v11_recall": 0.5338709677419354,
+   "v12_recall": 0.7758064516129032,
+   "v12_PPV": 0.969758064516129
+  }
+ ],
+ "permutation_audit": {
+  "n_replicates": 20,
+  "scheme": "labels shuffled within isolate",
+  "max_recall": 0.0,
+  "mean_recall": 0.0,
+  "observed_recall": 0.7763578274760383,
+  "replicates": [
+   {
+    "replicate": 0,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 1,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 2,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 3,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 4,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 5,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 6,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 7,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 8,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 9,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 10,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 11,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 12,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 13,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 14,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 15,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 16,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 17,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 18,
+    "PPV": null,
+    "recall": 0.0
+   },
+   {
+    "replicate": 19,
+    "PPV": null,
+    "recall": 0.0
+   }
+  ]
+ },
+ "ablation_refit_single_tool_removal": [
+  {
+   "tool_removed": "plASgraph2",
+   "PPV": 0.9616306954436451,
+   "recall": 0.6405750798722045,
+   "delta_PPV": -0.008429184795875844,
+   "delta_recall": -0.1357827476038338
+  },
+  {
+   "tool_removed": "MOB-recon",
+   "PPV": 0.9646017699115044,
+   "recall": 0.6964856230031949,
+   "delta_PPV": -0.005458110328016574,
+   "delta_recall": -0.07987220447284338
+  },
+  {
+   "tool_removed": "PlaScope",
+   "PPV": 0.9666666666666667,
+   "recall": 0.7412140575079872,
+   "delta_PPV": -0.00339321357285427,
+   "delta_recall": -0.03514376996805113
+  },
+  {
+   "tool_removed": "Platon",
+   "PPV": 0.9688796680497925,
+   "recall": 0.7460063897763578,
+   "delta_PPV": -0.0011802121897284135,
+   "delta_recall": -0.030351437699680517
+  },
+  {
+   "tool_removed": "Plasmer",
+   "PPV": 0.9672131147540983,
+   "recall": 0.7539936102236422,
+   "delta_PPV": -0.00284676548542262,
+   "delta_recall": -0.022364217252396124
+  },
+  {
+   "tool_removed": "gplas2",
+   "PPV": 0.9653767820773931,
+   "recall": 0.7571884984025559,
+   "delta_PPV": -0.004683098162127863,
+   "delta_recall": -0.019169329073482455
+  },
+  {
+   "tool_removed": "PlasmidEC",
+   "PPV": 0.9698795180722891,
+   "recall": 0.7715654952076677,
+   "delta_PPV": -0.00018036216723182896,
+   "delta_recall": -0.004792332268370614
+  },
+  {
+   "tool_removed": "geNomad",
+   "PPV": 0.9679358717434869,
+   "recall": 0.7715654952076677,
+   "delta_PPV": -0.002124008496034002,
+   "delta_recall": -0.004792332268370614
+  },
+  {
+   "tool_removed": "RFPlasmid",
+   "PPV": 0.9680638722554891,
+   "recall": 0.7747603833865815,
+   "delta_PPV": -0.001996007984031878,
+   "delta_recall": -0.0015974440894568342
+  },
+  {
+   "tool_removed": "PLASMe",
+   "PPV": 0.9681908548707754,
+   "recall": 0.7779552715654952,
+   "delta_PPV": -0.0018690253687455582,
+   "delta_recall": 0.0015974440894568342
+  },
+  {
+   "tool_removed": "HyAsP",
+   "PPV": 0.9667318982387475,
+   "recall": 0.7891373801916933,
+   "delta_PPV": -0.003327982000773444,
+   "delta_recall": 0.012779552715655007
+  },
+  {
+   "tool_removed": "PlasmidFinder",
+   "PPV": 0.9668615984405458,
+   "recall": 0.792332268370607,
+   "delta_PPV": -0.003198281798975189,
+   "delta_recall": 0.015974440894568676
+  }
+ ],
+ "deployment_single_tool_failure": [
+  {
+   "tool_unavailable": "PlaScope",
+   "PPV": 0.9618320610687023,
+   "recall": 0.2012779552715655,
+   "delta_PPV": -0.008227819170818607,
+   "delta_recall": -0.5750798722044728
+  },
+  {
+   "tool_unavailable": "Plasmer",
+   "PPV": 0.9715302491103203,
+   "recall": 0.43610223642172524,
+   "delta_PPV": 0.0014703688707993212,
+   "delta_recall": -0.3402555910543131
+  },
+  {
+   "tool_unavailable": "MOB-recon",
+   "PPV": 0.9712460063897763,
+   "recall": 0.48562300319488816,
+   "delta_PPV": 0.0011861261502553733,
+   "delta_recall": -0.29073482428115016
+  },
+  {
+   "tool_unavailable": "Platon",
+   "PPV": 0.9744408945686901,
+   "recall": 0.48722044728434505,
+   "delta_PPV": 0.004381014329169153,
+   "delta_recall": -0.28913738019169327
+  },
+  {
+   "tool_unavailable": "PLASMe",
+   "PPV": 0.9686520376175548,
+   "recall": 0.4936102236421725,
+   "delta_PPV": -0.0014078426219661377,
+   "delta_recall": -0.2827476038338658
+  },
+  {
+   "tool_unavailable": "HyAsP",
+   "PPV": 0.9659442724458205,
+   "recall": 0.4984025559105431,
+   "delta_PPV": -0.00411560779370046,
+   "delta_recall": -0.2779552715654952
+  },
+  {
+   "tool_unavailable": "plASgraph2",
+   "PPV": 0.9745042492917847,
+   "recall": 0.549520766773163,
+   "delta_PPV": 0.0044443690522637525,
+   "delta_recall": -0.22683706070287535
+  },
+  {
+   "tool_unavailable": "PlasmidFinder",
+   "PPV": 0.9646464646464646,
+   "recall": 0.610223642172524,
+   "delta_PPV": -0.005413415593056303,
+   "delta_recall": -0.16613418530351431
+  },
+  {
+   "tool_unavailable": "RFPlasmid",
+   "PPV": 0.965034965034965,
+   "recall": 0.6613418530351438,
+   "delta_PPV": -0.005024915204555946,
+   "delta_recall": -0.11501597444089451
+  },
+  {
+   "tool_unavailable": "geNomad",
+   "PPV": 0.9675925925925926,
+   "recall": 0.6677316293929713,
+   "delta_PPV": -0.0024672876469283844,
+   "delta_recall": -0.10862619808306706
+  },
+  {
+   "tool_unavailable": "PlasmidEC",
+   "PPV": 0.9665354330708661,
+   "recall": 0.7843450479233227,
+   "delta_PPV": -0.003524447168654854,
+   "delta_recall": 0.007987220447284393
+  },
+  {
+   "tool_unavailable": "gplas2",
+   "PPV": 0.9601449275362319,
+   "recall": 0.8466453674121406,
+   "delta_PPV": -0.009914952703289015,
+   "delta_recall": 0.07028753993610226
+  }
+ ],
+ "deployment_multi_tool_failure": [
+  {
+   "n_tools_unavailable": 2,
+   "tools": [
+    "PlaScope",
+    "Plasmer"
+   ],
+   "PPV": 1.0,
+   "recall": 0.10383386581469649,
+   "n_positive_calls": 65,
+   "delta_PPV": 0.029940119760479056,
+   "delta_recall": -0.6725239616613419,
+   "note": ""
+  },
+  {
+   "n_tools_unavailable": 3,
+   "tools": [
+    "PlaScope",
+    "Plasmer",
+    "MOB-recon"
+   ],
+   "PPV": 1.0,
+   "recall": 0.003194888178913738,
+   "n_positive_calls": 2,
+   "delta_PPV": 0.029940119760479056,
+   "delta_recall": -0.7731629392971245,
+   "note": ""
+  },
+  {
+   "n_tools_unavailable": 4,
+   "tools": [
+    "PlaScope",
+    "Plasmer",
+    "MOB-recon",
+    "Platon"
+   ],
+   "PPV": null,
+   "recall": 0.0,
+   "n_positive_calls": 0,
+   "delta_PPV": null,
+   "delta_recall": -0.7763578274760383,
+   "note": "model makes NO positive calls at all"
+  },
+  {
+   "n_tools_unavailable": 6,
+   "tools": [
+    "PlaScope",
+    "Plasmer",
+    "MOB-recon",
+    "Platon",
+    "PLASMe",
+    "HyAsP"
+   ],
+   "PPV": null,
+   "recall": 0.0,
+   "n_positive_calls": 0,
+   "delta_PPV": null,
+   "delta_recall": -0.7763578274760383,
+   "note": "model makes NO positive calls at all"
+  }
+ ],
+ "matched_ppv_frontier": {
+  "0.95": {
+   "v1.2_general": {
+    "recall": 0.9456869009584664,
+    "threshold": 0.5659,
+    "ppv": 0.9502407704654896,
+    "n_called": 623
+   },
+   "v1.1_frozen": {
+    "recall": 0.7156549520766773,
+    "threshold": 0.8921,
+    "ppv": 0.9511677282377919,
+    "n_called": 471
+   }
+  },
+  "0.96": {
+   "v1.2_general": {
+    "recall": 0.8722044728434505,
+    "threshold": 0.8041,
+    "ppv": 0.9612676056338029,
+    "n_called": 568
+   },
+   "v1.1_frozen": {
+    "recall": 0.5990415335463258,
+    "threshold": 0.9362,
+    "ppv": 0.9615384615384616,
+    "n_called": 390
+   }
+  },
+  "0.97": {
+   "v1.2_general": {
+    "recall": 0.7763578274760383,
+    "threshold": 0.9285,
+    "ppv": 0.9700598802395209,
+    "n_called": 501
+   },
+   "v1.1_frozen": {
+    "recall": 0.560702875399361,
+    "threshold": 0.9464,
+    "ppv": 0.9722991689750693,
+    "n_called": 361
+   }
+  },
+  "0.98": {
+   "v1.2_general": {
+    "recall": 0.4329073482428115,
+    "threshold": 0.9916,
+    "ppv": 0.9818840579710145,
+    "n_called": 276
+   },
+   "v1.1_frozen": {
+    "recall": 0.4696485623003195,
+    "threshold": 0.9618,
+    "ppv": 0.98,
+    "n_called": 300
+   }
+  },
+  "0.99": {
+   "v1.2_general": {
+    "recall": 0.19329073482428116,
+    "threshold": 0.9969,
+    "ppv": 0.9918032786885246,
+    "n_called": 122
+   },
+   "v1.1_frozen": {
+    "recall": 0.13578274760383385,
+    "threshold": 0.9906,
+    "ppv": 1.0,
+    "n_called": 85
+   }
+  }
+ },
+ "CP1_domain": {
+  "n": 130,
+  "n_plasmid": 105,
+  "v12_general_on_CP1": {
+   "TP": 67,
+   "FP": 7,
+   "TN": 18,
+   "FN": 38,
+   "PPV": 0.9054054054054054,
+   "recall": 0.638095238095238,
+   "specificity": 0.72
+  },
+  "v11_at_0.9524": {
+   "TP": 53,
+   "FP": 2,
+   "TN": 23,
+   "FN": 52,
+   "PPV": 0.9636363636363636,
+   "recall": 0.5047619047619047,
+   "specificity": 0.92
+  },
+  "v11_at_0.9605": {
+   "TP": 48,
+   "FP": 1,
+   "TN": 24,
+   "FN": 57,
+   "PPV": 0.9795918367346939,
+   "recall": 0.45714285714285713,
+   "specificity": 0.96
+  }
+ }
+}

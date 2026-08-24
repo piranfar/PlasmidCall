@@ -1,0 +1,104 @@
+{
+ "generated_utc": "2026-08-24",
+ "files": [
+  {
+   "n": 1,
+   "title": "Sealed cohort manifest: 150 isolates with every accession, instrument, read count and per-file MD5 checksum needed for deterministic re-retrieval",
+   "file": "Supplementary_Data_1.tsv",
+   "rows": 150,
+   "source": "docs/evidence/P1.13_provenance/P1.13_SELECTED_COHORT_v3.tsv",
+   "sha256": "c026f5a3e4bb2e2370ee21772e0837e98c59a32410efc1141d28612c34ded05d",
+   "bytes": 62627
+  },
+  {
+   "n": 2,
+   "title": "Complete prespecified stratified metrics, all strata x all frozen strategies",
+   "file": "Supplementary_Data_2.tsv",
+   "rows": 75,
+   "source": "docs/evidence/P1.13_results/P113_STRATIFIED_METRICS.tsv",
+   "sha256": "290aa11c1c4a033ae03333170a720adb39789c19d7bf9f66372c1e7802939a7f",
+   "bytes": 20273
+  },
+  {
+   "n": 3,
+   "title": "Per-isolate metrics and leave-one-isolate-out influence, 150 isolates",
+   "file": "Supplementary_Data_3.tsv",
+   "rows": 150,
+   "source": "docs/postfreeze/tables/PF03a_PER_ISOLATE_METRICS.tsv",
+   "sha256": "166bee87f89d55a1b6957d01e014599f4ea00f9d9c2dd64c408913b5eb3aa808",
+   "bytes": 20849
+  },
+  {
+   "n": 4,
+   "title": "Leave-one-isolate-out influence on the pooled endpoint, 150 isolates",
+   "file": "Supplementary_Data_4.tsv",
+   "rows": 150,
+   "source": "docs/postfreeze/tables/PF03b_LEAVE_ONE_ISOLATE_OUT_INFLUENCE.tsv",
+   "sha256": "6bb77346e4573cb8747ae65f46e337c4fcfa4011bdc2fc711b7807c97a35ca82",
+   "bytes": 22295
+  },
+  {
+   "n": 5,
+   "title": "Complete resistance-gene analysis: pooled, by taxon, by gene family, by antimicrobial class, by contig length, by depth and by assembly quality",
+   "file": "Supplementary_Data_5.tsv",
+   "rows": 230,
+   "source": "docs/postfreeze/tables/PF04_ARG_COMPLETE.tsv",
+   "sha256": "0e9f8cba9f0efac1f5b92a25eec972d0d7252f8be771ef571304b40e4a30485f",
+   "bytes": 30773
+  },
+  {
+   "n": 6,
+   "title": "Characterisation of all 413 unresolved eligible contigs",
+   "file": "Supplementary_Data_6.tsv",
+   "rows": 413,
+   "source": "docs/postfreeze/tables/PF09a_UNRESOLVED_TRUTH_CHARACTERISATION.tsv",
+   "sha256": "50a88da31cd6d812d060b301dab27a37faf74790686d57966bb7480f12ca909f",
+   "bytes": 61383
+  },
+  {
+   "n": 7,
+   "title": "Reference-genome quality and mapping ambiguity for all 150 isolates",
+   "file": "Supplementary_Data_7.tsv",
+   "rows": 150,
+   "source": "docs/postfreeze/tables/PF10a_REFERENCE_QUALITY.tsv",
+   "sha256": "0ae172ba82c315463fd15b4e7fe23af3498ae9f8f1a8894f9f11127a2f3552b5",
+   "bytes": 14676
+  },
+  {
+   "n": 8,
+   "title": "Comparator fairness: conditional, failure-aware and matched-denominator performance for all 19 predictor rows",
+   "file": "Supplementary_Data_8.tsv",
+   "rows": 19,
+   "source": "docs/postfreeze/tables/PF12_COMPARATOR_FAIRNESS.tsv",
+   "sha256": "986e27ac7163b2e8081830854d5ca594a3b2bcf820a2bc4c957cdae11ea9f595",
+   "bytes": 4167
+  },
+  {
+   "n": 9,
+   "title": "SHA-256 digest of every raw and downsampled read file used for assembly, restricted to the 150 sealed-cohort isolates. The acquisition manifest also covers 4 files belonging to the isolate excluded for contamination before assembly; those rows are withheld here because the isolate is not part of the sealed cohort, and the exclusion and its deterministic replacement are described in Supplementary Note 1",
+   "file": "Supplementary_Data_9.tsv",
+   "rows": 600,
+   "source": "docs/evidence/P1.13_provenance/P1.13_READS_MANIFEST.sha256",
+   "sha256": "21d5d8af2b9a7839b367a9fdedbe47ada47598bd91d77c33a322ee6b74672ed9",
+   "bytes": 67822
+  },
+  {
+   "n": 10,
+   "title": "Per-tool output composition across all eligible contigs: how many each classifier called plasmid, chromosome, unknown, unclassified or repeat, and how many it returned FAILED or MISSING. NOTE THE DENOMINATOR: this table is computed over the 9,784 eligible contigs, whereas every performance metric in the manuscript is computed over the 9,371 truth-resolved contigs, so the coverage column here differs slightly from the coverage reported in Table 2 and Fig. 7b. Both are correct on their own base",
+   "file": "Supplementary_Data_10.tsv",
+   "rows": 12,
+   "source": "docs/evidence/P1.13_results/P113_TOOL_OUTPUT_ACCOUNTING.tsv",
+   "sha256": "002e93f56c56286a8153b2c6f0dec16a47d66afb3686b9397a78c6294a36ffd1",
+   "bytes": 709
+  },
+  {
+   "n": 11,
+   "title": "Prespecified evaluation-phase sensitivity scenarios, including the adversarial treatments of the unresolved contigs",
+   "file": "Supplementary_Data_11.tsv",
+   "rows": 4,
+   "source": "docs/evidence/P1.13_results/P113_SENSITIVITY_ANALYSIS.tsv",
+   "sha256": "68ecf520100fb7d042320042d0458da73432765c7d314a76b5acf5f94489b938",
+   "bytes": 654
+  }
+ ]
+}

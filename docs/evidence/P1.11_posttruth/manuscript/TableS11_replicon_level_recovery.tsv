@@ -1,0 +1,15 @@
+metric	value	fraction	note
+plasmid replicons evaluated	329		grouped by best_plasmid_hit in the frozen truth table
+at least one contig recovered	312	0.9483	operative for surveillance: one flagged contig triggers follow-up
+fully recovered (every contig)	241	0.7325	strict criterion; must be reported beside the figure above
+at least 50% of assembled bp recovered	296	0.8997	
+median per-replicon bp recovery	1.0		half of all plasmid replicons recovered completely by base pairs
+missed entirely	17	0.0517	
+single-contig replicons: n	197		
+single-contig replicons: fully recovered	181	0.9188	
+single-contig replicons: any contig recovered	181	0.9188	
+single-contig replicons: missed entirely	16		
+multi-contig replicons: n	132		
+multi-contig replicons: fully recovered	60	0.4545	
+multi-contig replicons: any contig recovered	131	0.9924	mechanically easier to satisfy when a replicon is split across many contigs
+multi-contig replicons: missed entirely	1		

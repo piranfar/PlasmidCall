@@ -1,0 +1,447 @@
+{
+ "label": "EXPLORATORY_POST-TRUTH_MANUSCRIPT_SUPPORT / differentiation",
+ "confirmatory_reproduced": {
+  "n": 7244,
+  "TP": 942,
+  "FP": 33,
+  "TN": 6002,
+  "FN": 267
+ },
+ "A_copy_number_missing_determinant": {
+  "why_this_is_new": "Supplementary Table 13 of the prior benchmark models detection against SR contig length, presence of ARGs, transposase count, identity of the best PLSDB hit and plasmid size. Read depth / copy number is NOT among its covariates. This tests whether it adds information beyond them.",
+  "covariates_not_available_here": [
+   "transposase count",
+   "identity of best PLSDB hit"
+  ],
+  "models": {
+   "PlasmidCall v1.2-General": {
+    "n_truth_plasmid_modelled": 1209,
+    "baseline_covariates": [
+     "log10 contig length",
+     "has ARG",
+     "log10 replicon size"
+    ],
+    "added_covariate": "log2 copy-number proxy (contig depth / isolate chromosomal median)",
+    "coef_copy_number": 0.9947,
+    "se_copy_number": 0.1322,
+    "z_copy_number": 7.526,
+    "logLik_without": -598.237,
+    "logLik_with": -563.189,
+    "likelihood_ratio_chi2_1df": 70.095,
+    "p_value_approx": "<1e-12",
+    "interpretation": "positive coefficient means higher copy number makes a truth-plasmid contig more likely to be detected, after adjusting for the covariates the prior benchmark modelled"
+   },
+   "PlaScope": {
+    "n_truth_plasmid_modelled": 1209,
+    "baseline_covariates": [
+     "log10 contig length",
+     "has ARG",
+     "log10 replicon size"
+    ],
+    "added_covariate": "log2 copy-number proxy (contig depth / isolate chromosomal median)",
+    "coef_copy_number": 0.7191,
+    "se_copy_number": 0.1649,
+    "z_copy_number": 4.362,
+    "logLik_without": -329.871,
+    "logLik_with": -318.902,
+    "likelihood_ratio_chi2_1df": 21.939,
+    "p_value_approx": "2.82e-06",
+    "interpretation": "positive coefficient means higher copy number makes a truth-plasmid contig more likely to be detected, after adjusting for the covariates the prior benchmark modelled"
+   },
+   "PlasmidEC": {
+    "n_truth_plasmid_modelled": 1209,
+    "baseline_covariates": [
+     "log10 contig length",
+     "has ARG",
+     "log10 replicon size"
+    ],
+    "added_covariate": "log2 copy-number proxy (contig depth / isolate chromosomal median)",
+    "coef_copy_number": 0.3609,
+    "se_copy_number": 0.115,
+    "z_copy_number": 3.137,
+    "logLik_without": -418.953,
+    "logLik_with": -413.834,
+    "likelihood_ratio_chi2_1df": 10.237,
+    "p_value_approx": "0.00138",
+    "interpretation": "positive coefficient means higher copy number makes a truth-plasmid contig more likely to be detected, after adjusting for the covariates the prior benchmark modelled"
+   },
+   "Plasmer": {
+    "n_truth_plasmid_modelled": 1209,
+    "baseline_covariates": [
+     "log10 contig length",
+     "has ARG",
+     "log10 replicon size"
+    ],
+    "added_covariate": "log2 copy-number proxy (contig depth / isolate chromosomal median)",
+    "coef_copy_number": 0.4176,
+    "se_copy_number": 0.2439,
+    "z_copy_number": 1.712,
+    "logLik_without": -216.755,
+    "logLik_with": -215.227,
+    "likelihood_ratio_chi2_1df": 3.056,
+    "p_value_approx": "0.0805",
+    "interpretation": "positive coefficient means higher copy number makes a truth-plasmid contig more likely to be detected, after adjusting for the covariates the prior benchmark modelled"
+   },
+   "gplas2": {
+    "n_truth_plasmid_modelled": 1209,
+    "baseline_covariates": [
+     "log10 contig length",
+     "has ARG",
+     "log10 replicon size"
+    ],
+    "added_covariate": "log2 copy-number proxy (contig depth / isolate chromosomal median)",
+    "coef_copy_number": 0.2891,
+    "se_copy_number": 0.0864,
+    "z_copy_number": 3.348,
+    "logLik_without": -606.812,
+    "logLik_with": -601.036,
+    "likelihood_ratio_chi2_1df": 11.553,
+    "p_value_approx": "0.000677",
+    "interpretation": "positive coefficient means higher copy number makes a truth-plasmid contig more likely to be detected, after adjusting for the covariates the prior benchmark modelled"
+   }
+  }
+ },
+ "B_cross_cohort_transferability": {
+  "why_this_is_new": "The prior benchmark reports per-tool metrics on its 250 isolates. This cohort of 79 is disjoint from those 250 by identifier (0 shared BioSamples) and by sequence (max ANI 99.48%, below the frozen 99.5% threshold). Running the same twelve tools on a disjoint cohort makes it possible to ask how far a published benchmark number transfers - which no single benchmark can ask of itself.",
+  "aggregation_note": "the prior benchmark reports the median after bootstrapping; P1.11 values are computed the same way, per isolate then median, with an isolate-bootstrap CI. Pooled contig-level values are given alongside because they differ and the difference is itself informative.",
+  "comparison_is_against": "the prior benchmark's Enterobacterales column (E. coli is Enterobacterales)",
+  "spearman_rank_correlation_F1": 0.958,
+  "mean_absolute_delta_F1_pct": 4.23,
+  "median_absolute_delta_F1_pct": 2.25,
+  "max_absolute_delta_F1_pct": 13.1,
+  "n_tools": 12,
+  "table": "differentiation/P1.11_cross_cohort_transferability.tsv",
+  "per_tool": [
+   {
+    "tool": "PlaScope",
+    "prior_Enterobacterales_F1_pct": 93.5,
+    "prior_precision_pct": 94.2,
+    "prior_recall_pct": 92.8,
+    "P1.11_F1_pct_per_isolate_median": 94.7,
+    "P1.11_precision_pct_per_isolate_median": 97.0,
+    "P1.11_recall_pct_per_isolate_median": 100.0,
+    "P1.11_F1_pct_pooled": 92.8,
+    "P1.11_precision_pct_pooled": 92.2,
+    "P1.11_recall_pct_pooled": 93.4,
+    "delta_F1_pct": 1.2,
+    "delta_precision_pct": 2.8,
+    "delta_recall_pct": 7.2
+   },
+   {
+    "tool": "PlasmidEC",
+    "prior_Enterobacterales_F1_pct": 92.6,
+    "prior_precision_pct": 92.4,
+    "prior_recall_pct": 92.8,
+    "P1.11_F1_pct_per_isolate_median": 92.3,
+    "P1.11_precision_pct_per_isolate_median": 100.0,
+    "P1.11_recall_pct_per_isolate_median": 95.4,
+    "P1.11_F1_pct_pooled": 89.3,
+    "P1.11_precision_pct_pooled": 91.0,
+    "P1.11_recall_pct_pooled": 87.6,
+    "delta_F1_pct": -0.3,
+    "delta_precision_pct": 7.6,
+    "delta_recall_pct": 2.6
+   },
+   {
+    "tool": "Plasmer",
+    "prior_Enterobacterales_F1_pct": 90.7,
+    "prior_precision_pct": 83.6,
+    "prior_recall_pct": 99.1,
+    "P1.11_F1_pct_per_isolate_median": 90.6,
+    "P1.11_precision_pct_per_isolate_median": 87.2,
+    "P1.11_recall_pct_per_isolate_median": 100.0,
+    "P1.11_F1_pct_pooled": 87.7,
+    "P1.11_precision_pct_pooled": 81.3,
+    "P1.11_recall_pct_pooled": 95.2,
+    "delta_F1_pct": -0.1,
+    "delta_precision_pct": 3.6,
+    "delta_recall_pct": 0.9
+   },
+   {
+    "tool": "gplas2",
+    "prior_Enterobacterales_F1_pct": 87.7,
+    "prior_precision_pct": 92.3,
+    "prior_recall_pct": 83.6,
+    "P1.11_F1_pct_per_isolate_median": 93.0,
+    "P1.11_precision_pct_per_isolate_median": 100.0,
+    "P1.11_recall_pct_per_isolate_median": 97.4,
+    "P1.11_F1_pct_pooled": 90.4,
+    "P1.11_precision_pct_pooled": 93.0,
+    "P1.11_recall_pct_pooled": 87.9,
+    "delta_F1_pct": 5.3,
+    "delta_precision_pct": 7.7,
+    "delta_recall_pct": 13.8
+   },
+   {
+    "tool": "MOB-recon",
+    "prior_Enterobacterales_F1_pct": 86.4,
+    "prior_precision_pct": 84.7,
+    "prior_recall_pct": 88.2,
+    "P1.11_F1_pct_per_isolate_median": 84.0,
+    "P1.11_precision_pct_per_isolate_median": 90.0,
+    "P1.11_recall_pct_per_isolate_median": 93.0,
+    "P1.11_F1_pct_pooled": 82.9,
+    "P1.11_precision_pct_pooled": 84.3,
+    "P1.11_recall_pct_pooled": 81.5,
+    "delta_F1_pct": -2.4,
+    "delta_precision_pct": 5.3,
+    "delta_recall_pct": 4.8
+   },
+   {
+    "tool": "Platon",
+    "prior_Enterobacterales_F1_pct": 85.9,
+    "prior_precision_pct": 92.1,
+    "prior_recall_pct": 80.6,
+    "P1.11_F1_pct_per_isolate_median": 88.0,
+    "P1.11_precision_pct_per_isolate_median": 100.0,
+    "P1.11_recall_pct_per_isolate_median": 84.6,
+    "P1.11_F1_pct_pooled": 85.1,
+    "P1.11_precision_pct_pooled": 92.4,
+    "P1.11_recall_pct_pooled": 78.9,
+    "delta_F1_pct": 2.1,
+    "delta_precision_pct": 7.9,
+    "delta_recall_pct": 4.0
+   },
+   {
+    "tool": "HyAsP",
+    "prior_Enterobacterales_F1_pct": 81.4,
+    "prior_precision_pct": 81.5,
+    "prior_recall_pct": 81.4,
+    "P1.11_F1_pct_per_isolate_median": 80.0,
+    "P1.11_precision_pct_per_isolate_median": 84.2,
+    "P1.11_recall_pct_per_isolate_median": 83.8,
+    "P1.11_F1_pct_pooled": 77.1,
+    "P1.11_precision_pct_pooled": 78.4,
+    "P1.11_recall_pct_pooled": 75.8,
+    "delta_F1_pct": -1.4,
+    "delta_precision_pct": 2.7,
+    "delta_recall_pct": 2.4
+   },
+   {
+    "tool": "RFPlasmid",
+    "prior_Enterobacterales_F1_pct": 80.8,
+    "prior_precision_pct": 73.8,
+    "prior_recall_pct": 89.2,
+    "P1.11_F1_pct_per_isolate_median": 80.0,
+    "P1.11_precision_pct_per_isolate_median": 88.0,
+    "P1.11_recall_pct_per_isolate_median": 84.8,
+    "P1.11_F1_pct_pooled": 80.5,
+    "P1.11_precision_pct_pooled": 82.1,
+    "P1.11_recall_pct_pooled": 79.1,
+    "delta_F1_pct": -0.8,
+    "delta_precision_pct": 14.2,
+    "delta_recall_pct": -4.4
+   },
+   {
+    "tool": "PLASMe",
+    "prior_Enterobacterales_F1_pct": 71.9,
+    "prior_precision_pct": 56.2,
+    "prior_recall_pct": 99.6,
+    "P1.11_F1_pct_per_isolate_median": 58.8,
+    "P1.11_precision_pct_per_isolate_median": 41.7,
+    "P1.11_recall_pct_per_isolate_median": 100.0,
+    "P1.11_F1_pct_pooled": 57.9,
+    "P1.11_precision_pct_pooled": 41.1,
+    "P1.11_recall_pct_pooled": 98.2,
+    "delta_F1_pct": -13.1,
+    "delta_precision_pct": -14.5,
+    "delta_recall_pct": 0.4
+   },
+   {
+    "tool": "plASgraph2",
+    "prior_Enterobacterales_F1_pct": 69.5,
+    "prior_precision_pct": 84.4,
+    "prior_recall_pct": 59.1,
+    "P1.11_F1_pct_per_isolate_median": 79.3,
+    "P1.11_precision_pct_per_isolate_median": 97.1,
+    "P1.11_recall_pct_per_isolate_median": 72.0,
+    "P1.11_F1_pct_pooled": 74.1,
+    "P1.11_precision_pct_pooled": 86.1,
+    "P1.11_recall_pct_pooled": 65.0,
+    "delta_F1_pct": 9.8,
+    "delta_precision_pct": 12.7,
+    "delta_recall_pct": 12.9
+   },
+   {
+    "tool": "geNomad",
+    "prior_Enterobacterales_F1_pct": 59.1,
+    "prior_precision_pct": 52.3,
+    "prior_recall_pct": 67.9,
+    "P1.11_F1_pct_per_isolate_median": 53.8,
+    "P1.11_precision_pct_per_isolate_median": 44.7,
+    "P1.11_recall_pct_per_isolate_median": 75.0,
+    "P1.11_F1_pct_pooled": 54.6,
+    "P1.11_precision_pct_pooled": 45.3,
+    "P1.11_recall_pct_pooled": 68.8,
+    "delta_F1_pct": -5.3,
+    "delta_precision_pct": -7.6,
+    "delta_recall_pct": 7.1
+   },
+   {
+    "tool": "PlasmidFinder",
+    "prior_Enterobacterales_F1_pct": 29.1,
+    "prior_precision_pct": 97.7,
+    "prior_recall_pct": 17.1,
+    "P1.11_F1_pct_per_isolate_median": 38.1,
+    "P1.11_precision_pct_per_isolate_median": 100.0,
+    "P1.11_recall_pct_per_isolate_median": 23.1,
+    "P1.11_F1_pct_pooled": 33.4,
+    "P1.11_precision_pct_pooled": 98.3,
+    "P1.11_recall_pct_pooled": 20.1,
+    "delta_F1_pct": 9.0,
+    "delta_precision_pct": 2.3,
+    "delta_recall_pct": 6.0
+   }
+  ]
+ },
+ "C_operational_reliability": {
+  "why_this_is_new": "Every published benchmark of these tools reports accuracy conditional on the tool having run. None reports how often it does not run, or what a pipeline should do when it does not. Across 1027 executions here, tools failed terminally after three attempts, and separately a provenance audit found 47 executions that completed with valid output behind a stale FAILED receipt - a silent-corruption mode that would have discarded 11241 contigs of evidence.",
+  "per_tool": [
+   {
+    "tool": "AMRFinderPlus",
+    "executions": 79,
+    "executions_not_OK": 0,
+    "isolate_failure_rate": 0.0,
+    "contigs_without_a_usable_call": null,
+    "contig_level_coverage": null
+   },
+   {
+    "tool": "HyAsP",
+    "executions": 79,
+    "executions_not_OK": 0,
+    "isolate_failure_rate": 0.0,
+    "contigs_without_a_usable_call": 0,
+    "contig_level_coverage": 1.0
+   },
+   {
+    "tool": "MOB-recon",
+    "executions": 79,
+    "executions_not_OK": 49,
+    "isolate_failure_rate": 0.6203,
+    "contigs_without_a_usable_call": 96,
+    "contig_level_coverage": 0.9867
+   },
+   {
+    "tool": "PLASMe",
+    "executions": 79,
+    "executions_not_OK": 0,
+    "isolate_failure_rate": 0.0,
+    "contigs_without_a_usable_call": 0,
+    "contig_level_coverage": 1.0
+   },
+   {
+    "tool": "PlaScope",
+    "executions": 79,
+    "executions_not_OK": 0,
+    "isolate_failure_rate": 0.0,
+    "contigs_without_a_usable_call": 60,
+    "contig_level_coverage": 0.9917
+   },
+   {
+    "tool": "Plasmer",
+    "executions": 79,
+    "executions_not_OK": 0,
+    "isolate_failure_rate": 0.0,
+    "contigs_without_a_usable_call": 0,
+    "contig_level_coverage": 1.0
+   },
+   {
+    "tool": "PlasmidEC",
+    "executions": 79,
+    "executions_not_OK": 0,
+    "isolate_failure_rate": 0.0,
+    "contigs_without_a_usable_call": 0,
+    "contig_level_coverage": 1.0
+   },
+   {
+    "tool": "PlasmidFinder",
+    "executions": 79,
+    "executions_not_OK": 4,
+    "isolate_failure_rate": 0.0506,
+    "contigs_without_a_usable_call": 304,
+    "contig_level_coverage": 0.958
+   },
+   {
+    "tool": "Platon",
+    "executions": 79,
+    "executions_not_OK": 0,
+    "isolate_failure_rate": 0.0,
+    "contigs_without_a_usable_call": 0,
+    "contig_level_coverage": 1.0
+   },
+   {
+    "tool": "RFPlasmid",
+    "executions": 79,
+    "executions_not_OK": 0,
+    "isolate_failure_rate": 0.0,
+    "contigs_without_a_usable_call": 0,
+    "contig_level_coverage": 1.0
+   },
+   {
+    "tool": "geNomad",
+    "executions": 79,
+    "executions_not_OK": 0,
+    "isolate_failure_rate": 0.0,
+    "contigs_without_a_usable_call": 0,
+    "contig_level_coverage": 1.0
+   },
+   {
+    "tool": "gplas2",
+    "executions": 79,
+    "executions_not_OK": 2,
+    "isolate_failure_rate": 0.0253,
+    "contigs_without_a_usable_call": 861,
+    "contig_level_coverage": 0.8811
+   },
+   {
+    "tool": "plASgraph2",
+    "executions": 79,
+    "executions_not_OK": 0,
+    "isolate_failure_rate": 0.0,
+    "contigs_without_a_usable_call": 307,
+    "contig_level_coverage": 0.9576
+   }
+  ],
+  "total_executions": 1027,
+  "total_not_OK": 55,
+  "graceful_degradation": {
+   "claim": "PlasmidCall's encoding gives an absent or failed tool an exactly zero contribution to the logit, so a tool failing degrades the panel rather than corrupting the prediction.",
+   "evidence": "models/plasmidcall_v1.2-general/P1.12_V1.2_TRAINING_RECEIPT.json",
+   "measured": {
+    "max_abs_scaled_value_in_a_neutralised_block": 0.0,
+    "max_abs_contribution_of_an_absent_unseen_tool": 0.0,
+    "no_op_on_training_data": true
+   },
+   "why_it_matters": "this is a designed and measured property, not an empirical observation; no comparator tool has an equivalent guarantee because none consumes a panel"
+  }
+ },
+ "D_prospective_claim": {
+  "why_this_is_new": "Published claims about these tools take the form 'on dataset D, tool T achieved metric M', with D, M and the operating point all chosen after the results were seen. Such a claim cannot fail. The claim here was constructed so that it could.",
+  "sequence": [
+   {
+    "step": "operating points declared",
+    "value": "0.9285 (v1.2-General), 0.9524 and 0.9605 (v1.1), frozen router",
+    "before_truth": true
+   },
+   {
+    "step": "predictions frozen and hashed",
+    "utc": "2026-08-22T04:55:11Z",
+    "matrix_sha256": "0767da157051ff469b8830982aa168c558ce5b4cb6e1bc82ba81d4e9acb3e40d",
+    "before_truth": true
+   },
+   {
+    "step": "truth acquired",
+    "utc": "2026-08-22T05:21:42Z",
+    "isolates_verified": 79,
+    "before_truth": false
+   }
+  ],
+  "gap_between_freeze_and_truth": {
+   "predictions_frozen_utc": "2026-08-22T04:55:11Z",
+   "truth_acquired_utc": "2026-08-22T05:21:42Z"
+  },
+  "falsifiability": "the confirmatory gate was a declared PPV floor. Had v1.2-General scored below it, the result would have been recorded as a failure; the pipeline had no route to change the threshold afterwards.",
+  "enforcement": "every post-truth analysis script re-derives the confirmatory contingency table and exits non-zero unless it reproduces n=7244, TP=942, FP=33, TN=6002, FN=267 exactly",
+  "prior_art_contrast": "the prior benchmark, like every other in this field, is retrospective and descriptive. That is not a criticism of it - it is a different kind of study - but it means no published plasmid-detection number has ever been subject to a preregistered pass/fail test."
+ }
+}

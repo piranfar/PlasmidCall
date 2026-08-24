@@ -1,0 +1,103 @@
+index	feature_name	kind	tool	state	description	train_min	train_max	train_mean	train_nonzero	zero_variance_in_training	coefficient	inert
+0	onehot__HyAsP__chromosome	one_hot	HyAsP	chromosome	1 when HyAsP returned the call 'chromosome', else 0	0.0	1.0	0.8349514563106796	3182	False	-0.14616638467003903	False
+1	onehot__HyAsP__plasmid	one_hot	HyAsP	plasmid	1 when HyAsP returned the call 'plasmid', else 0	0.0	1.0	0.1650485436893204	629	False	0.14616638467003834	False
+2	onehot__HyAsP__unknown	one_hot	HyAsP	unknown	1 when HyAsP returned the call 'unknown', else 0	0.0	0.0	0.0	0	True	0.0	True
+3	onehot__HyAsP__unclassified	one_hot	HyAsP	unclassified	1 when HyAsP returned the call 'unclassified', else 0	0.0	0.0	0.0	0	True	0.0	True
+4	onehot__HyAsP__repeat	one_hot	HyAsP	repeat	1 when HyAsP returned the call 'repeat', else 0	0.0	0.0	0.0	0	True	0.0	True
+5	onehot__HyAsP__FAILED	one_hot	HyAsP	FAILED	1 when HyAsP returned the call 'FAILED', else 0	0.0	0.0	0.0	0	True	0.0	True
+6	onehot__HyAsP__MISSING	one_hot	HyAsP	MISSING	1 when HyAsP returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+7	onehot__MOB-recon__chromosome	one_hot	MOB-recon	chromosome	1 when MOB-recon returned the call 'chromosome', else 0	0.0	1.0	0.8422986092889005	3210	False	-0.3376133008377369	False
+8	onehot__MOB-recon__plasmid	one_hot	MOB-recon	plasmid	1 when MOB-recon returned the call 'plasmid', else 0	0.0	1.0	0.15770139071109945	601	False	0.3376133008377369	False
+9	onehot__MOB-recon__unknown	one_hot	MOB-recon	unknown	1 when MOB-recon returned the call 'unknown', else 0	0.0	0.0	0.0	0	True	0.0	True
+10	onehot__MOB-recon__unclassified	one_hot	MOB-recon	unclassified	1 when MOB-recon returned the call 'unclassified', else 0	0.0	0.0	0.0	0	True	0.0	True
+11	onehot__MOB-recon__repeat	one_hot	MOB-recon	repeat	1 when MOB-recon returned the call 'repeat', else 0	0.0	0.0	0.0	0	True	0.0	True
+12	onehot__MOB-recon__FAILED	one_hot	MOB-recon	FAILED	1 when MOB-recon returned the call 'FAILED', else 0	0.0	0.0	0.0	0	True	0.0	True
+13	onehot__MOB-recon__MISSING	one_hot	MOB-recon	MISSING	1 when MOB-recon returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+14	onehot__PLASMe__chromosome	one_hot	PLASMe	chromosome	1 when PLASMe returned the call 'chromosome', else 0	0.0	1.0	0.615061663605353	2344	False	-0.2780258556566088	False
+15	onehot__PLASMe__plasmid	one_hot	PLASMe	plasmid	1 when PLASMe returned the call 'plasmid', else 0	0.0	1.0	0.3849383363946471	1467	False	0.27802585565660887	False
+16	onehot__PLASMe__unknown	one_hot	PLASMe	unknown	1 when PLASMe returned the call 'unknown', else 0	0.0	0.0	0.0	0	True	0.0	True
+17	onehot__PLASMe__unclassified	one_hot	PLASMe	unclassified	1 when PLASMe returned the call 'unclassified', else 0	0.0	0.0	0.0	0	True	0.0	True
+18	onehot__PLASMe__repeat	one_hot	PLASMe	repeat	1 when PLASMe returned the call 'repeat', else 0	0.0	0.0	0.0	0	True	0.0	True
+19	onehot__PLASMe__FAILED	one_hot	PLASMe	FAILED	1 when PLASMe returned the call 'FAILED', else 0	0.0	0.0	0.0	0	True	0.0	True
+20	onehot__PLASMe__MISSING	one_hot	PLASMe	MISSING	1 when PLASMe returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+21	onehot__PlaScope__chromosome	one_hot	PlaScope	chromosome	1 when PlaScope returned the call 'chromosome', else 0	0.0	1.0	0.8265547100498557	3150	False	-0.6074024597314136	False
+22	onehot__PlaScope__plasmid	one_hot	PlaScope	plasmid	1 when PlaScope returned the call 'plasmid', else 0	0.0	1.0	0.16767252689582787	639	False	0.6098088955811026	False
+23	onehot__PlaScope__unknown	one_hot	PlaScope	unknown	1 when PlaScope returned the call 'unknown', else 0	0.0	0.0	0.0	0	True	0.0	True
+24	onehot__PlaScope__unclassified	one_hot	PlaScope	unclassified	1 when PlaScope returned the call 'unclassified', else 0	0.0	1.0	0.005772763054316453	22	False	0.02867477782671657	False
+25	onehot__PlaScope__repeat	one_hot	PlaScope	repeat	1 when PlaScope returned the call 'repeat', else 0	0.0	0.0	0.0	0	True	0.0	True
+26	onehot__PlaScope__FAILED	one_hot	PlaScope	FAILED	1 when PlaScope returned the call 'FAILED', else 0	0.0	0.0	0.0	0	True	0.0	True
+27	onehot__PlaScope__MISSING	one_hot	PlaScope	MISSING	1 when PlaScope returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+28	onehot__Plasmer__chromosome	one_hot	Plasmer	chromosome	1 when Plasmer returned the call 'chromosome', else 0	0.0	1.0	0.808449225924954	3081	False	-0.386798005959187	False
+29	onehot__Plasmer__plasmid	one_hot	Plasmer	plasmid	1 when Plasmer returned the call 'plasmid', else 0	0.0	1.0	0.19155077407504592	730	False	0.38679800595918507	False
+30	onehot__Plasmer__unknown	one_hot	Plasmer	unknown	1 when Plasmer returned the call 'unknown', else 0	0.0	0.0	0.0	0	True	0.0	True
+31	onehot__Plasmer__unclassified	one_hot	Plasmer	unclassified	1 when Plasmer returned the call 'unclassified', else 0	0.0	0.0	0.0	0	True	0.0	True
+32	onehot__Plasmer__repeat	one_hot	Plasmer	repeat	1 when Plasmer returned the call 'repeat', else 0	0.0	0.0	0.0	0	True	0.0	True
+33	onehot__Plasmer__FAILED	one_hot	Plasmer	FAILED	1 when Plasmer returned the call 'FAILED', else 0	0.0	0.0	0.0	0	True	0.0	True
+34	onehot__Plasmer__MISSING	one_hot	Plasmer	MISSING	1 when Plasmer returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+35	onehot__PlasmidEC__chromosome	one_hot	PlasmidEC	chromosome	1 when PlasmidEC returned the call 'chromosome', else 0	0.0	1.0	0.8391498294410916	3198	False	0.12835201340985442	False
+36	onehot__PlasmidEC__plasmid	one_hot	PlasmidEC	plasmid	1 when PlasmidEC returned the call 'plasmid', else 0	0.0	1.0	0.16085017055890843	613	False	-0.12835201340985394	False
+37	onehot__PlasmidEC__unknown	one_hot	PlasmidEC	unknown	1 when PlasmidEC returned the call 'unknown', else 0	0.0	0.0	0.0	0	True	0.0	True
+38	onehot__PlasmidEC__unclassified	one_hot	PlasmidEC	unclassified	1 when PlasmidEC returned the call 'unclassified', else 0	0.0	0.0	0.0	0	True	0.0	True
+39	onehot__PlasmidEC__repeat	one_hot	PlasmidEC	repeat	1 when PlasmidEC returned the call 'repeat', else 0	0.0	0.0	0.0	0	True	0.0	True
+40	onehot__PlasmidEC__FAILED	one_hot	PlasmidEC	FAILED	1 when PlasmidEC returned the call 'FAILED', else 0	0.0	0.0	0.0	0	True	0.0	True
+41	onehot__PlasmidEC__MISSING	one_hot	PlasmidEC	MISSING	1 when PlasmidEC returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+42	onehot__PlasmidFinder__chromosome	one_hot	PlasmidFinder	chromosome	1 when PlasmidFinder returned the call 'chromosome', else 0	0.0	1.0	0.9113093676200472	3473	False	-0.2483342435921941	False
+43	onehot__PlasmidFinder__plasmid	one_hot	PlasmidFinder	plasmid	1 when PlasmidFinder returned the call 'plasmid', else 0	0.0	1.0	0.03148779847808974	120	False	0.5186685842043148	False
+44	onehot__PlasmidFinder__unknown	one_hot	PlasmidFinder	unknown	1 when PlasmidFinder returned the call 'unknown', else 0	0.0	0.0	0.0	0	True	0.0	True
+45	onehot__PlasmidFinder__unclassified	one_hot	PlasmidFinder	unclassified	1 when PlasmidFinder returned the call 'unclassified', else 0	0.0	0.0	0.0	0	True	0.0	True
+46	onehot__PlasmidFinder__repeat	one_hot	PlasmidFinder	repeat	1 when PlasmidFinder returned the call 'repeat', else 0	0.0	0.0	0.0	0	True	0.0	True
+47	onehot__PlasmidFinder__FAILED	one_hot	PlasmidFinder	FAILED	1 when PlasmidFinder returned the call 'FAILED', else 0	0.0	1.0	0.05720283390186303	218	False	-0.08601611417877593	False
+48	onehot__PlasmidFinder__MISSING	one_hot	PlasmidFinder	MISSING	1 when PlasmidFinder returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+49	onehot__Platon__chromosome	one_hot	Platon	chromosome	1 when Platon returned the call 'chromosome', else 0	0.0	1.0	0.8632904749409603	3290	False	-0.30846764397058074	False
+50	onehot__Platon__plasmid	one_hot	Platon	plasmid	1 when Platon returned the call 'plasmid', else 0	0.0	1.0	0.13670952505903963	521	False	0.3084676439705804	False
+51	onehot__Platon__unknown	one_hot	Platon	unknown	1 when Platon returned the call 'unknown', else 0	0.0	0.0	0.0	0	True	0.0	True
+52	onehot__Platon__unclassified	one_hot	Platon	unclassified	1 when Platon returned the call 'unclassified', else 0	0.0	0.0	0.0	0	True	0.0	True
+53	onehot__Platon__repeat	one_hot	Platon	repeat	1 when Platon returned the call 'repeat', else 0	0.0	0.0	0.0	0	True	0.0	True
+54	onehot__Platon__FAILED	one_hot	Platon	FAILED	1 when Platon returned the call 'FAILED', else 0	0.0	0.0	0.0	0	True	0.0	True
+55	onehot__Platon__MISSING	one_hot	Platon	MISSING	1 when Platon returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+56	onehot__RFPlasmid__chromosome	one_hot	RFPlasmid	chromosome	1 when RFPlasmid returned the call 'chromosome', else 0	0.0	1.0	0.8373130411965364	3191	False	-0.03111659146626989	False
+57	onehot__RFPlasmid__plasmid	one_hot	RFPlasmid	plasmid	1 when RFPlasmid returned the call 'plasmid', else 0	0.0	1.0	0.16268695880346365	620	False	0.03111659146626947	False
+58	onehot__RFPlasmid__unknown	one_hot	RFPlasmid	unknown	1 when RFPlasmid returned the call 'unknown', else 0	0.0	0.0	0.0	0	True	0.0	True
+59	onehot__RFPlasmid__unclassified	one_hot	RFPlasmid	unclassified	1 when RFPlasmid returned the call 'unclassified', else 0	0.0	0.0	0.0	0	True	0.0	True
+60	onehot__RFPlasmid__repeat	one_hot	RFPlasmid	repeat	1 when RFPlasmid returned the call 'repeat', else 0	0.0	0.0	0.0	0	True	0.0	True
+61	onehot__RFPlasmid__FAILED	one_hot	RFPlasmid	FAILED	1 when RFPlasmid returned the call 'FAILED', else 0	0.0	0.0	0.0	0	True	0.0	True
+62	onehot__RFPlasmid__MISSING	one_hot	RFPlasmid	MISSING	1 when RFPlasmid returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+63	onehot__geNomad__chromosome	one_hot	geNomad	chromosome	1 when geNomad returned the call 'chromosome', else 0	0.0	1.0	0.7583311466806613	2890	False	-0.04675934643849934	False
+64	onehot__geNomad__plasmid	one_hot	geNomad	plasmid	1 when geNomad returned the call 'plasmid', else 0	0.0	1.0	0.24166885331933877	921	False	0.046759346438499404	False
+65	onehot__geNomad__unknown	one_hot	geNomad	unknown	1 when geNomad returned the call 'unknown', else 0	0.0	0.0	0.0	0	True	0.0	True
+66	onehot__geNomad__unclassified	one_hot	geNomad	unclassified	1 when geNomad returned the call 'unclassified', else 0	0.0	0.0	0.0	0	True	0.0	True
+67	onehot__geNomad__repeat	one_hot	geNomad	repeat	1 when geNomad returned the call 'repeat', else 0	0.0	0.0	0.0	0	True	0.0	True
+68	onehot__geNomad__FAILED	one_hot	geNomad	FAILED	1 when geNomad returned the call 'FAILED', else 0	0.0	0.0	0.0	0	True	0.0	True
+69	onehot__geNomad__MISSING	one_hot	geNomad	MISSING	1 when geNomad returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+70	onehot__gplas2__chromosome	one_hot	gplas2	chromosome	1 when gplas2 returned the call 'chromosome', else 0	0.0	1.0	0.7470480188926791	2847	False	0.3858284163052464	False
+71	onehot__gplas2__plasmid	one_hot	gplas2	plasmid	1 when gplas2 returned the call 'plasmid', else 0	0.0	1.0	0.13565993177643662	517	False	-0.23559960433072158	False
+72	onehot__gplas2__unknown	one_hot	gplas2	unknown	1 when gplas2 returned the call 'unknown', else 0	0.0	1.0	0.0060351613749672	23	False	0.07942660058620207	False
+73	onehot__gplas2__unclassified	one_hot	gplas2	unclassified	1 when gplas2 returned the call 'unclassified', else 0	0.0	0.0	0.0	0	True	0.0	True
+74	onehot__gplas2__repeat	one_hot	gplas2	repeat	1 when gplas2 returned the call 'repeat', else 0	0.0	1.0	0.11125688795591708	424	False	-0.2963811556739125	False
+75	onehot__gplas2__FAILED	one_hot	gplas2	FAILED	1 when gplas2 returned the call 'FAILED', else 0	0.0	0.0	0.0	0	True	0.0	True
+76	onehot__gplas2__MISSING	one_hot	gplas2	MISSING	1 when gplas2 returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+77	onehot__plASgraph2__chromosome	one_hot	plASgraph2	chromosome	1 when plASgraph2 returned the call 'chromosome', else 0	0.0	1.0	0.8045132511151929	3066	False	-0.40895407084301033	False
+78	onehot__plASgraph2__plasmid	one_hot	plASgraph2	plasmid	1 when plASgraph2 returned the call 'plasmid', else 0	0.0	1.0	0.14012070322749934	534	False	0.40549919866606665	False
+79	onehot__plASgraph2__unknown	one_hot	plASgraph2	unknown	1 when plASgraph2 returned the call 'unknown', else 0	0.0	1.0	0.055366045657307794	211	False	0.09369406090635879	False
+80	onehot__plASgraph2__unclassified	one_hot	plASgraph2	unclassified	1 when plASgraph2 returned the call 'unclassified', else 0	0.0	0.0	0.0	0	True	0.0	True
+81	onehot__plASgraph2__repeat	one_hot	plASgraph2	repeat	1 when plASgraph2 returned the call 'repeat', else 0	0.0	0.0	0.0	0	True	0.0	True
+82	onehot__plASgraph2__FAILED	one_hot	plASgraph2	FAILED	1 when plASgraph2 returned the call 'FAILED', else 0	0.0	0.0	0.0	0	True	0.0	True
+83	onehot__plASgraph2__MISSING	one_hot	plASgraph2	MISSING	1 when plASgraph2 returned the call 'MISSING', else 0	0.0	0.0	0.0	0	True	0.0	True
+84	abstain__HyAsP	abstention_indicator	HyAsP		1 when HyAsP abstained (unknown / unclassified / repeat), else 0	0.0	0.0	0.0	0	True	0.0	True
+85	abstain__MOB-recon	abstention_indicator	MOB-recon		1 when MOB-recon abstained (unknown / unclassified / repeat), else 0	0.0	0.0	0.0	0	True	0.0	True
+86	abstain__PLASMe	abstention_indicator	PLASMe		1 when PLASMe abstained (unknown / unclassified / repeat), else 0	0.0	0.0	0.0	0	True	0.0	True
+87	abstain__PlaScope	abstention_indicator	PlaScope		1 when PlaScope abstained (unknown / unclassified / repeat), else 0	0.0	1.0	0.005772763054316453	22	False	0.02867477782671657	False
+88	abstain__Plasmer	abstention_indicator	Plasmer		1 when Plasmer abstained (unknown / unclassified / repeat), else 0	0.0	0.0	0.0	0	True	0.0	True
+89	abstain__PlasmidEC	abstention_indicator	PlasmidEC		1 when PlasmidEC abstained (unknown / unclassified / repeat), else 0	0.0	0.0	0.0	0	True	0.0	True
+90	abstain__PlasmidFinder	abstention_indicator	PlasmidFinder		1 when PlasmidFinder abstained (unknown / unclassified / repeat), else 0	0.0	0.0	0.0	0	True	0.0	True
+91	abstain__Platon	abstention_indicator	Platon		1 when Platon abstained (unknown / unclassified / repeat), else 0	0.0	0.0	0.0	0	True	0.0	True
+92	abstain__RFPlasmid	abstention_indicator	RFPlasmid		1 when RFPlasmid abstained (unknown / unclassified / repeat), else 0	0.0	0.0	0.0	0	True	0.0	True
+93	abstain__geNomad	abstention_indicator	geNomad		1 when geNomad abstained (unknown / unclassified / repeat), else 0	0.0	0.0	0.0	0	True	0.0	True
+94	abstain__gplas2	abstention_indicator	gplas2		1 when gplas2 abstained (unknown / unclassified / repeat), else 0	0.0	1.0	0.11729204933088429	447	False	-0.27052207721591415	False
+95	abstain__plASgraph2	abstention_indicator	plASgraph2		1 when plASgraph2 abstained (unknown / unclassified / repeat), else 0	0.0	1.0	0.055366045657307794	211	False	0.09369406090635879	False
+96	n_plasmid	panel_summary			count of tools voting plasmid	0.0	12.0	2.076095512988717	1863	False	0.2655599672230376	False
+97	n_chrom	panel_summary			count of tools voting chromosome	0.0	12.0	9.688270795066911	3736	False	-0.23589106806057647	False
+98	n_valid	panel_summary			count of tools casting any vote (abstention, FAILED and MISSING excluded)	9.0	12.0	11.764366308055628	3811	False	0.16974918004437228	False
+99	frac_plasmid	panel_summary			n_plasmid / n_valid, 0 when n_valid is 0	0.0	1.0	0.17832947687316617	1863	False	-0.05983699607530599	False
+100	frac_chrom	panel_summary			n_chrom / n_valid, 0 when n_valid is 0	0.0	1.0	0.8216705231268338	3736	False	0.05983699607527612	False
+101	agreement	panel_summary			max(frac_plasmid, frac_chrom): how one-sided the panel is	0.5	1.0	0.9292670870340772	3811	False	-0.34887497016492314	False

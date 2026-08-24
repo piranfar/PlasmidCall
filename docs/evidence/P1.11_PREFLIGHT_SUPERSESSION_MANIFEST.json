@@ -1,0 +1,103 @@
+{
+ "manifest": "P1.11 preflight supersession",
+ "generated_utc": "2026-08-21T06:54:40Z",
+ "issued_before_any_p1_11_read_acquired": true,
+ "superseded": {
+  "file": "scripts/p1_12/panel_preflight.py",
+  "sha256": "edba943f6ad34dc2acac3091b18745c827299182eae500077281ba739840c535",
+  "committed_in": "6b03034ab473ec36db157a99e6df349a0ae4b18a",
+  "status": "PRESERVED UNCHANGED, hash-addressable, NOT edited or reinterpreted",
+  "verdict_on_migrated_host": "BLOCKED",
+  "defects": [
+   "D1 prestart manifest treated as as-executed baseline",
+   "D2 external db dir required for embedded-database tools",
+   "D3 Dockerfiles and fetch_dbs.sh searched in the wrong directory"
+  ],
+  "blocked_evidence": [
+   "docs/evidence/preflight_evidence/P1.12_PREFLIGHT_RECEIPT_BLOCKED_p110env.json",
+   "docs/evidence/preflight_evidence/P1.12_PREFLIGHT_RECEIPT_BLOCKED_p19c4env.json"
+  ]
+ },
+ "superseding": {
+  "file": "scripts/p1_12/panel_preflight_p111_v2.py",
+  "sha256": "fe8a075c8745ce605e3f61189807ac753a9babde8c6d05397b19cb803bbe069f",
+  "verdict": "PASS",
+  "n_checks": 75,
+  "n_critical_failed": 0,
+  "receipt_sha256": "790ea26e74446da1a6ae9c21ab5a53b26cd9e765d174d70cb803181b6e7b6e50"
+ },
+ "amendment": {
+  "file": "docs/plans/P1.11_PREFLIGHT_IMPLEMENTATION_CORRECTION.yaml",
+  "sha256": "cad3a9906f9a879d68fdd2e0db59616ff6a116dcd0abd4bda36b0037e9e8a28a"
+ },
+ "derived_runner": {
+  "verdict": "FROZEN",
+  "run_tool.sh": {
+   "src_sha256": "0e5bd8623c3cf1cf5f85b99b5be44cd017c943beb5f7053de206df22f624176a",
+   "sha256": "fa077587e9191a6ea3d3e611acd87d61aaa7e433fb118a6ab88bca7aa044ca39",
+   "changed_lines": 6,
+   "change_reasons": {
+    "header comment": 2,
+    "root path line": 2,
+    "container name prefix": 2
+   },
+   "illegal_changes": 0
+  },
+  "parse_all.py": {
+   "src_sha256": "1368faa316e10268a429952b40dbb9cefe2f9df5868849e02f6df9650d3a333a",
+   "sha256": "6370f437c46458278e91bb888baed47caa33b1522e61e2c1ad836da2a4ed5103",
+   "changed_lines": 6
+  },
+  "parsers.py": {
+   "sha256": "68599a94af066f2dd1437de4ab307721ce8310399e0ba6fa91f2e559b65467b1",
+   "byte_identical": true
+  },
+  "cmd_count": 13,
+  "cmd_block_hash_path_normalised": "44f8d17d0b406fccae57423c5111cf55",
+  "scientific_commands_identical": true,
+  "parser_version": "p19c4-parsers/1.7",
+  "vocabulary_unchanged": true,
+  "receipt_sha256": "173bf65b8e105365e252d339bc175f61fa1ad66b824f225d2aaef64c4a3ab00a"
+ },
+ "fixtures": {
+  "n": 20,
+  "n_pass": 20,
+  "n_fail": 0,
+  "receipt_sha256": "3999991bde6e945bf02d71d2e121b95f8dc0145e3ee24184623fb81ba97d9ca1"
+ },
+ "scientific_parameters_changed": false,
+ "unchanged": [
+  "estimator",
+  "coefficients",
+  "threshold 0.9285",
+  "v1.1 0.9524 / 0.9605",
+  "tool commands",
+  "tool images",
+  "databases",
+  "parsers",
+  "cohort membership",
+  "truth rules",
+  "endpoints",
+  "critical-tool gate"
+ ],
+ "artifacts": {
+  "P1.10_ASEXECUTED_ENV_MANIFEST.json": "542c1e677dbcaa6c97211929b43fe4ee8502be2e387555b7c936f172c8ed9e74",
+  "P1.11_DERIVED_RUNNER_RECEIPT.json": "173bf65b8e105365e252d339bc175f61fa1ad66b824f225d2aaef64c4a3ab00a",
+  "P1.11_DERIVED_parse_all_py.diff": "dc04d0042da8668029f673df06904fa33f6f2b6a562ee2022602dd7c94049b38",
+  "P1.11_DERIVED_run_tool_sh.diff": "06a68b1fcde340122a1ef9fce8f86564f297f82b2d18ec1bc3e6cfaa40f00e71",
+  "P1.11_PREFLIGHT_v2_FIXTURES.json": "3999991bde6e945bf02d71d2e121b95f8dc0145e3ee24184623fb81ba97d9ca1",
+  "P1.11_PREFLIGHT_v2_RECEIPT.json": "790ea26e74446da1a6ae9c21ab5a53b26cd9e765d174d70cb803181b6e7b6e50",
+  "P1.12_PREFLIGHT_RECEIPT_BLOCKED_p110env.json": "a8743599ca2ddadd01159dbb0b6b738e36ac769675070bbd7a7f1c952402053c",
+  "P1.12_PREFLIGHT_RECEIPT_BLOCKED_p19c4env.json": "fa669b7190b19d4dd71e0b0d9cd36caed98bc60ed2468339834eb820cf2844c3",
+  "P1.12_PRIOR_IDENTITY_VERIFICATION.json": "ffeb6f17c841a001afb41826d0f01198325f38667a1c302276fde98973612181",
+  "scripts/p1_12/panel_preflight_p111_v2.py": "fe8a075c8745ce605e3f61189807ac753a9babde8c6d05397b19cb803bbe069f",
+  "scripts/p1_12/freeze_derived_runner.py": "9871c30653b8ded26edbb84a86b70e93e67c74af22de8341279a99b79cf6795c",
+  "scripts/p1_12/preflight_v2_fixtures.py": "6f6a2fe18e2335b784074d2e5e1748351cd6fa26ef9562e0987ba2dc3c957f88",
+  "scripts/p1_12/verify_prior_identity.py": "1937ad1f804f1147a02b0fd34518cc3fc84c4ea5d4059518718c63204284b521",
+  "scripts/p1_12/p111_infer.sh": "ab52ac3714b14d47de93532541366f4189b8b37c3e813e96c8f2958a40f4189d",
+  "scripts/p1_12/p111_acquire.sh": "915e2532f45273a5f38537bcd245b4eed03db040bcde529419a244751f2b2aca",
+  "scripts/p1_12/p111_acquire_sra.sh": "fc9519d0066846b0eee909504521e96855b0d095e7e700fe41c357d393121bd5",
+  "scripts/p1_12/p111_assemble.sh": "d826fc5ec394d5ed33b178bac631a9399796e0976b75572b6724877fdcc228eb",
+  "docs/plans/P1.11_PREFLIGHT_IMPLEMENTATION_CORRECTION.yaml": "cad3a9906f9a879d68fdd2e0db59616ff6a116dcd0abd4bda36b0037e9e8a28a"
+ }
+}

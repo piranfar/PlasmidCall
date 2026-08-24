@@ -1,0 +1,77 @@
+# P1.9C2 RESOURCE RETRY AMENDMENT
+# Frozen and hashed BEFORE execution. Resource allocation only.
+amendment_id: P1.9C2_RESOURCE_RETRY_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-18'
+authorisation: 'Owner: APPROVED - START THE SAMD00056131 RESOURCE-ONLY HYBRID RETRY'
+supersedes: none  # additive to P1.9C2_EXECUTION_AMENDMENT
+
+preserved_frozen_protocol:
+  path: docs/plans/P1.9C2_FROZEN_ASSEMBLY_PROTOCOL.yaml
+  sha256: '883a1034f1e193f4388d7d5e93c407d4a687419ed333c783c7250b5f4816e34b'
+  status: UNCHANGED_AND_REVERIFIED_AT_AMENDMENT_TIME
+prior_execution_amendment:
+  path: docs/plans/P1.9C2_EXECUTION_AMENDMENT.yaml
+  sha256: '86db796448db499289f181945c77b5cb8931088e15198e87ba634888a7e9ac54'
+
+basis:
+  prior_attempt: 'SAMD00056131 hybrid, exit 137, SIGKILL by the 12 GB container cgroup'
+  peak_container_rss_gb: 11.53
+  stage_at_death: 'miniasm, 45 s in, writing 01_assembly_reads.fastq'
+  storage_classification: 'D - deleted/free blocks retained inside the dynamic VHDX'
+  measured_long_reads: {num_seqs: 188860, sum_len_bp: 2260137873, approx_depth_x: 450}
+
+change_class: RESOURCE_ALLOCATION_ONLY
+changed:
+  - id: WSL_VM_RESOURCES
+    file: '<local>\.wslconfig'
+    state_before: absent
+    bytes: 92
+    sha256: '488298e0feb01e66d925e57182b0eb35db00d25b39a47da94ed4abf98e4984c1'
+    settings: {memory: 24GB, processors: 8, swap: 8GB, swapFile: 'E:\\AMR_Evidence_Data\\wsl_swap.vhdx'}
+    sparseVhd: NOT_SET
+  - id: CONTAINER_MEMORY
+    token_before: '--memory=12g --cpus=8'
+    token_after: '--memory=20g --memory-swap=24g --cpus=8'
+    occurrences_replaced: 1
+    scientific_tail_sha256: 'c647441cb2e97a36a680c0046f8411a1df638b08bc577032f9d062a4eb53cd7b'
+    scientific_tail_identical: true
+
+unchanged_scientific_parameters:
+  sample: robertson-benchmark_ecol-SAMD00056131
+  mode: unicycler_hybrid
+  threads: 8
+  concurrency: 1
+  inputs: [DRR065947_1.fastq.gz, DRR065947_2.fastq.gz, DRR065950_subreads.fastq.gz]
+  image: 'p19c2-cleanroom:1.0'
+  image_digest: 'sha256:59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20'
+  read_filtering: NONE
+  downsampling: NONE
+  assembler_substitution: NONE
+  threshold_change: NONE
+  cohort_membership_change: NONE
+  scratch_location: container_internal_tmp
+  copy_verification: md5_source_vs_destination_before_scratch_removal
+
+product_separation:
+  product_A_shortread: 'Model 1 input only'
+  product_B_hybrid: 'truth reference only; never seen by Model 1'
+
+monitoring:
+  cgroup_v2_exact: [memory.peak, memory.swap.peak, memory.current, memory.swap.current, memory.events]
+  sampled: [docker_stats, windows_available_memory, e_free_gb, vhdx_bytes, wsl_swap_vhdx_bytes, log_freshness]
+  interval_seconds: 30
+  hard_timeout_hours: 14
+  container_death_detection: true
+stop_conditions:
+  e_free_floor_gb: 10
+  windows_available_floor_gb: 1.5
+  stall_no_log_growth_minutes: 90
+  docker_unhealthy: abort
+  input_checksum_change: abort
+
+mandatory_stop: 'STOP after SAMD00056131 regardless of outcome; the remaining seven hybrids require explicit authorisation.'
+
+retry_command_verbatim: |
+  docker run --rm --memory=20g --memory-swap=24g --cpus=8 -v "E:\AMR_Evidence_Data\P1.9_cleanroom:/work" p19c2-cleanroom:1.0 bash -c "set -e; unicycler -1 /work/raw/robertson-benchmark_ecol-SAMD00056131/DRR065947_1.fastq.gz -2 /work/raw/robertson-benchmark_ecol-SAMD00056131/DRR065947_2.fastq.gz -l /work/raw/robertson-benchmark_ecol-SAMD00056131/DRR065950_subreads.fastq.gz -o /tmp/h -t 8 --keep 1; mkdir -p /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131; du -sb /tmp/h | cut -f1 > /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/scratch_bytes.txt; cp /tmp/h/assembly.fasta /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.fasta; cp /tmp/h/assembly.gfa /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.gfa; cp /tmp/h/unicycler.log /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/unicycler_hybrid.log; a=$(md5sum /tmp/h/assembly.fasta | cut -d' ' -f1); b=$(md5sum /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.fasta | cut -d' ' -f1); c=$(md5sum /tmp/h/assembly.gfa | cut -d' ' -f1); d=$(md5sum /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.gfa | cut -d' ' -f1); test $a = $b; test $c = $d; echo VERIFIED_BEFORE_SCRATCH_DELETE fasta=$a gfa=$c > /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/copy_verification.txt; rm -rf /tmp/h; echo SCRATCH_REMOVED_AFTER_VERIFY"
+retry_command_sha256: 'ac2e06bf3bf7d0557cdcf64ffc2530f432698e071bf5625d60ab53e0c005b85c'

@@ -1,0 +1,8 @@
+taxon	isolates	eligible_contigs	truth_resolved	unresolved	chromosomal	plasmid_derived	plasmid_fraction_of_resolved
+Klebsiella pneumoniae	25	1982	1904	78	1228	676	0.355042
+Enterococcus faecium	25	3227	3077	150	2226	851	0.276568
+Serratia spp.	25	1031	992	39	948	44	0.044355
+Citrobacter spp.	25	1638	1540	98	1161	379	0.246104
+Enterobacter spp.	25	1039	1021	18	871	150	0.146915
+Enterococcus faecalis	25	867	837	30	696	141	0.168459
+TOTAL	150	9784	9371	413	7130	2241	0.239142

@@ -1,0 +1,48 @@
+panel	step	n
+a	Census of candidate genomes	6458
+a	After ANI >= 99.5 exclusion vs consumed	576
+a	Drawn by farthest-point selection	147
+a	Sealed cohort (+ fallback tier)	150
+a	removed: ANI >= 99.5 to a consumed genome	235
+a	removed: ANI >= 99.5 within cohort	47
+a	not selected once quota met	382
+a	added from the 2022 fallback tier	3
+b	Assembled contigs	19320
+b	Eligible, >= 1 kb	9784
+b	Truth-resolved (scored)	9371
+c	Citrobacter spp. | isolates	25
+c	Citrobacter spp. | eligible	1638
+c	Citrobacter spp. | resolved	1540
+c	Citrobacter spp. | unresolved	98
+c	Citrobacter spp. | chromosome	1161
+c	Citrobacter spp. | plasmid	379
+c	Enterococcus faecium | isolates	25
+c	Enterococcus faecium | eligible	3227
+c	Enterococcus faecium | resolved	3077
+c	Enterococcus faecium | unresolved	150
+c	Enterococcus faecium | chromosome	2226
+c	Enterococcus faecium | plasmid	851
+c	Enterococcus faecalis | isolates	25
+c	Enterococcus faecalis | eligible	867
+c	Enterococcus faecalis | resolved	837
+c	Enterococcus faecalis | unresolved	30
+c	Enterococcus faecalis | chromosome	696
+c	Enterococcus faecalis | plasmid	141
+c	Serratia spp. | isolates	25
+c	Serratia spp. | eligible	1031
+c	Serratia spp. | resolved	992
+c	Serratia spp. | unresolved	39
+c	Serratia spp. | chromosome	948
+c	Serratia spp. | plasmid	44
+c	Klebsiella pneumoniae | isolates	25
+c	Klebsiella pneumoniae | eligible	1982
+c	Klebsiella pneumoniae | resolved	1904
+c	Klebsiella pneumoniae | unresolved	78
+c	Klebsiella pneumoniae | chromosome	1228
+c	Klebsiella pneumoniae | plasmid	676
+c	Enterobacter spp. | isolates	25
+c	Enterobacter spp. | eligible	1039
+c	Enterobacter spp. | resolved	1021
+c	Enterobacter spp. | unresolved	18
+c	Enterobacter spp. | chromosome	871
+c	Enterobacter spp. | plasmid	150

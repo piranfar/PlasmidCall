@@ -1,0 +1,277 @@
+amendment: P1.11 truth reference source - GenBank fallback
+version: "1.1"
+status: APPROVED - issued BEFORE any P1.11 truth was acquired or joined
+declared_on: 2026-08-22
+scope: TRUTH REFERENCE SOURCE ONLY
+
+revision_history:
+  - version: "1.0"
+    date: 2026-08-22
+    note: >-
+      Original, preserved at docs/superseded/P1.11_TRUTH_SOURCE_AMENDMENT.v1.0.2026-08-22.yaml.
+      Hash domain matters here (see docs/HASH_AND_LINE_ENDING_POLICY.md). The v1.0 working file was
+      written with CRLF line endings by the tooling that produced it; its CRLF byte hash was
+      65c6862ac91374c032d3b266759eb2c6af0f99bf73e31caf3914c41cf25365c0. Because .gitattributes
+      declares "*.yaml text eol=lf", that value cannot survive a commit. The preserved copy has
+      therefore been normalised to LF, which is the canonical repository form, and its LF byte
+      hash - the value that reproduces from a checkout - is recorded in
+      preserved_v1_0_sha256_lf below. The CRLF value is retained only to explain the difference;
+      no content changed in the normalisation.
+    preserved_v1_0_sha256_lf: 5977b870bfae000cc4b8927e52f3cacffa7cef361de69d741ce990a4e41688a3
+    preserved_v1_0_sha256_crlf_superseded: 65c6862ac91374c032d3b266759eb2c6af0f99bf73e31caf3914c41cf25365c0
+  - version: "1.1"
+    date: 2026-08-22
+    note: >-
+      Documentation-only revision following a methodological audit and two adversarial verification
+      passes. Principal changes: (a) the position
+      of this amendment in the execution timeline is now stated explicitly rather than left to
+      inference; (b) the GenBank/RefSeq comparison no longer reads as an equivalence claim and names
+      the curation difference; (c) the prespecified sensitivity reporting requirement is expanded
+      from one item to six; (d) the explicitly_unchanged list now records 0.9776 and its
+      version-scoped role; (e) the post-inference lock enumerates all eight locked categories rather
+      than six, and is also given as a machine-readable list; (f) the decision block now states the
+      64/15 split explicitly; (g) explicitly_unchanged gained an evaluation-rules item; (h) the
+      preserved-copy hash is now domain-labelled; (i) a PROVENANCE DISCREPANCY block records that the
+      cohort file this derivation reads is not the file the P1.11 predeclaration seals. No hash, path,
+      count, threshold or scientific parameter was altered, and no executable artefact was touched.
+
+# ---------------------------------------------------------------------------- timing
+
+position_in_execution_timeline:
+  issued_after: panel inference had already begun
+  issued_before: truth acquisition, and therefore before any truth join
+  statement: >-
+    After panel inference began, no changes were permitted to cohort membership; the inference or
+    prediction pipeline; the model or its coefficients; the feature encoding; thresholds; endpoints;
+    scoring rules; or tool versions, databases, commands or parameters. This is a prospective
+    operational amendment affecting only the retrieval of already-sealed truth references, and it
+    was issued before truth acquisition. It did not alter reference identity already recorded in the
+    sealed cohort, cohort membership, the truth-mapping algorithm or its thresholds, replicon-role
+    rules, or evaluation definitions.
+  locked_after_panel_inference_began:
+    - cohort membership
+    - the inference or prediction pipeline
+    - the model or its coefficients
+    - the feature encoding
+    - thresholds
+    - endpoints
+    - scoring rules
+    - tool versions, databases, commands or parameters
+  not_claimed: >-
+    This amendment does NOT precede all execution, and nothing here should be read as claiming that
+    it does. It precedes truth acquisition and truth joining only.
+  permitted_because_it_changes_none_of:
+    - reference identity already recorded in the sealed cohort
+    - cohort membership
+    - the truth-mapping algorithm or its thresholds
+    - replicon-role rules
+    - evaluation definitions
+
+# ---------------------------------------------------------------------------- the situation
+
+problem: >
+  The frozen truth pipeline resolves each isolate's own complete reference genome from the
+  ftppath_refseq column of the sealed cohort. Truth is derived entirely from that reference, so a
+  missing path is not a cosmetic gap - the isolate cannot be scored at all.
+
+measured:
+  n_isolates: 79
+  with_refseq_path: 64
+  with_genbank_path_only: 15
+  with_neither: 0
+  all_15_assembly_level: Complete Genome
+
+why_p1_10_never_hit_this: >
+  All 39 P1.10 isolates carried a RefSeq (GCF) path, so the frozen acquire_truth.py has no fallback
+  and would simply fail on 15 of the 79.
+
+isolates_using_genbank:
+  - {biosample: SAMN09400867, assembly: GCA_016389345.2}
+  - {biosample: SAMN10736992, assembly: GCA_012018325.2}
+  - {biosample: SAMN12364538, assembly: GCA_011892855.2}
+  - {biosample: SAMN18912321, assembly: GCA_018205615.2}
+  - {biosample: SAMN26796540, assembly: GCA_059231985.1}
+  - {biosample: SAMN38448447, assembly: GCA_052982035.1}
+  - {biosample: SAMN38448477, assembly: GCA_052981715.1}
+  - {biosample: SAMN38448533, assembly: GCA_052981255.1}
+  - {biosample: SAMN38448564, assembly: GCA_052981155.1}
+  - {biosample: SAMN44789755, assembly: GCA_058153615.1}
+  - {biosample: SAMN51867602, assembly: GCA_059271265.1}
+  - {biosample: SAMN52857380, assembly: GCA_053157035.2}
+  - {biosample: SAMN53649220, assembly: GCA_053815685.2}
+  - {biosample: SAMN59744460, assembly: GCA_057438235.2}
+  - {biosample: SAMN61074893, assembly: GCA_058381605.2}
+
+# ---------------------------------------------------------------------------- decision
+
+decision: >
+  For an isolate with no RefSeq path in the SEALED cohort record, fall back to the GenBank (GCA)
+  path from that same sealed record. RefSeq remains the preferred source and is used wherever
+  present: 64 of 79 isolates resolve through RefSeq, 15 through GenBank.
+
+rationale:
+  - All 15 are Complete Genome assemblies, the same assembly level the pipeline already requires.
+  - >-
+    Both sources provide the three artefact types required by the frozen truth pipeline and the
+    metadata fields consumed by it, but they differ in curation status. The artefacts are
+    _genomic.fna.gz (replicon sequences), _assembly_report.txt (authoritative
+    Assigned-Molecule-Location/Type, from which replicon roles are read) and _genomic.gbff.gz
+    (LOCUS topology). Availability of the required fields is not a claim of equivalent curation.
+  - >-
+    Both paths come from the SEALED cohort record, which was fixed before panel inference began.
+    Nothing is re-resolved from NCBI after predictions exist. The REFERENCE IDENTITY therefore
+    predates inference. This is a statement about the sealed reference identity, not about this
+    amendment: the amendment itself was issued after panel inference began and before truth
+    acquisition (see position_in_execution_timeline).
+  - Every file is still verified against NCBI's own md5checksums.txt for that assembly directory.
+
+rejected_alternatives:
+  - option: re-resolve RefSeq accessions live from NCBI now
+    rejected_because: >
+      truth would then depend on a lookup performed AFTER predictions exist, which is weaker
+      provenance than the sealed record.
+  - option: evaluate only the 64 RefSeq isolates
+    rejected_because: >
+      that silently shrinks a sealed cohort from 79 to 64 and reduces power below the plan. Cohort
+      membership may not be changed to work around a data-availability gap.
+
+# ---------------------------------------------------------------------------- what changes
+
+changed:
+  - acquire_truth.py resolves ftppath_refseq, and falls back to ftppath_genbank when that column is
+    empty for an isolate.
+  - the per-isolate acquisition receipt records which source was used (refseq or genbank), so every
+    truth call is traceable to its reference origin.
+  - the cohort assertion changes from 39 to 79 isolates.
+  - the cohort file is the sealed P1.11 cohort.
+
+explicitly_unchanged:
+  - "truth mapping thresholds: identity 0.95, merged coverage 0.80, margin 0.10, min length 1000"
+  - circular doubling and modulo folding
+  - the merged-interval coverage assertion (<= 1.0)
+  - the ratified mobile_plasmid_like_chromosomal secondary-flag rule
+  - minimap2 2.28-r1209 inside p19c2-cleanroom:1.0
+  - replicon roles read from the authoritative NCBI assembly report
+  - topology read from the GBFF LOCUS line
+  - the refusal to acquire truth while predictions are unfrozen
+  - truth_hold/ mode 700, never mounted by any inference container
+  - cohort membership: all 79 sealed isolates
+  - >-
+    the estimator, and every threshold with its version-scoped role: v1.2-General standard 0.9285;
+    v1.1 standard 0.9524 with the 0.9605 high-confidence tier; v1.0 preregistered standard 0.9605
+    with the 0.9776 very-high-confidence tier, the latter retired as a class boundary under v1.1 and
+    used nowhere in P1.11
+  - every evaluation rule, endpoint definition and scoring rule
+
+# ---------------------------------------------------------------------------- reporting
+
+reporting_requirement:
+  preamble: >-
+    The final evidence record must state how many isolates used each reference source, and must
+    allow a reader to see for themselves whether the fallback influenced the outcome. The primary
+    analysis remains over all isolates that pass the completeness gate. None of the items below may
+    be produced before truth is acquired.
+  required_items:
+    - id: 1
+      item: primary results across all truth-resolved eligible isolates
+      gating: true
+    - id: 2
+      item: RefSeq-only sensitivity results (the 64 isolates)
+      gating: false
+    - id: 3
+      item: GenBank-only descriptive results (the 15 isolates)
+      gating: false
+      note: descriptive only - 15 isolates cannot support an inferential claim
+    - id: 4
+      item: ambiguous / unresolved contig counts, broken down by reference source
+      gating: false
+    - id: 5
+      item: plasmid prevalence and contig-length distribution, by reference source
+      gating: false
+    - id: 6
+      item: parsing or completeness failures by source, if any
+      gating: false
+      note: reported as zero if none occurred, never omitted
+  interpretation_guard: >-
+    A difference between the RefSeq-only and GenBank-only views is not by itself evidence that the
+    reference source caused it: the two groups are not matched on species, submitter, assembly date
+    or plasmid content. The breakdown exists so that a source effect cannot hide, not so that one
+    can be asserted from 15 isolates.
+  no_results_before_truth: >-
+    None of these views may be computed, drafted or estimated before truth acquisition. Producing
+    them early would place truth-derived quantities on the host before the prediction freeze.
+
+limitation: >
+  RefSeq applies curation that GenBank does not. For 15 of 79 isolates (19%) the truth reference is
+  therefore a GenBank assembly rather than a RefSeq one. Both sources provide the three artefact
+  types required by the frozen truth pipeline and the metadata fields consumed by it, and all 15 are
+  Complete Genome assemblies - but availability of the required fields is not equivalence of
+  curation. This is a real heterogeneity in truth provenance and is recorded as such rather than
+  smoothed over. The six-part breakdown in reporting_requirement exists so that its effect, if any,
+  is visible rather than assumed absent.
+
+# ---------------------------------------------------------------------------- implementation receipt
+
+implementation:
+  derived_on: 2026-08-22
+  method: >-
+    mechanical derivation from the frozen P1.10 original, refusing to write unless every anchor is
+    found exactly once and the result parses
+  source_script: /data/trace-arg/p110/env/run/acquire_truth.py
+  source_sha256: c4a052b48cce9ecb34f39e6adbe02ca9ac1f6b652da79dd218d9c70af9219563
+  derived_script: /data/trace-arg/p112/env/run/acquire_truth.py
+  derived_sha256: 181e69b3d1d9fe08d4cf05ec6643c2679b7d6f6afe91d3d411d4002939b07b68
+  # PROVENANCE DISCREPANCY - OPEN, REQUIRES A DECISION BEFORE TRUTH ACQUISITION.
+  # The file this derivation points at is NOT the file the P1.11 predeclaration seals.
+  cohort_file_used_by_acquire_truth: /data/trace-arg/p111/manifests/P1.11_cohort_independent.tsv
+  cohort_file_used_sha256: 586b9917af51b698f3b21ef877e48164e08ef736bcef028c753344bbfa6b1f5f
+  cohort_file_used_columns: 23
+  cohort_file_used_rows: 79
+
+  predeclared_sealed_cohort: E:/AMR_Evidence_Data/P1.9_cleanroom/p111/P1.11_cohort_sealed.tsv
+  predeclared_sealed_cohort_sha256: 0d0e547cd6f6546ac6f72e516885a74cf51dd3738be83b0a45f58cfbe999151f
+  predeclared_sealed_cohort_columns: 25
+  predeclared_sealed_cohort_rows: 79
+  predeclared_in: docs/plans/P1.11_PROSPECTIVE_EVALUATION_AMENDMENT.yaml (cohort block)
+  reverified_intact_in: docs/evidence/P1.12_PRE_JOIN_HASH_RECEIPT.md
+  present_on_execution_host: false
+
+  equivalence_measured_2026-08-22:
+    same_79_biosamples: true
+    assembly_accession_mismatches: 0
+    refseq_genbank_split_both_files: 64 / 15
+    per_isolate_source_disagreements: 0
+    ftppath_refseq_value_mismatches: 0
+    conclusion: >-
+      The two files agree on every field this derivation reads, so no scientific difference arises
+      today. The defect is one of PROVENANCE, not content: the hash that the pre-join receipt
+      verifies belongs to a file that truth acquisition would not read.
+  required_resolution: >-
+    Before truth acquisition, either transfer P1.11_cohort_sealed.tsv to the execution host, verify
+    0d0e547c... on arrival, and repoint acquire_truth.py at it; or record an explicit, authorised
+    amendment adopting P1.11_cohort_independent.tsv as the cohort of record with its hash added to
+    the pre-join receipt. Truth has NOT been acquired, so nothing is contaminated either way.
+
+  diff_summary: 31 changed lines, all in six hunks and nothing else
+  diff_hunks:
+    - P = p110 -> p112
+    - COH -> the sealed P1.11 cohort
+    - cohort assertion 39 -> 79
+    - RefSeq-preferred / GenBank-fallback resolution (the amendment itself)
+    - progress counters [n/39] -> [n/79] (two occurrences, cosmetic)
+    - per-isolate receipt gains reference_source
+  residual_p110_references: 0
+
+  dry_run_over_sealed_cohort:
+    downloads_performed: 0
+    resolved_refseq: 64
+    resolved_genbank: 15
+    unresolvable: 0
+    total: 79
+    all_bases_wellformed: true
+    all_genbank_isolates_complete_genome: true
+
+  unchanged_guards_confirmed_present:
+    - refuses to run unless PREDICTIONS_FROZEN.json exists with status FROZEN
+    - every downloaded file verified against NCBI md5checksums.txt for its assembly directory
+    - truth_hold/ created mode 700

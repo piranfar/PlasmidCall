@@ -1,0 +1,62 @@
+{
+ "project": "PlasmidCall",
+ "as_of_utc": "2026-08-24",
+ "phase": "manuscript and submission packages prepared; awaiting owner approval",
+ "primary_freeze": {
+  "id": "P1.13-RESULTS-FREEZE-001",
+  "status": "IMMUTABLE",
+  "modified": false
+ },
+ "post_freeze_package": {
+  "id": "P1.13-POSTFREEZE-REVIEWER-ANALYSES-001",
+  "relationship": "adds only",
+  "verdict": "POSTFREEZE_VERIFIER_PASS"
+ },
+ "correction_addendum": {
+  "id": "P1.13-CORRECTION-ADDENDUM-001",
+  "file": "docs/corrections/PLASMIDCALL_CORRECTION_ADDENDUM.md",
+  "corrections": 5,
+  "wording_corrections": 8,
+  "frozen_artefacts_edited": false
+ },
+ "primary_endpoint": {
+  "met": true,
+  "PPV": 0.9769888231426693,
+  "PPV_ci95": [
+   0.9641574766290805,
+   0.9871803499327053
+  ],
+  "recall": 0.6630968317715306,
+  "recall_ci95": [
+   0.6205224426540249,
+   0.7051986827023455
+  ],
+  "coverage": 1.0,
+  "abstentions": 0
+ },
+ "scientific_classification": "Primary validation success with prespecified applicability limitations",
+ "verification": {
+  "values_and_checks": 419,
+  "disagreements": 0
+ },
+ "deliverables_prepared": {
+  "journal_package": "docs/owner_review/NPJ_AMR_SUBMISSION",
+  "preprint_package": "docs/owner_review/BIORXIV_PREPRINT",
+  "documentation": "updated to the correction addendum",
+  "figures": 7,
+  "main_tables": 4,
+  "supplementary_tables": 18,
+  "supplementary_data_files": 9,
+  "references": 38
+ },
+ "actions_not_taken": [
+  "nothing submitted to any journal",
+  "nothing posted to any preprint server",
+  "no repository made public",
+  "no DOI minted",
+  "no collaborator contacted",
+  "no raw reads deleted",
+  "no server terminated"
+ ],
+ "owner_decisions_outstanding": "docs/owner_review/OWNER_DECISIONS.md"
+}

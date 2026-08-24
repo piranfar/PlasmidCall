@@ -1,0 +1,73 @@
+{
+ "receipt": "PLASMIDCALL_SHUTDOWN_SAFE_RECEIPT",
+ "dated_utc": "2026-08-24",
+ "terminal_marker": "PLASMIDCALL_HIGH_IMPACT_MANUSCRIPT_PACKAGE_READY_FOR_OWNER_REVIEW",
+ "prediction_freeze": {
+  "id": "P1.13-PREDICTION-FREEZE-001",
+  "table_sha256": "3bc733c0adab6e3864412e056597d931dd1f28d6e6dfb0238c4c915d07799c80",
+  "receipt_sha256": "98e7902ac09bcb54c759c119d6e273ce2474179fd908dee423b69ba414a9b482"
+ },
+ "truth_join": {
+  "id": "P1.13-TRUTH-JOIN-001",
+  "performed_once": true
+ },
+ "results_freeze": {
+  "id": "P1.13-RESULTS-FREEZE-001",
+  "marker_sha256": "5abd3df0aa46298a0ed25f21dc9dbc5bb8a05cdc07e30eb54c0d74a2fbcc8db7",
+  "classification": "Primary validation success with prespecified applicability limitations"
+ },
+ "independent_verification": {
+  "pooled_values": 176,
+  "matched_19row_values": 209,
+  "total": 385,
+  "disagreements": 0,
+  "verdict": "VERIFIER_PASS"
+ },
+ "offserver_preservation": {
+  "evidence_archive": {
+   "path": "E:/AMR_Evidence_Data/P1.13/P1.13_EVIDENCE_ARCHIVE.tar.zst",
+   "bytes": 15427604570,
+   "sha256": "76201303af2a0322c03bb5e570d3174c20465736535ca089d2e4b9e235dd85d2",
+   "verified": true
+  },
+  "tier1_evidence": {
+   "path": "E:/AMR_Evidence_Data/P1.13/tiers/P113_TIER1_EVIDENCE.tar.zst",
+   "bytes": 28292987,
+   "sha256": "4531ff03c25a020016d0d31f41bcea4c47c7b7fdb5adfef7ee94771b1f053c65",
+   "verified": true
+  },
+  "tier2_assemblies": {
+   "path": "E:/AMR_Evidence_Data/P1.13/tiers/P113_TIER2_ASSEMBLIES.tar.zst",
+   "bytes": 393096026,
+   "sha256": "0d66b4315d54deb79c5b7de2d47f4bb06d9c6aa08b83a9ca2a90e101ff5a72e6",
+   "verified": true
+  },
+  "joined_truth_table": {
+   "path": "E:/AMR_Evidence_Data/P1.13/evaluation/P113_TRUTH_JOINED.tsv",
+   "sha256": "42a73d74ee01a6d4f1cc7f29da9bbacdfb8a327760c318d34fea5b4f63f488ae"
+  },
+  "git_remote": {
+   "url": "https://github.com/piranfar/amr-evidence-warehouse",
+   "branch": "main"
+  }
+ },
+ "server_state": {
+  "processes": "none",
+  "containers": 0,
+  "port_8443": "closed, 0 listeners",
+  "iptables_8443_rules": 0,
+  "artefacts": "read-only (frozen/evaluation/truth 555, truth_hold 500)",
+  "disk": {
+   "/": "82G free",
+   "/data": "92G free",
+   "/work": "66G free"
+  }
+ },
+ "ssh_key_rotation": {
+  "completed": true,
+  "new_fingerprint": "SHA256:gocNV0OJL2v/6VUiLZZP/PKE1401zXB3Oe+kholBu2k (ED25519)",
+  "old_fingerprint": "SHA256:UX0+/vgIT6ub6N9eHR0t1hDzcNuHly5vVp7j1cXaDaY (RSA-2048, exposed)",
+  "old_key_status": "REJECTED - verified Permission denied (publickey)"
+ },
+ "known_limitation": "TC7: two overwritten truth-acquisition failure logs are unrecoverable; no successful truth artefact, prediction, mapping, joined label or evaluated result is affected. See P113_TC7_LOG_LOSS_INCIDENT.md"
+}

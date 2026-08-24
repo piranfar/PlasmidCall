@@ -1,0 +1,27 @@
+# P1.9C4 ARG ANNOTATION AMENDMENT — AMRFinderPlus eligibility annotation of Product A contigs
+# Frozen and hashed BEFORE execution. Annotation only: NOT a Model 1 feature and NOT a truth label.
+amendment_id: P1.9C4_ARG_ANNOTATION_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-19'
+authorisation: 'Owner (2026-08-19): add AMRFinderPlus under a separately frozen annotation amendment'
+
+purpose: 'define the ARG-bearing eligibility flag that selects the PRIMARY Model 1 evaluation set; plasmid/chromosome truth is never changed by this annotation'
+tool:
+  name: AMRFinderPlus
+  executable_version: 'bioconda ncbi-amrfinderplus=4.2.7 (latest at freeze; exact build recorded in env manifest)'
+  database: 'AMRFinderPlus database as retrieved by "amrfinder -u" during image build; version string (amrfinder --database_version) and sha256 of the database file listing recorded in annotation/ANNOTATION_MANIFEST.txt before any contig is annotated'
+  invocation: 'amrfinder -n <shortread.fasta> --plus --threads 8 --name <sample> -o annotation/native/<sample>.amrfinder.tsv (defaults; no --organism, so no point-mutation calls; --plus rows are retained for the record but do not qualify)'
+inclusion_rule_frozen:
+  qualifying_row: 'Element type == "AMR" AND Element subtype == "AMR" (core AMR genes at AMRFinderPlus default curated cut-offs; --ident_min -1 / --coverage_min 0.5 defaults unchanged)'
+  contig_flag: 'ARG_bearing = TRUE if >= 1 qualifying row on the contig; FALSE otherwise'
+  not_qualifying_but_retained: 'Element type STRESS/VIRULENCE (from --plus), Element subtype != AMR (e.g. POINT, AMR-SUSCEPTIBLE) — recorded, never used for eligibility'
+  absence_semantics: 'ARG_bearing = FALSE means no qualifying hit under this rule; it is NOT evidence that the contig is experimentally ARG-negative'
+retained_fields_per_determinant: [sample, contig_id, start, stop, strand, gene_symbol, sequence_name, scope, element_type, element_subtype, class, subclass, method, target_length, reference_sequence_length, pct_coverage_of_reference, pct_identity_to_reference, alignment_length, accession_of_closest_sequence, name_of_closest_sequence, hmm_id, hmm_description]
+outputs:
+  - annotation/native/<sample>.amrfinder.tsv (immutable, sha256)
+  - annotation/P1.9C4_arg_determinants.tsv (all rows, all samples, retained fields)
+  - annotation/P1.9C4_arg_bearing.tsv (sample, contig_id, contig_length, n_qualifying_determinants, ARG_bearing, qualifying_gene_symbols)
+  - annotation/ANNOTATION_MANIFEST.txt (+ sha256)
+semantic_note_vs_development_set: 'the development set flag "SR contig has ARGs" was RGI v5.1.1 / CARD v3.2.9 excluding efflux and loose hits (paper Methods). AMRFinderPlus core AMR is a different but overlapping ARG universe. This difference is documented in the compatibility matrix and reported with the primary result.'
+truth_blindness: 'AMRFinderPlus runs in its own container with only Product A FASTA mounted; no truth or prediction file is mounted'
+prohibitions: ['changing plasmid/chromosome truth from AMR results', 'using AMR hits as a Model 1 feature', 'adjusting the inclusion rule after seeing predictions']

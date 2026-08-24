@@ -1,0 +1,28 @@
+--- versions/p113_run.sh.v1_original	2026-08-22 18:37:10.157464062 +0000
++++ versions/p113_run.sh.v2_acquisition_fix	2026-08-22 18:46:11.277619920 +0000
+@@ -67,12 +67,21 @@
+     local fn; fn=$(basename "${U[$k]}"); local f="$d/$fn"; local want="${M[$k]}"
+     [ ${#want} -ne 32 ] && { say "ABORT $bs/$fn: md5 field is not 32 chars"; return 1; }
+     if [ -s "$f" ] && [ "$(md5sum "$f" | cut -d' ' -f1)" = "$want" ]; then continue; fi
+-    local a
++    # A file that is present but fails md5 is CORRUPT, not partial. Resuming onto it with
++    # -C - appends from the wrong logical offset and can yield a file of exactly the right
++    # size with the wrong content, which no size check would catch. Discard and refetch from
++    # byte zero, and re-check md5 inside the retry loop rather than only once at the end.
++    [ -e "$f" ] && { say "  discarding unverified $bs/$fn, refetching from byte zero"; rm -f "$f"; }
++    local a got
+     for a in 1 2 3 4; do
+-      curl -fsS -C - --max-time 1800 -o "$f" "$url" 2>/dev/null && break
+-      sleep $((a*5))
++      if curl -fsS --max-time 1800 -o "$f" "$url" 2>/dev/null; then
++        got=$(md5sum "$f" 2>/dev/null | cut -d" " -f1)
++        [ "$got" = "$want" ] && break
++        say "  md5 mismatch for $bs/$fn on attempt $a, discarding and refetching"
++      fi
++      rm -f "$f"; sleep $((a*5))
+     done
+-    local got; got=$(md5sum "$f" 2>/dev/null | cut -d' ' -f1)
++    got=$(md5sum "$f" 2>/dev/null | cut -d" " -f1)
+     if [ "$got" != "$want" ]; then say "MD5 FAIL $bs/$fn got=$got want=$want"; ok=0; fi
+   done
+   [ "$ok" -eq 1 ] && touch "$ST/acquire__$bs.done" || touch "$ST/acquire__$bs.failed"

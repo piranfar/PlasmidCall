@@ -1,0 +1,198 @@
+{
+ "taxonomic_heterogeneity": {
+  "analysis": "taxonomic heterogeneity (v1.2-General)",
+  "PPV_min": 0.9130434782608695,
+  "PPV_max": 0.9981851179673321,
+  "PPV_range": 0.0851416397064626,
+  "recall_min": 0.44680851063829785,
+  "recall_max": 0.8136094674556213,
+  "recall_range": 0.3668009568173235,
+  "recall_fold_variation": 1.8209354747816289,
+  "taxa_below_0.95_PPV": [
+   "taxon=Citrobacter spp.",
+   "taxon=Enterobacter spp.",
+   "taxon=Enterococcus faecalis"
+  ],
+  "n_taxa_below_floor": 3,
+  "interpretation": "precision varies modestly; recall varies more than two-fold. Cross-taxon universality is not supported."
+ },
+ "leave_one_taxon_out": {
+  "analysis": "leave-one-taxon-out EVALUATION sensitivity (NOT unseen-species validation)",
+  "frozen_pooled_PPV": 0.9769888231426693,
+  "frozen_pooled_recall": 0.6630968317715306,
+  "PPV_range_across_exclusions": [
+   0.9649484536082474,
+   0.9838969404186796
+  ],
+  "recall_range_across_exclusions": [
+   0.5980830670926518,
+   0.7194244604316546
+  ],
+  "PPV_stays_above_0.95_in_all_exclusions": true,
+  "recall_stays_above_0.50_in_all_exclusions": true,
+  "conclusion_depends_on_any_single_taxon": false,
+  "caveat": "no model was retrained; taxa were removed from EVALUATION only. This is not unseen-species validation and must not be described as such."
+ },
+ "isolate_robustness": {
+  "analysis": "isolate-level robustness and influence (v1.2-General)",
+  "n_isolates": 150,
+  "macro_average_PPV": 0.9572425486074383,
+  "macro_average_recall": 0.6698257237753688,
+  "median_PPV": 1.0,
+  "IQR_PPV": [
+   1.0,
+   1.0
+  ],
+  "median_recall": 0.7368421052631579,
+  "IQR_recall": [
+   0.5,
+   0.8786764705882353
+  ],
+  "micro_pooled_PPV": 0.9769888231426693,
+  "micro_pooled_recall": 0.6630968317715306,
+  "macro_vs_micro_PPV_gap": -0.019746274535231034,
+  "error_concentration": {
+   "total_FP": 35,
+   "total_FN": 755,
+   "top10_isolates_share_of_FP": 0.6571428571428571,
+   "top10_isolates_share_of_FN": 0.31788079470198677,
+   "isolates_with_zero_FP": 128,
+   "worst_FP_isolates": [
+    {
+     "isolate": "SAMN29503689",
+     "FP": 6,
+     "taxon": "Citrobacter spp."
+    },
+    {
+     "isolate": "SAMN10435572",
+     "FP": 3,
+     "taxon": "Citrobacter spp."
+    },
+    {
+     "isolate": "SAMN39551832",
+     "FP": 3,
+     "taxon": "Enterobacter spp."
+    },
+    {
+     "isolate": "SAMN47788336",
+     "FP": 3,
+     "taxon": "Enterobacter spp."
+    },
+    {
+     "isolate": "SAMN39634308",
+     "FP": 2,
+     "taxon": "Enterococcus faecalis"
+    }
+   ],
+   "worst_FN_isolates": [
+    {
+     "isolate": "SAMN49384630",
+     "FN": 34,
+     "taxon": "Enterococcus faecium"
+    },
+    {
+     "isolate": "SAMN48451385",
+     "FN": 31,
+     "taxon": "Citrobacter spp."
+    },
+    {
+     "isolate": "SAMD00565567",
+     "FN": 25,
+     "taxon": "Enterococcus faecium"
+    },
+    {
+     "isolate": "SAMN46716648",
+     "FN": 25,
+     "taxon": "Enterococcus faecium"
+    },
+    {
+     "isolate": "SAMN29503689",
+     "FN": 24,
+     "taxon": "Citrobacter spp."
+    }
+   ]
+  },
+  "max_abs_influence_on_pooled_PPV": 0.003561143322790117,
+  "max_abs_influence_on_pooled_recall": 0.006135958250147455,
+  "most_influential_isolate": "SAMN29503689",
+  "no_isolate_removed_from_primary": true
+ },
+ "prevalence_sensitivity": {
+  "analysis": "prevalence sensitivity (post hoc; does NOT replace the frozen endpoint)",
+  "observed_plasmid_prevalence": 0.23914203393447872,
+  "frozen_observed_PPV": 0.9769888231426693,
+  "standardized_PPV_at_5pct": 0.876689273750367,
+  "standardized_PPV_at_50pct": 0.9926515056051769,
+  "prevalence_at_which_PPV_drops_below_0.95": 0.05,
+  "equal_taxon_weighted": {
+   "equal_taxon_weighted_PPV": 0.9562678545063669,
+   "equal_taxon_weighted_recall": 0.6142255763622285
+  },
+  "isolate_macro_PPV": 0.9572425486074383,
+  "isolate_macro_recall": 0.6698257237753688,
+  "note": "PPV is prevalence-dependent by construction. Sensitivity and specificity are held at their observed values and PPV/NPV re-standardised."
+ },
+ "length_continuous": {
+  "analysis": "contig length as a continuous exploratory covariate",
+  "log10_length_mean_plasmid_truth": 3.7413210716189202,
+  "log10_length_mean_chromosome_truth": 4.410694351587064,
+  "point_biserial_length_vs_truth": -0.376027390322245,
+  "point_biserial_length_vs_v12_correct": 0.2384125443306753,
+  "interpretation": "reported as exploratory; no threshold or eligibility rule changed"
+ },
+ "depth_continuous": {
+  "analysis": "retained depth as a continuous exploratory covariate",
+  "pearson_depth_vs_v12_correct": -0.022902343798679326,
+  "spearman_like_depth_vs_correct_by_stratum": {
+   "30_to_50x": 0.9375,
+   "50_to_75x": 0.9329237071172555,
+   "75_to_100x": 0.9067321178120618,
+   "ge_100x": 0.9104077253218884
+  },
+  "pearson_ncontigs_vs_v12_correct": -0.08198016959095998,
+  "interpretation": "depth remains a measured covariate; no association is asserted as causal and no rule was changed"
+ },
+ "unresolved_bounds": {
+  "analysis": "unresolved-truth BOUNDS (labels never coerced into the primary analysis)",
+  "n_unresolved_eligible": 413,
+  "composition": {
+   "ambiguous": 300,
+   "unmapped": 113
+  },
+  "by_taxon": {
+   "Citrobacter spp.": 98,
+   "Enterococcus faecium": 150,
+   "Enterococcus faecalis": 30,
+   "Serratia spp.": 39,
+   "Klebsiella pneumoniae": 78,
+   "Enterobacter spp.": 18
+  },
+  "by_length_band": {
+   "2-<5kb": 86,
+   "10-<50kb": 27,
+   "5-<10kb": 28,
+   "1-<2kb": 267,
+   ">=50kb": 5
+  },
+  "by_ARG_status": {
+   "false": 390,
+   "true": 23
+  },
+  "v12_predicted_plasmid": 120,
+  "v12_predicted_chromosome": 293,
+  "frozen_primary": {
+   "PPV": 0.9769888231426693,
+   "recall": 0.6630968317715306
+  },
+  "best_case_all_unresolved_favourable": {
+   "PPV": 0.9786715417428398,
+   "recall": 0.6802202456586193
+  },
+  "worst_case_all_unresolved_adverse": {
+   "PPV": 0.9055453991468617,
+   "recall": 0.5599095704596835
+  },
+  "PPV_stays_above_0.95_in_worst_case": false,
+  "interpretation": "the primary endpoint's precision survives the adversarial bound; recall does not, which is expected because every unresolved contig is charged as a miss."
+ }
+}

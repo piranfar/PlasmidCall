@@ -1,0 +1,9 @@
+stage_order	stage	content	gate	truth_state
+1	Design freeze	design, cohort rules, eligibility, thresholds, analysis plan and stopping rules written first	hash-sealed before any read was retrieved	truth-blind
+2	Acquisition and assembly	150 isolates; checksum-verified reads, paired-read validation, 30x depth floor	fail-closed atomic acceptance, 14 checks; 150 of 150	truth-blind
+3	Panel execution	13 units x 150 isolates in pinned images, read-only inputs, no truth mount	1,950 units; 72 deterministic failures recorded, not imputed	truth-blind
+4	Prediction freeze	22 artefacts, 150 assembly hashes, 1,950-unit execution manifest	frozen table reproduced byte-for-byte, twice, independently	truth-blind
+5	Truth construction	each isolate's own closed reference; competitive mapping, fixed thresholds	refuses to run without the freeze receipt and table hash	truth accessible
+6	Join and evaluation	registered join executed exactly once; prespecified endpoint applied	19,320 <-> 19,320, zero one-sided records, zero duplicates	truth accessible
+7	Results freeze	immutable primary result	385 values independently recomputed, 0 disagreements	truth accessible
+8	Post-freeze package	secondary, sensitivity, exploratory and integrity analyses	adds only; primary freeze and its outputs unmodified	truth accessible

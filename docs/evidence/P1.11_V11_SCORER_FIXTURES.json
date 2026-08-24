@@ -1,0 +1,265 @@
+{
+ "suite": "P1.11 v1.1 scorer fixtures",
+ "module_under_test": "scripts/p1_12/v11_scorer_p111.py",
+ "exercises_production_functions": true,
+ "truth_consumed": false,
+ "predeclared_classes_covered": 12,
+ "n_fixtures": 42,
+ "n_passed": 42,
+ "n_failed": 0,
+ "verdict": "PASS",
+ "fixtures": [
+  {
+   "fixture": "1  every ordinary row is scored",
+   "expected": "3",
+   "observed": "3",
+   "pass": true
+  },
+  {
+   "fixture": "1b every score is finite and in [0,1]",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "1c unanimous plasmid scores above unanimous chromosome",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "2  exactly at the standard threshold -> plasmid_selected",
+   "expected": "plasmid_selected",
+   "observed": "plasmid_selected",
+   "pass": true
+  },
+  {
+   "fixture": "2b one ulp below the standard threshold -> not_selected",
+   "expected": "not_selected",
+   "observed": "not_selected",
+   "pass": true
+  },
+  {
+   "fixture": "2c exactly at the high-confidence threshold -> high_confidence_plasmid",
+   "expected": "high_confidence_plasmid",
+   "observed": "high_confidence_plasmid",
+   "pass": true
+  },
+  {
+   "fixture": "2d one ulp below high-confidence -> plasmid_selected",
+   "expected": "plasmid_selected",
+   "observed": "plasmid_selected",
+   "pass": true
+  },
+  {
+   "fixture": "2e a boundary score is never an abstention",
+   "expected": "False",
+   "observed": "False",
+   "pass": true
+  },
+  {
+   "fixture": "3  all-MISSING row still receives a finite score (locked behaviour)",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "3b partially-MISSING row is scored",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "4  all-FAILED row still receives a finite score (locked behaviour)",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "4b partially-FAILED row is scored",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "3c/4c missing or failed tool evidence is NOT a model abstention",
+   "expected": "0",
+   "observed": "0",
+   "pass": true
+  },
+  {
+   "fixture": "4d FAILED/MISSING are recoded to 'unknown' exactly as P1.10 did",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "4e the abstention indicator flags them separately",
+   "expected": "1",
+   "observed": "1",
+   "pass": true
+  },
+  {
+   "fixture": "5  malformed length -> model_abstain",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "5b NaN contig count -> model_abstain",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "5c infinite length -> model_abstain",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "5d the reason is recorded, not pooled",
+   "expected": "malformed_numeric_value",
+   "observed": "malformed_numeric_value",
+   "pass": true
+  },
+  {
+   "fixture": "5e a malformed row never becomes a Boolean negative",
+   "expected": "model_abstain",
+   "observed": "model_abstain",
+   "pass": true
+  },
+  {
+   "fixture": "5f the well-formed row alongside them is still scored",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "6  absent required column -> every row abstains",
+   "expected": "0",
+   "observed": "0",
+   "pass": true
+  },
+  {
+   "fixture": "6b the missing column is named in the reason",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "6c absent numeric column also abstains",
+   "expected": "0",
+   "observed": "0",
+   "pass": true
+  },
+  {
+   "fixture": "7  column order does not change the score",
+   "expected": "0.9694609259395393",
+   "observed": "0.9694609259395393",
+   "pass": true
+  },
+  {
+   "fixture": "7b feature order is pinned by name, not position",
+   "expected": "['HyAsP', 'MOB-recon', 'PLASMe', 'PlaScope', 'Plasmer', 'PlasmidEC', 'PlasmidFinder', 'Platon', 'RFPlasmid', 'geNomad', 'gplas2', 'plASgraph2']",
+   "observed": "['HyAsP', 'MOB-recon', 'PLASMe', 'PlaScope', 'Plasmer', 'PlasmidEC', 'PlasmidFinder', 'Platon', 'RFPlasmid', 'geNomad', 'gplas2', 'plASgraph2']",
+   "pass": true
+  },
+  {
+   "fixture": "8  duplicate keys are scored identically, not merged",
+   "expected": "0.9947153944947259",
+   "observed": "0.9947153944947259",
+   "pass": true
+  },
+  {
+   "fixture": "8b duplicate keys are detectable downstream (both rows retained)",
+   "expected": "2",
+   "observed": "2",
+   "pass": true
+  },
+  {
+   "fixture": "9  zero-hit but successfully completed annotation is scored",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "10 annotation failure does not suppress the v1.1 score",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "9b/10b the score is identical regardless of annotation state",
+   "expected": "0.9947153944947259",
+   "observed": "0.9947153944947259",
+   "pass": true
+  },
+  {
+   "fixture": "11 repeat scoring of the same frame is bit-identical",
+   "expected": "0.9694609259395393",
+   "observed": "0.9694609259395393",
+   "pass": true
+  },
+  {
+   "fixture": "11b an independent refit reproduces the same score bit-for-bit",
+   "expected": "0.9694609259395393",
+   "observed": "0.9694609259395393",
+   "pass": true
+  },
+  {
+   "fixture": "11c the refit sees the same design matrix",
+   "expected": "[1460, 51]",
+   "observed": "[1460, 51]",
+   "pass": true
+  },
+  {
+   "fixture": "12 every historical row was scored",
+   "expected": "10332",
+   "observed": "10332",
+   "pass": true
+  },
+  {
+   "fixture": "12b max |difference| is exactly zero",
+   "expected": "0.0",
+   "observed": "0.0",
+   "pass": true
+  },
+  {
+   "fixture": "12c all rows exactly equal",
+   "expected": "10332",
+   "observed": "10332",
+   "pass": true
+  },
+  {
+   "fixture": "12d within the tolerance declared in advance",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "12e classifications identical",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "12f zero classification mismatches",
+   "expected": "0",
+   "observed": "0",
+   "pass": true
+  },
+  {
+   "fixture": "   a truth column in the scoring frame is refused",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "   a truth-derived input path is refused",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  }
+ ]
+}

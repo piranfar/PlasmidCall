@@ -1,0 +1,5 @@
+scenario	n_denominator	PPV	recall	F1	note
+PRIMARY (prespecified): unresolved excluded	9371	0.9769888231426693	0.6630968317715306	0.7900053163211058	the frozen primary analysis
+SENSITIVITY A: all unresolved predicted-plasmid counted as FP	9784	0.9055453991468617	0.6630968317715306		adversarial lower bound on precision; 120 contigs added as FP
+SENSITIVITY B: all unresolved treated as plasmid truth (FN if not called)	9784	0.9786715417428398	0.6051243406179352		adversarial lower bound on recall
+SENSITIVITY C: restricted to high-confidence truth only	9370	0.9769888231426693	0.6630968317715306	0.7900053163211058	excludes the single margin-state contig

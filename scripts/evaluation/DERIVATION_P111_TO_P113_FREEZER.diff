@@ -1,0 +1,115 @@
+-"""P1.11 PREDICTION FREEZE - atomic, fail-closed.
++"""P1.13 PREDICTION FREEZE - atomic, fail-closed. Derived from the frozen P1.11 freezer;
++the gate, augmentation, projection check and atomic-commit logic are unchanged. Bindings,
++names and expected counts are those of P1.13. The derivation diff is captured alongside.
+-    "reconciled_call_table": "59bf47b7c9f7d89aed2787935712e8d86b26ee039232c4813bd6451fcc50c4d4",
+-    "candidate_contig_table": "e63a12949e4b748944326cbaffe5a7712236c47beff3eec1264d56c78c036e58",
+-    "candidate_manifest": "2cc3b26ad37afe191da74dfdacf306202f4c84608308b859f8709ab5a0230ffb",
++    "normalised_call_table": "e3e43a0269336f2e88a670ef1b226d5ed56e616557e72ece0e41d873ffb4f48f",
++    "candidate_contig_table": "440f16bc7002c15135ac73a233545613ad6869eddf7d421cca6dc0a1060114f8",
++    "candidate_manifest": "bbe15fc247163c604ca55135ab3d8031a57aa1ae62f6451794a269591e135708",
+-FREEZE_ID = "P1.11-PREDICTION-FREEZE-001"
++FREEZE_ID = "P1.13-PREDICTION-FREEZE-001"
+-TRUTH_ACCESS_STATEMENT = ("P1.11 truth has not been acquired, constructed, or accessed by the "
+-                          "evaluation workflow.")
++TRUTH_ACCESS_STATEMENT = ("P1.13 truth has not been acquired, constructed, inspected, joined "
++                          "or scored by any P1.13 step.")
+-    cand = os.path.join(a.candidate_dir, "P1.11_candidate_contig_table.tsv")
+-    manf = os.path.join(a.candidate_dir, "P1.11_PREDICTION_FREEZE_CANDIDATE_MANIFEST.json")
+-    call = os.path.join(a.root, "inference", "P1.11_call_table_reconciled.tsv")
++    cand = os.path.join(a.candidate_dir, "P1.13_candidate_contig_table.tsv")
++    manf = os.path.join(a.candidate_dir, "P1.13_PREDICTION_FREEZE_CANDIDATE_MANIFEST.json")
++    call = os.path.join(a.root, "inference", "P1.13_predictions_normalised.tsv")
+-                        ("reconciled_call_table", call, APPROVED["reconciled_call_table"])):
++                        ("normalised_call_table", call, APPROVED["normalised_call_table"])):
+-    COH = "E:/AMR_Evidence_Data/P1.9_cleanroom/p111/P1.11_cohort_sealed.tsv"
++    COH = os.path.join(a.root, "P1.13_SELECTED_COHORT_v3.tsv")
+-        "sealed_cohort": (COH, sha),
++        "cohort_v3": (COH, sha),
+-        "builder": (HERE + "/build_p111_contig_table.py", sha_lf),
++        "builder": (HERE + "/build_p113_contig_table.py", sha_lf),
+-        "candidate_pipeline": (HERE + "/p111_candidate_pipeline.py", sha_lf),
+-        "prejoin_gate": (HERE + "/prejoin_verify_v2.py", sha_lf),
++        "candidate_pipeline": (HERE + "/p113_candidate_pipeline.py", sha_lf),
++        "prejoin_gate": (os.path.join(HERE, "..", "p1_12", "prejoin_verify_v2.py"), sha_lf),
+-        "status_reconciliation_amendment":
+-            (REPO + "/docs/plans/P1.11_STATUS_RECONCILIATION_AMENDMENT.yaml", sha_lf),
+-        "provenance_failclosed_correction":
+-            (REPO + "/docs/plans/P1.11_PROVENANCE_AND_FAILCLOSED_CORRECTION.yaml", sha_lf),
+-        "reconciliation_audit":
+-            (REPO + "/docs/evidence/P1.11_RECONCILIATION_AUDIT.json", sha),
+-        "independent_recovery_verification":
+-            (REPO + "/docs/evidence/P1.11_INDEPENDENT_RECOVERY_VERIFICATION.json", sha),
+-        "superseded_candidates_record":
+-            (REPO + "/docs/evidence/P1.11_SUPERSEDED_CANDIDATES.json", sha),
+-        "prejoin_receipt": (REPO + "/docs/evidence/P1.11_PRE_JOIN_HASH_RECEIPT_v2.json", sha),
++        "frozen_design": (REPO + "/docs/plans/P1.13_FROZEN_DESIGN.yaml", sha_lf),
++        "amendment_004_execution_integrity":
++            (REPO + "/docs/plans/P1.13_AMENDMENT_004.yaml", sha_lf),
++        "amendment_005_replacement":
++            (REPO + "/docs/plans/P1.13_AMENDMENT_005.yaml", sha_lf),
++        "assembly_reconciliation":
++            (REPO + "/docs/evidence/P1.13_provenance/P1.13_ASSEMBLY_RECONCILIATION.json", sha),
++        "cohort_hash_transition":
++            (REPO + "/docs/evidence/P1.13_provenance/COHORT_HASH_TRANSITION.json", sha),
++        "replacement_selection":
++            (REPO + "/docs/evidence/P1.13_provenance/P1.13_REPLACEMENT_SELECTION.json", sha),
++        "panel_failure_review":
++            (REPO + "/docs/evidence/P1.13_provenance/P1.13_PANEL_FAILURE_REVIEW.md", sha_lf),
++        "panel_dependency_audit":
++            (REPO + "/docs/evidence/P1.13_provenance/P1.13_PANEL_DEPENDENCY_AUDIT.json", sha),
+-        "fixtures_builder": (REPO + "/docs/evidence/P1.11_BUILDER_FIXTURES.json", sha),
++        "fixtures_builder_p113": (REPO + "/docs/evidence/P1.13_BUILDER_FIXTURES.json", sha),
+-        "fixtures_failclosed": (REPO + "/docs/evidence/P1.11_FAILCLOSED_FIXTURES.json", sha),
+-        "fixtures_router_v2": (REPO + "/docs/evidence/P1.11_ROUTER_FIXTURES_v2.json", sha),
+-    if len(asm) != 79:
+-        die("expected 79 assembly FASTAs, found %d" % len(asm))
++    if len(asm) != 150:
++        die("expected 150 assembly FASTAs, found %d" % len(asm))
+-    if panel["n_units"] != 1027:
+-        die("panel manifest is %d units, expected 1027" % panel["n_units"])
++    if panel["n_units"] != 1950:
++        die("panel manifest is %d units, expected 1950" % panel["n_units"])
++    # P1.13 carries no reconciled provenance column: unit provenance is the audited terminal
++    # state marker (OK or FAILED), identical to the receipts, propagated to every contig.
++    _unit = {}
++    for f_ in os.listdir(os.path.join(a.root, "inference", "state")):
++        if f_.endswith(".done"):
++            t_, s_ = f_[:-5].split("__", 1); _unit[(t_, s_)] = "OK"
++        elif f_.endswith(".failed"):
++            t_, s_ = f_[:-7].split("__", 1); _unit[(t_, s_)] = "FAILED"
++    _col2raw = {"HyAsP": "hyasp", "MOB-recon": "mobsuite", "PLASMe": "plasme",
++                "PlaScope": "plascope", "Plasmer": "plasmer", "PlasmidEC": "plasmidec",
++                "PlasmidFinder": "plasmidfinder", "Platon": "platon", "RFPlasmid": "rfplasmid",
++                "geNomad": "genomad", "gplas2": "gplas2", "plASgraph2": "plasgraph2"}
+-        prov.setdefault((r["sample"], r["contig_id"]), {})[r["tool"]] = r.get("provenance_state",
+-                                                                              "")
++        col = r["tool"]
++        prov.setdefault((r["sample"], r["contig_id"]), {})[col] = _unit.get(
++            (_col2raw.get(col, col), r["sample"]), "")
+-    frozen = os.path.join(a.out, "P1.11_FROZEN_PREDICTIONS.tsv")
++    frozen = os.path.join(a.out, "P1.13_FROZEN_PREDICTIONS.tsv")
+-        "execution_provenance_units_1027": {"OK": 972, "RECOVERED_OK": 47, "FAILED": 8},
++        "execution_provenance_units_1950": {"OK": 1878, "FAILED": 72},
+-        "irreversible": ("This freeze is IRREVERSIBLE for P1.11 primary evaluation. The frozen "
++        "irreversible": ("This freeze is IRREVERSIBLE for P1.13 primary evaluation. The frozen "
+-        "truth_scope_note": ("This is a statement about what the P1.11 prediction workflow "
+-                             "consumed before freeze. It is not a claim that reference-related "
+-                             "files cannot exist elsewhere on the host; prior-phase P1.10 and "
+-                             "P1.9C3 truth artefacts do exist on the shared volume and were never "
+-                             "read by any P1.11 step."),
++        "truth_scope_note": ("This is a statement about what the P1.13 prediction workflow "
++                             "consumed before freeze. Prior-phase truth artefacts from "
++                             "P1.9-P1.11 exist on the shared volume and were never read by any "
++                             "P1.13 step."),
+-        "router_effect_clarification": (
+-            "Router route-selection states changed on 0 contigs; routed Boolean outputs changed "
+-            "on 247 contigs because corrected MOB-recon evidence changed model scores."),
++        "router_effect_clarification": ("not applicable to P1.13; no post-candidate "
++                                        "correction occurred"),
+-            "native_call_candidate":
+-                "f0c273e6f5c89702d9e5333a0b5a4629b647002e4db47caf5267a1aea7ae3545",
+-            "pre_reconciliation_candidate":
+-                "b297134f92026414e929dbaa3b062b14c4137233aa0ebed3d992a0f2730a1580",
+-            "status": "INVALID_SUPERSEDED_DO_NOT_USE"},
++            "status": "NONE - the first and only P1.13 candidate was approved"},

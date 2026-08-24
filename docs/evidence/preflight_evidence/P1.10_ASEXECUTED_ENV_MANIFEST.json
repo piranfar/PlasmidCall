@@ -1,0 +1,27 @@
+{
+ "generated_utc": "2026-08-21T06:17:37Z",
+ "source": "local P1.10 bundle, transferred and verified after the P1.10 run",
+ "note": "This is the AS-EXECUTED P1.10 environment. The P1.9C4 ENV_MANIFEST_prestart.sha256 is a PRESTART snapshot and predates the parser/command revisions that produced p19c4-parsers/1.7, so it is NOT the correct baseline for P1.11.",
+ "n_files": 19,
+ "files": {
+  "run/acquire_reads.py": "e5ba3a32bb7873403e6cb0b42ded7a522452c4b972e2f7b794102a5aad73d8f4",
+  "run/acquire_truth.py": "c4a052b48cce9ecb34f39e6adbe02ca9ac1f6b652da79dd218d9c70af9219563",
+  "run/arg_annotation_p110.py": "5aa788688f30d8021ff2f03d385778335aa192f0818aabcaf04363ca9d90700e",
+  "run/assemble_driver.sh": "cd2a4f3718ff8b34cbe872fe8386c0acbe57a5d3eed52ea6964fc532669968b5",
+  "run/assemble_run.sh": "5919ce1a165f6b2113d4060d53853ba219bd0dcb0b832106bedf738c5e9b5c69",
+  "run/assemble_run.sh.v1": "d731cfa65be9292247ecc79cbfa526e230ac60daf85a972afd38f4278b1a097c",
+  "run/assemble_run.sh.v2": "ff2a9668712cab427ace62a25fac1e313e87113536e8078f2a65ce9d78bde522",
+  "run/assemble_sweeper.sh": "e6a59971adc2f62f28be997b0e63690da7ec4529d82665c9cfe9663755eae67f",
+  "run/build_matrix.py": "06b8ad99455cc0705591906f2efe9402d913ee942a1249fb77abfc46de2ca9b1",
+  "run/chain_acq_to_asm.sh": "6e2e334d67e9ed1ff15cd95c81359d641db6db6eefe32490791bb06946bb057b",
+  "run/chain_asm_to_freeze.sh": "06b0f9c6f4fd9bbc39e1135e56daa4d0667b0db9f798cd301e9cd7764c6f1ec3",
+  "run/chain_freeze_to_truth.sh": "2e7a56bce3e2897ae9b2770614f07ecce69fc47f46c1ccb69fff655a8c376ac1",
+  "run/driver.sh": "39716cdf591d803bded4a2e4db4c34e4378dcf703269faccc4fb42ed8a09dc1a",
+  "run/idle_shutdown_guard.sh": "cfbad7f1659509662ca62a73c140a8ae88cf00ef0dfe3596245e7a344e6377f9",
+  "run/parse_all.py": "1368faa316e10268a429952b40dbb9cefe2f9df5868849e02f6df9650d3a333a",
+  "run/parsers.py": "68599a94af066f2dd1437de4ab307721ce8310399e0ba6fa91f2e559b65467b1",
+  "run/retry_failed_reads.py": "d6022491ebb799c3353c58a137735a8268ddf8ec49c57cc606a7cc9f4988dbcf",
+  "run/run_tool.sh": "0e5bd8623c3cf1cf5f85b99b5be44cd017c943beb5f7053de206df22f624176a",
+  "run/truth_pipeline_p110.py": "e0af2e2e34459b0db5cd941ecb98f2c626898660cb58ebaaf0946873ea70df04"
+ }
+}

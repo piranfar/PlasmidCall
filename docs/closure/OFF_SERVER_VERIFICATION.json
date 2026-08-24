@@ -1,0 +1,251 @@
+{
+ "frozen_result_artefacts": {
+  "verified": 18,
+  "not_held_locally": 1,
+  "mismatched": 0,
+  "detail": [
+   {
+    "artefact": "P113_ARG_ALL_PREDICTORS.tsv",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "1c7e1968dcdd8096390f63836855ee9f91df09d5f795955954652bd9cf4dfa94"
+   },
+   {
+    "artefact": "P113_ARG_PARETO_AND_CORE_CLAIM.json",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "1386c862699d0aa147b3a2721886d657171d21665fdc3863d010ebf25f99496b"
+   },
+   {
+    "artefact": "P113_COMPARATOR_METRICS.tsv",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "59fcf4267acab603b1de0c53d0fa5664f7d0e5e3abe8f2488e94494ce4931dd8"
+   },
+   {
+    "artefact": "P113_COMPARISON_ACCOUNTING.tsv",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "c43300c48110928f162d3a4ff445efabab902ed63b5de5a445b52b7e791c333b"
+   },
+   {
+    "artefact": "P113_CONFUSION_MATRICES.tsv",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "0158a4487d41b9ab95ae54f224610b30f9ef2503bdbe87a85b537ddfeccbcd1d"
+   },
+   {
+    "artefact": "P113_ERROR_CATALOGUE.tsv",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "2ec5bd380249a766af2bbf0f237b06b6827fc5c02a6af6f99a7fbc4e2f8a2ce5"
+   },
+   {
+    "artefact": "P113_MATCHED_DENOMINATOR_METRICS.tsv",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "b24d63a70ef873f96142afe9e0e2c65d075305b088a0d717ab7ea4ab2e4f02f9"
+   },
+   {
+    "artefact": "P113_PAIRED_CONTRASTS.json",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "b4bf86fb93873792018763f521851a355a1be3a467e630cc21ccbc70b4e470dd"
+   },
+   {
+    "artefact": "P113_PREDICTOR_INVENTORY.tsv",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "18b0200721de01105597f7eba0fdc344cb79ef2944058958d9742eb58c7e9b2b"
+   },
+   {
+    "artefact": "P113_PRIMARY_GATE.json",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "8b304b67e4f74ce2a896bffab073ced209bda90e20d648bf38ed6760227b939e"
+   },
+   {
+    "artefact": "P113_PRIMARY_METRICS.tsv",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "e574dbfb4ca4b347ff9104b3e1bb076843e4347ea2d78616108bde6893d20c71"
+   },
+   {
+    "artefact": "P113_STRATIFIED_METRICS.tsv",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "290aa11c1c4a033ae03333170a720adb39789c19d7bf9f66372c1e7802939a7f"
+   },
+   {
+    "artefact": "P113_TRUTH_JOINED.tsv",
+    "status": "not held off-server"
+   },
+   {
+    "artefact": "P113_TRUTH_JOIN_RECEIPT.json",
+    "status": "verified",
+    "held_in": "repository",
+    "sha256": "dc2f9629e9ba579ab8991650a4dfb3a6b9069fa4e6168baa91777d8212f45e3e"
+   },
+   {
+    "artefact": "Figure3_pooled_matched.tsv",
+    "status": "verified",
+    "sha256": "4700f6a0467aa5512287ec1f2321f547a87562fba99d6785801454427ab9c902"
+   },
+   {
+    "artefact": "Figure4_arg_bearing.tsv",
+    "status": "verified",
+    "sha256": "2c1dbeec59c9e8c90ef46ce932e72f846ecb6479c4f25ea3b1d26483ef9640a2"
+   },
+   {
+    "artefact": "Figure5_taxon.tsv",
+    "status": "verified",
+    "sha256": "845183becc99b29bf72feeb2b15ff799f347e7dd41c79173528adfd509f082ce"
+   },
+   {
+    "artefact": "Figure6_strata.tsv",
+    "status": "verified",
+    "sha256": "cae1bf1dd776bdb017afaeb9f6d3a025153a919d82dc0469d3fa9b7c1df3f943"
+   },
+   {
+    "artefact": "Figure7_flow.tsv",
+    "status": "verified",
+    "sha256": "62c39d5268727265760d10a4c9fe4075f69760bad03e664b004e41dce22e99f8"
+   }
+  ]
+ },
+ "post_freeze_artefacts": {
+  "verified": 23,
+  "not_held_locally": 0,
+  "mismatched": 0,
+  "detail": [
+   {
+    "artefact": "PF01_TAXON_ROBUSTNESS.tsv",
+    "status": "verified",
+    "sha256": "fb79101ffa5d1c97af5126dba5b4126704008dc746435196d796d1039b7f54d4"
+   },
+   {
+    "artefact": "PF02_LEAVE_ONE_TAXON_OUT.tsv",
+    "status": "verified",
+    "sha256": "a0b8d114e915ee04bc277e50edbad1558ddda1d9dcc3a05b9b7bdacc38141307"
+   },
+   {
+    "artefact": "PF03a_PER_ISOLATE_METRICS.tsv",
+    "status": "verified",
+    "sha256": "166bee87f89d55a1b6957d01e014599f4ea00f9d9c2dd64c408913b5eb3aa808"
+   },
+   {
+    "artefact": "PF03b_LEAVE_ONE_ISOLATE_OUT_INFLUENCE.tsv",
+    "status": "verified",
+    "sha256": "6bb77346e4573cb8747ae65f46e337c4fcfa4011bdc2fc711b7807c97a35ca82"
+   },
+   {
+    "artefact": "PF04_ARG_COMPLETE.tsv",
+    "status": "verified",
+    "sha256": "0e9f8cba9f0efac1f5b92a25eec972d0d7252f8be771ef571304b40e4a30485f"
+   },
+   {
+    "artefact": "PF04b_ARG_PAIRED_CONTRASTS.tsv",
+    "status": "verified",
+    "sha256": "afb982bedaf1ca45419c7c98697253783a2b181e4dc778b256f1b30ba8a28e1f"
+   },
+   {
+    "artefact": "PF05_PREVALENCE_SENSITIVITY.tsv",
+    "status": "verified",
+    "sha256": "d438782116ed24e4a557c41a69c708bf0f54a60162ffc8e27dead702d35c988a"
+   },
+   {
+    "artefact": "PF06_CONTIG_LENGTH.tsv",
+    "status": "verified",
+    "sha256": "c114cb1123082d5da496a45abb179cf50501da1db3a0b767a2194569854cf9a5"
+   },
+   {
+    "artefact": "PF07_DEPTH_AND_ASSEMBLY_QUALITY.tsv",
+    "status": "verified",
+    "sha256": "c3eeae8d7ffee66ec8531660c23c3d6c20ae6a08444e7c84b69a03a7af72ed6c"
+   },
+   {
+    "artefact": "PF08_SUMMARY.json",
+    "status": "verified",
+    "sha256": "ba493976b366decb04c30d4f801335ab948227cdad175699a44d2a2b96fbb7eb"
+   },
+   {
+    "artefact": "PF08_TRUTH_SENSITIVITY_GRID.json",
+    "status": "verified",
+    "sha256": "ea2371ce92c16c1c47d7108d2bf74a50bcfd29fc234e9992a33960b16962423a"
+   },
+   {
+    "artefact": "PF08_TRUTH_SENSITIVITY_RESULTS.tsv",
+    "status": "verified",
+    "sha256": "98f516a91daea32ff5ccd1eaf3d91653aeb7ffa9c86b9a89e2eec9a4d8a97763"
+   },
+   {
+    "artefact": "PF09a_UNRESOLVED_TRUTH_CHARACTERISATION.tsv",
+    "status": "verified",
+    "sha256": "50a88da31cd6d812d060b301dab27a37faf74790686d57966bb7480f12ca909f"
+   },
+   {
+    "artefact": "PF10a_REFERENCE_QUALITY.tsv",
+    "status": "verified",
+    "sha256": "0ae172ba82c315463fd15b4e7fe23af3498ae9f8f1a8894f9f11127a2f3552b5"
+   },
+   {
+    "artefact": "PF10b_HIGH_CONFIDENCE_TRUTH_SENSITIVITY.tsv",
+    "status": "verified",
+    "sha256": "6d900d33d2f19d4e123310b96e7edf3eac57ba23c6fd280059548c555fd83ee5"
+   },
+   {
+    "artefact": "PF11_RELATEDNESS_LEAKAGE_AUDIT.json",
+    "status": "verified",
+    "sha256": "d8ff54f1ab978c8c0aa05806b03e002cd98edfb7939c115d5704dac9b01ecc39"
+   },
+   {
+    "artefact": "PF12_COMPARATOR_FAIRNESS.tsv",
+    "status": "verified",
+    "sha256": "986e27ac7163b2e8081830854d5ca594a3b2bcf820a2bc4c957cdae11ea9f595"
+   },
+   {
+    "artefact": "PF12b_PAIRED_CONTRASTS_ALL_ROWS.tsv",
+    "status": "verified",
+    "sha256": "2717fed012a4638f6ecb46608ba18fafe920a087200943653d53bb29ad910fd2"
+   },
+   {
+    "artefact": "PF13_SCORE_AND_CALIBRATION.json",
+    "status": "verified",
+    "sha256": "fb55dcd89eddbc48c41b331c816405b39b6334bd975650abffffc4458c05e576"
+   },
+   {
+    "artefact": "PF13b_SCORE_DISTRIBUTIONS.tsv",
+    "status": "verified",
+    "sha256": "d8a89fbb5fa86f301975c536e9ee67a9250bd97589583a43cb567608de2e8ca2"
+   },
+   {
+    "artefact": "PF14_COMPUTATIONAL_DEPLOYMENT.tsv",
+    "status": "verified",
+    "sha256": "fd05827da683a4909514b37b476f1497185b636d583e845d7f2b053390ddf69e"
+   },
+   {
+    "artefact": "PF15_NEGATIVE_CONTROLS.json",
+    "status": "verified",
+    "sha256": "b7da2ad9f082cec0fd6655f4d2be0e33564e012233d5e067e2f8de99afd046fb"
+   },
+   {
+    "artefact": "PF_SUMMARIES.json",
+    "status": "verified",
+    "sha256": "69da5d35b5a5d427099d7000222c13b1a2762445f8cb401b4aed39d408c390ea"
+   }
+  ]
+ },
+ "self_hash_note": "PF_VERIFICATION_RECEIPT.json cannot record its own digest, because the digest is computed before the file is written. Its absence from artefact_sha256 is expected.",
+ "delta_archive": {
+  "zip": "dist/PlasmidCall_manuscript_phase_delta.zip",
+  "zip_bytes": 24385970,
+  "zip_sha256": "10fce234f347f0561c610ed4c4bdec21eae7d22d25815266ffb095178a0b0588",
+  "manifest": "docs/closure/MANUSCRIPT_PHASE_DELTA_MANIFEST.tsv",
+  "files": 296,
+  "total_bytes": 30626963,
+  "round_trip_verified": true,
+  "round_trip_failures": []
+ },
+ "failures": [],
+ "verdict": "OFF_SERVER_EVIDENCE_VERIFIED"
+}

@@ -1,0 +1,156 @@
+{
+ "amendment_id": "P1.13_AMENDMENT_001",
+ "frozen_utc": "2026-08-22T16:37:39Z",
+ "cohort": {
+  "total": 150,
+  "per_taxon": {
+   "Citrobacter spp.": 25,
+   "Enterobacter spp.": 25,
+   "Enterococcus faecalis": 25,
+   "Enterococcus faecium": 25,
+   "Klebsiella pneumoniae": 25,
+   "Serratia spp.": 25
+  },
+  "tiers": {
+   "2024+": 123,
+   "2023 fallback": 24,
+   "2022 fallback (amendment 1)": 3
+  }
+ },
+ "fastq_download_bytes": 68866804867,
+ "fastq_download_GiB": 64.14,
+ "storage_allocation": {
+  "/data": {
+   "purpose": "all P1.13 pipeline data",
+   "required_GiB": 168.66,
+   "of_which_margin_15pct_GiB": 22.0,
+   "free_GiB": 177.1,
+   "residual_after_requirement_GiB": 8.45,
+   "fits": true,
+   "co_tenant_warning": "this volume (label gcdata) also holds unrelated workloads pr_ani1 and pr_context; residual headroom is shared with them"
+  },
+  "/work": {
+   "purpose": "Docker root and working layers (already Docker Root Dir)",
+   "required_GiB": 13.8,
+   "free_GiB": 113.6,
+   "fits": true,
+   "note": "holds P1.11 evidence and frozen images; neither is touched"
+  },
+  "/": {
+   "purpose": "not used by P1.13",
+   "required_GiB": 0.0,
+   "free_GiB": 82.18,
+   "fits": true
+  }
+ },
+ "independent_checks": [
+  {
+   "check": "exactly 150 isolates",
+   "pass": true,
+   "detail": "150"
+  },
+  {
+   "check": "150 unique BioSamples",
+   "pass": true,
+   "detail": "150 unique"
+  },
+  {
+   "check": "25 per taxon",
+   "pass": true,
+   "detail": "{\"Citrobacter spp.\": 25, \"Enterobacter spp.\": 25, \"Enterococcus faecalis\": 25, \"Enterococcus faecium\": 25, \"Klebsiella pneumoniae\": 25, \"Serratia spp.\": 25}"
+  },
+  {
+   "check": "150 unique assembly accessions",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "150 unique run accessions",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "no BioSample overlap with DEV_250/P1.9/P1.10/P1.11",
+   "pass": true,
+   "detail": "0 overlaps"
+  },
+  {
+   "check": "ANI < 99.5 vs every consumed genome",
+   "pass": true,
+   "detail": "max 99.4800"
+  },
+  {
+   "check": "ANI < 99.5 within every taxon",
+   "pass": true,
+   "detail": "max 99.4800"
+  },
+  {
+   "check": "same-BioSample reference/read linkage",
+   "pass": true,
+   "detail": "reference and run joined on BioSample by construction"
+  },
+  {
+   "check": "all references are Complete Genome assemblies",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "coverage floor 30x honoured",
+   "pass": true,
+   "detail": "min 34.6x median 128.3x max 1320.4x"
+  },
+  {
+   "check": "paired fastq with md5 for every isolate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "no truth/prediction/performance field in the cohort table",
+   "pass": true,
+   "detail": "26 columns"
+  },
+  {
+   "check": "peak fits per-filesystem without pooling free space",
+   "pass": true,
+   "detail": "/data need 168.7 free 177.1 | /work need 13.8 free 113.6"
+  },
+  {
+   "check": "15% safety margin included on every filesystem",
+   "pass": true,
+   "detail": "margin 22.0 GiB on /data, 1.8 GiB on /work"
+  }
+ ],
+ "checks_passed": 15,
+ "checks_total": 15,
+ "selection_used_no": [
+  "truth",
+  "plasmid count",
+  "ARG count",
+  "tool output",
+  "model score",
+  "expected performance"
+ ],
+ "execution_state": {
+  "reads_downloaded": false,
+  "assemblies_built": false,
+  "panel_executed": false,
+  "truth_constructed": false,
+  "model_scored": false
+ },
+ "artefact_sha256": {
+  "P1.13_CENSUS.tsv": "5f0010ea31a15ce29b6129d05f070c1afc8ab2726ded2c36e81795f9a3db905e",
+  "P1.13_ELIGIBLE_POOL.tsv": "db3fecdd29fe632940c634806efda2db6811c9e1ec081a86751bdf595d60b692",
+  "P1.13_SELECTED_COHORT.tsv": "1351c0aa3e4c85e6ea6b2f841aea292b078478fab61fe082d8fcfc7cbfce9d91",
+  "P1.13_SELECTED_COHORT_v2.tsv": "2e47d15b30a42181b5537d88a2cd61401b711e6001ac0a3904ee387ebefd8dd1",
+  "P1.13_EXCLUSION_LOG.tsv": "4e6cd5bc6441e256b45c7505f00c4fdd6367b6005118dc164f90e74948fa8297",
+  "P1.13_DATABASE_SNAPSHOT_AUDIT.tsv": "d15d858b5c9a1ce30e2ba6e77fa7cf4a2fbb9d3f70017a27ad7415aab53b2ab9",
+  "P1.13_FROZEN_DESIGN.yaml": "163c50e95b1240360b296030d6ee2a843226af2785848c8c85cb3cf1c1d520fc",
+  "P1.13_AMENDMENT_001.yaml": "6542836573cdc9d6441b55b2a0157da3e4c25c88886d3ae6a5b11d9b68a01c5e",
+  "P1.13_RESOURCE_BUDGET.json": "fdb8540be212564b2103d69647f79e54188ea38127cdfcbe836ed408f65f23de",
+  "P1.13_PRECISION_ANALYSIS.json": "6fb6a1e28fcfde0140790811effce798a3a8f6d5d81d568a28d7675fe646adf0",
+  "P1.13_SAMPLE_SIZE_PROJECTION.json": "a34fcb9361f7f041bd1254be3b30568c4b8ee94fb6806dcb29ee291593deca03",
+  "P1.13_CROSSCHECK.tsv": "2d3039dc3e004a2db0bb07c3698a7a9135cae33249109850c0523f859a4b9681",
+  "P1.13_PREEXECUTION_RECEIPT.json": "7480237e18a139d07e22e56707be4c5d1ff07d0a0561594d48221252073292c5"
+ },
+ "verdict": "P1.13_DESIGN_AMENDED_150_RESOURCE_READY_AWAITING_EXECUTION_APPROVAL"
+}

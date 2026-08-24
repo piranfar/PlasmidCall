@@ -1,0 +1,495 @@
+{
+ "analysis": "genomic context of resistance determinants across six bacterial taxa",
+ "class": "post-freeze, descriptive. Truth counts read from the frozen resistance-gene table; no model, threshold or label was involved and nothing was recomputed",
+ "denominator_note": "contigs carrying at least one determinant of the named class or family. A contig carrying determinants of several classes contributes to each, so class counts do not sum to the pooled total",
+ "thresholds_prestated": {
+  "class_min_contigs": 20,
+  "family_min_contigs": 10
+ },
+ "pooled": {
+  "contigs": 635,
+  "plasmid_derived": 266,
+  "chromosomal": 369,
+  "plasmid_fraction": 0.4189
+ },
+ "by_taxon": [
+  {
+   "stratum": "Citrobacter spp.",
+   "contigs": 94,
+   "plasmid_derived": 54,
+   "chromosomal": 40,
+   "plasmid_fraction": 0.5745
+  },
+  {
+   "stratum": "Enterococcus faecium",
+   "contigs": 178,
+   "plasmid_derived": 95,
+   "chromosomal": 83,
+   "plasmid_fraction": 0.5337
+  },
+  {
+   "stratum": "Klebsiella pneumoniae",
+   "contigs": 138,
+   "plasmid_derived": 62,
+   "chromosomal": 76,
+   "plasmid_fraction": 0.4493
+  },
+  {
+   "stratum": "Enterococcus faecalis",
+   "contigs": 87,
+   "plasmid_derived": 27,
+   "chromosomal": 60,
+   "plasmid_fraction": 0.3103
+  },
+  {
+   "stratum": "Enterobacter spp.",
+   "contigs": 82,
+   "plasmid_derived": 24,
+   "chromosomal": 58,
+   "plasmid_fraction": 0.2927
+  },
+  {
+   "stratum": "Serratia spp.",
+   "contigs": 56,
+   "plasmid_derived": 4,
+   "chromosomal": 52,
+   "plasmid_fraction": 0.0714
+  }
+ ],
+ "by_class": [
+  {
+   "stratum": "SULFONAMIDE",
+   "contigs": 31,
+   "plasmid_derived": 29,
+   "chromosomal": 2,
+   "plasmid_fraction": 0.9355
+  },
+  {
+   "stratum": "QUATERNARY AMMONIUM",
+   "contigs": 20,
+   "plasmid_derived": 18,
+   "chromosomal": 2,
+   "plasmid_fraction": 0.9
+  },
+  {
+   "stratum": "GLYCOPEPTIDE",
+   "contigs": 32,
+   "plasmid_derived": 28,
+   "chromosomal": 4,
+   "plasmid_fraction": 0.875
+  },
+  {
+   "stratum": "PHENICOL",
+   "contigs": 39,
+   "plasmid_derived": 32,
+   "chromosomal": 7,
+   "plasmid_fraction": 0.8205
+  },
+  {
+   "stratum": "LINCOSAMIDE/MACROLIDE/STREPTOGRAMIN",
+   "contigs": 35,
+   "plasmid_derived": 27,
+   "chromosomal": 8,
+   "plasmid_fraction": 0.7714
+  },
+  {
+   "stratum": "TRIMETHOPRIM",
+   "contigs": 44,
+   "plasmid_derived": 27,
+   "chromosomal": 17,
+   "plasmid_fraction": 0.6136
+  },
+  {
+   "stratum": "QUINOLONE",
+   "contigs": 33,
+   "plasmid_derived": 20,
+   "chromosomal": 13,
+   "plasmid_fraction": 0.6061
+  },
+  {
+   "stratum": "AMINOGLYCOSIDE",
+   "contigs": 134,
+   "plasmid_derived": 77,
+   "chromosomal": 57,
+   "plasmid_fraction": 0.5746
+  },
+  {
+   "stratum": "BETA-LACTAM",
+   "contigs": 153,
+   "plasmid_derived": 55,
+   "chromosomal": 98,
+   "plasmid_fraction": 0.3595
+  },
+  {
+   "stratum": "TETRACYCLINE",
+   "contigs": 72,
+   "plasmid_derived": 24,
+   "chromosomal": 48,
+   "plasmid_fraction": 0.3333
+  },
+  {
+   "stratum": "LINCOSAMIDE/STREPTOGRAMIN",
+   "contigs": 33,
+   "plasmid_derived": 6,
+   "chromosomal": 27,
+   "plasmid_fraction": 0.1818
+  },
+  {
+   "stratum": "MACROLIDE/STREPTOGRAMIN",
+   "contigs": 29,
+   "plasmid_derived": 4,
+   "chromosomal": 25,
+   "plasmid_fraction": 0.1379
+  },
+  {
+   "stratum": "FOSFOMYCIN",
+   "contigs": 48,
+   "plasmid_derived": 0,
+   "chromosomal": 48,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "NITROFURAN/PHENICOL/QUINOLONE/TETRACYCLINE",
+   "contigs": 43,
+   "plasmid_derived": 0,
+   "chromosomal": 43,
+   "plasmid_fraction": 0.0
+  }
+ ],
+ "by_family": [
+  {
+   "stratum": "vanZ-A",
+   "contigs": 14,
+   "plasmid_derived": 14,
+   "chromosomal": 0,
+   "plasmid_fraction": 1.0
+  },
+  {
+   "stratum": "vanY-A",
+   "contigs": 14,
+   "plasmid_derived": 14,
+   "chromosomal": 0,
+   "plasmid_fraction": 1.0
+  },
+  {
+   "stratum": "vanA",
+   "contigs": 14,
+   "plasmid_derived": 14,
+   "chromosomal": 0,
+   "plasmid_fraction": 1.0
+  },
+  {
+   "stratum": "vanR-A",
+   "contigs": 14,
+   "plasmid_derived": 14,
+   "chromosomal": 0,
+   "plasmid_fraction": 1.0
+  },
+  {
+   "stratum": "vanH-A",
+   "contigs": 14,
+   "plasmid_derived": 14,
+   "chromosomal": 0,
+   "plasmid_fraction": 1.0
+  },
+  {
+   "stratum": "vanS-A",
+   "contigs": 14,
+   "plasmid_derived": 14,
+   "chromosomal": 0,
+   "plasmid_fraction": 1.0
+  },
+  {
+   "stratum": "vanX-A",
+   "contigs": 14,
+   "plasmid_derived": 14,
+   "chromosomal": 0,
+   "plasmid_fraction": 1.0
+  },
+  {
+   "stratum": "blaTEM",
+   "contigs": 19,
+   "plasmid_derived": 18,
+   "chromosomal": 1,
+   "plasmid_fraction": 0.9474
+  },
+  {
+   "stratum": "blaOXA",
+   "contigs": 17,
+   "plasmid_derived": 16,
+   "chromosomal": 1,
+   "plasmid_fraction": 0.9412
+  },
+  {
+   "stratum": "aadA",
+   "contigs": 17,
+   "plasmid_derived": 16,
+   "chromosomal": 1,
+   "plasmid_fraction": 0.9412
+  },
+  {
+   "stratum": "sul",
+   "contigs": 31,
+   "plasmid_derived": 29,
+   "chromosomal": 2,
+   "plasmid_fraction": 0.9355
+  },
+  {
+   "stratum": "dfrA",
+   "contigs": 22,
+   "plasmid_derived": 20,
+   "chromosomal": 2,
+   "plasmid_fraction": 0.9091
+  },
+  {
+   "stratum": "aph(3'')-Ib",
+   "contigs": 11,
+   "plasmid_derived": 10,
+   "chromosomal": 1,
+   "plasmid_fraction": 0.9091
+  },
+  {
+   "stratum": "aph(6)-Id",
+   "contigs": 11,
+   "plasmid_derived": 10,
+   "chromosomal": 1,
+   "plasmid_fraction": 0.9091
+  },
+  {
+   "stratum": "blaCTX-M",
+   "contigs": 11,
+   "plasmid_derived": 10,
+   "chromosomal": 1,
+   "plasmid_fraction": 0.9091
+  },
+  {
+   "stratum": "qacEdelta",
+   "contigs": 12,
+   "plasmid_derived": 10,
+   "chromosomal": 2,
+   "plasmid_fraction": 0.8333
+  },
+  {
+   "stratum": "erm(B)",
+   "contigs": 33,
+   "plasmid_derived": 27,
+   "chromosomal": 6,
+   "plasmid_fraction": 0.8182
+  },
+  {
+   "stratum": "aph(3')-IIIa",
+   "contigs": 18,
+   "plasmid_derived": 14,
+   "chromosomal": 4,
+   "plasmid_fraction": 0.7778
+  },
+  {
+   "stratum": "ant(6)-Ia",
+   "contigs": 16,
+   "plasmid_derived": 12,
+   "chromosomal": 4,
+   "plasmid_fraction": 0.75
+  },
+  {
+   "stratum": "tet(A)",
+   "contigs": 12,
+   "plasmid_derived": 9,
+   "chromosomal": 3,
+   "plasmid_fraction": 0.75
+  },
+  {
+   "stratum": "sat",
+   "contigs": 10,
+   "plasmid_derived": 7,
+   "chromosomal": 3,
+   "plasmid_fraction": 0.7
+  },
+  {
+   "stratum": "aac(6')-Ie/aph(2'')-Ia",
+   "contigs": 16,
+   "plasmid_derived": 11,
+   "chromosomal": 5,
+   "plasmid_fraction": 0.6875
+  },
+  {
+   "stratum": "qnrB",
+   "contigs": 22,
+   "plasmid_derived": 11,
+   "chromosomal": 11,
+   "plasmid_fraction": 0.5
+  },
+  {
+   "stratum": "tet(L)",
+   "contigs": 19,
+   "plasmid_derived": 9,
+   "chromosomal": 10,
+   "plasmid_fraction": 0.4737
+  },
+  {
+   "stratum": "dfrG",
+   "contigs": 15,
+   "plasmid_derived": 6,
+   "chromosomal": 9,
+   "plasmid_fraction": 0.4
+  },
+  {
+   "stratum": "tet(M)",
+   "contigs": 32,
+   "plasmid_derived": 7,
+   "chromosomal": 25,
+   "plasmid_fraction": 0.2188
+  },
+  {
+   "stratum": "blaCMY",
+   "contigs": 18,
+   "plasmid_derived": 1,
+   "chromosomal": 17,
+   "plasmid_fraction": 0.0556
+  },
+  {
+   "stratum": "blaSHV",
+   "contigs": 25,
+   "plasmid_derived": 1,
+   "chromosomal": 24,
+   "plasmid_fraction": 0.04
+  },
+  {
+   "stratum": "fosA",
+   "contigs": 48,
+   "plasmid_derived": 0,
+   "chromosomal": 48,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "oqxB",
+   "contigs": 46,
+   "plasmid_derived": 0,
+   "chromosomal": 46,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "oqxA",
+   "contigs": 45,
+   "plasmid_derived": 0,
+   "chromosomal": 45,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "msr(C)",
+   "contigs": 25,
+   "plasmid_derived": 0,
+   "chromosomal": 25,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "aac(6')-I",
+   "contigs": 25,
+   "plasmid_derived": 0,
+   "chromosomal": 25,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "lsa(A)",
+   "contigs": 25,
+   "plasmid_derived": 0,
+   "chromosomal": 25,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "blaSRT",
+   "contigs": 18,
+   "plasmid_derived": 0,
+   "chromosomal": 18,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "aac(6')",
+   "contigs": 17,
+   "plasmid_derived": 0,
+   "chromosomal": 17,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "blaACT",
+   "contigs": 17,
+   "plasmid_derived": 0,
+   "chromosomal": 17,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "tet(41)",
+   "contigs": 14,
+   "plasmid_derived": 0,
+   "chromosomal": 14,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "silA",
+   "contigs": 12,
+   "plasmid_derived": 0,
+   "chromosomal": 12,
+   "plasmid_fraction": 0.0
+  },
+  {
+   "stratum": "ssmE",
+   "contigs": 10,
+   "plasmid_derived": 0,
+   "chromosomal": 10,
+   "plasmid_fraction": 0.0
+  }
+ ],
+ "family_distribution": {
+  "families_reported": 40,
+  "at_or_above_90pc_plasmid": 15,
+  "at_or_below_10pc_plasmid": 14,
+  "between": 11,
+  "fraction_at_an_extreme": 0.725,
+  "reading": "the distribution is strongly bimodal: determinants are largely either plasmid-borne or chromosomal in this cohort, with few families intermediate"
+ },
+ "glycopeptide_operons": {
+  "vanA_type": {
+   "genes": [
+    "vanA",
+    "vanH-A",
+    "vanR-A",
+    "vanS-A",
+    "vanX-A",
+    "vanY-A",
+    "vanZ-A"
+   ],
+   "n_genes": 7,
+   "contigs": 98,
+   "plasmid_derived": 98,
+   "plasmid_fraction": 1.0
+  },
+  "vanB_type": {
+   "genes": [
+    "vanB",
+    "vanH-B",
+    "vanR-B",
+    "vanS-B",
+    "vanW-B",
+    "vanX-B",
+    "vanY-B"
+   ],
+   "n_genes": 7,
+   "contigs": 14,
+   "plasmid_derived": 0,
+   "plasmid_fraction": 0.0
+  },
+  "vanD_type": {
+   "genes": [
+    "vanD",
+    "vanH-D",
+    "vanR-D",
+    "vanS-D",
+    "vanX-D"
+   ],
+   "n_genes": 5,
+   "contigs": 5,
+   "plasmid_derived": 0,
+   "plasmid_fraction": 0.0
+  },
+  "reading": "vanA-type determinants are plasmid-derived and vanB-type and vanD-type are chromosomal in this cohort, which is the established distinction. The truth assignment uses only alignment against each isolate's own closed reference and has no knowledge of gene identity or function, so this concordance is an independent check on the labelling rather than a new finding about the genes"
+ }
+}

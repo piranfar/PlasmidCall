@@ -1,0 +1,162 @@
+protocol: P1.9 sequence-independence testing
+version: 1.0-FROZEN-BEFORE-EXECUTION
+status: PROPOSED — OWNER APPROVAL REQUIRED. No sequence has been downloaded.
+date: 2026-08-17
+purpose: >
+  Decide, for every candidate biological sample, whether it is independent of every dataset
+  already used by the project. Identifier disjointness is necessary but not sufficient; this
+  protocol supplies the sufficient test.
+
+freeze_attestation: >
+  Every threshold below is taken from published practice and is fixed BEFORE any candidate
+  distance is computed. No threshold may be adjusted after inspecting the distance
+  distribution. If the observed distribution suggests a different threshold, that is recorded
+  as a finding and a protocol amendment — never a silent change.
+
+# ------------------------------------------------------------------ inputs
+comparison_sets:
+  - PG2_436   # public-source plasgraph2 candidate cohort
+  - PLASEVAL_53
+  - CG137
+  - DEV_250   # enters only after the owner-supplied Supplementary Table 1 is ingested
+minimum_acquisition:
+  principle: acquire the least data that can answer the question
+  preferred: assembled genomes (FASTA) or precomputed sketches, NOT raw reads
+  bulk_reads: NOT REQUIRED for this protocol and NOT authorised
+
+# ------------------------------------------------- tools and versions
+tools:
+  sketching:
+    primary: sourmash >= 4.8
+    alternative: mash >= 2.3
+    record: exact version, command line, and database/signature file hashes
+  ani:
+    primary: skani >= 0.2
+    alternative: fastANI >= 1.34
+  alignment_for_replicons:
+    primary: minimap2 >= 2.26 (asm5 preset for replicon-vs-replicon)
+  hashing: SHA-256 over normalised sequence records
+  containerisation: pinned image, digest recorded, as in P1.8B
+
+sketch_parameters:
+  kmer_size: 21              # standard for bacterial genome comparison
+  scaled: 1000               # sourmash scaled; equivalent mash sketch size s=10000
+  mash_sketch_size: 10000
+  seed: 42
+  abundance: false
+  note: parameters are the community defaults for bacterial genome distance; not tuned here
+
+# ------------------------------------------------- the seven tests, in order
+tests:
+  1_exact_accession_equality:
+    on: BioSample, short-read run, long-read run, assembly accession
+    normalisation: whitespace, case, version suffix only
+    outcome_if_hit: SAME_BIOLOGICAL_ISOLATE
+  2_exact_sequence_hashes:
+    on: SHA-256 of the assembly FASTA and of each sorted, case-normalised contig sequence
+    outcome_if_hit: DUPLICATE_SEQUENCE
+  3_sketch_distance:
+    on: whole-genome sketches, all pairs across sets
+    metric: Mash distance / sourmash containment
+    screening_threshold: mash_distance <= 0.05 promotes a pair to test 4
+  4_chromosome_level_distance:
+    on: chromosomal replicons only, plasmids excluded, so plasmid sharing cannot drive
+        a genome-level verdict
+    metric: sketch distance restricted to chromosome sequence
+  5_ani_confirmation:
+    trigger: any pair within 1 percentage point of a decision threshold
+    method: skani or fastANI, whole-genome, both directions, mean reported
+  6_plasmid_replicon_clustering:
+    on: plasmid replicons only
+    method: pairwise minimap2 alignment; cluster by identity x aligned fraction
+    reported: SEPARATELY from genome relatedness. Never merged into one score.
+  7_exact_contig_or_graph_segment_hashes:
+    on: short-read contigs or GFA segments, where both sides have them
+    method: SHA-256 of normalised segment sequence sets; Jaccard over the hash sets
+    note: applicable only where a comparison set has assemblies; not available for DEV_250
+
+# ------------------------------------------------- frozen thresholds
+thresholds:
+  same_isolate_accession: exact match on any archival accession
+  duplicate_sequence: identical assembly SHA-256, or contig-hash Jaccard >= 0.99
+  near_clonal_ani: ANI >= 99.99            # effectively the same isolate re-sequenced
+  same_genome_cluster_ani: ANI >= 99.5     # single-linkage clustering unit
+  genome_screening_mash: 0.05
+  plasmid_related: identity >= 0.95 over >= 0.80 of the shorter replicon
+  plasmid_family_only: shared replicon type or incompatibility group WITHOUT meeting
+                       plasmid_related thresholds
+  independent: none of the above met
+
+# ------------------------------------------------- decision categories
+categories:
+  SAME_BIOLOGICAL_ISOLATE:
+    rule: test 1 hit, or ANI >= 99.99 with matching metadata
+    action: EXCLUDE from independent validation
+  DUPLICATE_SEQUENCE:
+    rule: test 2 hit
+    action: EXCLUDE from independent validation
+  NEAR_CLONAL_ISOLATE:
+    rule: ANI >= 99.99 without an accession match
+    action: EXCLUDE from independent validation
+  SAME_GENOME_CLUSTER:
+    rule: 99.5 <= ANI < 99.99
+    action: RETAIN but assign a shared cluster id; the pair must not be split across
+            train/test, and confidence intervals bootstrap over clusters, not samples
+  RELATED_PLASMID_CONTENT:
+    rule: plasmid_related met while genome ANI < 99.5
+    action: RETAIN. Reported as a separate covariate, never as a genome-level exclusion.
+  COMMON_PLASMID_FAMILY_ONLY:
+    rule: shared replicon family without meeting plasmid_related
+    action: RETAIN. Explicitly NOT an exclusion.
+    justification: >
+      Widespread plasmid families such as IncF are epidemiologically ubiquitous. Excluding
+      every isolate sharing one would remove most clinically relevant genomes and would bias
+      the benchmark toward atypical isolates, which is the opposite of external validity.
+  INDEPENDENT_AT_FROZEN_THRESHOLD:
+    rule: no category above met
+    action: eligible for the primary cohort
+  UNRESOLVED:
+    rule: a required test could not run — missing assembly, failed download, ambiguous metadata
+    action: HOLD. Never silently promoted to independent.
+
+separate_reporting:
+  mandatory: >
+    Genome relatedness and plasmid relatedness are reported as two separate tables and two
+    separate summary statistics. A single blended "relatedness score" is prohibited, because
+    the two have opposite implications: shared chromosome ancestry threatens independence,
+    while shared plasmid content is often the biological signal under study.
+
+# ------------------------------------------------- consequences for statistics
+cluster_level_bootstrap:
+  unit: genome_cluster_id from the 99.5% ANI single-linkage clustering
+  requirement: >
+    Every confidence interval in any external-validation claim resamples clusters, not
+    samples. Report cluster count beside sample count; a 254-sample cohort spanning 40
+    clusters has approximately the power of 40.
+  degenerate_strata: >
+    Where a stratum has near-singleton clusters (e.g. the 30 mycobacteria across ~25 species),
+    report descriptively and state that the interval is not meaningful.
+
+# ------------------------------------------------- sensitivity
+sensitivity_analyses:
+  - name: threshold sensitivity
+    values: repeat clustering at ANI 99.0 and 99.9 beside the frozen 99.5
+    reported: whether any cohort membership or conclusion changes
+  - name: sketch-parameter sensitivity
+    values: k=31 alongside the frozen k=21
+  - name: plasmid-inclusion sensitivity
+    values: genome clustering with and without plasmid sequence, to show the verdict is
+            driven by chromosome ancestry
+
+# ------------------------------------------------- stop conditions
+stop_conditions:
+  - more than 10% of candidate samples end in UNRESOLVED
+  - the frozen thresholds would have to change to obtain a usable cohort
+  - a comparison set cannot be assembled or sketched at all
+  - the primary E. coli cohort falls below 5 independent clusters
+  - DEV_250 accessions remain unavailable at the point of the independence claim
+prohibited:
+  - adjusting a threshold after seeing candidate distances
+  - excluding a sample because it performs poorly
+  - promoting UNRESOLVED to INDEPENDENT to preserve cohort size
+  - merging genome and plasmid relatedness into one score

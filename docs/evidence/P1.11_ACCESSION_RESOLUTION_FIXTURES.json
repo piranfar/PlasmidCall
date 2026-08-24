@@ -1,0 +1,124 @@
+{
+ "suite": "P1.11-CORRECTED-TRUTH-ALL79 accession-resolution fixtures",
+ "module_under_test": "scripts/p1_12/p111_accession_resolution.py",
+ "n": 19,
+ "passed": 19,
+ "failed": 0,
+ "verdict": "PASS",
+ "fixtures": [
+  {
+   "fixture": "1  both replicons resolved via RefSeq-Accn",
+   "expected": "(2, 2)",
+   "observed": "(2, 2)",
+   "pass": true
+  },
+  {
+   "fixture": "1b chromosome/plasmid roles preserved",
+   "expected": "('chromosome', 'plasmid')",
+   "observed": "('chromosome', 'plasmid')",
+   "pass": true
+  },
+  {
+   "fixture": "2  both resolved via GenBank-Accn fallback",
+   "expected": "(2, 2)",
+   "observed": "(2, 2)",
+   "pass": true
+  },
+  {
+   "fixture": "2b THE DEFECT: old code keyed on 'na' and resolved 0",
+   "expected": "True",
+   "observed": "True",
+   "pass": true
+  },
+  {
+   "fixture": "3  RefSeq preferred when both populated and RefSeq is in the FASTA",
+   "expected": "1",
+   "observed": "1",
+   "pass": true
+  },
+  {
+   "fixture": "3b GenBank used when only IT is present in the FASTA",
+   "expected": "1",
+   "observed": "1",
+   "pass": true
+  },
+  {
+   "fixture": "4  version .2 preserved exactly as the key",
+   "expected": "NZ_AP040898.2",
+   "observed": "NZ_AP040898.2",
+   "pass": true
+  },
+  {
+   "fixture": "4b version conflict does NOT silently match",
+   "expected": "0",
+   "observed": "0",
+   "pass": true
+  },
+  {
+   "fixture": "4c and is reported as unresolved",
+   "expected": "no_accession_matches_reference_FASTA",
+   "observed": "no_accession_matches_reference_FASTA",
+   "pass": true
+  },
+  {
+   "fixture": "5  neither accession in the FASTA -> fail closed",
+   "expected": "(0, 1)",
+   "observed": "(0, 1)",
+   "pass": true
+  },
+  {
+   "fixture": "6  two rows claiming one FASTA accession -> fail closed",
+   "expected": "0",
+   "observed": "0",
+   "pass": true
+  },
+  {
+   "fixture": "6b conflict recorded, not guessed",
+   "expected": "duplicate",
+   "observed": "duplicate",
+   "pass": true
+  },
+  {
+   "fixture": "7  chromosome and plasmids coexist correctly",
+   "expected": "(4, 3)",
+   "observed": "(4, 3)",
+   "pass": true
+  },
+  {
+   "fixture": "8  all three plasmid replicons distinct",
+   "expected": "3",
+   "observed": "3",
+   "pass": true
+  },
+  {
+   "fixture": "9  non chromosome/plasmid role is carried through, not coerced",
+   "expected": "unplaced",
+   "observed": "unplaced",
+   "pass": true
+  },
+  {
+   "fixture": "10 both 'na' -> fail closed",
+   "expected": "(0, 1)",
+   "observed": "(0, 1)",
+   "pass": true
+  },
+  {
+   "fixture": "10b both empty -> fail closed",
+   "expected": "0",
+   "observed": "0",
+   "pass": true
+  },
+  {
+   "fixture": "11 diagnostics assert no truth/model input",
+   "expected": "False",
+   "observed": "False",
+   "pass": true
+  },
+  {
+   "fixture": "11b resolver source references no truth/model symbol",
+   "expected": "False",
+   "observed": "False",
+   "pass": true
+  }
+ ]
+}

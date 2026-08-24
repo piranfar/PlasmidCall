@@ -1,0 +1,665 @@
+biosample	taxon	exclusion_stage	exclusion_reason
+SAMN15488480	Citrobacter spp.	ani_vs_consumed	ANI 99.9500 >= 99.5 to consumed genome SAMN03280169
+SAMN21493837	Citrobacter spp.	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN08148189
+SAMN22334927	Citrobacter spp.	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN08148189
+SAMN22334928	Citrobacter spp.	ani_vs_consumed	ANI 99.7200 >= 99.5 to consumed genome SAMN08148189
+SAMN29151494	Citrobacter spp.	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN08148199
+SAMN32251610	Citrobacter spp.	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN08148189
+SAMN32251611	Citrobacter spp.	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN08148189
+SAMN34138108	Citrobacter spp.	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN08148253
+SAMN37529178	Citrobacter spp.	ani_vs_consumed	ANI 99.8000 >= 99.5 to consumed genome SAMN08148199
+SAMN06330174	Enterobacter spp.	ani_vs_consumed	ANI 99.8800 >= 99.5 to consumed genome SAMN02138592
+SAMN06330208	Enterobacter spp.	ani_vs_consumed	ANI 99.8700 >= 99.5 to consumed genome SAMN02138592
+SAMN06330210	Enterobacter spp.	ani_vs_consumed	ANI 99.8700 >= 99.5 to consumed genome SAMN02138592
+SAMN06330212	Enterobacter spp.	ani_vs_consumed	ANI 99.8700 >= 99.5 to consumed genome SAMN02138592
+SAMN06330225	Enterobacter spp.	ani_vs_consumed	ANI 99.8800 >= 99.5 to consumed genome SAMN02138592
+SAMN06330242	Enterobacter spp.	ani_vs_consumed	ANI 99.9100 >= 99.5 to consumed genome SAMN02138592
+SAMN15488699	Enterobacter spp.	ani_vs_consumed	ANI 99.5000 >= 99.5 to consumed genome SAMN03280193
+SAMN15907133	Enterobacter spp.	ani_vs_consumed	ANI 99.5900 >= 99.5 to consumed genome SAMN03280193
+SAMN15907134	Enterobacter spp.	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN02138592
+SAMN15907137	Enterobacter spp.	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280193
+SAMN15907138	Enterobacter spp.	ani_vs_consumed	ANI 99.5900 >= 99.5 to consumed genome SAMN03280193
+SAMN16387637	Enterobacter spp.	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN08148270
+SAMN36728752	Enterobacter spp.	ani_vs_consumed	ANI 99.6200 >= 99.5 to consumed genome SAMN02138554
+SAMN37529174	Enterobacter spp.	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN02138555
+SAMN38122031	Enterobacter spp.	ani_vs_consumed	ANI 99.6200 >= 99.5 to consumed genome SAMN02138554
+SAMN38764419	Enterobacter spp.	ani_vs_consumed	ANI 99.9200 >= 99.5 to consumed genome SAMN08148196
+SAMN38764426	Enterobacter spp.	ani_vs_consumed	ANI 99.9200 >= 99.5 to consumed genome SAMN08148196
+SAMN39551821	Enterobacter spp.	ani_vs_consumed	ANI 99.9500 >= 99.5 to consumed genome SAMN02138592
+SAMN39551829	Enterobacter spp.	ani_vs_consumed	ANI 99.8600 >= 99.5 to consumed genome SAMN08148196
+SAMN39551835	Enterobacter spp.	ani_vs_consumed	ANI 99.8600 >= 99.5 to consumed genome SAMN08148196
+SAMN39551841	Enterobacter spp.	ani_vs_consumed	ANI 99.9200 >= 99.5 to consumed genome SAMN02138592
+SAMN39551843	Enterobacter spp.	ani_vs_consumed	ANI 99.9200 >= 99.5 to consumed genome SAMN02138592
+SAMN39551844	Enterobacter spp.	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN02138546
+SAMN39551847	Enterobacter spp.	ani_vs_consumed	ANI 99.9000 >= 99.5 to consumed genome SAMN02138592
+SAMN39551852	Enterobacter spp.	ani_vs_consumed	ANI 99.8600 >= 99.5 to consumed genome SAMN08148196
+SAMN39551856	Enterobacter spp.	ani_vs_consumed	ANI 99.8400 >= 99.5 to consumed genome SAMN08148309
+SAMN39595400	Enterobacter spp.	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN02138543
+SAMN41094950	Enterobacter spp.	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN03280193
+SAMN41094952	Enterobacter spp.	ani_vs_consumed	ANI 99.7900 >= 99.5 to consumed genome SAMN08148256
+SAMN41094957	Enterobacter spp.	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN02138592
+SAMN46544989	Enterobacter spp.	ani_vs_consumed	ANI 99.8600 >= 99.5 to consumed genome SAMN02138543
+SAMN47173575	Enterobacter spp.	ani_vs_consumed	ANI 99.7600 >= 99.5 to consumed genome SAMN08148270
+SAMN47788331	Enterobacter spp.	ani_vs_consumed	ANI 99.5000 >= 99.5 to consumed genome SAMN04521851
+SAMN47788346	Enterobacter spp.	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN02138600
+SAMN49815532	Enterobacter spp.	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN03280187
+SAMN49815536	Enterobacter spp.	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN03280187
+SAMN50584029	Enterobacter spp.	ani_vs_consumed	ANI 99.9200 >= 99.5 to consumed genome SAMN08148196
+SAMN50713128	Enterobacter spp.	ani_vs_consumed	ANI 99.6300 >= 99.5 to consumed genome SAMN03280191
+SAMN50713129	Enterobacter spp.	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN02138554
+SAMN50713133	Enterobacter spp.	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN03280191
+SAMN50713137	Enterobacter spp.	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN08148235
+SAMN50713140	Enterobacter spp.	ani_vs_consumed	ANI 99.7000 >= 99.5 to consumed genome SAMN03280191
+SAMN51335552	Enterobacter spp.	ani_vs_consumed	ANI 99.9100 >= 99.5 to consumed genome SAMN02138577
+SAMN51335555	Enterobacter spp.	ani_vs_consumed	ANI 99.9200 >= 99.5 to consumed genome SAMN02138577
+SAMN51335561	Enterobacter spp.	ani_vs_consumed	ANI 99.8000 >= 99.5 to consumed genome SAMN02138577
+SAMN51335564	Enterobacter spp.	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN02138577
+SAMN51335571	Enterobacter spp.	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN02138577
+SAMN51335579	Enterobacter spp.	ani_vs_consumed	ANI 99.6400 >= 99.5 to consumed genome SAMN02138577
+SAMN51335581	Enterobacter spp.	ani_vs_consumed	ANI 99.8300 >= 99.5 to consumed genome SAMN02138577
+SAMN51959792	Enterobacter spp.	ani_vs_consumed	ANI 99.9200 >= 99.5 to consumed genome SAMN08148196
+SAMN51959793	Enterobacter spp.	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN02138600
+SAMEA117852476	Enterococcus faecalis	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN16255638
+SAMN23424511	Enterococcus faecalis	ani_vs_consumed	ANI 99.6400 >= 99.5 to consumed genome SAMN16255663
+SAMN23424513	Enterococcus faecalis	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN16255616
+SAMN23424514	Enterococcus faecalis	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN16255616
+SAMN23424515	Enterococcus faecalis	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN16255616
+SAMN31723118	Enterococcus faecalis	ani_vs_consumed	ANI 99.9200 >= 99.5 to consumed genome SAMN16255616
+SAMN33741194	Enterococcus faecalis	ani_vs_consumed	ANI 99.8700 >= 99.5 to consumed genome SAMN16255586
+SAMN33741196	Enterococcus faecalis	ani_vs_consumed	ANI 99.6600 >= 99.5 to consumed genome SAMN16255663
+SAMN33741198	Enterococcus faecalis	ani_vs_consumed	ANI 99.9300 >= 99.5 to consumed genome SAMN16255629
+SAMN33741202	Enterococcus faecalis	ani_vs_consumed	ANI 99.9800 >= 99.5 to consumed genome SAMN16255714
+SAMN33741203	Enterococcus faecalis	ani_vs_consumed	ANI 99.7200 >= 99.5 to consumed genome SAMN16255629
+SAMN33741213	Enterococcus faecalis	ani_vs_consumed	ANI 100.0000 >= 99.5 to consumed genome SAMN16255653
+SAMN33741215	Enterococcus faecalis	ani_vs_consumed	ANI 99.6400 >= 99.5 to consumed genome SAMN16255638
+SAMN33741216	Enterococcus faecalis	ani_vs_consumed	ANI 99.8700 >= 99.5 to consumed genome SAMN16255586
+SAMN33741217	Enterococcus faecalis	ani_vs_consumed	ANI 99.9300 >= 99.5 to consumed genome SAMN16255629
+SAMN33741219	Enterococcus faecalis	ani_vs_consumed	ANI 99.9200 >= 99.5 to consumed genome SAMN16255629
+SAMN33741220	Enterococcus faecalis	ani_vs_consumed	ANI 99.9300 >= 99.5 to consumed genome SAMN16255629
+SAMN38203341	Enterococcus faecalis	ani_vs_consumed	ANI 99.5700 >= 99.5 to consumed genome SAMN16255684
+SAMN38673172	Enterococcus faecalis	ani_vs_consumed	ANI 99.5900 >= 99.5 to consumed genome SAMN16255629
+SAMN39634307	Enterococcus faecalis	ani_vs_consumed	ANI 99.9300 >= 99.5 to consumed genome SAMN16255629
+SAMN48387104	Enterococcus faecalis	ani_vs_consumed	ANI 99.6200 >= 99.5 to consumed genome SAMN16255629
+SAMN48387106	Enterococcus faecalis	ani_vs_consumed	ANI 99.9900 >= 99.5 to consumed genome SAMN16255669
+SAMN48387109	Enterococcus faecalis	ani_vs_consumed	ANI 99.9300 >= 99.5 to consumed genome SAMN16255629
+SAMN48387113	Enterococcus faecalis	ani_vs_consumed	ANI 99.7000 >= 99.5 to consumed genome SAMN16255663
+SAMN48387114	Enterococcus faecalis	ani_vs_consumed	ANI 99.9200 >= 99.5 to consumed genome SAMN16255629
+SAMN23424533	Enterococcus faecium	ani_vs_consumed	ANI 99.6000 >= 99.5 to consumed genome SAMN16255708
+SAMN38673174	Enterococcus faecium	ani_vs_consumed	ANI 99.6200 >= 99.5 to consumed genome SAMN16255723
+SAMD00499388	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN03280398
+SAMD00502020	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280398
+SAMD00574222	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN04521902
+SAMEA115720004	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280388
+SAMEA115720005	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8600 >= 99.5 to consumed genome SAMN03280388
+SAMEA115720006	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280388
+SAMEA115720007	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280388
+SAMEA115720008	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280388
+SAMEA115720009	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720010	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720011	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9000 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720012	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8600 >= 99.5 to consumed genome SAMN03280388
+SAMEA115720013	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8400 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720015	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720016	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280388
+SAMEA115720017	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720018	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720019	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8400 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720020	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280388
+SAMEA115720021	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720022	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8300 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720023	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720025	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720026	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720027	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720028	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720029	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720030	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720031	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720032	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8300 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720033	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720034	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720035	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720036	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8300 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720037	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720038	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN03280415
+SAMEA115720040	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280388
+SAMEA115720043	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.5900 >= 99.5 to consumed genome SAMN03280415
+SAMEA115720044	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720045	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720046	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720047	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8700 >= 99.5 to consumed genome SAMN03280388
+SAMEA115720048	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280398
+SAMEA115720049	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8500 >= 99.5 to consumed genome SAMN03280388
+SAMEA116056800	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521867
+SAMEA117982249	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9100 >= 99.5 to consumed genome SAMN08148306
+SAMEA122715350	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN04521902
+SAMEA122715351	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521902
+SAMN06671973	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN04521902
+SAMN07609131	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN04521902
+SAMN07766632	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521867
+SAMN08624641	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN04521902
+SAMN13324146	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8700 >= 99.5 to consumed genome SAMN03280398
+SAMN14640201	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7000 >= 99.5 to consumed genome SAMN04521902
+SAMN15907136	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521902
+SAMN16387621	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521867
+SAMN16387630	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.6600 >= 99.5 to consumed genome SAMN03280415
+SAMN16387632	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521902
+SAMN16387634	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280398
+SAMN16387635	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521902
+SAMN16387639	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9500 >= 99.5 to consumed genome SAMN04521902
+SAMN16387643	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521902
+SAMN16387655	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521902
+SAMN16387657	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9400 >= 99.5 to consumed genome SAMN04521902
+SAMN17766475	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN08148306
+SAMN18874709	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8600 >= 99.5 to consumed genome SAMN02138579
+SAMN22837225	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.6600 >= 99.5 to consumed genome SAMN08148289
+SAMN28626296	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.6600 >= 99.5 to consumed genome SAMN03280386
+SAMN28626299	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.5900 >= 99.5 to consumed genome SAMN03280386
+SAMN28626318	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.5900 >= 99.5 to consumed genome SAMN03280386
+SAMN29503539	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280388
+SAMN29503697	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN03280398
+SAMN32093417	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280388
+SAMN32542124	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN04521902
+SAMN32542126	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN04521902
+SAMN32676069	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.6300 >= 99.5 to consumed genome SAMN03280386
+SAMN32676116	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.6200 >= 99.5 to consumed genome SAMN03280386
+SAMN32733973	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280388
+SAMN32977652	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN04521902
+SAMN32978013	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9100 >= 99.5 to consumed genome SAMN03280388
+SAMN33288247	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9800 >= 99.5 to consumed genome SAMN02138583
+SAMN34138205	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7000 >= 99.5 to consumed genome SAMN08148289
+SAMN35631498	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN04521902
+SAMN36766249	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7200 >= 99.5 to consumed genome SAMN04521902
+SAMN36766251	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN04521902
+SAMN36766253	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN04521902
+SAMN36766254	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN04521902
+SAMN36766255	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7200 >= 99.5 to consumed genome SAMN04521902
+SAMN37529176	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN03280428
+SAMN37529181	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521902
+SAMN37684971	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521867
+SAMN38122037	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280398
+SAMN38194382	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7200 >= 99.5 to consumed genome SAMN04521902
+SAMN38646027	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280388
+SAMN39334914	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN04521902
+SAMN39724753	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN04521902
+SAMN39976604	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7200 >= 99.5 to consumed genome SAMN03280398
+SAMN39998268	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9000 >= 99.5 to consumed genome SAMN08148306
+SAMN40123786	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521902
+SAMN40123789	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7000 >= 99.5 to consumed genome SAMN08148289
+SAMN40123790	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7000 >= 99.5 to consumed genome SAMN08148289
+SAMN40254322	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280398
+SAMN41020284	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8800 >= 99.5 to consumed genome SAMN08148306
+SAMN41020285	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN08148306
+SAMN41020286	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8300 >= 99.5 to consumed genome SAMN03280388
+SAMN41039775	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN04521902
+SAMN41039776	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7000 >= 99.5 to consumed genome SAMN04521902
+SAMN41094956	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN08148306
+SAMN41094958	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN08148306
+SAMN41327119	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.5000 >= 99.5 to consumed genome SAMN04521898
+SAMN41407427	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7200 >= 99.5 to consumed genome SAMN03280428
+SAMN41479337	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8000 >= 99.5 to consumed genome SAMN03280388
+SAMN41479338	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280388
+SAMN43771769	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7200 >= 99.5 to consumed genome SAMN04521902
+SAMN44033303	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN04521902
+SAMN46342868	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8300 >= 99.5 to consumed genome SAMN03280388
+SAMN46343328	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN04521867
+SAMN46484890	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8600 >= 99.5 to consumed genome SAMN03280388
+SAMN46544977	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8800 >= 99.5 to consumed genome SAMN03280388
+SAMN46544983	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.6700 >= 99.5 to consumed genome SAMN04521902
+SAMN46544984	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9500 >= 99.5 to consumed genome SAMN02138583
+SAMN46544991	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN04521867
+SAMN46862837	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.5700 >= 99.5 to consumed genome SAMN03280386
+SAMN46862838	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.6200 >= 99.5 to consumed genome SAMN03280386
+SAMN46862839	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.5900 >= 99.5 to consumed genome SAMN03280386
+SAMN46862843	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN08148306
+SAMN46862849	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.6200 >= 99.5 to consumed genome SAMN03280386
+SAMN47788345	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.8800 >= 99.5 to consumed genome SAMN03280388
+SAMN48185771	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN03280422
+SAMN48324028	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN04521902
+SAMN48324029	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7200 >= 99.5 to consumed genome SAMN08148306
+SAMN48324033	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.6800 >= 99.5 to consumed genome SAMN04521898
+SAMN48324035	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN04521902
+SAMN48324043	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7200 >= 99.5 to consumed genome SAMN04521902
+SAMN48324044	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7200 >= 99.5 to consumed genome SAMN04521902
+SAMN48324045	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN04521902
+SAMN48561645	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7100 >= 99.5 to consumed genome SAMN04521902
+SAMN48633600	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN04521902
+SAMN49815534	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.6800 >= 99.5 to consumed genome SAMN08148251
+SAMN49815547	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7800 >= 99.5 to consumed genome SAMN03280388
+SAMN49815548	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.5000 >= 99.5 to consumed genome SAMN03280386
+SAMN49983668	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN04521902
+SAMN53681261	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN03280428
+SAMN53681262	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN03280428
+SAMN53681264	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9800 >= 99.5 to consumed genome SAMN04521902
+SAMN53681265	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.9700 >= 99.5 to consumed genome SAMN04521902
+SAMN60211172	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7700 >= 99.5 to consumed genome SAMN04521902
+SAMN60211174	Klebsiella pneumoniae	ani_vs_consumed	ANI 99.7300 >= 99.5 to consumed genome SAMN04521902
+SAMD00501318	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMD01696781	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMD01704708	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMD01704709	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMD01704710	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMD01704711	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA115720014	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA115720024	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA115720039	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA115720041	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA115720042	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA116056799	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA117996173	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA119513739	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA119513748	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA123066261	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA6990795	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA8948756	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN09205472	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN13382564	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN13382596	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN14640188	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15329758	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488602	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15907158	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN16822476	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN17766464	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN17766468	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN17766472	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN17766494	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN17766502	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN17766508	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN18313885	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626224	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626228	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626241	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626242	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626246	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626263	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626275	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626276	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626287	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626300	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626316	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626323	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626329	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626331	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626334	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626335	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626339	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN28626347	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN29503392	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN29503395	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN29503399	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN29503459	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN29503774	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN29512486	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32542116	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32542119	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32542159	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32542161	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676047	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676060	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676061	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676063	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676066	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676075	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676084	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676085	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676088	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676095	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676100	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676111	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676117	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676118	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676123	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676124	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676136	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676138	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676144	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32676150	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33453558	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN34137824	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN34137946	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN34258006	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN36766226	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN36766228	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN37529182	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38049405	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38086284	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38122036	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39334901	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39455267	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39455295	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39595402	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39724754	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39724755	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39724756	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39724757	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39724758	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39724759	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39724760	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39724762	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39725114	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39841886	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39841913	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN40123771	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN40123773	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN40123774	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN40375161	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN41036205	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN41071133	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN41407425	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN41407426	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN42392490	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN42392493	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN42392497	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN43844645	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN43844646	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266152	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266161	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266164	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266166	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266171	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266175	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266189	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266197	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266199	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266200	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266201	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266203	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266216	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266223	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266224	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266234	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266236	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266241	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266244	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44266245	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46342671	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46484920	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46544979	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46544980	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46778009	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862812	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862813	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862814	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862815	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862816	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862818	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862819	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862820	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862821	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862822	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862823	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862824	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862825	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862826	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862827	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862828	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862829	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862830	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862833	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862835	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862836	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862842	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862845	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862846	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862850	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862851	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862852	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862853	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862854	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862855	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46862856	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN47561074	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN48185755	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN48324030	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN48324034	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN49815531	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN50110774	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN50584032	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN50713146	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51215381	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51215382	Klebsiella pneumoniae	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMD00113925	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMD00173594	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMD00574245	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMD00818410	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMD00824839	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMEA111505541	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488572	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488591	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488597	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488648	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488669	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488670	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488704	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488725	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488726	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15907139	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15907141	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15907159	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN16387623	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN16505100	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN19316169	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN21522362	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN26198684	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN26796434	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN26810699	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN30974096	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN30974109	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN30974110	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN30974111	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32093416	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32541572	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32733969	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32745804	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN32978021	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN34137784	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN34137826	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN35677778	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN35677779	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN35677782	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN35677785	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN35677788	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN35677790	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN35677791	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN35677794	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN36773911	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN37527804	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN37529173	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN37529177	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38049406	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38049408	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38122033	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38505510	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38764394	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38764395	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38764408	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38764409	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38764423	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38788847	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551818	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551819	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551820	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551823	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551824	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551825	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551826	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551831	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551836	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551837	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551838	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551840	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551842	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551845	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551848	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551849	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551850	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551851	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551853	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551855	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551857	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551858	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551860	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39551861	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN39595401	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN40254320	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN40254327	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN40921367	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN40921372	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN41020283	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN41036221	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN41036322	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN41094951	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN41094953	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN42392503	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN42392504	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN42392505	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN42392506	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN43321952	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44063878	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44249573	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN44383937	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN45712688	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN45712698	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46343226	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46343228	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46343425	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46544978	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN47788327	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN47788343	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN49005326	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN50584030	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN50713142	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51215377	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51215378	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51215384	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51335550	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51335562	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51335563	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51335566	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51335570	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51335575	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51335577	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51335578	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51335580	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN51959794	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN56510754	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN56510755	Enterobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN29503686	Citrobacter spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN29503651	Citrobacter spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN39842022	Citrobacter spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN29503665	Citrobacter spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN29503658	Citrobacter spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN47788338	Citrobacter spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN51959788	Citrobacter spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN50713121	Citrobacter spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN14640084	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN14640085	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488484	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488486	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488488	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488494	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488495	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488513	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488525	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488527	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488542	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488547	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488548	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488551	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488553	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488574	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488583	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488585	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488592	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488594	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488611	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488626	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488627	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488631	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488675	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN15488679	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN37529179	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN37529183	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38251288	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38562703	Citrobacter spp.	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46474822	Serratia spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48627459	Serratia spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48627460	Serratia spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48627458	Serratia spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN40123782	Serratia spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN40123781	Serratia spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN40123743	Serratia spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN40123735	Serratia spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN40123744	Serratia spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN42382016	Serratia spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN32727621	Serratia spp.	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN36766204	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN30692047	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN36766196	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48144073	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN49510496	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN36766199	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN36766200	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN36766203	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN36766198	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48144084	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN36766201	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48692201	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48144074	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMD00565616	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMD00565591	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48528241	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48144078	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48144072	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN38999328	Enterococcus faecium	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN23424524	Enterococcus faecium	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424525	Enterococcus faecium	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424526	Enterococcus faecium	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424527	Enterococcus faecium	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424529	Enterococcus faecium	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424531	Enterococcus faecium	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424535	Enterococcus faecium	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN46230714	Enterococcus faecalis	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN46230712	Enterococcus faecalis	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN46230707	Enterococcus faecalis	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN47812936	Enterococcus faecalis	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN46230713	Enterococcus faecalis	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48387115	Enterococcus faecalis	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48387111	Enterococcus faecalis	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN48387110	Enterococcus faecalis	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMN40323369	Enterococcus faecalis	ani_within_p113	ANI >= 99.5 to an already-selected isolate
+SAMD00521555	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424510	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424512	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424516	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424517	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424518	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN23424519	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741190	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741192	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741193	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741195	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741197	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741199	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741200	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741201	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741205	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741206	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741208	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741210	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741211	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741212	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741214	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741218	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN33741221	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN37639061	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN37639062	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN37639063	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN37639064	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN37639065	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38203339	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38203340	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38203342	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38203343	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target
+SAMN38203344	Enterococcus faecalis	not_selected	eligible and independent but not chosen by the farthest-point rule within the 25-isolate target

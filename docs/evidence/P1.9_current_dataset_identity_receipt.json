@@ -1,0 +1,107 @@
+{
+ "schema": "p1.9a_dataset_identity_receipt/v1",
+ "generated_utc": "2026-08-17T00:00:00Z",
+ "accessed_utc": "2026-08-17T00:00:00Z",
+ "local_path": "C:\\Users\\vahab\\AppData\\Local\\Temp\\claude\\E--Github-Project-amr-evidence-warehouse\\38c5e1c2-5b1f-426e-844a-9665518b3e5d\\scratchpad\\plasmid-pilot\\predictions.xlsx",
+ "local_filename": "predictions.xlsx",
+ "historical_alias": "Teixeira",
+ "canonical_dataset_name": "Circling in on plasmids - plasmid detection and reconstruction benchmark",
+ "canonical_repository": "https://github.com/broadinstitute/plasmid-detection-benchmark",
+ "canonical_file_path": "data/predictions.xlsx",
+ "pinned_commit": "027ec34050a902c826ca96ec2a89f2f1156a5ac7",
+ "pinned_commit_date_utc": "2026-05-22T13:06:15Z",
+ "file_introducing_commit": "6313b156c96490fef46fdab0fd3d32cbaec407e3",
+ "file_introducing_commit_date_utc": "2025-07-14T14:26:16Z",
+ "blob_id_unchanged_between_commits": true,
+ "paper_doi": "10.1093/bib/bbaf589",
+ "paper_title": "Circling in on plasmids: benchmarking plasmid detection and reconstruction tools for short-read data from diverse species",
+ "paper_venue": "Briefings in Bioinformatics 26(6), 2025",
+ "repository_code_licence": "MIT",
+ "local": {
+  "bytes": 2833328,
+  "md5": "ba8be6b12bd13bbe1b82b32814357f17",
+  "sha1": "0fc63fd174fb51fd3c6cbc62d5097d913a767ace",
+  "sha256": "db558a6775f473662369fb1c358f28530f85883ea3767beb807d031d2646e091",
+  "git_blob_sha1": "b49b0c5b9ec0fee13da168737fa713e307e6b1f8"
+ },
+ "remote_at_pin": {
+  "bytes": 2833328,
+  "md5": "ba8be6b12bd13bbe1b82b32814357f17",
+  "sha1": "0fc63fd174fb51fd3c6cbc62d5097d913a767ace",
+  "sha256": "db558a6775f473662369fb1c358f28530f85883ea3767beb807d031d2646e091",
+  "git_blob_sha1": "b49b0c5b9ec0fee13da168737fa713e307e6b1f8"
+ },
+ "byte_for_byte_identical": true,
+ "git_blob_algorithm": "SHA1(\"blob \" + byte_length + NUL + bytes)",
+ "git_blob_matches_github_reported": true,
+ "structural_fingerprint": {
+  "zip_member_count": 16,
+  "zip_crc_sum": 31834963561,
+  "sheets": [
+   {
+    "name": "Plasmid Detection",
+    "rows": 12796,
+    "cols": 14
+   },
+   {
+    "name": "Plasmid Reconst. (Best Det.)",
+    "rows": 12796,
+    "cols": 4
+   },
+   {
+    "name": "Plasmid Reconstruction",
+    "rows": 12796,
+    "cols": 6
+   },
+   {
+    "name": "Plasmid Characteristics",
+    "rows": 12796,
+    "cols": 10
+   },
+   {
+    "name": "Assembly Statistics",
+    "rows": 12796,
+    "cols": 9
+   },
+   {
+    "name": "Ground-truth",
+    "rows": 12796,
+    "cols": 8
+   },
+   {
+    "name": "Species",
+    "rows": 251,
+    "cols": 2
+   }
+  ],
+  "n_sample_identifiers": 250,
+  "n_species_values": 31,
+  "ground_truth_classes": {
+   "chromosome": 10061,
+   "plasmid": 2734
+  },
+  "ground_truth_has_ambiguous_class": false,
+  "sample_id_prefixes": {
+   "DIV": 68,
+   "MGH": 51,
+   "GCID": 47,
+   "AZ": 42,
+   "UCI": 17,
+   "BIDMC": 12,
+   "BWH": 11,
+   "UCICRE": 2
+  },
+  "ncbi_style_accessions_present": 0
+ },
+ "evidence_locators": [
+  "gh api repos/broadinstitute/plasmid-detection-benchmark/contents/data/predictions.xlsx?ref=027ec34050a902c826ca96ec2a89f2f1156a5ac7",
+  "gh api repos/broadinstitute/plasmid-detection-benchmark/git/blobs/b49b0c5b9ec0fee13da168737fa713e307e6b1f8",
+  "https://pmc.ncbi.nlm.nih.gov/articles/PMC12602193/ (data availability statement)"
+ ],
+ "identity_decision": "IDENTICAL_OBJECT_CONFIRMED",
+ "role": "INTERNAL_DEVELOPMENT_BENCHMARK",
+ "not_valid_as": "INDEPENDENT_VALIDATION for any model fitted or tuned on it",
+ "alias_preserved": true,
+ "raw_file_renamed_or_moved": false,
+ "accession_recovery_path": "Supplementary Table 1 of doi:10.1093/bib/bbaf589 maps internal IDs to BioSample accessions; required for exact-accession overlap testing"
+}

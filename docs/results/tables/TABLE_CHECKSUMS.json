@@ -1,0 +1,55 @@
+{
+ "generated_utc": "2026-08-24",
+ "files": [
+  {
+   "file": "docs/manuscript/tables/Table1_cohort_and_truth.tsv",
+   "bytes": 470,
+   "sha256": "673657a043172e912d5f40b0feaf1776492973478eb803a4128b4f9f44dc5edd"
+  },
+  {
+   "file": "docs/manuscript/tables/Table1_cohort_and_truth.md",
+   "bytes": 747,
+   "sha256": "6d0edab668a677f39924c7f8af44d5c455f9fbf3180bc21a17dd031023560956"
+  },
+  {
+   "file": "docs/manuscript/tables/Table2_predictor_inventory.tsv",
+   "bytes": 7553,
+   "sha256": "6cbd6ef2617cbd2f52c4426143063157bf34dddb1322170d674e0b057f9159bc"
+  },
+  {
+   "file": "docs/manuscript/tables/Table2_predictor_inventory.md",
+   "bytes": 2261,
+   "sha256": "5897116145cf5845e860929434536dd065e8f30a5f0b564622310d3c04299227"
+  },
+  {
+   "file": "docs/manuscript/tables/Table3_arg_bearing.tsv",
+   "bytes": 2676,
+   "sha256": "f34fcd766248a448586eed38b2103732317dbb16bf9ea4ad2044e2c69c52c4eb"
+  },
+  {
+   "file": "docs/manuscript/tables/Table3_arg_bearing.md",
+   "bytes": 2021,
+   "sha256": "848190d1ba1fee06662952fbf7a102cb0a791dfa3965ef63d6e779a4b64ca37e"
+  },
+  {
+   "file": "docs/manuscript/tables/Table4_taxon_stratified.tsv",
+   "bytes": 3544,
+   "sha256": "9d5c376d9c2f68222405bdc2419470f2435fe6c729f888f3b2cec1c4b2e74ddd"
+  },
+  {
+   "file": "docs/manuscript/tables/Table4_taxon_stratified.md",
+   "bytes": 2799,
+   "sha256": "f908d579822e01a34bd463063d7f02acb0c1cbf37a75215a833dd9541bb74317"
+  },
+  {
+   "file": "docs/manuscript/tables/Table5_arg_genomic_context.tsv",
+   "bytes": 1244,
+   "sha256": "60b0b998e27666103225a8a8205f1f7d40f5d29c7dab924d5d14f2db6d09fa13"
+  },
+  {
+   "file": "docs/manuscript/tables/Table5_arg_genomic_context.md",
+   "bytes": 1760,
+   "sha256": "fae5a1e6bcec9ce2e3963c071dc8d85a5b7616dfa0d5984bb42d4880aaeed576"
+  }
+ ]
+}

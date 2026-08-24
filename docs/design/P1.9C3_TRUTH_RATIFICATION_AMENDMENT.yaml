@@ -1,0 +1,32 @@
+# P1.9C3 TRUTH RATIFICATION AMENDMENT — owner decisions recorded, truth status PROVISIONAL -> FROZEN
+amendment_id: P1.9C3_TRUTH_RATIFICATION_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-19'
+authorisation: 'Owner (2026-08-19): "I ratify both P1.9C3 decisions" — verbatim conditions recorded below'
+supersedes_status_of: 'P1.9C3_TRUTH_EXECUTION_AMENDMENT.yaml sha256 dea4c51dc263abdfa3a4ec6024eb07bf37399d0fec520f64b0198f29312db727 (file unchanged; its status_of_results line is superseded by this amendment)'
+
+decision_1_circular_handling:
+  ratified: true
+  rule: 'reference doubling for circular=true Product B replicons, target coordinates folded modulo the ORIGINAL replicon length'
+  owner_condition: 'coverage must be computed after folding on the original replicon length with overlapping intervals merged, so that no double counting occurs'
+  implementation_statement: >
+    Coverage fractions are computed on the QUERY (contig) axis: for each contig and each replicon class the query intervals
+    of all >=0.95-identity alignments are merged (union) before dividing by contig length; an alignment to the second copy
+    of a doubled replicon therefore cannot add coverage beyond the union. Replicon-level classification (step 1) used the
+    single-copy Product B replicon as query, so no doubling is involved there. An explicit assertion that every merged
+    fraction is <= 1.0 is added to the pipeline. Target coordinates are folded modulo replicon length for repeat/location bookkeeping.
+
+decision_2_mobile_plasmid_like_chromosomal:
+  ratified: true
+  owner_condition: 'mobile_plasmid_like_chromosomal is a SECONDARY annotation/flag and must NOT replace the primary chromosome/plasmid truth'
+  implementation_statement: >
+    Contigs meeting the operational rule (chromosomal by frozen margin AND plasmid coverage >= 0.80 within the same isolate)
+    receive primary final_truth_label = chromosome and secondary flag mobile_plasmid_like_chromosomal in the flags column
+    (plus repeat/multi-location flags). The label vocabulary of the primary truth column is therefore
+    {chromosome, plasmid, ambiguous, unmapped, below_min_length}. In the 8-sample cohort the rule fired 0 times, so no
+    primary label changes; the pipeline was corrected and rerun for consistency of receipts.
+
+frozen_thresholds_unchanged: {identity: 0.95, coverage: 0.80, margin: 0.10, min_contig_length: 1000}
+truth_status: FROZEN
+frozen_truth_bundle: 'deliverables/P1.9C3_truth_bundle_<ts>_FROZEN.zip — sha256 recorded in the decision gate and MODEL_VALIDATION_STATUS'
+next_stage_precondition: 'identifier audit (Product A FASTA <-> GFA <-> truth_table contig ids) must be exact and reversible before any Model 1 evaluation'

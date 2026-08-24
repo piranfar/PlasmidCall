@@ -1,0 +1,15 @@
+component	n_executions	status_counts	wall_seconds_median	wall_seconds_IQR	wall_seconds_max	wall_hours_total	cpu_hours_at_declared_8cpu_allocation	peak_RAM	cpu_time	native_output_bytes	note
+Plasmer	79	"{""OK"": 79}"	159.0	156.0-160.0	190.0	3.476	27.81	not recorded	not recorded	1438782357	
+geNomad	79	"{""OK"": 79}"	120.0	119.0-121.5	127.0	2.642	21.14	not recorded	not recorded	6467728628	
+PLASMe	79	"{""OK"": 79}"	111.0	105.5-117.0	135.0	2.445	19.56	not recorded	not recorded	2678773004	
+PlasmidEC	79	"{""OK"": 79}"	98.0	94.0-100.5	109.0	2.138	17.1	not recorded	not recorded	2658095390	
+gplas2	79	"{""OK"": 77, ""FAILED"": 2}"	53.0	35.0-81.0	629.0	1.796	14.37	not recorded	not recorded	839605341	
+RFPlasmid	79	"{""OK"": 79}"	54.0	53.0-56.0	62.0	1.2	9.6	not recorded	not recorded	1978685822	
+HyAsP	79	"{""OK"": 79}"	52.0	52.0-52.0	54.0	1.143	9.14	not recorded	not recorded	1363978158	
+Platon	79	"{""OK"": 79}"	38.0	35.5-39.0	46.0	0.827	6.62	not recorded	not recorded	421530541	
+MOB-recon	79	"{""OK"": 30, ""FAILED"": 49}"	2.0	1.0-48.0	71.0	0.457	3.66	not recorded	not recorded	416306097	execution receipts recorded 49 not-OK; a truth-blind provenance audit established that 47 of those executions completed and produced valid output with a stale FAILED receipt. Reconciled contig-level provenance on the evaluated set: {'RECOVERED_OK': 4553, 'FAILED': 96, 'OK': 2595}. The receipt status is reported here unaltered; the reconciled state is what the evaluation used.
+plASgraph2	79	"{""OK"": 79}"	8.0	8.0-9.0	16.0	0.188	1.5	not recorded	not recorded	117499722	
+PlasmidFinder	79	"{""OK"": 75, ""FAILED"": 4}"	6.0	6.0-6.0	7.0	0.135	1.08	not recorded	not recorded	129973234	
+AMRFinderPlus	79	"{""OK"": 79}"	4.0	4.0-5.0	11.0	0.102	0.82	not recorded	not recorded	0	
+PlaScope	79	"{""OK"": 79}"	1.0	1.0-2.0	3.0	0.031	0.25	not recorded	not recorded	437824918	
+TOTAL (13 components x 79 isolates)	1027					16.58	132.64	not recorded	not recorded		summed per-execution wall time; the panel ran concurrently so elapsed time was lower. CPU-hours are an allocation-based upper bound (--cpus=8), not a measurement.

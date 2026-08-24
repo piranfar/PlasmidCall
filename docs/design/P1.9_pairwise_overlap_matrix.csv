@@ -1,0 +1,7 @@
+dataset_a,dataset_b,exact_identifier_overlaps,status,provisional,shared_accessions
+DEV_250,PLASEVAL_53,0,INDEPENDENT_BY_IDENTIFIER,YES - sequence relatedness not tested,
+DEV_250,PG2_436,0,INDEPENDENT_BY_IDENTIFIER,YES - sequence relatedness not tested,
+DEV_250,CG137,0,INDEPENDENT_BY_IDENTIFIER,YES - sequence relatedness not tested,
+PLASEVAL_53,PG2_436,0,INDEPENDENT_BY_IDENTIFIER,YES - sequence relatedness not tested,
+PLASEVAL_53,CG137,0,INDEPENDENT_BY_IDENTIFIER,YES - sequence relatedness not tested,
+PG2_436,CG137,1,EXACT_SAMPLE_OVERLAP,YES - sequence relatedness not tested,SAMN02700075

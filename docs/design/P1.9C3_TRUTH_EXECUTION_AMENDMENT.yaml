@@ -1,0 +1,97 @@
+# P1.9C3 TRUTH-MAPPING EXECUTION AMENDMENT
+# Frozen and hashed BEFORE any reference download, alignment or label was produced.
+# Operationalises the frozen truth rules for the 8-sample Tier-1 cohort. No threshold is new:
+# every numeric threshold below is the frozen P1.9C2 / truth-protocol value.
+amendment_id: P1.9C3_TRUTH_EXECUTION_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-19'
+authorisation: 'Owner: "start the truth-mapping stage" (2026-08-19). Design choices marked DECISION below are prospective and are held PROVISIONAL until owner ratification.'
+
+preserved_frozen_hashes_unchanged:
+  assembly_protocol: '883a1034f1e193f4388d7d5e93c407d4a687419ed333c783c7250b5f4816e34b'
+  truth_protocol: 'e57e5594a25f0b90d685ede0fac104958fc24e3472c05e69e05dbe792ea4f144'
+  normalisation_amendment: 'c9cda44a718dc708a4598317d5546fe42afad1206e86ae544acba9d3ff95748b'
+  cloud_execution_amendment: '82d408fa3747b18163bbf0972b520fd2dc586143ace14adffca90687072e93e2'
+  phaseB_bundle_zip: '2f728c5ddfee1de3510751f5fd2b085f878ebac2d8e140d827f95d0abd193081'
+
+inputs:
+  product_A: 'assemblies/shortread/<sample>/shortread.fasta (Model 1 input; NEVER modified)'
+  product_B: 'assemblies/hybrid/<sample>/hybrid.fasta (own-sample hybrid reference; sha256 per P1.9C2_phaseB_manifest.tsv)'
+  public_closed_references:   # RefSeq Complete Genome of the SAME BioSample; permitted input class "public assemblies and closed chromosome/plasmid references"
+    robertson-benchmark_ecol-SAMD00056131: GCF_002357895.1
+    robertson-benchmark_ecol-SAMN02991226: GCF_001420955.1
+    robertson-benchmark_ecol-SAMN04014847: GCF_002787215.1
+    robertson-benchmark_ecol-SAMN04014852: GCF_002788295.1
+    robertson-benchmark_ecol-SAMN04014855: GCF_002787315.1
+    robertson-benchmark_ecol-SAMN04014856: GCF_002788115.1
+    robertson-benchmark_ecol-SAMN04014858: GCF_002796585.1
+    robertson-benchmark_ecol-SAMN04014860: GCF_002796445.1
+  reference_acquisition: 'NCBI genomes FTP: *_genomic.fna.gz + *_assembly_report.txt, md5 verified against md5checksums.txt, then SHA-256; replicon role (Chromosome/Plasmid) and name taken from the assembly_report "Assigned-Molecule-Location/Type" column, never from size'
+  prohibited_inputs_reaffirmed: 'no plasgraph2 GFA/CSV/derived tables; no MOB-recon/gplasCC/Model 1 output'
+
+environment:
+  image: 'p19c2-cleanroom:1.0 sha256:59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20 (local Docker Desktop, same image ID as OCI)'
+  aligner: 'minimap2 2.28-r1209, preset asm5, -c --cs (frozen template "minimap2 -x asm5 -c --cs <REF> <QUERY>")'
+  evalue: 'NOT APPLICABLE (minimap2 has no e-value); recorded explicitly as required. Alignment identity = PAF col10 (matches) / col11 (alignment block length); mapq retained per alignment'
+  circular_handling: 'DECISION - "double the reference": every circular Product B replicon (Unicycler header circular=true) is concatenated with itself before indexing; alignment coordinates are folded modulo replicon length; method recorded per sample'
+
+# ---------------------------------------------------------------- step 1: replicon classification of Product B (reference evidence, not size)
+replicon_classification:
+  method: 'minimap2 asm5 of each Product B replicon (query) against the sample s own RefSeq closed genome (target, replicons pre-labelled chromosome/plasmid from the assembly report)'
+  identity_threshold: 0.95        # frozen
+  covered_fraction_threshold: 0.80  # frozen; merged non-overlapping intervals on the Product B replicon
+  ambiguity_margin: 0.10          # frozen
+  rule: >
+    chromosome_fraction >= 0.80 and chromosome_fraction - plasmid_fraction >= 0.10 -> chromosome;
+    plasmid_fraction >= 0.80 and plasmid_fraction - chromosome_fraction >= 0.10 -> plasmid;
+    both >= 0.80 with |diff| < 0.10 -> ambiguous_replicon;
+    neither >= 0.80 -> unresolved_replicon (retained; length, circularity, depth recorded; NEVER discarded, NEVER assumed chromosome)
+  size_based_assignment: PROHIBITED
+  circular_candidates_interpretation: 'circular=true alone never confers a class; a circular replicon labelled plasmid here is a plasmid BY REFERENCE EVIDENCE at 0.95/0.80'
+
+# ---------------------------------------------------------------- step 2: competitive truth mapping of Product A contigs
+truth_mapping:
+  query: Product A contigs (all; contigs < 1000 bp reported separately with label below_min_length, never silently dropped)
+  reference: 'single competitive reference = ALL Product B replicons of the same sample (doubled if circular), each carrying its step-1 class'
+  identity_threshold: 0.95
+  query_coverage_threshold: 0.80    # fraction of CONTIG length, merged non-overlapping intervals per class
+  interval_merging: 'merge overlapping alignment intervals on the contig within each class; never sum overlaps'
+  ambiguity_margin: 0.10
+  minimum_contig_length: 1000
+  labels: [plasmid, chromosome, mobile_plasmid_like_chromosomal, ambiguous, unmapped, below_min_length]   # frozen P1.9C2 label set (+ the reporting-only length bin); truth-protocol synonyms: ambiguous=ambiguous_shared, unmapped=unmapped_failed
+  rules_in_order:
+    - 'contig_length < 1000 -> below_min_length (reported separately)'
+    - 'chr >= 0.80 and pla >= 0.80 and |chr - pla| < 0.10 -> ambiguous (reason: both_classes_covered_within_margin)'
+    - 'chr >= 0.80 and pla >= 0.80 and chr - pla >= 0.10 -> mobile_plasmid_like_chromosomal (reason: chromosomal_location_with_plasmid_like_sequence)   # DECISION - operational definition below'
+    - 'chr >= 0.80 and pla < 0.80 -> chromosome'
+    - 'pla >= 0.80 and chr < 0.80 -> plasmid'
+    - 'best-covered class is unresolved_replicon/ambiguous_replicon (>= 0.80) -> ambiguous (reason: reference_replicon_unclassified)'
+    - 'neither >= 0.80 -> unmapped'
+  mobile_plasmid_like_chromosomal_definition: >
+    DECISION (prospective, uses only frozen thresholds): a contig whose competitive location is chromosomal by the frozen margin
+    (chromosome fraction >= 0.80 and higher than the plasmid fraction by >= 0.10) but which ALSO meets the plasmid coverage
+    threshold (>= 0.80 at >= 0.95 identity against a reference-evidenced plasmid replicon of the SAME isolate).
+    The "independent mobile-element evidence" is therefore plasmid-replicon sequence identity within the same isolate, not
+    a Model 1 prediction and not an external database. Contigs matching this rule are ALSO flagged repeat/multi-location.
+  repeat_rule: 'a contig with >= 0.80 coverage at > 1 distinct reference location (any class) is flagged repeat with multiplicity retained'
+  reported_anomalies: [multi_mapping, repeat_shared, spans_replicon_boundary, insufficient_coverage, discordant_reference_evidence]
+
+# ---------------------------------------------------------------- outputs
+outputs_per_sample:
+  - references/<sample>/<GCF>_genomic.fna.gz + assembly_report + md5/sha256 receipt
+  - truth/<sample>/productB_replicon_manifest.tsv     # replicon, length, circular, depth, chr_frac, pla_frac, class, evidence hits
+  - truth/<sample>/competitive_alignment.paf           # raw minimap2 output, hashed
+  - truth/<sample>/truth_table.tsv                     # contig_record_fields of the truth protocol
+  - truth/<sample>/ambiguity_table.tsv
+  - truth/<sample>/receipt.json                        # commands, image id, hashes of every input/output, timings
+cohort_outputs:
+  - deliverables/P1.9C3_truth_summary.tsv (label counts per sample; contigs and bases)
+  - deliverables/P1.9C3_replicon_manifest_all.tsv
+  - deliverables/P1.9C3_truth_bundle_<ts>.zip + SHA256SUMS
+
+prohibitions:
+  - running Model 1, gplasCC, MOB-recon or any comparator
+  - adjusting any threshold after seeing labels
+  - excluding any sample or contig for performance reasons
+  - forcing ambiguous or unmapped into a binary class
+status_of_results: 'PROVISIONAL truth until the two DECISION items above are ratified by the owner; if either is rejected the pipeline is rerun under the ratified rule with this file superseded, not edited'

@@ -1,0 +1,147 @@
+{
+ "n": 20,
+ "n_pass": 20,
+ "n_fail": 0,
+ "fixtures": [
+  {
+   "n": 4,
+   "fixture": "image IDs all match",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "n": 4,
+   "fixture": "image-ID mismatch is caught (critical tool)",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 4,
+   "fixture": "missing image is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 1,
+   "fixture": "all external-database tools present and archives match",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "n": 2,
+   "fixture": "one required external database directory missing is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 2,
+   "fixture": "external database archive hash mismatch is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 3,
+   "fixture": "embedded-database tools pass with NO external directory",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "n": 3,
+   "fixture": "embedded tool missing its init receipt is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 3,
+   "fixture": "embedded tool with missing image is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 7,
+   "fixture": "environment files match the as-executed baseline",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "n": 7,
+   "fixture": "wrong environment path is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 10,
+   "fixture": "stale/incorrect prior baseline is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 5,
+   "fixture": "derived runner matching the frozen receipt passes",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "n": 5,
+   "fixture": "runner hash mismatch is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 11,
+   "fixture": "derived runner with a SCIENTIFIC-COMMAND change is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 6,
+   "fixture": "parser version mismatch is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 6,
+   "fixture": "classification vocabulary change is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 8,
+   "fixture": "replay match (reordered per-read rows still pass)",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "n": 9,
+   "fixture": "replay mismatch (a record actually differs) is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "n": 9,
+   "fixture": "replay mismatch in the ORDERED summary is caught",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  }
+ ]
+}

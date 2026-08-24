@@ -1,0 +1,46 @@
+{
+ "analysis": "PF08 truth-definition sensitivity, v1.2-General",
+ "primary": {
+  "PPV": 0.9769888231426693,
+  "recall": 0.6630968317715306
+ },
+ "all_settings": [
+  {
+   "setting": "PRIMARY (frozen)",
+   "n_resolved": 9371,
+   "PPV": 0.9769888231426693,
+   "recall": 0.6630968317715306,
+   "meets_both_floors": true
+  },
+  {
+   "setting": "strict id=0.97 cov=0.85",
+   "n_resolved": 9362,
+   "PPV": 0.9769129287598944,
+   "recall": 0.6629364368845121,
+   "meets_both_floors": true
+  },
+  {
+   "setting": "permissive id=0.90 cov=0.70",
+   "n_resolved": 9378,
+   "PPV": 0.9770190413657256,
+   "recall": 0.6628062360801782,
+   "meets_both_floors": true
+  },
+  {
+   "setting": "margin=0.05",
+   "n_resolved": 9371,
+   "PPV": 0.9769888231426693,
+   "recall": 0.6630968317715306,
+   "meets_both_floors": true
+  },
+  {
+   "setting": "margin=0.15",
+   "n_resolved": 9370,
+   "PPV": 0.9769888231426693,
+   "recall": 0.6630968317715306,
+   "meets_both_floors": true
+  }
+ ],
+ "endpoint_holds_under_every_setting": true,
+ "no_threshold_selected": "all four frozen settings reported; none adopted"
+}

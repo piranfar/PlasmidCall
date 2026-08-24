@@ -1,0 +1,1137 @@
+{
+ "checks": [
+  {
+   "check": "exactly one row per assembled contig",
+   "pass": true,
+   "detail": "all reconcile"
+  },
+  {
+   "check": "no duplicate (isolate, contig_id) keys",
+   "pass": true,
+   "detail": "19320 rows, 19320 unique"
+  },
+  {
+   "check": "row counts reconcile with assembly FASTA files",
+   "pass": true,
+   "detail": "fasta=19320 rows=19320"
+  },
+  {
+   "check": "every panel call is within the frozen 7-term vocabulary",
+   "pass": true,
+   "detail": "6 distinct values, all in vocabulary"
+  },
+  {
+   "check": "terminal tool failures surface as FAILED, not as a call",
+   "pass": true,
+   "detail": "4789 FAILED tool-contig cells"
+  },
+  {
+   "check": "all required panel-call columns exist",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "score availability is explicit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "every NaN or missing score maps to model_abstain",
+   "pass": true,
+   "detail": "0 violations"
+  },
+  {
+   "check": "no abstention maps to a Boolean negative",
+   "pass": true,
+   "detail": "0 violations"
+  },
+  {
+   "check": "annotation_state uses only the locked vocabulary",
+   "pass": true,
+   "detail": "['ok']"
+  },
+  {
+   "check": "ARG_bearing_bool is nullable",
+   "pass": true,
+   "detail": "['false', 'true']"
+  },
+  {
+   "check": "no row has invalid annotation plus ARG_bearing_bool=false",
+   "pass": true,
+   "detail": "0 violations"
+  },
+  {
+   "check": "AMRFinder failure states propagate to every relevant contig",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "successful zero-hit isolates remain ok",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "router and model abstention are separate fields",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "no truth field or reference-derived contig label is consumed",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "reconciliation": [
+  {
+   "sample": "SAMD00499712",
+   "fasta_contigs": 190,
+   "rows": 190,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMD00565567",
+   "fasta_contigs": 293,
+   "rows": 293,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMD00577372",
+   "fasta_contigs": 118,
+   "rows": 118,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMD00577373",
+   "fasta_contigs": 74,
+   "rows": 74,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMD00623430",
+   "fasta_contigs": 228,
+   "rows": 228,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMD00748008",
+   "fasta_contigs": 81,
+   "rows": 81,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMEA117852477",
+   "fasta_contigs": 195,
+   "rows": 195,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMEA121008655",
+   "fasta_contigs": 77,
+   "rows": 77,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN10435561",
+   "fasta_contigs": 75,
+   "rows": 75,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN10435572",
+   "fasta_contigs": 139,
+   "rows": 139,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN12405233",
+   "fasta_contigs": 73,
+   "rows": 73,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN13382572",
+   "fasta_contigs": 406,
+   "rows": 406,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN13382579",
+   "fasta_contigs": 216,
+   "rows": 216,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN13382581",
+   "fasta_contigs": 187,
+   "rows": 187,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN13382597",
+   "fasta_contigs": 239,
+   "rows": 239,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN15488622",
+   "fasta_contigs": 48,
+   "rows": 48,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN17766463",
+   "fasta_contigs": 126,
+   "rows": 126,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN17766480",
+   "fasta_contigs": 226,
+   "rows": 226,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN17766507",
+   "fasta_contigs": 171,
+   "rows": 171,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN18917024",
+   "fasta_contigs": 116,
+   "rows": 116,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN22837217",
+   "fasta_contigs": 74,
+   "rows": 74,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN23424528",
+   "fasta_contigs": 59,
+   "rows": 59,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN23424532",
+   "fasta_contigs": 166,
+   "rows": 166,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN23424534",
+   "fasta_contigs": 134,
+   "rows": 134,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN23485811",
+   "fasta_contigs": 93,
+   "rows": 93,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN26198497",
+   "fasta_contigs": 169,
+   "rows": 169,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN26198498",
+   "fasta_contigs": 107,
+   "rows": 107,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN26567300",
+   "fasta_contigs": 226,
+   "rows": 226,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN26567301",
+   "fasta_contigs": 174,
+   "rows": 174,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN26796324",
+   "fasta_contigs": 222,
+   "rows": 222,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN26796377",
+   "fasta_contigs": 235,
+   "rows": 235,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN26796439",
+   "fasta_contigs": 130,
+   "rows": 130,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN28626304",
+   "fasta_contigs": 81,
+   "rows": 81,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN29503689",
+   "fasta_contigs": 184,
+   "rows": 184,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN29503815",
+   "fasta_contigs": 148,
+   "rows": 148,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN30692055",
+   "fasta_contigs": 259,
+   "rows": 259,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN30974101",
+   "fasta_contigs": 112,
+   "rows": 112,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN30974103",
+   "fasta_contigs": 198,
+   "rows": 198,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN32542113",
+   "fasta_contigs": 166,
+   "rows": 166,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN32676082",
+   "fasta_contigs": 177,
+   "rows": 177,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN32762131",
+   "fasta_contigs": 54,
+   "rows": 54,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN33238824",
+   "fasta_contigs": 71,
+   "rows": 71,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN33404193",
+   "fasta_contigs": 38,
+   "rows": 38,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN33434791",
+   "fasta_contigs": 37,
+   "rows": 37,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN33741191",
+   "fasta_contigs": 26,
+   "rows": 26,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN33741207",
+   "fasta_contigs": 56,
+   "rows": 56,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN33741209",
+   "fasta_contigs": 77,
+   "rows": 77,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN33741222",
+   "fasta_contigs": 72,
+   "rows": 72,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN35638176",
+   "fasta_contigs": 39,
+   "rows": 39,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN35676739",
+   "fasta_contigs": 63,
+   "rows": 63,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN35677795",
+   "fasta_contigs": 173,
+   "rows": 173,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN36766197",
+   "fasta_contigs": 266,
+   "rows": 266,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN36766202",
+   "fasta_contigs": 313,
+   "rows": 313,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN36766205",
+   "fasta_contigs": 253,
+   "rows": 253,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN36766227",
+   "fasta_contigs": 132,
+   "rows": 132,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN37639060",
+   "fasta_contigs": 198,
+   "rows": 198,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN37639065",
+   "fasta_contigs": 13,
+   "rows": 13,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN38182635",
+   "fasta_contigs": 84,
+   "rows": 84,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN38203345",
+   "fasta_contigs": 33,
+   "rows": 33,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN38231263",
+   "fasta_contigs": 40,
+   "rows": 40,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN38562723",
+   "fasta_contigs": 64,
+   "rows": 64,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN38673182",
+   "fasta_contigs": 31,
+   "rows": 31,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN38999337",
+   "fasta_contigs": 97,
+   "rows": 97,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN38999338",
+   "fasta_contigs": 213,
+   "rows": 213,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39334912",
+   "fasta_contigs": 47,
+   "rows": 47,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39551827",
+   "fasta_contigs": 69,
+   "rows": 69,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39551828",
+   "fasta_contigs": 22,
+   "rows": 22,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39551830",
+   "fasta_contigs": 36,
+   "rows": 36,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39551832",
+   "fasta_contigs": 119,
+   "rows": 119,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39551833",
+   "fasta_contigs": 35,
+   "rows": 35,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39551834",
+   "fasta_contigs": 53,
+   "rows": 53,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39551839",
+   "fasta_contigs": 204,
+   "rows": 204,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39551846",
+   "fasta_contigs": 86,
+   "rows": 86,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39551854",
+   "fasta_contigs": 62,
+   "rows": 62,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39551859",
+   "fasta_contigs": 63,
+   "rows": 63,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39551862",
+   "fasta_contigs": 128,
+   "rows": 128,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39634308",
+   "fasta_contigs": 82,
+   "rows": 82,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39634309",
+   "fasta_contigs": 33,
+   "rows": 33,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39634310",
+   "fasta_contigs": 92,
+   "rows": 92,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39724761",
+   "fasta_contigs": 188,
+   "rows": 188,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39888444",
+   "fasta_contigs": 56,
+   "rows": 56,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39939912",
+   "fasta_contigs": 35,
+   "rows": 35,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN39998258",
+   "fasta_contigs": 45,
+   "rows": 45,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN40123736",
+   "fasta_contigs": 65,
+   "rows": 65,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN40123745",
+   "fasta_contigs": 77,
+   "rows": 77,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN40123770",
+   "fasta_contigs": 237,
+   "rows": 237,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN40323370",
+   "fasta_contigs": 83,
+   "rows": 83,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN40323371",
+   "fasta_contigs": 171,
+   "rows": 171,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN41071126",
+   "fasta_contigs": 72,
+   "rows": 72,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN41071142",
+   "fasta_contigs": 49,
+   "rows": 49,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN41479334",
+   "fasta_contigs": 43,
+   "rows": 43,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN42382017",
+   "fasta_contigs": 65,
+   "rows": 65,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN42392509",
+   "fasta_contigs": 104,
+   "rows": 104,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN43047201",
+   "fasta_contigs": 43,
+   "rows": 43,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN43844647",
+   "fasta_contigs": 112,
+   "rows": 112,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN44510955",
+   "fasta_contigs": 121,
+   "rows": 121,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN44589911",
+   "fasta_contigs": 106,
+   "rows": 106,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN45712690",
+   "fasta_contigs": 84,
+   "rows": 84,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46230708",
+   "fasta_contigs": 107,
+   "rows": 107,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46230709",
+   "fasta_contigs": 58,
+   "rows": 58,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46230710",
+   "fasta_contigs": 65,
+   "rows": 65,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46343359",
+   "fasta_contigs": 98,
+   "rows": 98,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46474773",
+   "fasta_contigs": 112,
+   "rows": 112,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46474823",
+   "fasta_contigs": 120,
+   "rows": 120,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46474946",
+   "fasta_contigs": 74,
+   "rows": 74,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46474952",
+   "fasta_contigs": 145,
+   "rows": 145,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46474961",
+   "fasta_contigs": 73,
+   "rows": 73,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46544982",
+   "fasta_contigs": 176,
+   "rows": 176,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46716616",
+   "fasta_contigs": 429,
+   "rows": 429,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46716619",
+   "fasta_contigs": 234,
+   "rows": 234,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46716648",
+   "fasta_contigs": 309,
+   "rows": 309,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46716649",
+   "fasta_contigs": 254,
+   "rows": 254,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46778011",
+   "fasta_contigs": 364,
+   "rows": 364,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46862811",
+   "fasta_contigs": 170,
+   "rows": 170,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46862817",
+   "fasta_contigs": 166,
+   "rows": 166,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46862834",
+   "fasta_contigs": 143,
+   "rows": 143,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46862848",
+   "fasta_contigs": 134,
+   "rows": 134,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN46897905",
+   "fasta_contigs": 121,
+   "rows": 121,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN47264607",
+   "fasta_contigs": 48,
+   "rows": 48,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN47264642",
+   "fasta_contigs": 73,
+   "rows": 73,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN47788335",
+   "fasta_contigs": 134,
+   "rows": 134,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN47788336",
+   "fasta_contigs": 118,
+   "rows": 118,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48144070",
+   "fasta_contigs": 229,
+   "rows": 229,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48144087",
+   "fasta_contigs": 64,
+   "rows": 64,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48185768",
+   "fasta_contigs": 152,
+   "rows": 152,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48324032",
+   "fasta_contigs": 249,
+   "rows": 249,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48324061",
+   "fasta_contigs": 259,
+   "rows": 259,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48387103",
+   "fasta_contigs": 228,
+   "rows": 228,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48387105",
+   "fasta_contigs": 99,
+   "rows": 99,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48387112",
+   "fasta_contigs": 64,
+   "rows": 64,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48451385",
+   "fasta_contigs": 237,
+   "rows": 237,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48541670",
+   "fasta_contigs": 369,
+   "rows": 369,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48668204",
+   "fasta_contigs": 282,
+   "rows": 282,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48753775",
+   "fasta_contigs": 51,
+   "rows": 51,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48790648",
+   "fasta_contigs": 47,
+   "rows": 47,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN48790898",
+   "fasta_contigs": 68,
+   "rows": 68,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN49384630",
+   "fasta_contigs": 326,
+   "rows": 326,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN49850453",
+   "fasta_contigs": 119,
+   "rows": 119,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN49850454",
+   "fasta_contigs": 25,
+   "rows": 25,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN49850455",
+   "fasta_contigs": 30,
+   "rows": 30,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN49850456",
+   "fasta_contigs": 32,
+   "rows": 32,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN49850457",
+   "fasta_contigs": 40,
+   "rows": 40,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN49850458",
+   "fasta_contigs": 48,
+   "rows": 48,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN49947234",
+   "fasta_contigs": 172,
+   "rows": 172,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN50584031",
+   "fasta_contigs": 224,
+   "rows": 224,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN50713126",
+   "fasta_contigs": 51,
+   "rows": 51,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN51335551",
+   "fasta_contigs": 170,
+   "rows": 170,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN51335576",
+   "fasta_contigs": 119,
+   "rows": 119,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN54531395",
+   "fasta_contigs": 61,
+   "rows": 61,
+   "annotation_state": "ok",
+   "note": ""
+  },
+  {
+   "sample": "SAMN56510720",
+   "fasta_contigs": 58,
+   "rows": 58,
+   "annotation_state": "ok",
+   "note": ""
+  }
+ ],
+ "verdict": "PASS"
+}

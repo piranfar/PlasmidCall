@@ -1,0 +1,60 @@
+# P1.9C4 MODEL 1 INFERENCE AMENDMENT — full 12-tool inference on the 8 Tier-1 Product A assemblies (OCI)
+# Frozen and hashed BEFORE any inference image was built, any database downloaded, or any tool executed.
+amendment_id: P1.9C4_MODEL1_INFERENCE_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-19'
+authorisation: 'Owner: Option A approved (2026-08-19) — full 12-tool inference for Model 1 on the existing OCI instance/volume; no new OCI resources'
+
+preserved_frozen_hashes_unchanged:
+  truth_bundle_FROZEN: 'c2c7a1aa4e49a6d47dd2ea10d808bf7fa09ea52155604541a6e7919fb9c90eda'
+  truth_ratification_amendment: 'b3a57a545d9378f69563815d2196a9a7d47e71d6ed35eee0a636b914a20d5605'
+  truth_execution_amendment: 'dea4c51dc263abdfa3a4ec6024eb07bf37399d0fec520f64b0198f29312db727'
+  assembly_protocol: '883a1034f1e193f4388d7d5e93c407d4a687419ed333c783c7250b5f4816e34b'
+  cloud_execution_amendment: '82d408fa3747b18163bbf0972b520fd2dc586143ace14adffca90687072e93e2'
+  development_dataset_predictions_xlsx: 'db558a6775f473662369fb1c358f28530f85883ea3767beb807d031d2646e091'
+  frozen_images_untouched: ['p19c2-cleanroom:1.0 sha256:59230d354a2a...', 'p19c2-normalize:1.0 sha256:6e46960381c9...']
+
+model_1_definition_source:
+  bundle: 'plasmid_model1_P1-P1.7_reproducibility_bundle_2026-08-16.zip (05_models.py, 08_p17_frozen.py)'
+  feature_schema_12_tools_exact_column_names: [HyAsP, MOB-recon, PLASMe, PlaScope, Plasmer, PlasmidEC, PlasmidFinder, Platon, RFPlasmid, geNomad, gplas2, plASgraph2]
+  value_vocabulary_per_tool: 'exactly the dev-set codings: plasmid | chromosome | unknown | unclassified | repeat (abstention set = {unknown, unclassified, repeat}); plus the explicit non-value states FAILED and MISSING introduced here (never mapped to a class or to zero)'
+  m0_rule_frozen: 'n_valid>0 and agreement>=0.90 -> majority class, else unresolved (unfitted)'
+  m2_frozen_spec: 'HistGradientBoostingClassifier(max_depth=3,max_iter=200,lr=0.06,min_samples_leaf=25,l2=1.0), featureset F_full_no_taxon (12 one-hot tool calls + 12 abstention indicators + n_valid,n_plasmid,n_chrom,n_abstain,frac_plasmid,frac_chrom,agreement + SR contig length,log10_len + log10(Number of SR contigs)), seed 20260816'
+  panel_reduction: PROHIBITED
+  feature_replacement_or_imputation: PROHIBITED
+  retraining_recalibration_threshold_tuning: PROHIBITED
+
+inputs_truth_blind:
+  product_A_fasta: 'assemblies/shortread/<sample>/shortread.fasta (8; sha256 = frozen handoff hashes)'
+  product_A_gfa: 'assemblies/shortread/<sample>/shortread.gfa (native Unicycler 0.5.1 graph; for HyAsP, gplas2, plASgraph2)'
+  contigs_run: 'ALL contigs of each Product A assembly are given to every tool (2,070 contigs); the >=1 kb rule is applied only at evaluation'
+  truth_exposure: 'NONE. The truth bundle is transferred to OCI only into a separate directory (truth_hold/) that no inference container mounts; no truth file is read by any inference or parser step. Verified by mount lists in receipts.'
+  species_option: 'Escherichia coli for species-aware tools (PlasmidEC, RFPlasmid Enterobacteriaceae, PlaScope E. coli DB) — matches the paper (species set per assembly)'
+  number_of_sr_contigs_feature: 'count of Product A contigs >= 1,000 bp per sample (matches the dev-set column exactly for 174/250 samples, within ±4 for the rest; FUNCTIONALLY_COMPATIBLE; M2-only feature)'
+
+tool_panel: 'see docs/plans/P1.9C4_tool_compatibility_matrix.csv (12 tools + AMRFinderPlus) — versions, databases, immutable sources, commands, parser schema, compatibility status'
+compatibility_matrix_sha256: '369b89f1f61ee913a0a21a508741e2cde89bb1575e6c3439077592d81a35ec40'
+
+environment_policy:
+  images: 'new images p19c4-<tool>:1.0 built on OCI from pinned Dockerfiles (micromamba 1.5.8 base sha256:475730daef12... where conda; python:3.8-slim for plASgraph2 venv; official nekokoe/plasmer digest for Plasmer); frozen P1.9C2/P1.9C3 images never modified'
+  pinning: 'Dockerfiles, conda explicit lockfiles (conda list --explicit), pip freeze, git commit SHAs, database archive md5/sha256, parser scripts and configuration are hashed into env/ENV_MANIFEST.sha256 BEFORE the OCI instance is started for inference (Dockerfiles/parsers) and BEFORE inference (database hashes after download)'
+  outputs: 'native output of every tool kept immutable under inference/native/<tool>/<sample>/ (chmod a-w after hashing); parsed rows written separately under inference/parsed/<tool>/<sample>.tsv; one normalised table inference/P1.9C4_predictions_normalised.tsv (sample, contig_id, contig_length, tool, native_call, model1_code, evidence_score, native_file, native_sha256, parser_version)'
+  parser_validation: 'before cohort execution each parser passes 4 fixture tests: positive (call present), negative (opposite class present), missing (contig absent -> unknown/MISSING per matrix), malformed (truncated/garbled file -> FAILED, never a class); test receipts hashed'
+  failure_semantics: 'tool exit != 0 or missing mandatory output -> FAILED for all contigs of that sample-tool; contig absent where absence has no defined semantic -> MISSING; both reported, never converted to a class or zero; no silent retry (one manual retry allowed per tool-sample with the identical command and recorded)'
+  resources: 'one tool-sample per container; --cpus=8; --memory 24g (Plasmer/PLASMe 40g); max 2 concurrent containers; all layers/scratch under /data (containerd root /data/containerd verified); floors /data >= 80 GB, / >= 15 GB'
+  determinism: 'tools are run once; ML tools with stochastic components use their shipped models (no training); geNomad/PLASMe/plASgraph2 seeds are their defaults'
+
+execution_order:
+  - 'freeze this amendment + evaluation amendment + ARG annotation amendment + compatibility matrix (hashes in P1.9C4_FREEZE_RECEIPT.txt)'
+  - 'start OCI instance; verify /data mount, containerd root=/data/containerd, Docker data-root; record df/free'
+  - 'transfer Dockerfiles/parsers/env manifests + Product A FASTA/GFA (already on OCI, hash re-verified) ; truth bundle to truth_hold/ only'
+  - 'build images; download DBs (md5 verified); write env/ENV_MANIFEST + sha256; parser fixture tests'
+  - 'run 12 tools + AMRFinderPlus on 8 samples; hash native outputs; parse; build normalised table; freeze inference/INFERENCE_MANIFEST.sha256'
+  - 'transfer inference bundle to E:; verify byte-identical; STOP instance (never terminate)'
+  - 'evaluation (local, separate stage) per P1.9C4_MODEL1_EVALUATION_AMENDMENT — only then join to truth'
+
+stop_conditions:
+  - a required feature cannot be produced with compatible semantics (tool cannot be built/run for all 8 samples)
+  - identifier mismatch between tool output and Product A contig ids
+  - any truth file readable by an inference/parser container
+  - a scientific rule would need to change

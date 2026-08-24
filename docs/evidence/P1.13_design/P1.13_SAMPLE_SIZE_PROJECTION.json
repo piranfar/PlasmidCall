@@ -1,0 +1,108 @@
+{
+ "anchor": "P1.11 measured isolate-clustered intervals, scaled by sqrt(n_isolates)",
+ "P1.11_PPV_CI_halfwidth": 0.0194,
+ "P1.11_recall_CI_halfwidth": 0.0443,
+ "arms": [
+  {
+   "arm": "whole cohort",
+   "isolates": 147,
+   "mean_genome_mb": 4.5,
+   "expected_eligible_contigs": 12143,
+   "expected_plasmid_positive_at_P1.11_prevalence": 2026,
+   "width_scale_vs_P1.11": 0.733,
+   "projected_PPV_CI_halfwidth": 0.0142,
+   "projected_recall_CI_halfwidth": 0.0325,
+   "projected_PPV_lower_if_point_is_0.966": 0.9518
+  },
+  {
+   "arm": "Enterococcus combined",
+   "isolates": 50,
+   "mean_genome_mb": 3.02,
+   "expected_eligible_contigs": 2773,
+   "expected_plasmid_positive_at_P1.11_prevalence": 462,
+   "width_scale_vs_P1.11": 1.257,
+   "projected_PPV_CI_halfwidth": 0.0243,
+   "projected_recall_CI_halfwidth": 0.0557,
+   "projected_PPV_lower_if_point_is_0.966": 0.9417
+  },
+  {
+   "arm": "Enterobacterales combined",
+   "isolates": 97,
+   "mean_genome_mb": 5.27,
+   "expected_eligible_contigs": 9370,
+   "expected_plasmid_positive_at_P1.11_prevalence": 1563,
+   "width_scale_vs_P1.11": 0.902,
+   "projected_PPV_CI_halfwidth": 0.0175,
+   "projected_recall_CI_halfwidth": 0.04,
+   "projected_PPV_lower_if_point_is_0.966": 0.9485
+  },
+  {
+   "arm": "Citrobacter spp.",
+   "isolates": 25,
+   "mean_genome_mb": 5.17,
+   "expected_eligible_contigs": 2371,
+   "expected_plasmid_positive_at_P1.11_prevalence": 395,
+   "width_scale_vs_P1.11": 1.778,
+   "projected_PPV_CI_halfwidth": 0.0344,
+   "projected_recall_CI_halfwidth": 0.0787,
+   "projected_PPV_lower_if_point_is_0.966": 0.9316
+  },
+  {
+   "arm": "Enterobacter spp.",
+   "isolates": 25,
+   "mean_genome_mb": 4.94,
+   "expected_eligible_contigs": 2262,
+   "expected_plasmid_positive_at_P1.11_prevalence": 377,
+   "width_scale_vs_P1.11": 1.778,
+   "projected_PPV_CI_halfwidth": 0.0344,
+   "projected_recall_CI_halfwidth": 0.0787,
+   "projected_PPV_lower_if_point_is_0.966": 0.9316
+  },
+  {
+   "arm": "Enterococcus faecalis",
+   "isolates": 25,
+   "mean_genome_mb": 2.99,
+   "expected_eligible_contigs": 1373,
+   "expected_plasmid_positive_at_P1.11_prevalence": 229,
+   "width_scale_vs_P1.11": 1.778,
+   "projected_PPV_CI_halfwidth": 0.0344,
+   "projected_recall_CI_halfwidth": 0.0787,
+   "projected_PPV_lower_if_point_is_0.966": 0.9316
+  },
+  {
+   "arm": "Enterococcus faecium",
+   "isolates": 25,
+   "mean_genome_mb": 3.05,
+   "expected_eligible_contigs": 1400,
+   "expected_plasmid_positive_at_P1.11_prevalence": 233,
+   "width_scale_vs_P1.11": 1.778,
+   "projected_PPV_CI_halfwidth": 0.0344,
+   "projected_recall_CI_halfwidth": 0.0787,
+   "projected_PPV_lower_if_point_is_0.966": 0.9316
+  },
+  {
+   "arm": "Klebsiella pneumoniae",
+   "isolates": 25,
+   "mean_genome_mb": 5.63,
+   "expected_eligible_contigs": 2582,
+   "expected_plasmid_positive_at_P1.11_prevalence": 431,
+   "width_scale_vs_P1.11": 1.778,
+   "projected_PPV_CI_halfwidth": 0.0344,
+   "projected_recall_CI_halfwidth": 0.0787,
+   "projected_PPV_lower_if_point_is_0.966": 0.9316
+  },
+  {
+   "arm": "Serratia spp.",
+   "isolates": 22,
+   "mean_genome_mb": 5.34,
+   "expected_eligible_contigs": 2153,
+   "expected_plasmid_positive_at_P1.11_prevalence": 359,
+   "width_scale_vs_P1.11": 1.895,
+   "projected_PPV_CI_halfwidth": 0.0367,
+   "projected_recall_CI_halfwidth": 0.0839,
+   "projected_PPV_lower_if_point_is_0.966": 0.9293
+  }
+ ],
+ "reading": "a projected PPV lower bound below 0.95 means that arm cannot by itself decide the 0.95 floor even if the point estimate clears it. That is why the primary endpoint is the whole cohort and per-taxon strata are secondary.",
+ "inputs_used": "P1.11 measured estimates and truth-blind P1.13 genome sizes and counts only"
+}

@@ -1,0 +1,36 @@
+{
+ "excluded_isolate": "SAMN26198730",
+ "taxon": "Enterococcus faecalis",
+ "retained_in_taxon": 24,
+ "candidates_considered": {
+  "2024_plus": 9,
+  "2023": 34
+ },
+ "skipped_for_ani_independence": [
+  "SAMN46230714",
+  "SAMN46230712",
+  "SAMN46230707",
+  "SAMN47812936",
+  "SAMN46230713",
+  "SAMN48387115",
+  "SAMN48387111",
+  "SAMN48387110",
+  "SAMN40323369"
+ ],
+ "selected_replacement": "SAMN37639065",
+ "selected_assembly_accession": "GCF_032681005.1",
+ "selected_release_date": "2023-10-15",
+ "selected_year_pool": "2023 fallback",
+ "min_distance_to_retained": 0.98,
+ "equivalent_min_ani": 99.02,
+ "rule": "frozen: eligibility, ANI<99.5 vs consumed and vs selected, most recent year pool first, farthest-point on 100-ANI, assembly accession lexical tie-break",
+ "inputs": {
+  "_eligible_stage2.json": "c82ac94a85802eca5f06c2bbe9a5694251dfcce3182768469fca0a55515449cc",
+  "file_availability.tsv": "69f9c158dcdfebc296a7a93319b9e8dd685ab78fc4dae1ac4a54ca2a80f11391",
+  "screen/p113_vs_consumed.tsv": "7ab937d39f14cf394e4a2d7433bff1eae5b91ae9463ceb39ffe7e31636387d81",
+  "screen/p113_vs_p113.tsv": "3f865086c71e4e7229d8a468809ea38f99e207974d4c7a2ab3d698c6f8790f5c",
+  "P1.13_ELIGIBLE_POOL.tsv": "db3fecdd29fe632940c634806efda2db6811c9e1ec081a86751bdf595d60b692",
+  "cohort_before": "2e47d15b30a42181b5537d88a2cd61401b711e6001ac0a3904ee387ebefd8dd1"
+ },
+ "truth_blind": "no plasmid count, truth, ARG content, tool output, model score or assembly outcome was read in selection"
+}

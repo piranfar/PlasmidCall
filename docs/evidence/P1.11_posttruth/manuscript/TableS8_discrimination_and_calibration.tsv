@@ -1,0 +1,3 @@
+model	n	AUROC	AUROC_CI95	AUPRC	AUPRC_CI95	Brier	calibration_intercept	calibration_slope	ECE_10_bins	recalibration_applied
+v1.2-General	7244	0.9894	[0.9809, 0.9953]	0.9664	[0.9489, 0.9814]	0.017707	0.2019	0.823	0.006443	none
+v1.1 M2_score	7244	0.9867	[0.9810, 0.9914]	0.9477	[0.9221, 0.9676]	0.028671	0.8036	0.7666	0.020618	none

@@ -1,0 +1,120 @@
+# P1.9C2 CLOUD EXECUTION AMENDMENT — Phase B (samples 2-8) on Oracle OCI
+# Frozen and hashed BEFORE any Phase B normalisation or hybrid assembly was dispatched on OCI.
+# Execution / resource / infrastructure governance only. NO scientific rule, threshold, label,
+# parameter, cohort member or tool version is changed.
+amendment_id: P1.9C2_CLOUD_EXECUTION_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-18'
+authorisation: 'Owner: APPROVED - execute P1.9C2 Phase B for samples 2-8 on the existing OCI instance; SAMD00056131 is the frozen successful local reference execution and is NOT rerun'
+
+preserved_frozen_hashes_unchanged:
+  frozen_assembly_protocol: '883a1034f1e193f4388d7d5e93c407d4a687419ed333c783c7250b5f4816e34b'
+  normalisation_amendment: 'c9cda44a718dc708a4598317d5546fe42afad1206e86ae544acba9d3ff95748b'
+  execution_amendment: '86db796448db499289f181945c77b5cb8931088e15198e87ba634888a7e9ac54'
+  resource_retry_amendment: '5b89b9090ddeafa82d3ffcf8bd4591493e25a72675238a281e59d0c990f50405'
+  cache_constrained_amendment: '169a2fd83f97f4a9168eaf72417dbc6dd856905eebbc63c99c25507ef69c0a2e'
+  dockerfile_p19c2_cleanroom: 'adca257ebfdf296f9e311e520ead44cd04ebd017ce25d40ed0a214b9fda4931a'
+  assembly_image_id: 'sha256:59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20'
+  normalize_image_id: 'sha256:6e46960381c9f58cf6b2d3bd3f57c58ba3210ad28a9b29e36d5c5b25d053c10c'
+  tier1_acquisition_manifest: '34984298f39fbf6c56ea66286ecdcfe90b5f7b83f398cf0f0f5fa1a600f9f52b'
+
+reference_execution_SAMD00056131:
+  where: local workstation, cache-constrained profile (P1.9C2_CACHE_CONSTRAINED_AMENDMENT)
+  status: 'VERIFIED, exit 0, 2026-08-18T12:46:34Z..16:22:32Z, wall 12957.6 s'
+  hybrid_fasta_sha256: '5985e082152a8734e42e307d5d9f3bb1aeadbeaa2977c29cea34d5bbe1dbecff'
+  hybrid_gfa_sha256: '7327401cbdc5b2a9bf0e4064ed5fd8049d921f801e50d2a48000dc26bd09b276'
+  peak_cgroup_total_gb: 14.0
+  peak_anon_gb: 6.588
+  peak_swap_gb: 0.668
+  vhdx_growth_gb_upper_bound_on_scratch: 70.34
+  interpretation_rule: 'circular components are reported as circular replicons / plasmid candidates; confirmation requires the frozen truth-mapping/annotation stage'
+  rerun_on_oci: false
+
+oci_infrastructure:
+  host: trace-arg-hybrid (Ubuntu 22.04.5, kernel 6.8.0-1057-oracle, VM.Standard.E5.Flex 8 OCPU/16 vCPU, 96 GB, AMD EPYC 9J14, region iad AD-2)
+  data_volume: '/dev/sdb 500 GB ext4 at /data (UUID 18ba4135-f27e-43d8-a435-28dcf80e56b2), 492 GB usable'
+  boot_volume: '/dev/sda1 45 GB'
+  host_swap: '0 B (none)'
+  docker: '29.7.2, data-root /data/docker, json-file logs max-size 100m max-file 3, containerd image store (overlayfs snapshotter)'
+  containerd_root_relocation: >
+    FINDING: dockerd uses the system containerd whose root was /var/lib/containerd on the boot volume,
+    so image layers and container writable layers were on / despite DockerRootDir=/data/docker.
+    REMEDIATION (before any scientific execution): containerd root set to /data/containerd, store rsynced,
+    services restarted, image IDs verified unchanged, 512 MiB in-container write probe verified to land on /data.
+    Receipt: /data/trace-arg/receipts/docker_provenance_receipt.txt
+  environment_transfer: >
+    EXACT frozen images transferred by docker save (local) -> sha256 -> scp -> sha256 -> docker load (OCI).
+    Loaded image IDs on OCI are IDENTICAL to the frozen local IDs (verified with docker image inspect):
+    p19c2-cleanroom:1.0 sha256:59230d354a2a..., p19c2-normalize:1.0 sha256:6e46960381c9...
+    No rebuild was necessary. Tool versions re-verified on OCI: Unicycler 0.5.1, SPAdes 3.15.5, racon 1.5.0,
+    minimap2 2.28-r1209, samtools 1.20, blastn 2.16.0+, skani 0.2.2, seqkit v2.8.2, python 3.10.20, filtlong 0.2.1;
+    read_ref.py sha256 b9606bed... unchanged; conda-meta lockfile hash a7b724ff... identical to the frozen extraction.
+
+scope:
+  samples_exactly: [robertson-benchmark_ecol-SAMN02991226, robertson-benchmark_ecol-SAMN04014847, robertson-benchmark_ecol-SAMN04014852, robertson-benchmark_ecol-SAMN04014855, robertson-benchmark_ecol-SAMN04014856, robertson-benchmark_ecol-SAMN04014858, robertson-benchmark_ecol-SAMN04014860]
+  additions_substitutions_exclusions: NONE
+  model_1_execution: PROHIBITED in this stage
+  threshold_or_parameter_tuning: PROHIBITED
+
+data_acquisition:
+  source: authoritative ENA FTP URLs from the frozen P1.9C1 Tier-1 manifest (24 files, 8 samples)
+  method: resumable curl -C -, size gate, authoritative MD5 gate, then SHA-256; per-file JSON receipts under receipts/ena/
+  partial_downloads: never treated as complete
+  cross_check: OCI SHA-256 compared with the P1.9C1 per-run receipt SHA-256 for every file
+
+normalisation_on_oci:
+  procedure: 'IDENTICAL to the frozen NORMALISATION_AMENDMENT pipeline used for SAMD00056131'
+  step_1: 'duplicate-name disambiguation, frozen algorithm, run TWICE in p19c2-cleanroom:1.0 (python 3.10.20); byte-identical gz + provenance map required'
+  step_2: 'filtlong 0.2.1 --target_bases T (defaults) on renamed.fastq.gz, run TWICE in p19c2-normalize:1.0; byte-identical uncompressed output required; then gzip -n'
+  target: 'T = 100 x the frozen Phase A short-read assembly length of the same sample (seqkit sum_len on the hash-verified handoff shortread.fasta)'
+  script_generalisation: >
+    rename_upstream_generic.py is the frozen rename_upstream.py with ONLY the two hard-coded SAMD00056131
+    sanity assertions (188860 records / 2260137873 bases) replaced by argv-supplied expected values
+    (ENA base_count from the frozen manifest; record count self-consistency). Algorithm, name extraction,
+    gzip parameters (level 6, mtime 0), verification pass and outputs are byte-for-byte unchanged.
+    Both scripts are retained in the intake package for diffing.
+  resources_resource_only: 'normalisation containers --memory=16g --cpus=2, up to 3 concurrent (not assemblies)'
+  observed_le_target_rule: 'if observed long-read bases <= T the script STOPS (exit 4) for an owner decision; no silent branch'
+
+assembly_execution:
+  scientific_command_unchanged: "unicycler -1 <R1> -2 <R2> -l <NORM> -o /tmp/h -t 8 --keep 1 --spades_options '-m 12'"
+  resource_profile_reproduced: '--memory=14g --memory-swap=22g --cpus=8 (the proven cache-constrained profile; NOT relaxed because OCI has more RAM)'
+  host_swap_note: 'OCI host has no swap, so --memory-swap=22g cannot be exercised; local peak swap was 0.668 GB with anon 6.6 GB, well under the 14 GB cgroup ceiling; if any slot is OOM-killed it is quarantined and reported, never silently retried'
+  max_parallel: 2
+  threads_per_assembly: 8
+  execution_only_differences_from_local:
+    - '/tmp/h inside the container is a bind-mounted isolated host directory /data/trace-arg/work/scratch/<sample> so partial evidence survives failure and per-sample scratch is measurable; the unicycler command string is unchanged'
+    - 'copy-out, SHA-256 source==destination verification, receipt writing and scratch removal are performed by the host slot script (run_slot.sh) instead of inside the bash -c string; ordering is identical: copy -> hash both -> require match -> receipt -> delete scratch'
+    - 'container is started with -d (no --rm) so exit code, OOMKilled flag and logs are captured; it is removed only after the receipt'
+  supervisor: 'phaseB_driver.sh under setsid nohup; atomic mkdir claims in work/phaseB/state; VERIFIED slots are never rerun; FAILED slots are never silently retried; stale claims are quarantined'
+  monitoring_every_30s: [cgroup memory.current, memory.peak, memory.swap.current, memory.swap.peak, anon, file, scratch bytes, /data avail, / avail, unicycler stage]
+  predeclaration: 'work/phaseB/predeclare/<sample>.yaml written before docker run for every slot'
+
+storage_gates:
+  data_floor_gb: 80
+  root_floor_gb: 15
+  worst_case_scratch_per_assembly_gb: 75   # upper bound from local vhdx growth 70.34 GB
+  dispatch_rule: 'dispatch only if /data avail >= 80 GB + 75 GB x (running+1) and / avail >= 15 GB; running slots stop if either floor is crossed'
+  projection_before_dispatch:
+    raw_reads_bytes: 11915002899
+    renamed_long_reads_7_samples_bytes_approx: 6475925547
+    normalised_long_reads_7_samples_bytes_approx: 3300000000
+    images_and_containerd_store_bytes_approx: 2400000000
+    worst_case_concurrent_scratch_bytes: 161061273600
+    outputs_receipts_bytes_approx: 200000000
+    worst_case_total_bytes_approx: 185400000000
+    data_usable_bytes: 528000000000
+    projected_min_free_gb_approx: 340
+    verdict: 'floors respected with wide margin'
+
+after_all_seven:
+  - combine with the verified SAMD00056131 result into an 8-sample Phase B manifest
+  - cohort-level QC (frozen thresholds) and truth-readiness checks (FASTA-GFA reconciliation, GFA-only segments listed, circular replicon candidates)
+  - reproducibility ZIP with SHA256SUMS; transfer back; then stop (not terminate) the OCI instance
+
+mandatory_stops:
+  - frozen hash contradiction
+  - required input missing or failing integrity
+  - storage floor threatened
+  - any scientific deviation required
+  - observed long-read bases <= normalisation target for any sample

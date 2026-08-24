@@ -1,0 +1,107 @@
+[
+ {
+  "fixture": "correctly_paired",
+  "expect": "OK",
+  "got": "OK",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "equal_counts_one_mismatched_id",
+  "expect": "FAIL",
+  "got": "FAIL",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "same_ids_different_order",
+  "expect": "FAIL",
+  "got": "FAIL",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "missing_mate",
+  "expect": "FAIL",
+  "got": "FAIL",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "duplicate_id",
+  "expect": "FAIL",
+  "got": "FAIL",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "slash_mate_suffix_normalised",
+  "expect": "OK",
+  "got": "OK",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "illumina_whitespace_mate_field",
+  "expect": "OK",
+  "got": "OK",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "truncated_fastq",
+  "expect": "FAIL",
+  "got": "FAIL",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "retained_count_below_declared_target",
+  "expect": "FAIL",
+  "got": "FAIL",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "retained_count_equals_declared_target",
+  "expect": "OK",
+  "got": "OK",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "independent_sampling_retained_different_records",
+  "expect": "FAIL",
+  "got": "FAIL",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "header_without_at_sign",
+  "expect": "FAIL",
+  "got": "FAIL",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "production_raw_pair_valid",
+  "expect": "OK",
+  "got": "OK",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "fixture": "seqkit_separate_invocations_preserve_pairing",
+  "expect": "OK",
+  "got": "OK",
+  "pass": true,
+  "detail": "retained 480 of 2000 pairs at p=0.25"
+ },
+ {
+  "fixture": "seqkit_retention_is_proportional",
+  "expect": "OK",
+  "got": "OK",
+  "pass": true,
+  "detail": "retained 480, expected ~500"
+ }
+]

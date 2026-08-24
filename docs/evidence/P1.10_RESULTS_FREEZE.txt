@@ -1,0 +1,34 @@
+P1.10 RESULTS FREEZE 2026-08-20T19:54:23Z
+PlasmidCall v1.0 independent validation, and the v1.1 deployment contract derived from it.
+All text artifacts are LF-normalised so the recorded SHA-256 equals both the on-disk and the
+committed-blob value. .tsv is -text and is byte-preserved.
+
+== repository documents ==
+7c2cce527de17e48b0954d3b24d101dbcd930606efd3dc601322c55e8791803a *docs/contracts/PLASMIDCALL_OUTPUT_CONTRACT_v1.1.yaml
+fb3738184b036d3db412753b08a30a21ebcc5aad613529cac426a23894ba8968 *docs/plans/P1.10C_V1.1_DEPLOYMENT_OPERATING_POINT_AMENDMENT.yaml
+bdc42dbd207cdd0609737013685be1dc4acb69ee16a1e2a51117682e2fc98469 *docs/evidence/P1.10_independent_validation_2026-08-20.md
+462a21e2114d31a33f263f542c45a9153c85e30af31242ceac3494e8da609363 *docs/evidence/P1.10_results_summary.json
+f2b2aeb7f280cf0408b80766d4041cce0ef29a7953da498f06682941861428ae *docs/evidence/P1.10_model1_per_sample.tsv
+443305dae12f09970cb21c7856aa23a62c28c899ff0b9f261b2e287f823bd171 *scripts/p1_10/evaluate_model1_p110.py
+
+== execution artifacts, frozen on the OCI host and transferred ==
+b53bb22e71e03f59cd1b965ddea4f2256b605caf20351bfbd41a29aa95bfeb77 *P1.10_prediction_matrix.tsv
+943928e1eafe5d0514c54783b172d776a9f8a90e1e8013cc4eb0c9987307b2db *P1.10_arg_bearing.tsv
+
+== scientific-data artifacts, outside Git, referenced by hash ==
+7330fbaa122b777c02f70c7349743d2edbeb2286d259ace23e5f228f128089c2 *P1.10_model1_contig_table.tsv
+76047b7c91c9a9d7e7dcad63606f4bb2159a8416e7ce7ad49690220a32db4ddd *P1.10_inference_20260820T170104Z.tar.gz
+371fc81879c578b6f001d4f79866cc370e2230477c7264ded9004329a50bab89 *P1.10_truth_20260820T170104Z.tar.gz
+7506b0446afddbd1bea5ece06683c9476254c1af6e90ddd6f3e2bf9a38119504 *P1.10_assemblies_20260820T170104Z.tar.gz
+1e2cb3a2daf416a8356bdea13fba66dbacddab34139e680480c5a1ca01a1c74f *P1.10_annotation_20260820T170104Z.tar.gz
+ff6c80598990292dea6ecfa9a156853519cb96e549b0de0a5c7ea9a57536cfc8 *P1.10_receipts_20260820T170104Z.tar.gz
+
+== inputs, unchanged and verified at execution ==
+443305dae12f09970cb21c7856aa23a62c28c899ff0b9f261b2e287f823bd171 *evaluate_model1_p110.py (hashed BEFORE any truth join)
+db558a6775f473662369fb1c358f28530f85883ea3767beb807d031d2646e091 *predictions.xlsx (development set)
+350b539a2679527831e825fc1b6b70c6e952bc0a2a0d0a5295547eae8cddfc2e *P1.10F_cohort_final.tsv
+
+== not in Git ==
+P1.10_model1_contig_table.tsv (4.0 MB) and the 4.7 GB transfer bundles live in the
+scientific-data tree at E:\AMR_Evidence_Data\P1.9_cleanroom\p110\ and are referenced above by hash.
+P1.10_native_*.tar.gz was not transferred: its members are duplicated inside P1.10_inference_*.

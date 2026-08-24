@@ -1,0 +1,31 @@
+# build_p113_contig_table.py vs build_p111_contig_table.py
+-"""P1.11 contig-table builder - TRUTH-BLIND, prospective.
++"""P1.13 contig-table builder (derived from the frozen P1.11 builder by name substitution only) - TRUTH-BLIND, prospective.
+-  build_p111_contig_table.py --root /data/trace-arg/p112 --out TABLE.tsv [--v11-scores S.tsv]
++  build_p113_contig_table.py --root /data/trace-arg/p112 --out TABLE.tsv [--v11-scores S.tsv]
+-              ("P1.11_call_table_reconciled.tsv", "P1.11_call_table.tsv",
+-               "P1.10_predictions_normalised.tsv")]
++              ("P1.13_call_table_reconciled.tsv", "P1.13_call_table.tsv",
++               "P1.13_predictions_normalised.tsv")]
+
+# p113_candidate_pipeline.py vs p111_candidate_pipeline.py
+-"""P4 - build, score and gate the real P1.11 candidate predictions. TRUTH-BLIND.
++"""P1.13 (derived from the frozen P1.11 pipeline by name substitution only) - build, score and gate the P1.13 candidate predictions. TRUTH-BLIND.
+-    v11 = os.path.join(a.outdir, "P1.11_v11_scores.tsv")
+-    final = os.path.join(a.outdir, "P1.11_candidate_contig_table.tsv")
+-    valj = os.path.join(a.outdir, "P1.11_builder_validation.json")
++    v11 = os.path.join(a.outdir, "P1.13_v11_scores.tsv")
++    final = os.path.join(a.outdir, "P1.13_candidate_contig_table.tsv")
++    valj = os.path.join(a.outdir, "P1.13_builder_validation.json")
+-    run([sys.executable, "build_p111_contig_table.py", "--root", a.root, "--out", t1,
++    run([sys.executable, "build_p113_contig_table.py", "--root", a.root, "--out", t1,
+-    run([sys.executable, "build_p111_contig_table.py", "--root", a.root, "--out", final,
++    run([sys.executable, "build_p113_contig_table.py", "--root", a.root, "--out", final,
+-    run([sys.executable, "build_p111_contig_table.py", "--root", a.root, "--out", t3,
++    run([sys.executable, "build_p113_contig_table.py", "--root", a.root, "--out", t3,
+-        "manifest": "P1.11 prediction-freeze candidate",
++        "manifest": "P1.13 prediction-freeze candidate",
+-            "builder": sha_lf(os.path.join(HERE, "build_p111_contig_table.py")),
++            "builder": sha_lf(os.path.join(HERE, "build_p113_contig_table.py")),
+-            "cohort_sealed": "0d0e547cd6f6546ac6f72e516885a74cf51dd3738be83b0a45f58cfbe999151f",
++            "cohort_v3": "874b0924deffef948dd50e00ee5c77c91d773354de4a1bb936162e4fec294205",

@@ -1,0 +1,156 @@
+{
+ "filesystems": {
+  "/": {
+   "total_GiB": 96.73,
+   "used_GiB": 14.54,
+   "avail_GiB": 82.17,
+   "inodes_free_pct": 98.3
+  },
+  "/data": {
+   "total_GiB": 195.8,
+   "used_GiB": 8.68,
+   "avail_GiB": 177.1,
+   "inodes_free_pct": 99.6
+  },
+  "/work": {
+   "total_GiB": 491.08,
+   "used_GiB": 377.47,
+   "avail_GiB": 113.6,
+   "inodes_free_pct": 95.0
+  }
+ },
+ "device_to_oci_mapping": {
+  "/": {
+   "oci_resource": "PortabilityRisk boot volume",
+   "oci_size_GB": 100,
+   "device": "/dev/sda1",
+   "serial": "5e43e4fa3aada7967151fd098",
+   "label": "cloudimg-rootfs",
+   "uuid": "4363e067-87a6-41c8-b8ce-98a14bf57776",
+   "attachment": "paravirtualized (oraclevda1)",
+   "writable_by_pipeline": "/tmp only"
+  },
+  "/data": {
+   "oci_resource": "PortabilityRisk_HDD",
+   "oci_size_GB": 200,
+   "device": "/dev/sdb",
+   "serial": "60ef65253f0342c9a0098866281a3333",
+   "label": "gcdata",
+   "uuid": "31766061-734a-4716-bec0-990389ae5f21",
+   "attachment": "iSCSI (iqn.2015-12.com.oracleiaas:6ef99a20...)",
+   "writable_by_pipeline": true
+  },
+  "/work": {
+   "oci_resource": "trace-arg-data",
+   "oci_size_GB": 500,
+   "device": "/dev/sdc",
+   "serial": "9925c408dbed009a638c52af8",
+   "label": "trace_arg_data",
+   "uuid": "18ba4135-f27e-43d8-a435-28dcf80e56b2",
+   "attachment": "paravirtualized (oraclevda)",
+   "writable_by_pipeline": true
+  }
+ },
+ "existing_workloads": {
+  "/data": [
+   {
+    "path": "pr_context",
+    "GiB": 5.89,
+    "owner": "PortabilityRisk / NM - PROTECTED"
+   },
+   {
+    "path": "pr_ani1",
+    "GiB": 2.62,
+    "owner": "PortabilityRisk / NM - PROTECTED"
+   },
+   {
+    "path": "g_c_processing",
+    "GiB": 0.06,
+    "owner": "PortabilityRisk / NM - PROTECTED"
+   }
+  ],
+  "/work": [
+   {
+    "path": "trace-arg/p19c4",
+    "GiB": 118.48,
+    "owner": "PlasmidCall P1.9C4 - PROTECTED"
+   },
+   {
+    "path": "trace-arg/p112",
+    "GiB": 68.76,
+    "owner": "PlasmidCall P1.11 evidence - PROTECTED"
+   },
+   {
+    "path": "trace-arg/p110",
+    "GiB": 31.78,
+    "owner": "PlasmidCall P1.10 - PROTECTED"
+   },
+   {
+    "path": "docker",
+    "GiB": 129.0,
+    "owner": "Docker images incl. 16 frozen - PROTECTED"
+   }
+  ],
+  "/": [
+   {
+    "path": "OS",
+    "GiB": 14.54,
+    "owner": "operating system"
+   }
+  ]
+ },
+ "allocation": {
+  "/data": {
+   "role": "raw and downsampled read staging",
+   "items": {
+    "raw_fastq_retained": 64.14,
+    "downsampled_reads": 29.76,
+    "download_duplication_transient": 6.25,
+    "decompression_streaming_peak": 10.2
+   },
+   "reserve_required_GiB": 30,
+   "subtotal_GiB": 110.35,
+   "with_15pct_margin_GiB": 126.9,
+   "available_GiB": 177.1,
+   "projected_peak_remaining_GiB": 50.2,
+   "meets_reserve": true
+  },
+  "/work": {
+   "role": "assemblies, persistent panel outputs, truth, archive, Docker",
+   "items": {
+    "panel_native_output": 29.62,
+    "docker_working": 12.0,
+    "archive": 3.33,
+    "truth_alignments_tables": 1.29,
+    "assemblies": 1.26,
+    "truth_reference_downloads": 0.66,
+    "logs_parsed_receipts_annotation": 0.15
+   },
+   "reserve_required_GiB": 30,
+   "subtotal_GiB": 48.31,
+   "with_15pct_margin_GiB": 55.56,
+   "available_GiB": 113.6,
+   "projected_peak_remaining_GiB": 58.04,
+   "meets_reserve": true
+  },
+  "/": {
+   "role": "OS, small control/log files, /tmp",
+   "items": {
+    "tmp_allowance": 10.0
+   },
+   "reserve_required_GiB": 20,
+   "subtotal_GiB": 10.0,
+   "with_15pct_margin_GiB": 11.5,
+   "available_GiB": 82.17,
+   "projected_peak_remaining_GiB": 70.67,
+   "meets_reserve": true
+  }
+ },
+ "total_peak_GiB": 193.96,
+ "free_space_NOT_pooled": true,
+ "docker_root_dir": "/work/docker (on /dev/sdc, trace-arg-data)",
+ "tmp_finding": "/tmp resolves to /dev/sda1 (boot volume) and TMPDIR is unset. P1.13 MUST bind tool temporary directories to its assigned filesystem so no tool can silently fill the boot volume.",
+ "verdict": "P1.13_STORAGE_INVENTORY_COMPLETE_FULL_RETENTION_FEASIBLE",
+ "raw_fastq_deletion_proposal": "WITHDRAWN - full retention through prediction freeze and final archival fits",
+ "audit_was_read_only": true
+}

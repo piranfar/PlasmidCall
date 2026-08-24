@@ -1,0 +1,68 @@
+{
+ "generated_utc": "2026-08-21T06:51:59Z",
+ "purpose": "formal freeze of the derived P1.11 runner and parser",
+ "derivation": "path and container-name-prefix substitution only (p110 -> p112)",
+ "derived": {
+  "run_tool.sh": {
+   "path": "/work/p112/env/run/run_tool.sh",
+   "sha256": "fa077587e9191a6ea3d3e611acd87d61aaa7e433fb118a6ab88bca7aa044ca39",
+   "src_sha256": "0e5bd8623c3cf1cf5f85b99b5be44cd017c943beb5f7053de206df22f624176a"
+  },
+  "parse_all.py": {
+   "path": "/work/p112/env/run/parse_all.py",
+   "sha256": "6370f437c46458278e91bb888baed47caa33b1522e61e2c1ad836da2a4ed5103",
+   "src_sha256": "1368faa316e10268a429952b40dbb9cefe2f9df5868849e02f6df9650d3a333a"
+  },
+  "parsers.py": {
+   "path": "/work/p112/env/run/parsers.py",
+   "sha256": "68599a94af066f2dd1437de4ab307721ce8310399e0ba6fa91f2e559b65467b1",
+   "src_sha256": "68599a94af066f2dd1437de4ab307721ce8310399e0ba6fa91f2e559b65467b1",
+   "byte_identical": true
+  }
+ },
+ "audits": {
+  "run_tool.sh": {
+   "file": "run_tool.sh",
+   "src": "/work/p110/env/run/run_tool.sh",
+   "dst": "/work/p112/env/run/run_tool.sh",
+   "src_sha256": "0e5bd8623c3cf1cf5f85b99b5be44cd017c943beb5f7053de206df22f624176a",
+   "sha256": "fa077587e9191a6ea3d3e611acd87d61aaa7e433fb118a6ab88bca7aa044ca39",
+   "path": "/work/p112/env/run/run_tool.sh",
+   "n_changed_lines": 6,
+   "change_reasons": {
+    "header comment": 2,
+    "root path line": 2,
+    "container name prefix": 2
+   },
+   "illegal_changes": [],
+   "executable_content_identical_after_path_normalisation": true
+  },
+  "parse_all.py": {
+   "file": "parse_all.py",
+   "src": "/work/p110/env/run/parse_all.py",
+   "dst": "/work/p112/env/run/parse_all.py",
+   "src_sha256": "1368faa316e10268a429952b40dbb9cefe2f9df5868849e02f6df9650d3a333a",
+   "sha256": "6370f437c46458278e91bb888baed47caa33b1522e61e2c1ad836da2a4ed5103",
+   "path": "/work/p112/env/run/parse_all.py",
+   "n_changed_lines": 6,
+   "change_reasons": {
+    "path token": 6
+   },
+   "illegal_changes": [],
+   "executable_content_identical_after_path_normalisation": true
+  }
+ },
+ "parser_version": "p19c4-parsers/1.7",
+ "vocabulary": [
+  "chromosome",
+  "plasmid",
+  "unknown",
+  "unclassified",
+  "repeat"
+ ],
+ "vocabulary_unchanged": true,
+ "cmd_count": 13,
+ "cmd_block_hash_path_normalised": "44f8d17d0b406fccae57423c5111cf55",
+ "scientific_commands_identical": true,
+ "VERDICT": "FROZEN"
+}

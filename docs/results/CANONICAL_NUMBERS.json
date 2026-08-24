@@ -1,0 +1,3612 @@
+{
+ "canonical_number_set": "PLASMIDCALL-CANONICAL-NUMBERS-001",
+ "built_utc": "2026-08-24",
+ "primary_freeze": "P1.13-RESULTS-FREEZE-001",
+ "postfreeze_package": "P1.13-POSTFREEZE-REVIEWER-ANALYSES-001",
+ "rule": "every manuscript number must appear here; values are read from frozen tables, never transcribed from prose",
+ "values": {
+  "results_freeze_id": "P1.13-RESULTS-FREEZE-001",
+  "prediction_freeze_id": "P1.13-PREDICTION-FREEZE-001",
+  "join_id": "P1.13-TRUTH-JOIN-001",
+  "frozen_prediction_table_sha256": "3bc733c0adab6e3864412e056597d931dd1f28d6e6dfb0238c4c915d07799c80",
+  "joined_table_sha256": "42a73d74ee01a6d4f1cc7f29da9bbacdfb8a327760c318d34fea5b4f63f488ae",
+  "den_contigs_joined": 19320,
+  "den_eligible_ge_1kb": 9784,
+  "den_scored_resolved": 9371,
+  "den_unresolved_excluded": 413,
+  "den_isolates": 150,
+  "den_truth_chromosome": 7130,
+  "den_truth_plasmid": 2241,
+  "cohort_sha256": "874b0924deffef948dd50e00ee5c77c91d773354de4a1bb936162e4fec294205",
+  "cohort_excluded_isolate": "SAMN26198730 (documented technical exclusion, contamination)",
+  "cohort_replacement_isolate": "SAMN37639065 (frozen deterministic selection rule)",
+  "primary_PPV": 0.9769888231426693,
+  "primary_PPV_ci95": [
+   0.9641574766290805,
+   0.9871803499327053
+  ],
+  "primary_recall": 0.6630968317715306,
+  "primary_recall_ci95": [
+   0.6205224426540249,
+   0.7051986827023455
+  ],
+  "primary_requirement": "PPV >= 0.95 AND recall > 0.50",
+  "primary_P_PPV_ge_floor": 0.99975,
+  "primary_endpoint_met": true,
+  "primary_TP": 1486,
+  "primary_FP": 35,
+  "primary_TN": 7095,
+  "primary_FN": 755,
+  "primary_specificity": 0.9950911640953717,
+  "primary_NPV": 0.9038216560509554,
+  "primary_F1": 0.7900053163211058,
+  "primary_balanced_accuracy": 0.8290939979334511,
+  "primary_MCC": 0.7614058602604906,
+  "primary_coverage": 1.0,
+  "primary_abstentions": 0,
+  "predictor_inventory_19": [
+   {
+    "row": "v1.2-General@0.9285",
+    "family": "PlasmidCall v1.2-General",
+    "role": "PRIMARY / INDEX",
+    "operating_point": "threshold 0.9285 (frozen)",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.9769888231426693,
+    "PPV_ci95": [
+     0.964157,
+     0.98718
+    ],
+    "recall": 0.6630968317715306,
+    "recall_ci95": [
+     0.620522,
+     0.705199
+    ],
+    "F1": 0.7900053163211058,
+    "MCC": 0.7614058602604906,
+    "TP": 1486,
+    "FP": 35,
+    "failure_states": "abstains where no finite score / no panel evidence: 0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "v1.1@0.9524",
+    "family": "PlasmidCall v1.1",
+    "role": "comparator",
+    "operating_point": "threshold 0.9524 standard (frozen)",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.9705882352941176,
+    "PPV_ci95": [
+     0.949346,
+     0.988275
+    ],
+    "recall": 0.2797858099062918,
+    "recall_ci95": [
+     0.206383,
+     0.354609
+    ],
+    "F1": 0.43436092829927253,
+    "MCC": 0.46659080358986255,
+    "TP": 627,
+    "FP": 19,
+    "failure_states": "abstains where no finite score / no panel evidence: 0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "v1.1@0.9605_high_conf",
+    "family": "PlasmidCall v1.1",
+    "role": "comparator",
+    "operating_point": "threshold 0.9605 high-confidence (frozen)",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.9706896551724138,
+    "PPV_ci95": [
+     0.949526,
+     0.988338
+    ],
+    "recall": 0.25122713074520303,
+    "recall_ci95": [
+     0.18282,
+     0.322186
+    ],
+    "F1": 0.3991492378589153,
+    "MCC": 0.440511959795743,
+    "TP": 563,
+    "FP": 17,
+    "failure_states": "abstains where no finite score / no panel evidence: 0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "router",
+    "family": "PlasmidCall router",
+    "role": "comparator",
+    "operating_point": "two-domain (frozen)",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.981159420289855,
+    "PPV_ci95": [
+     0.968811,
+     0.990917
+    ],
+    "recall": 0.604194556001785,
+    "recall_ci95": [
+     0.559367,
+     0.647118
+    ],
+    "F1": 0.7478597072631871,
+    "MCC": 0.7228918092568565,
+    "TP": 1354,
+    "FP": 26,
+    "failure_states": "abstains where no finite score / no panel evidence: 0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:HyAsP",
+    "family": "HyAsP",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.8446389496717724,
+    "PPV_ci95": [
+     0.805914,
+     0.878304
+    ],
+    "recall": 0.6889781347612673,
+    "recall_ci95": [
+     0.651406,
+     0.725713
+    ],
+    "F1": 0.7589088228065864,
+    "MCC": 0.6987924785587488,
+    "TP": 1544,
+    "FP": 284,
+    "failure_states": "FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:MOB-recon",
+    "family": "MOB-recon",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 0.908654,
+    "n_scored": 8515,
+    "abstained": 856,
+    "failures": 856,
+    "PPV": 0.8859981078524125,
+    "PPV_ci95": [
+     0.862086,
+     0.907047
+    ],
+    "recall": 0.8357875948237394,
+    "recall_ci95": [
+     0.802862,
+     0.8643
+    ],
+    "F1": 0.8601607347876004,
+    "MCC": 0.8127920542236726,
+    "TP": 1873,
+    "FP": 241,
+    "failure_states": "FAILED=856 MISSING=0 unknown=0 unclassified=0 repeat=0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:PLASMe",
+    "family": "PLASMe",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.6495701156240735,
+    "PPV_ci95": [
+     0.612923,
+     0.683063
+    ],
+    "recall": 0.9776885319053994,
+    "recall_ci95": [
+     0.963629,
+     0.989958
+    ],
+    "F1": 0.7805486284289276,
+    "MCC": 0.7215430574226672,
+    "TP": 2191,
+    "FP": 1182,
+    "failure_states": "FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:PlaScope",
+    "family": "PlaScope",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 0.63259,
+    "n_scored": 5928,
+    "abstained": 3443,
+    "failures": 0,
+    "PPV": 0.4985983179815779,
+    "PPV_ci95": [
+     0.43559,
+     0.550794
+    ],
+    "recall": 0.9346846846846847,
+    "recall_ci95": [
+     0.914083,
+     0.952446
+    ],
+    "F1": 0.6503003395142334,
+    "MCC": 0.5598351044456411,
+    "TP": 1245,
+    "FP": 1252,
+    "failure_states": "FAILED=0 MISSING=0 unknown=0 unclassified=3443 repeat=0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:Plasmer",
+    "family": "Plasmer",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.8495854717726017,
+    "PPV_ci95": [
+     0.817248,
+     0.877312
+    ],
+    "recall": 0.9602855867916109,
+    "recall_ci95": [
+     0.940447,
+     0.977427
+    ],
+    "F1": 0.9015500628403854,
+    "MCC": 0.8710011348376845,
+    "TP": 2152,
+    "FP": 381,
+    "failure_states": "FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:PlasmidEC",
+    "family": "PlasmidEC",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.7279279279279279,
+    "PPV_ci95": [
+     0.681422,
+     0.771236
+    ],
+    "recall": 0.9013833110218652,
+    "recall_ci95": [
+     0.877504,
+     0.923627
+    ],
+    "F1": 0.8054226475279106,
+    "MCC": 0.7432417186730795,
+    "TP": 2020,
+    "FP": 755,
+    "failure_states": "FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:PlasmidFinder",
+    "family": "PlasmidFinder",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 0.976096,
+    "n_scored": 9147,
+    "abstained": 224,
+    "failures": 224,
+    "PPV": 0.9148264984227129,
+    "PPV_ci95": [
+     0.879254,
+     0.94823
+    ],
+    "recall": 0.13235965312642628,
+    "recall_ci95": [
+     0.118745,
+     0.148282
+    ],
+    "F1": 0.23125996810207336,
+    "MCC": 0.29979206841906164,
+    "TP": 290,
+    "FP": 27,
+    "failure_states": "FAILED=224 MISSING=0 unknown=0 unclassified=0 repeat=0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:Platon",
+    "family": "Platon",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.93626138189609,
+    "PPV_ci95": [
+     0.910623,
+     0.956752
+    ],
+    "recall": 0.7800089245872378,
+    "recall_ci95": [
+     0.748836,
+     0.808807
+    ],
+    "F1": 0.8510223953261928,
+    "MCC": 0.8151792706043655,
+    "TP": 1748,
+    "FP": 119,
+    "failure_states": "FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:RFPlasmid",
+    "family": "RFPlasmid",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.6659597030752916,
+    "PPV_ci95": [
+     0.617291,
+     0.712195
+    ],
+    "recall": 0.8406961178045516,
+    "recall_ci95": [
+     0.803889,
+     0.875058
+    ],
+    "F1": 0.7431952662721895,
+    "MCC": 0.6579968860077133,
+    "TP": 1884,
+    "FP": 945,
+    "failure_states": "FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:geNomad",
+    "family": "geNomad",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.6074685193226227,
+    "PPV_ci95": [
+     0.563653,
+     0.645455
+    ],
+    "recall": 0.6242748772869254,
+    "recall_ci95": [
+     0.596677,
+     0.651912
+    ],
+    "F1": 0.6157570422535211,
+    "MCC": 0.49289213949208016,
+    "TP": 1399,
+    "FP": 904,
+    "failure_states": "FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:gplas2",
+    "family": "gplas2",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 0.790631,
+    "n_scored": 7409,
+    "abstained": 1962,
+    "failures": 1084,
+    "PPV": 0.7570573139435415,
+    "PPV_ci95": [
+     0.712967,
+     0.798591
+    ],
+    "recall": 0.9081580297588507,
+    "recall_ci95": [
+     0.88415,
+     0.930312
+    ],
+    "F1": 0.8257522743177047,
+    "MCC": 0.7618312071342084,
+    "TP": 1770,
+    "FP": 568,
+    "failure_states": "FAILED=1084 MISSING=0 unknown=80 unclassified=0 repeat=798",
+    "undefined_reason": ""
+   },
+   {
+    "row": "tool:plASgraph2",
+    "family": "plASgraph2",
+    "role": "comparator",
+    "operating_point": "tool-native default output",
+    "coverage": 0.941842,
+    "n_scored": 8826,
+    "abstained": 545,
+    "failures": 0,
+    "PPV": 0.8754208754208754,
+    "PPV_ci95": [
+     0.84648,
+     0.90132
+    ],
+    "recall": 0.6770833333333334,
+    "recall_ci95": [
+     0.616014,
+     0.733027
+    ],
+    "F1": 0.763582966226138,
+    "MCC": 0.7171888012833159,
+    "TP": 1300,
+    "FP": 185,
+    "failure_states": "FAILED=0 MISSING=0 unknown=545 unclassified=0 repeat=0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "baseline:majority_vote",
+    "family": "panel majority vote",
+    "role": "comparator",
+    "operating_point": "strict majority",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.897787610619469,
+    "PPV_ci95": [
+     0.86859,
+     0.922721
+    ],
+    "recall": 0.9053993752788934,
+    "recall_ci95": [
+     0.880828,
+     0.927529
+    ],
+    "F1": 0.9015774272383915,
+    "MCC": 0.8704842235722142,
+    "TP": 2029,
+    "FP": 231,
+    "failure_states": "abstains where no finite score / no panel evidence: 0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "baseline:any_tool_plasmid",
+    "family": "any-tool-plasmid",
+    "role": "comparator",
+    "operating_point": ">=1 tool",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": 0.41857841293719444,
+    "PPV_ci95": [
+     0.381992,
+     0.452969
+    ],
+    "recall": 0.9933065595716198,
+    "recall_ci95": [
+     0.985757,
+     0.999537
+    ],
+    "F1": 0.5889667945495436,
+    "MCC": 0.4818552620165002,
+    "TP": 2226,
+    "FP": 3092,
+    "failure_states": "abstains where no finite score / no panel evidence: 0",
+    "undefined_reason": ""
+   },
+   {
+    "row": "baseline:all_chromosome",
+    "family": "all-chromosome",
+    "role": "comparator",
+    "operating_point": "constant negative",
+    "coverage": 1.0,
+    "n_scored": 9371,
+    "abstained": 0,
+    "failures": 0,
+    "PPV": null,
+    "PPV_ci95": null,
+    "recall": 0.0,
+    "recall_ci95": [
+     0.0,
+     0.0
+    ],
+    "F1": null,
+    "MCC": null,
+    "TP": 0,
+    "FP": 0,
+    "failure_states": "abstains where no finite score / no panel evidence: 0",
+    "undefined_reason": "PPV undefined: never returns a positive call on the truth-resolved set (TP+FP=0), so precision has no denominator; row retained and reported"
+   }
+  ],
+  "n_predictor_rows": 19,
+  "matched_denominator_n": 4233,
+  "matched_denominator_fraction": 0.451713,
+  "matched_index_F1": 0.8592178770949721,
+  "matched_index_PPV": 0.9746514575411914,
+  "matched_index_recall": 0.7682317682317682,
+  "matched_rows_higher_F1": [
+   {
+    "row": "tool:Plasmer",
+    "F1": 0.93713163064833
+   },
+   {
+    "row": "baseline:majority_vote",
+    "F1": 0.9133777549974372
+   },
+   {
+    "row": "tool:MOB-recon",
+    "F1": 0.8756698821007503
+   },
+   {
+    "row": "tool:PlasmidEC",
+    "F1": 0.8739495798319327
+   },
+   {
+    "row": "tool:gplas2",
+    "F1": 0.8739495798319327
+   }
+  ],
+  "matched_count_higher_F1": 5,
+  "matched_rows_reaching_PPV_095": [
+   {
+    "row": "v1.1@0.9524",
+    "PPV": 0.9790697674418605
+   },
+   {
+    "row": "v1.1@0.9605_high_conf",
+    "PPV": 0.9773299748110831
+   },
+   {
+    "row": "router",
+    "PPV": 0.9774964838255977
+   }
+  ],
+  "matched_eligible_for_F1_ranking": 17,
+  "F1_undefined_rows": [
+   {
+    "row": "baseline:all_chromosome",
+    "reason": "PPV undefined: predictor never returns a positive call on the truth-resolved set (TP+FP=0), so precision has no denominator"
+   }
+  ],
+  "pooled_rows_higher_F1": [
+   {
+    "row": "baseline:majority_vote",
+    "F1": 0.9015774272383915
+   },
+   {
+    "row": "tool:Plasmer",
+    "F1": 0.9015500628403854
+   },
+   {
+    "row": "tool:MOB-recon",
+    "F1": 0.8601607347876004
+   },
+   {
+    "row": "tool:Platon",
+    "F1": 0.8510223953261928
+   },
+   {
+    "row": "tool:gplas2",
+    "F1": 0.8257522743177047
+   },
+   {
+    "row": "tool:PlasmidEC",
+    "F1": 0.8054226475279106
+   }
+  ],
+  "pooled_count_higher_F1": 6,
+  "pooled_rows_meeting_PPV095_and_full_coverage": [
+   "v1.2-General@0.9285",
+   "v1.1@0.9524",
+   "v1.1@0.9605_high_conf",
+   "router"
+  ],
+  "pooled_third_party_meeting_PPV095_any_coverage": [],
+  "pooled_core_claim_supported": true,
+  "pooled_highest_third_party_PPV": {
+   "row": "tool:Platon",
+   "PPV": 0.93626138189609,
+   "coverage": 1.0
+  },
+  "arg_bearing_n": 635,
+  "arg_non_arg_n": 8736,
+  "arg_v12": {
+   "PPV": 0.9409090909090909,
+   "PPV_ci95": [
+    0.897848,
+    0.972851
+   ],
+   "recall": 0.7781954887218046,
+   "recall_ci95": [
+    0.713259,
+    0.837121
+   ],
+   "coverage": 1.0
+  },
+  "arg_pareto_frontier": [
+   {
+    "row": "v1.2-General@0.9285",
+    "PPV": 0.9409090909090909,
+    "recall": 0.7781954887218046,
+    "coverage": 1.0
+   },
+   {
+    "row": "v1.1@0.9524",
+    "PPV": 0.9493670886075949,
+    "recall": 0.2819548872180451,
+    "coverage": 1.0
+   },
+   {
+    "row": "router",
+    "PPV": 0.9493670886075949,
+    "recall": 0.2819548872180451,
+    "coverage": 1.0
+   },
+   {
+    "row": "tool:HyAsP",
+    "PPV": 0.890625,
+    "recall": 0.8571428571428571,
+    "coverage": 1.0
+   },
+   {
+    "row": "tool:MOB-recon",
+    "PPV": 0.891566265060241,
+    "recall": 0.8345864661654135,
+    "coverage": 0.9165354330708662
+   },
+   {
+    "row": "tool:PLASMe",
+    "PPV": 0.8184615384615385,
+    "recall": 1.0,
+    "coverage": 1.0
+   },
+   {
+    "row": "tool:Plasmer",
+    "PPV": 0.8745874587458746,
+    "recall": 0.9962406015037594,
+    "coverage": 1.0
+   },
+   {
+    "row": "tool:Platon",
+    "PPV": 0.9051724137931034,
+    "recall": 0.7894736842105263,
+    "coverage": 1.0
+   },
+   {
+    "row": "tool:plASgraph2",
+    "PPV": 0.9562841530054644,
+    "recall": 0.7675438596491229,
+    "coverage": 0.9212598425196851
+   },
+   {
+    "row": "baseline:majority_vote",
+    "PPV": 0.8784722222222222,
+    "recall": 0.9511278195488722,
+    "coverage": 1.0
+   }
+  ],
+  "arg_pareto_count": 10,
+  "arg_third_party_meeting_PPV095_any_coverage": [
+   "tool:plASgraph2"
+  ],
+  "arg_rows_meeting_PPV095_and_full_coverage": [],
+  "arg_router": {
+   "PPV": 0.9493670886075949,
+   "recall": 0.2819548872180451,
+   "coverage": 1.0,
+   "PPV_ci95": [
+    0.870116,
+    1.0
+   ],
+   "recall_ci95": [
+    0.180326,
+    0.392159
+   ]
+  },
+  "arg_v11": {
+   "PPV": 0.9493670886075949,
+   "recall": 0.2819548872180451,
+   "coverage": 1.0,
+   "PPV_ci95": [
+    0.870116,
+    1.0
+   ],
+   "recall_ci95": [
+    0.180326,
+    0.392159
+   ]
+  },
+  "arg_plasgraph2": {
+   "PPV": 0.9562841530054644,
+   "recall": 0.7675438596491229,
+   "coverage": 0.9212598425196851,
+   "PPV_ci95": [
+    0.916201,
+    0.987732
+   ],
+   "recall_ci95": [
+    0.681569,
+    0.846154
+   ]
+  },
+  "arg_all_predictors": [
+   {
+    "row": "v1.2-General@0.9285",
+    "coverage": 1.0,
+    "PPV": 0.9409090909090909,
+    "recall": 0.7781954887218046,
+    "F1": 0.851851851851852
+   },
+   {
+    "row": "v1.1@0.9524",
+    "coverage": 1.0,
+    "PPV": 0.9493670886075949,
+    "recall": 0.2819548872180451,
+    "F1": 0.43478260869565216
+   },
+   {
+    "row": "v1.1@0.9605_high_conf",
+    "coverage": 1.0,
+    "PPV": 0.9466666666666667,
+    "recall": 0.2669172932330827,
+    "F1": 0.41642228739002934
+   },
+   {
+    "row": "router",
+    "coverage": 1.0,
+    "PPV": 0.9493670886075949,
+    "recall": 0.2819548872180451,
+    "F1": 0.43478260869565216
+   },
+   {
+    "row": "tool:HyAsP",
+    "coverage": 1.0,
+    "PPV": 0.890625,
+    "recall": 0.8571428571428571,
+    "F1": 0.8735632183908045
+   },
+   {
+    "row": "tool:MOB-recon",
+    "coverage": 0.9165354330708662,
+    "PPV": 0.891566265060241,
+    "recall": 0.8345864661654135,
+    "F1": 0.8621359223300971
+   },
+   {
+    "row": "tool:PLASMe",
+    "coverage": 1.0,
+    "PPV": 0.8184615384615385,
+    "recall": 1.0,
+    "F1": 0.9001692047377327
+   },
+   {
+    "row": "tool:PlaScope",
+    "coverage": 0.7984251968503937,
+    "PPV": 0.5102639296187683,
+    "recall": 0.8877551020408163,
+    "F1": 0.6480446927374302
+   },
+   {
+    "row": "tool:Plasmer",
+    "coverage": 1.0,
+    "PPV": 0.8745874587458746,
+    "recall": 0.9962406015037594,
+    "F1": 0.9314586994727593
+   },
+   {
+    "row": "tool:PlasmidEC",
+    "coverage": 1.0,
+    "PPV": 0.7987012987012987,
+    "recall": 0.924812030075188,
+    "F1": 0.8571428571428572
+   },
+   {
+    "row": "tool:PlasmidFinder",
+    "coverage": 0.9669291338582677,
+    "PPV": 0.575,
+    "recall": 0.08846153846153847,
+    "F1": 0.15333333333333332
+   },
+   {
+    "row": "tool:Platon",
+    "coverage": 1.0,
+    "PPV": 0.9051724137931034,
+    "recall": 0.7894736842105263,
+    "F1": 0.8433734939759036
+   },
+   {
+    "row": "tool:RFPlasmid",
+    "coverage": 1.0,
+    "PPV": 0.7368421052631579,
+    "recall": 0.9473684210526315,
+    "F1": 0.8289473684210525
+   },
+   {
+    "row": "tool:geNomad",
+    "coverage": 1.0,
+    "PPV": 0.7644444444444445,
+    "recall": 0.6466165413533834,
+    "F1": 0.7006109979633401
+   },
+   {
+    "row": "tool:gplas2",
+    "coverage": 0.8377952755905512,
+    "PPV": 0.8095238095238095,
+    "recall": 0.9285714285714286,
+    "F1": 0.8649706457925637
+   },
+   {
+    "row": "tool:plASgraph2",
+    "coverage": 0.9212598425196851,
+    "PPV": 0.9562841530054644,
+    "recall": 0.7675438596491229,
+    "F1": 0.8515815085158152
+   },
+   {
+    "row": "baseline:majority_vote",
+    "coverage": 1.0,
+    "PPV": 0.8784722222222222,
+    "recall": 0.9511278195488722,
+    "F1": 0.9133574007220218
+   },
+   {
+    "row": "baseline:any_tool_plasmid",
+    "coverage": 1.0,
+    "PPV": 0.5341365461847389,
+    "recall": 1.0,
+    "F1": 0.6963350785340314
+   },
+   {
+    "row": "baseline:all_chromosome",
+    "coverage": 1.0,
+    "PPV": null,
+    "recall": 0.0,
+    "F1": null
+   }
+  ],
+  "arg_router_recall_penalty_vs_v12": 0.496241,
+  "arg_router_precision_gain_vs_v12": 0.008458,
+  "paired_contrasts_primary": [
+   {
+    "contrast": "v1.2-General minus v1.1",
+    "delta_PPV": 0.0064005878485516865,
+    "delta_PPV_ci95": [
+     -0.008482805478886914,
+     0.02291992660149722
+    ],
+    "delta_recall": 0.38331102186523874,
+    "delta_recall_ci95": [
+     0.31896073667959896,
+     0.44550291256291463
+    ],
+    "paired": true,
+    "clustering": "isolate-level",
+    "n_boot": 4000
+   },
+   {
+    "contrast": "v1.2-General minus router",
+    "delta_PPV": -0.004170597147185706,
+    "delta_PPV_ci95": [
+     -0.00895654913889769,
+     -0.0003705554900491281
+    ],
+    "delta_recall": 0.058902275769745605,
+    "delta_recall_ci95": [
+     0.043633980239965724,
+     0.07650299686420829
+    ],
+    "paired": true,
+    "clustering": "isolate-level",
+    "n_boot": 4000
+   },
+   {
+    "contrast": "v1.1 minus router",
+    "delta_PPV": -0.010571184995737393,
+    "delta_PPV_ci95": [
+     -0.026461246662490976,
+     0.002914926351849141
+    ],
+    "delta_recall": -0.32440874609549314,
+    "delta_recall_ci95": [
+     -0.3794399851789413,
+     -0.2675731344633167
+    ],
+    "paired": true,
+    "clustering": "isolate-level",
+    "n_boot": 4000
+   }
+  ],
+  "paired_contrasts_all_rows": [
+   {
+    "contrast": "v1.2-General minus v1.1@0.9524",
+    "delta_PPV": "0.0064005878485516865",
+    "delta_PPV_ci95": "[-0.008483, 0.02292]",
+    "delta_recall": "0.38331102186523874",
+    "delta_recall_ci95": "[0.318961, 0.445503]",
+    "delta_F1": "0.3556443880218333",
+    "delta_F1_ci95": "[0.280124, 0.436528]"
+   },
+   {
+    "contrast": "v1.2-General minus v1.1@0.9605_high_conf",
+    "delta_PPV": "0.006299167970255537",
+    "delta_PPV_ci95": "[-0.008317, 0.021559]",
+    "delta_recall": "0.41186970102632753",
+    "delta_recall_ci95": "[0.34901, 0.471825]",
+    "delta_F1": "0.3908560784621905",
+    "delta_F1_ci95": "[0.315257, 0.472033]"
+   },
+   {
+    "contrast": "v1.2-General minus router",
+    "delta_PPV": "-0.004170597147185706",
+    "delta_PPV_ci95": "[-0.008957, -0.000371]",
+    "delta_recall": "0.058902275769745605",
+    "delta_recall_ci95": "[0.043634, 0.076503]",
+    "delta_F1": "0.042145609057918754",
+    "delta_F1_ci95": "[0.030208, 0.055896]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:HyAsP",
+    "delta_PPV": "0.13234987347089688",
+    "delta_PPV_ci95": "[0.103515, 0.16491]",
+    "delta_recall": "-0.025881302989736787",
+    "delta_recall_ci95": "[-0.060876, 0.008643]",
+    "delta_F1": "0.031096493514519374",
+    "delta_F1_ci95": "[0.00456, 0.058574]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:MOB-recon",
+    "delta_PPV": "0.09099071529025682",
+    "delta_PPV_ci95": "[0.071891, 0.111966]",
+    "delta_recall": "-0.17269076305220887",
+    "delta_recall_ci95": "[-0.214531, -0.13055]",
+    "delta_F1": "-0.07015541846649453",
+    "delta_F1_ci95": "[-0.098234, -0.04122]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:PLASMe",
+    "delta_PPV": "0.3274187075185958",
+    "delta_PPV_ci95": "[0.296043, 0.362567]",
+    "delta_recall": "-0.31459170013386883",
+    "delta_recall_ci95": "[-0.353853, -0.27619]",
+    "delta_F1": "0.00945668789217824",
+    "delta_F1_ci95": "[-0.027914, 0.049275]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:PlaScope",
+    "delta_PPV": "0.47839050516109144",
+    "delta_PPV_ci95": "[0.426361, 0.539706]",
+    "delta_recall": "-0.2715878529131541",
+    "delta_recall_ci95": "[-0.306188, -0.236319]",
+    "delta_F1": "0.13970497680687244",
+    "delta_F1_ci95": "[0.095028, 0.192276]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:Plasmer",
+    "delta_PPV": "0.12740335137006764",
+    "delta_PPV_ci95": "[0.103577, 0.154448]",
+    "delta_recall": "-0.29718875502008035",
+    "delta_recall_ci95": "[-0.336799, -0.259122]",
+    "delta_F1": "-0.11154474651927959",
+    "delta_F1_ci95": "[-0.141723, -0.081506]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:PlasmidEC",
+    "delta_PPV": "0.2490608952147414",
+    "delta_PPV_ci95": "[0.207278, 0.293342]",
+    "delta_recall": "-0.23828647925033464",
+    "delta_recall_ci95": "[-0.285456, -0.193065]",
+    "delta_F1": "-0.015417331206804774",
+    "delta_F1_ci95": "[-0.046033, 0.016749]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:PlasmidFinder",
+    "delta_PPV": "0.06216232471995642",
+    "delta_PPV_ci95": "[0.030193, 0.095357]",
+    "delta_recall": "0.5307371786451043",
+    "delta_recall_ci95": "[0.49063, 0.569383]",
+    "delta_F1": "0.5587453482190324",
+    "delta_F1_ci95": "[0.52504, 0.588299]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:Platon",
+    "delta_PPV": "0.04072744124657934",
+    "delta_PPV_ci95": "[0.024778, 0.060012]",
+    "delta_recall": "-0.11691209281570725",
+    "delta_recall_ci95": "[-0.164312, -0.071493]",
+    "delta_F1": "-0.061017079005087016",
+    "delta_F1_ci95": "[-0.094244, -0.029399]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:RFPlasmid",
+    "delta_PPV": "0.3110291200673777",
+    "delta_PPV_ci95": "[0.266038, 0.358022]",
+    "delta_recall": "-0.177599286033021",
+    "delta_recall_ci95": "[-0.235074, -0.12118]",
+    "delta_F1": "0.04681005004891636",
+    "delta_F1_ci95": "[0.014321, 0.081181]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:geNomad",
+    "delta_PPV": "0.36952030382004664",
+    "delta_PPV_ci95": "[0.331773, 0.411539]",
+    "delta_recall": "0.038821954484605126",
+    "delta_recall_ci95": "[-0.001061, 0.075299]",
+    "delta_F1": "0.1742482740675847",
+    "delta_F1_ci95": "[0.14222, 0.208282]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:gplas2",
+    "delta_PPV": "0.21993150919912785",
+    "delta_PPV_ci95": "[0.180302, 0.261286]",
+    "delta_recall": "-0.24506119798732018",
+    "delta_recall_ci95": "[-0.291455, -0.200704]",
+    "delta_F1": "-0.03574695799659888",
+    "delta_F1_ci95": "[-0.065416, -0.005635]"
+   },
+   {
+    "contrast": "v1.2-General minus tool:plASgraph2",
+    "delta_PPV": "0.1015679477217939",
+    "delta_PPV_ci95": "[0.076221, 0.130234]",
+    "delta_recall": "-0.013986501561802811",
+    "delta_recall_ci95": "[-0.062501, 0.038949]",
+    "delta_F1": "0.02642235009496785",
+    "delta_F1_ci95": "[-0.008426, 0.066085]"
+   },
+   {
+    "contrast": "v1.2-General minus baseline:majority_vote",
+    "delta_PPV": "0.07920121252320034",
+    "delta_PPV_ci95": "[0.05822, 0.103217]",
+    "delta_recall": "-0.2423025435073628",
+    "delta_recall_ci95": "[-0.28558, -0.201078]",
+    "delta_F1": "-0.1115721109172857",
+    "delta_F1_ci95": "[-0.142576, -0.0816]"
+   },
+   {
+    "contrast": "v1.2-General minus baseline:any_tool_plasmid",
+    "delta_PPV": "0.5584104102054749",
+    "delta_PPV_ci95": "[0.525407, 0.593977]",
+    "delta_recall": "-0.3302097278000893",
+    "delta_recall_ci95": "[-0.371558, -0.290197]",
+    "delta_F1": "0.20103852177156223",
+    "delta_F1_ci95": "[0.158421, 0.247938]"
+   },
+   {
+    "contrast": "v1.2-General minus baseline:all_chromosome",
+    "delta_PPV": "",
+    "delta_PPV_ci95": "",
+    "delta_recall": "",
+    "delta_recall_ci95": "[0.620522, 0.705199]",
+    "delta_F1": "",
+    "delta_F1_ci95": ""
+   }
+  ],
+  "paired_contrasts_arg": [
+   {
+    "contrast": "ARG: v1.2-General minus v1.1@0.9524",
+    "delta_PPV": "-0.008457997698503972",
+    "delta_PPV_ci95": "[-0.055121, 0.04919]",
+    "delta_recall": "0.4962406015037594",
+    "delta_recall_ci95": "[0.388058, 0.595919]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus v1.1@0.9605_high_conf",
+    "delta_PPV": "-0.005757575757575739",
+    "delta_PPV_ci95": "[-0.054397, 0.055053]",
+    "delta_recall": "0.5112781954887218",
+    "delta_recall_ci95": "[0.40789, 0.608334]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus router",
+    "delta_PPV": "-0.008457997698503972",
+    "delta_PPV_ci95": "[-0.055121, 0.04919]",
+    "delta_recall": "0.4962406015037594",
+    "delta_recall_ci95": "[0.388058, 0.595919]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:HyAsP",
+    "delta_PPV": "0.05028409090909092",
+    "delta_PPV_ci95": "[0.013991, 0.095803]",
+    "delta_recall": "-0.07894736842105254",
+    "delta_recall_ci95": "[-0.137826, -0.022635]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:MOB-recon",
+    "delta_PPV": "0.04934282584884997",
+    "delta_PPV_ci95": "[0.018529, 0.083653]",
+    "delta_recall": "-0.05639097744360899",
+    "delta_recall_ci95": "[-0.117221, 0.0]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:PLASMe",
+    "delta_PPV": "0.12244755244755245",
+    "delta_PPV_ci95": "[0.078867, 0.170979]",
+    "delta_recall": "-0.22180451127819545",
+    "delta_recall_ci95": "[-0.286741, -0.162879]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:PlaScope",
+    "delta_PPV": "0.4306451612903226",
+    "delta_PPV_ci95": "[0.372871, 0.497274]",
+    "delta_recall": "-0.10955961331901176",
+    "delta_recall_ci95": "[-0.158193, -0.060208]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:Plasmer",
+    "delta_PPV": "0.0663216321632163",
+    "delta_PPV_ci95": "[0.024556, 0.113644]",
+    "delta_recall": "-0.21804511278195482",
+    "delta_recall_ci95": "[-0.282512, -0.159872]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:PlasmidEC",
+    "delta_PPV": "0.14220779220779223",
+    "delta_PPV_ci95": "[0.089489, 0.196493]",
+    "delta_recall": "-0.14661654135338342",
+    "delta_recall_ci95": "[-0.198381, -0.099667]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:PlasmidFinder",
+    "delta_PPV": "0.36590909090909096",
+    "delta_PPV_ci95": "[0.22267, 0.505682]",
+    "delta_recall": "0.6897339502602661",
+    "delta_recall_ci95": "[0.612464, 0.757988]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:Platon",
+    "delta_PPV": "0.03573667711598749",
+    "delta_PPV_ci95": "[-0.005536, 0.089001]",
+    "delta_recall": "-0.011278195488721776",
+    "delta_recall_ci95": "[-0.051097, 0.024403]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:RFPlasmid",
+    "delta_PPV": "0.20406698564593306",
+    "delta_PPV_ci95": "[0.148104, 0.263334]",
+    "delta_recall": "-0.16917293233082698",
+    "delta_recall_ci95": "[-0.225697, -0.115942]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:geNomad",
+    "delta_PPV": "0.17646464646464644",
+    "delta_PPV_ci95": "[0.117068, 0.236555]",
+    "delta_recall": "0.13157894736842113",
+    "delta_recall_ci95": "[0.042441, 0.21318]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:gplas2",
+    "delta_PPV": "0.13138528138528138",
+    "delta_PPV_ci95": "[0.080424, 0.185657]",
+    "delta_recall": "-0.15037593984962405",
+    "delta_recall_ci95": "[-0.205077, -0.10128]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus tool:plASgraph2",
+    "delta_PPV": "-0.015375062096373515",
+    "delta_PPV_ci95": "[-0.05172, 0.016262]",
+    "delta_recall": "0.01065162907268169",
+    "delta_recall_ci95": "[-0.094283, 0.115984]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus baseline:majority_vote",
+    "delta_PPV": "0.06243686868686871",
+    "delta_PPV_ci95": "[0.026786, 0.104202]",
+    "delta_recall": "-0.1729323308270676",
+    "delta_recall_ci95": "[-0.226088, -0.124542]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus baseline:any_tool_plasmid",
+    "delta_PPV": "0.406772544724352",
+    "delta_PPV_ci95": "[0.358523, 0.461401]",
+    "delta_recall": "-0.22180451127819545",
+    "delta_recall_ci95": "[-0.286741, -0.162879]"
+   },
+   {
+    "contrast": "ARG: v1.2-General minus baseline:all_chromosome",
+    "delta_PPV": "",
+    "delta_PPV_ci95": "",
+    "delta_recall": "",
+    "delta_recall_ci95": "[0.713259, 0.837121]"
+   }
+  ],
+  "taxon_v12": [
+   {
+    "taxon": "Klebsiella pneumoniae",
+    "n_scored": 1904,
+    "n_plasmid": 676,
+    "PPV": 0.9981851179673321,
+    "PPV_ci95": [
+     0.994036,
+     1.0
+    ],
+    "recall": 0.8136094674556213,
+    "recall_ci95": [
+     0.76725,
+     0.861067
+    ],
+    "F1": 0.8964955175224124,
+    "meets_PPV_floor": true
+   },
+   {
+    "taxon": "Enterococcus faecium",
+    "n_scored": 3077,
+    "n_plasmid": 851,
+    "PPV": 0.9898167006109979,
+    "PPV_ci95": [
+     0.980609,
+     0.997512
+    ],
+    "recall": 0.5710928319623971,
+    "recall_ci95": [
+     0.508447,
+     0.630507
+    ],
+    "F1": 0.7242921013412816,
+    "meets_PPV_floor": true
+   },
+   {
+    "taxon": "Serratia spp.",
+    "n_scored": 992,
+    "n_plasmid": 44,
+    "PPV": 0.9545454545454546,
+    "PPV_ci95": [
+     0.933333,
+     1.0
+    ],
+    "recall": 0.4772727272727273,
+    "recall_ci95": [
+     0.157895,
+     0.863636
+    ],
+    "F1": 0.6363636363636365,
+    "meets_PPV_floor": true
+   },
+   {
+    "taxon": "Citrobacter spp.",
+    "n_scored": 1540,
+    "n_plasmid": 379,
+    "PPV": 0.946236559139785,
+    "PPV_ci95": [
+     0.904469,
+     0.980394
+    ],
+    "recall": 0.6965699208443272,
+    "recall_ci95": [
+     0.61456,
+     0.798838
+    ],
+    "F1": 0.8024316109422494,
+    "meets_PPV_floor": false
+   },
+   {
+    "taxon": "Enterobacter spp.",
+    "n_scored": 1021,
+    "n_plasmid": 150,
+    "PPV": 0.9357798165137615,
+    "PPV_ci95": [
+     0.8,
+     1.0
+    ],
+    "recall": 0.68,
+    "recall_ci95": [
+     0.465717,
+     0.795928
+    ],
+    "F1": 0.7876447876447877,
+    "meets_PPV_floor": false
+   },
+   {
+    "taxon": "Enterococcus faecalis",
+    "n_scored": 837,
+    "n_plasmid": 141,
+    "PPV": 0.9130434782608695,
+    "PPV_ci95": [
+     0.811316,
+     0.987013
+    ],
+    "recall": 0.44680851063829785,
+    "recall_ci95": [
+     0.329996,
+     0.567919
+    ],
+    "F1": 0.6,
+    "meets_PPV_floor": false
+   }
+  ],
+  "n_taxa_below_PPV_floor": 3,
+  "taxa_below_PPV_floor": [
+   "Citrobacter spp.",
+   "Enterobacter spp.",
+   "Enterococcus faecalis"
+  ],
+  "taxon_recall_fold_variation": 1.8209354747816289,
+  "loto": [
+   {
+    "label": "excluding Citrobacter spp.",
+    "n_scored": 7831,
+    "PPV": 0.9838969404186796,
+    "recall": 0.6562835660580022
+   },
+   {
+    "label": "excluding Enterobacter spp.",
+    "n_scored": 8350,
+    "PPV": 0.9801699716713881,
+    "recall": 0.6618842659014825
+   },
+   {
+    "label": "excluding Enterococcus faecalis",
+    "n_scored": 8534,
+    "PPV": 0.9800275482093664,
+    "recall": 0.6776190476190476
+   },
+   {
+    "label": "excluding Enterococcus faecium",
+    "n_scored": 6294,
+    "PPV": 0.970873786407767,
+    "recall": 0.7194244604316546
+   },
+   {
+    "label": "excluding Klebsiella pneumoniae",
+    "n_scored": 7467,
+    "PPV": 0.9649484536082474,
+    "recall": 0.5980830670926518
+   },
+   {
+    "label": "excluding Serratia spp.",
+    "n_scored": 8379,
+    "PPV": 0.9773182121414277,
+    "recall": 0.6668183887118798
+   },
+   {
+    "label": "ALL SIX TAXA (frozen primary)",
+    "n_scored": 9371,
+    "PPV": 0.9769888231426693,
+    "recall": 0.6630968317715306
+   }
+  ],
+  "loto_PPV_range": [
+   0.9649484536082474,
+   0.9838969404186796
+  ],
+  "loto_recall_range": [
+   0.5980830670926518,
+   0.7194244604316546
+  ],
+  "loto_floors_hold": true,
+  "isolate_macro_average_PPV": 0.9572425486074383,
+  "isolate_macro_average_recall": 0.6698257237753688,
+  "isolate_median_PPV": 1.0,
+  "isolate_median_recall": 0.7368421052631579,
+  "isolate_max_abs_influence_on_pooled_PPV": 0.003561143322790117,
+  "isolate_max_abs_influence_on_pooled_recall": 0.006135958250147455,
+  "isolate_most_influential_isolate": "SAMN29503689",
+  "isolate_IQR_recall": [
+   0.5,
+   0.8786764705882353
+  ],
+  "isolates_with_zero_FP": 128,
+  "top10_share_of_FP": 0.6571428571428571,
+  "top10_share_of_FN": 0.31788079470198677,
+  "prevalence_grid": [
+   {
+    "prevalence": 0.05,
+    "standardized_PPV": 0.876689273750367,
+    "above_0.95": "False"
+   },
+   {
+    "prevalence": 0.1,
+    "standardized_PPV": 0.9375356989743031,
+    "above_0.95": "False"
+   },
+   {
+    "prevalence": 0.15,
+    "standardized_PPV": 0.9597391945121425,
+    "above_0.95": "True"
+   },
+   {
+    "prevalence": 0.2,
+    "standardized_PPV": 0.971240049427441,
+    "above_0.95": "True"
+   },
+   {
+    "prevalence": 0.239,
+    "standardized_PPV": 0.9769712636790866,
+    "above_0.95": "True"
+   },
+   {
+    "prevalence": 0.3,
+    "standardized_PPV": 0.9830198841271661,
+    "above_0.95": "True"
+   },
+   {
+    "prevalence": 0.4,
+    "standardized_PPV": 0.9890176104218935,
+    "above_0.95": "True"
+   },
+   {
+    "prevalence": 0.5,
+    "standardized_PPV": 0.9926515056051769,
+    "above_0.95": "True"
+   }
+  ],
+  "observed_plasmid_prevalence": 0.23914203393447872,
+  "standardized_PPV_at_5pct": 0.876689273750367,
+  "standardized_PPV_at_50pct": 0.9926515056051769,
+  "equal_taxon_weighted_PPV": 0.9562678545063669,
+  "prevalence_lowest_grid_point_above_floor": 0.15,
+  "prevalence_highest_grid_point_below_floor": 0.1,
+  "prevalence_exact_crossing_0.95": 0.123311,
+  "error_architecture": {
+   "v1.2-General@0.9285": {
+    "TP": 1486,
+    "FP": 35,
+    "TN": 7095,
+    "FN": 755
+   },
+   "v1.1@0.9524": {
+    "TP": 627,
+    "FP": 19,
+    "TN": 7111,
+    "FN": 1614
+   },
+   "v1.1@0.9605_high_conf": {
+    "TP": 563,
+    "FP": 17,
+    "TN": 7113,
+    "FN": 1678
+   },
+   "router": {
+    "TP": 1354,
+    "FP": 26,
+    "TN": 7104,
+    "FN": 887
+   }
+  },
+  "length_bins": [
+   {
+    "band": "length=1-<2kb",
+    "n_scored": 1350,
+    "n_plasmid": 470,
+    "PPV": 0.9806949806949807,
+    "recall": 0.5404255319148936,
+    "adequate": "True"
+   },
+   {
+    "band": "length=2-<5kb",
+    "n_scored": 1344,
+    "n_plasmid": 692,
+    "PPV": 0.9710743801652892,
+    "recall": 0.6791907514450867,
+    "adequate": "True"
+   },
+   {
+    "band": "length=5-<10kb",
+    "n_scored": 1037,
+    "n_plasmid": 454,
+    "PPV": 0.9751552795031055,
+    "recall": 0.6916299559471366,
+    "adequate": "True"
+   },
+   {
+    "band": "length=10-<50kb",
+    "n_scored": 2751,
+    "n_plasmid": 537,
+    "PPV": 0.9794344473007712,
+    "recall": 0.7094972067039106,
+    "adequate": "True"
+   },
+   {
+    "band": "length=>=50kb",
+    "n_scored": 2889,
+    "n_plasmid": 88,
+    "PPV": 1.0,
+    "recall": 0.7613636363636364,
+    "adequate": "True"
+   }
+  ],
+  "depth_and_assembly": [
+   {
+    "stratum": "depth=30_to_50x",
+    "n_scored": 400,
+    "PPV": 1.0,
+    "recall": 0.6951219512195121,
+    "adequate": "True"
+   },
+   {
+    "stratum": "depth=50_to_75x",
+    "n_scored": 1953,
+    "PPV": 0.9794344473007712,
+    "recall": 0.7559523809523809,
+    "adequate": "True"
+   },
+   {
+    "stratum": "depth=75_to_100x",
+    "n_scored": 1426,
+    "PPV": 0.9703389830508474,
+    "recall": 0.6450704225352113,
+    "adequate": "True"
+   },
+   {
+    "stratum": "depth=ge_100x",
+    "n_scored": 5592,
+    "PPV": 0.9761620977353993,
+    "recall": 0.63,
+    "adequate": "True"
+   },
+   {
+    "stratum": "mode=downsampled",
+    "n_scored": 5592,
+    "PPV": 0.9761620977353993,
+    "recall": 0.63,
+    "adequate": "True"
+   },
+   {
+    "stratum": "mode=passthrough",
+    "n_scored": 3779,
+    "PPV": 0.9780058651026393,
+    "recall": 0.7088204038257173,
+    "adequate": "True"
+   },
+   {
+    "stratum": "fragmentation=low_fragmentation",
+    "n_scored": 1207,
+    "PPV": 0.96875,
+    "recall": 0.6458333333333334,
+    "adequate": "True"
+   },
+   {
+    "stratum": "fragmentation=mid_fragmentation",
+    "n_scored": 2334,
+    "PPV": 0.973293768545994,
+    "recall": 0.6381322957198443,
+    "adequate": "True"
+   },
+   {
+    "stratum": "fragmentation=high_fragmentation",
+    "n_scored": 5830,
+    "PPV": 0.9785714285714285,
+    "recall": 0.6719803801348866,
+    "adequate": "True"
+   }
+  ],
+  "length_point_biserial_vs_truth": -0.376027390322245,
+  "depth_pearson_vs_correct": -0.022902343798679326,
+  "truth_sensitivity": [
+   {
+    "setting": "PRIMARY (frozen)",
+    "n_resolved": 9371,
+    "n_unresolved": 413,
+    "n_plasmid_truth": 2241,
+    "labels_flipped_vs_primary": null,
+    "TP": 1486,
+    "FP": 35,
+    "TN": 7095,
+    "FN": 755,
+    "PPV": 0.9769888231426693,
+    "recall": 0.6630968317715306,
+    "meets_both_floors": true
+   },
+   {
+    "setting": "strict id=0.97 cov=0.85",
+    "n_resolved": 9362,
+    "n_unresolved": 422,
+    "n_plasmid_truth": 2234,
+    "labels_flipped_vs_primary": 0,
+    "TP": 1481,
+    "FP": 35,
+    "TN": 7093,
+    "FN": 753,
+    "PPV": 0.9769129287598944,
+    "recall": 0.6629364368845121,
+    "meets_both_floors": true
+   },
+   {
+    "setting": "permissive id=0.90 cov=0.70",
+    "n_resolved": 9378,
+    "n_unresolved": 406,
+    "n_plasmid_truth": 2245,
+    "labels_flipped_vs_primary": 0,
+    "TP": 1488,
+    "FP": 35,
+    "TN": 7098,
+    "FN": 757,
+    "PPV": 0.9770190413657256,
+    "recall": 0.6628062360801782,
+    "meets_both_floors": true
+   },
+   {
+    "setting": "margin=0.05",
+    "n_resolved": 9371,
+    "n_unresolved": 413,
+    "n_plasmid_truth": 2241,
+    "labels_flipped_vs_primary": 0,
+    "TP": 1486,
+    "FP": 35,
+    "TN": 7095,
+    "FN": 755,
+    "PPV": 0.9769888231426693,
+    "recall": 0.6630968317715306,
+    "meets_both_floors": true
+   },
+   {
+    "setting": "margin=0.15",
+    "n_resolved": 9370,
+    "n_unresolved": 414,
+    "n_plasmid_truth": 2241,
+    "labels_flipped_vs_primary": 0,
+    "TP": 1486,
+    "FP": 35,
+    "TN": 7094,
+    "FN": 755,
+    "PPV": 0.9769888231426693,
+    "recall": 0.6630968317715306,
+    "meets_both_floors": true
+   }
+  ],
+  "truth_sensitivity_flip_definition": "number of contigs RESOLVED under BOTH the primary and the alternative truth definition whose binary chromosome/plasmid label differs between the two; contigs resolved under only one definition are counted as resolution-state transitions, not flips",
+  "truth_sensitivity_grid": [
+   {
+    "tag": "strict",
+    "identity": 0.97,
+    "coverage": 0.85,
+    "margin": 0.1,
+    "rationale": "stricter identity and coverage: contigs must match the reference more exactly"
+   },
+   {
+    "tag": "permissive",
+    "identity": 0.9,
+    "coverage": 0.7,
+    "margin": 0.1,
+    "rationale": "more permissive: recovers borderline contigs the primary calls unresolved"
+   },
+   {
+    "tag": "margin05",
+    "identity": 0.95,
+    "coverage": 0.8,
+    "margin": 0.05,
+    "rationale": "narrower ambiguity margin: fewer contigs declared ambiguous"
+   },
+   {
+    "tag": "margin15",
+    "identity": 0.95,
+    "coverage": 0.8,
+    "margin": 0.15,
+    "rationale": "wider ambiguity margin: more contigs declared ambiguous"
+   }
+  ],
+  "unresolved_n": 413,
+  "unresolved_composition": {
+   "ambiguous": 300,
+   "unmapped": 113
+  },
+  "unresolved_by_taxon": {
+   "Citrobacter spp.": 98,
+   "Enterococcus faecium": 150,
+   "Enterococcus faecalis": 30,
+   "Serratia spp.": 39,
+   "Klebsiella pneumoniae": 78,
+   "Enterobacter spp.": 18
+  },
+  "unresolved_by_length_band": {
+   "2-<5kb": 86,
+   "10-<50kb": 27,
+   "5-<10kb": 28,
+   "1-<2kb": 267,
+   ">=50kb": 5
+  },
+  "unresolved_by_ARG_status": {
+   "false": 390,
+   "true": 23
+  },
+  "unresolved_best_case": {
+   "PPV": 0.9786715417428398,
+   "recall": 0.6802202456586193
+  },
+  "unresolved_worst_case": {
+   "PPV": 0.9055453991468617,
+   "recall": 0.5599095704596835
+  },
+  "unresolved_worst_case_clears_floor": false,
+  "reference_sources": {
+   "refseq": 149,
+   "genbank": 1
+  },
+  "reference_reports_readable": 150,
+  "complete_resolution_isolates": 59,
+  "complete_resolution_mean_ref_plasmids": 0.8475,
+  "remainder_mean_ref_plasmids": 3.7363,
+  "complete_resolution_mean_eligible_contigs": 29.7119,
+  "remainder_mean_eligible_contigs": 88.2527,
+  "complete_resolution_taxon_mix": {
+   "Citrobacter spp.": 10,
+   "Serratia spp.": 15,
+   "Klebsiella pneumoniae": 1,
+   "Enterococcus faecalis": 14,
+   "Enterobacter spp.": 19
+  },
+  "remainder_taxon_mix": {
+   "Citrobacter spp.": 15,
+   "Enterococcus faecium": 25,
+   "Enterococcus faecalis": 11,
+   "Serratia spp.": 10,
+   "Klebsiella pneumoniae": 24,
+   "Enterobacter spp.": 6
+  },
+  "complete_resolution_subset_result": {
+   "n_scored": 1753,
+   "n_plasmid": 131,
+   "PPV": 0.9081632653061225,
+   "recall": 0.6793893129770993,
+   "TP": 89,
+   "FP": 9
+  },
+  "complete_resolution_subset_prevalence": 0.074729,
+  "calibration_v12": {
+   "AUROC": 0.9873438588388148,
+   "AUPRC": 0.9645582215215646,
+   "Brier": 0.02564114341758966,
+   "ECE_10bin": 0.006770900516531308,
+   "calibration_intercept": 0.5415299245348789,
+   "calibration_slope": 0.081806809525275,
+   "frozen_threshold_marked": 0.9285
+  },
+  "calibration_v11": {
+   "AUROC": 0.9776597429143096,
+   "AUPRC": 0.9336722364019802,
+   "Brier": 0.049555900960164975,
+   "ECE_10bin": 0.038261549475368535,
+   "calibration_intercept": 0.6455836083583387,
+   "calibration_slope": 0.08882343513511763,
+   "frozen_threshold_marked": 0.9524
+  },
+  "calibration_curve_v12": [
+   {
+    "bin": "0.0-0.1",
+    "n": 6758,
+    "mean_score": 0.007070127700608494,
+    "observed_rate": 0.008730393607576206
+   },
+   {
+    "bin": "0.1-0.2",
+    "n": 149,
+    "mean_score": 0.14665972475312303,
+    "observed_rate": 0.09395973154362416
+   },
+   {
+    "bin": "0.2-0.3",
+    "n": 61,
+    "mean_score": 0.24029657101881846,
+    "observed_rate": 0.19672131147540983
+   },
+   {
+    "bin": "0.3-0.4",
+    "n": 72,
+    "mean_score": 0.3619030332321175,
+    "observed_rate": 0.2777777777777778
+   },
+   {
+    "bin": "0.4-0.5",
+    "n": 50,
+    "mean_score": 0.454510010752419,
+    "observed_rate": 0.46
+   },
+   {
+    "bin": "0.5-0.6",
+    "n": 63,
+    "mean_score": 0.5418963594335715,
+    "observed_rate": 0.5079365079365079
+   },
+   {
+    "bin": "0.6-0.7",
+    "n": 70,
+    "mean_score": 0.6522681278475304,
+    "observed_rate": 0.6
+   },
+   {
+    "bin": "0.7-0.8",
+    "n": 204,
+    "mean_score": 0.764514393873374,
+    "observed_rate": 0.8137254901960784
+   },
+   {
+    "bin": "0.8-0.9",
+    "n": 298,
+    "mean_score": 0.8486827449849207,
+    "observed_rate": 0.8959731543624161
+   },
+   {
+    "bin": "0.9-1.0",
+    "n": 1646,
+    "mean_score": 0.9723825766538853,
+    "observed_rate": 0.9756986634264885
+   }
+  ],
+  "leakage_n_exact_overlap": 0,
+  "leakage_max_ANI_to_any_consumed_genome": 99.48,
+  "leakage_max_within_cohort_pairwise_ANI": 99.48,
+  "leakage_consumed_identifiers_loaded": 583,
+  "leakage_n_bioprojects": 2,
+  "leakage_n_study_accessions": 76,
+  "permutation_n": 200,
+  "permutation_PPV_max": 0.27087442472057854,
+  "permutation_PPV_mean": 0.23871137409598947,
+  "row_order_invariant": true,
+  "deployment": [
+   {
+    "tool": "amrfinder",
+    "n_executions": 150,
+    "wall_median_s": 6.0,
+    "wall_max_s": 16.0,
+    "wall_total_hours": 0.2633333333333333,
+    "failed": 0,
+    "failure_rate": 0.0,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "genomad",
+    "n_executions": 150,
+    "wall_median_s": 148.0,
+    "wall_max_s": 984.0,
+    "wall_total_hours": 10.618333333333334,
+    "failed": 0,
+    "failure_rate": 0.0,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "gplas2",
+    "n_executions": 150,
+    "wall_median_s": 53.5,
+    "wall_max_s": 1652.0,
+    "wall_total_hours": 4.512777777777778,
+    "failed": 36,
+    "failure_rate": 0.24,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "hyasp",
+    "n_executions": 150,
+    "wall_median_s": 54.0,
+    "wall_max_s": 58.0,
+    "wall_total_hours": 2.2355555555555555,
+    "failed": 0,
+    "failure_rate": 0.0,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "mobsuite",
+    "n_executions": 150,
+    "wall_median_s": 37.0,
+    "wall_max_s": 82.0,
+    "wall_total_hours": 1.7416666666666667,
+    "failed": 31,
+    "failure_rate": 0.20666666666666667,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "plascope",
+    "n_executions": 150,
+    "wall_median_s": 5.0,
+    "wall_max_s": 113.0,
+    "wall_total_hours": 0.5786111111111111,
+    "failed": 0,
+    "failure_rate": 0.0,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "plasgraph2",
+    "n_executions": 150,
+    "wall_median_s": 8.0,
+    "wall_max_s": 13.0,
+    "wall_total_hours": 0.33361111111111114,
+    "failed": 0,
+    "failure_rate": 0.0,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "plasme",
+    "n_executions": 150,
+    "wall_median_s": 127.5,
+    "wall_max_s": 184.0,
+    "wall_total_hours": 5.302777777777778,
+    "failed": 0,
+    "failure_rate": 0.0,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "plasmer",
+    "n_executions": 150,
+    "wall_median_s": 224.0,
+    "wall_max_s": 274.0,
+    "wall_total_hours": 9.140833333333333,
+    "failed": 0,
+    "failure_rate": 0.0,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "plasmidec",
+    "n_executions": 150,
+    "wall_median_s": 104.0,
+    "wall_max_s": 182.0,
+    "wall_total_hours": 4.489166666666667,
+    "failed": 0,
+    "failure_rate": 0.0,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "plasmidfinder",
+    "n_executions": 150,
+    "wall_median_s": 6.0,
+    "wall_max_s": 8.0,
+    "wall_total_hours": 0.2388888888888889,
+    "failed": 5,
+    "failure_rate": 0.03333333333333333,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "platon",
+    "n_executions": 150,
+    "wall_median_s": 42.0,
+    "wall_max_s": 59.0,
+    "wall_total_hours": 1.7897222222222222,
+    "failed": 0,
+    "failure_rate": 0.0,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   },
+   {
+    "tool": "rfplasmid",
+    "n_executions": 150,
+    "wall_median_s": 54.0,
+    "wall_max_s": 62.0,
+    "wall_total_hours": 2.1847222222222222,
+    "failed": 0,
+    "failure_rate": 0.0,
+    "peak_RAM_measured": "NOT MEASURED - the receipts record a container memory LIMIT, not observed peak RSS; not invented here"
+   }
+  ],
+  "deployment_total_executions": 1950,
+  "deployment_total_failures": 72,
+  "deployment_total_container_hours": 43.43,
+  "postfreeze_n_checks": 34,
+  "postfreeze_n_disagreements": 0,
+  "postfreeze_verdict": "POSTFREEZE_VERIFIER_PASS",
+  "primary_verifier_values": {
+   "pooled": 176,
+   "matched_19_row": 209,
+   "total": 385
+  },
+  "primary_verifier_disagreements": 0,
+  "primary_verifier_verdict": "VERIFIER_PASS",
+  "bootstrap": {
+   "n_replicates": 4000,
+   "seed": 20260821,
+   "clustering": "isolate-level",
+   "percentiles": [
+    2.5,
+    97.5
+   ]
+  },
+  "truth_thresholds": {
+   "identity": 0.95,
+   "merged_coverage": 0.8,
+   "margin": 0.1,
+   "min_contig_length": 1000
+  },
+  "truth_mapper_sha256": "315792d524dcf008ec9471213b0f6794164e552d4a4187dd3add17a8ebe9328d",
+  "truth_isolates_verified": 150,
+  "cohort_taxa": {
+   "Citrobacter spp.": 25,
+   "Enterococcus faecium": 25,
+   "Enterococcus faecalis": 25,
+   "Serratia spp.": 25,
+   "Klebsiella pneumoniae": 25,
+   "Enterobacter spp.": 25
+  },
+  "cohort_n": 150,
+  "funnel_census_candidates": 6458,
+  "funnel_excluded_ani_vs_consumed": 235,
+  "funnel_eligible_pool": 576,
+  "funnel_excluded_ani_within_cohort": 47,
+  "funnel_not_selected": 382,
+  "funnel_selected_from_pool": 147,
+  "funnel_added_from_fallback_tier": 3,
+  "funnel_reconciles": true,
+  "funnel_selection_tiers": {
+   "2024+": 123,
+   "2023 fallback": 24,
+   "2022 fallback (amendment 1)": 3
+  },
+  "funnel_pool_by_taxon": {
+   "Enterobacter spp.": 151,
+   "Citrobacter spp.": 63,
+   "Klebsiella pneumoniae": 210,
+   "Enterococcus faecalis": 68,
+   "Enterococcus faecium": 51,
+   "Serratia spp.": 33
+  },
+  "panel_units_total": 1950,
+  "panel_units_failed": 72,
+  "panel_units_succeeded": 1878,
+  "panel_failure_mechanisms": {
+   "MOB-recon: zero plasmid biomarkers raised an exception": 31,
+   "gplas2: upstream PlasmidEC predicted no plasmid contigs": 26,
+   "gplas2: internal R step exited non-zero": 10,
+   "PlasmidFinder: index error": 5
+  },
+  "panel_failure_mechanisms_sum": 72,
+  "truth_resolution_rate": 0.957788,
+  "macro_vs_micro_PPV_gap": 0.019746274535231034,
+  "arg_plasgraph2_contigs_answered": 585,
+  "verifier_values_total": 385,
+  "verifier_total_values_and_checks": 419,
+  "comparator_fairness": [
+   {
+    "row": "v1.2-General@0.9285",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.9769888231426693,
+    "conditional_recall": 0.6630968317715306,
+    "conditional_F1": 0.7900053163211058,
+    "failure_aware_PPV": 0.9769888231426693,
+    "failure_aware_recall": 0.6630968317715306,
+    "failure_aware_F1": 0.7900053163211058,
+    "matched_PPV": 0.9746514575411914,
+    "matched_recall": 0.7682317682317682,
+    "matched_F1": 0.8592178770949721
+   },
+   {
+    "row": "v1.1@0.9524",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.9705882352941176,
+    "conditional_recall": 0.2797858099062918,
+    "conditional_F1": 0.43436092829927253,
+    "failure_aware_PPV": 0.9705882352941176,
+    "failure_aware_recall": 0.2797858099062918,
+    "failure_aware_F1": 0.43436092829927253,
+    "matched_PPV": 0.9790697674418605,
+    "matched_recall": 0.4205794205794206,
+    "matched_F1": 0.5883997204751922
+   },
+   {
+    "row": "v1.1@0.9605_high_conf",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.9706896551724138,
+    "conditional_recall": 0.25122713074520303,
+    "conditional_F1": 0.3991492378589153,
+    "failure_aware_PPV": 0.9706896551724138,
+    "failure_aware_recall": 0.25122713074520303,
+    "failure_aware_F1": 0.3991492378589153,
+    "matched_PPV": 0.9773299748110831,
+    "matched_recall": 0.3876123876123876,
+    "matched_F1": 0.5550786838340487
+   },
+   {
+    "row": "router",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.981159420289855,
+    "conditional_recall": 0.604194556001785,
+    "conditional_F1": 0.7478597072631871,
+    "failure_aware_PPV": 0.981159420289855,
+    "failure_aware_recall": 0.604194556001785,
+    "failure_aware_F1": 0.7478597072631871,
+    "matched_PPV": 0.9774964838255977,
+    "matched_recall": 0.6943056943056943,
+    "matched_F1": 0.8119158878504674
+   },
+   {
+    "row": "tool:HyAsP",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.8446389496717724,
+    "conditional_recall": 0.6889781347612673,
+    "conditional_F1": 0.7589088228065864,
+    "failure_aware_PPV": 0.8446389496717724,
+    "failure_aware_recall": 0.6889781347612673,
+    "failure_aware_F1": 0.7589088228065864,
+    "matched_PPV": 0.8866348448687351,
+    "matched_recall": 0.7422577422577422,
+    "matched_F1": 0.8080478520935291
+   },
+   {
+    "row": "tool:MOB-recon",
+    "coverage": 0.9086543591932558,
+    "non_calls": 856,
+    "conditional_PPV": 0.8859981078524125,
+    "conditional_recall": 0.8357875948237394,
+    "conditional_F1": 0.8601607347876004,
+    "failure_aware_PPV": 0.6306397306397307,
+    "failure_aware_recall": 0.8357875948237394,
+    "failure_aware_F1": 0.7188639416618692,
+    "matched_PPV": 0.9445086705202312,
+    "matched_recall": 0.8161838161838162,
+    "matched_F1": 0.8756698821007503
+   },
+   {
+    "row": "tool:PLASMe",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.6495701156240735,
+    "conditional_recall": 0.9776885319053994,
+    "conditional_F1": 0.7805486284289276,
+    "failure_aware_PPV": 0.6495701156240735,
+    "failure_aware_recall": 0.9776885319053994,
+    "failure_aware_F1": 0.7805486284289276,
+    "matched_PPV": 0.7113702623906706,
+    "matched_recall": 0.975024975024975,
+    "matched_F1": 0.8225874420564686
+   },
+   {
+    "row": "tool:PlaScope",
+    "coverage": 0.6325899050261445,
+    "non_calls": 3443,
+    "conditional_PPV": 0.4985983179815779,
+    "conditional_recall": 0.9346846846846847,
+    "conditional_F1": 0.6503003395142334,
+    "failure_aware_PPV": 0.24746571258199165,
+    "failure_aware_recall": 0.5555555555555556,
+    "failure_aware_F1": 0.34240924092409236,
+    "matched_PPV": 0.5349369988545246,
+    "matched_recall": 0.9330669330669331,
+    "matched_F1": 0.6800145613396432
+   },
+   {
+    "row": "tool:Plasmer",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.8495854717726017,
+    "conditional_recall": 0.9602855867916109,
+    "conditional_F1": 0.9015500628403854,
+    "failure_aware_PPV": 0.8495854717726017,
+    "failure_aware_recall": 0.9602855867916109,
+    "failure_aware_F1": 0.9015500628403854,
+    "matched_PPV": 0.9217391304347826,
+    "matched_recall": 0.9530469530469531,
+    "matched_F1": 0.93713163064833
+   },
+   {
+    "row": "tool:PlasmidEC",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.7279279279279279,
+    "conditional_recall": 0.9013833110218652,
+    "conditional_F1": 0.8054226475279106,
+    "failure_aware_PPV": 0.7279279279279279,
+    "failure_aware_recall": 0.9013833110218652,
+    "failure_aware_F1": 0.8054226475279106,
+    "matched_PPV": 0.8649706457925636,
+    "matched_recall": 0.8831168831168831,
+    "matched_F1": 0.8739495798319327
+   },
+   {
+    "row": "tool:PlasmidFinder",
+    "coverage": 0.9760964678262726,
+    "non_calls": 224,
+    "conditional_PPV": 0.9148264984227129,
+    "conditional_recall": 0.13235965312642628,
+    "conditional_F1": 0.23125996810207336,
+    "failure_aware_PPV": 0.5906313645621182,
+    "failure_aware_recall": 0.12940651494868363,
+    "failure_aware_F1": 0.21229868228404103,
+    "matched_PPV": 0.9081081081081082,
+    "matched_recall": 0.16783216783216784,
+    "matched_F1": 0.28330522765598654
+   },
+   {
+    "row": "tool:Platon",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.93626138189609,
+    "conditional_recall": 0.7800089245872378,
+    "conditional_F1": 0.8510223953261928,
+    "failure_aware_PPV": 0.93626138189609,
+    "failure_aware_recall": 0.7800089245872378,
+    "failure_aware_F1": 0.8510223953261928,
+    "matched_PPV": 0.935881627620222,
+    "matched_recall": 0.7582417582417582,
+    "matched_F1": 0.8377483443708609
+   },
+   {
+    "row": "tool:RFPlasmid",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.6659597030752916,
+    "conditional_recall": 0.8406961178045516,
+    "conditional_F1": 0.7431952662721895,
+    "failure_aware_PPV": 0.6659597030752916,
+    "failure_aware_recall": 0.8406961178045516,
+    "failure_aware_F1": 0.7431952662721895,
+    "matched_PPV": 0.7304582210242587,
+    "matched_recall": 0.8121878121878122,
+    "matched_F1": 0.7691579943235574
+   },
+   {
+    "row": "tool:geNomad",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.6074685193226227,
+    "conditional_recall": 0.6242748772869254,
+    "conditional_F1": 0.6157570422535211,
+    "failure_aware_PPV": 0.6074685193226227,
+    "failure_aware_recall": 0.6242748772869254,
+    "failure_aware_F1": 0.6157570422535211,
+    "matched_PPV": 0.606035205364627,
+    "matched_recall": 0.7222777222777222,
+    "matched_F1": 0.659070191431176
+   },
+   {
+    "row": "tool:gplas2",
+    "coverage": 0.7906306690854765,
+    "non_calls": 1962,
+    "conditional_PPV": 0.7570573139435415,
+    "conditional_recall": 0.9081580297588507,
+    "conditional_F1": 0.8257522743177047,
+    "failure_aware_PPV": 0.4416167664670659,
+    "failure_aware_recall": 0.7898259705488622,
+    "failure_aware_F1": 0.5664906385021603,
+    "matched_PPV": 0.8649706457925636,
+    "matched_recall": 0.8831168831168831,
+    "matched_F1": 0.8739495798319327
+   },
+   {
+    "row": "tool:plASgraph2",
+    "coverage": 0.9418418525237434,
+    "non_calls": 545,
+    "conditional_PPV": 0.8754208754208754,
+    "conditional_recall": 0.6770833333333334,
+    "conditional_F1": 0.763582966226138,
+    "failure_aware_PPV": 0.7606787595084845,
+    "failure_aware_recall": 0.5800981704596162,
+    "failure_aware_F1": 0.6582278481012658,
+    "matched_PPV": 0.9043600562587905,
+    "matched_recall": 0.6423576423576424,
+    "matched_F1": 0.7511682242990654
+   },
+   {
+    "row": "baseline:majority_vote",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.897787610619469,
+    "conditional_recall": 0.9053993752788934,
+    "conditional_F1": 0.9015774272383915,
+    "failure_aware_PPV": 0.897787610619469,
+    "failure_aware_recall": 0.9053993752788934,
+    "failure_aware_F1": 0.9015774272383915,
+    "matched_PPV": 0.9378947368421052,
+    "matched_recall": 0.8901098901098901,
+    "matched_F1": 0.9133777549974372
+   },
+   {
+    "row": "baseline:any_tool_plasmid",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": 0.41857841293719444,
+    "conditional_recall": 0.9933065595716198,
+    "conditional_F1": 0.5889667945495436,
+    "failure_aware_PPV": 0.41857841293719444,
+    "failure_aware_recall": 0.9933065595716198,
+    "failure_aware_F1": 0.5889667945495436,
+    "matched_PPV": 0.41089108910891087,
+    "matched_recall": 0.995004995004995,
+    "matched_F1": 0.5816058394160583
+   },
+   {
+    "row": "baseline:all_chromosome",
+    "coverage": 1.0,
+    "non_calls": 0,
+    "conditional_PPV": null,
+    "conditional_recall": 0.0,
+    "conditional_F1": null,
+    "failure_aware_PPV": null,
+    "failure_aware_recall": 0.0,
+    "failure_aware_F1": null,
+    "matched_PPV": null,
+    "matched_recall": 0.0,
+    "matched_F1": null
+   }
+  ],
+  "parsed_tool_calls": 231840,
+  "parsed_tool_call_files": 1800,
+  "parsed_tool_calls_reconcile": true,
+  "archive_members": 87962,
+  "archive_manifest_rows": 87961,
+  "archive_download_intact": true,
+  "archive_verdict": "EVIDENCE_ARCHIVE_VERIFIED",
+  "argctx_pooled": {
+   "contigs": 635,
+   "plasmid_derived": 266,
+   "chromosomal": 369,
+   "plasmid_fraction": 0.4189
+  },
+  "argctx_by_taxon": [
+   {
+    "stratum": "Citrobacter spp.",
+    "contigs": 94,
+    "plasmid_derived": 54,
+    "chromosomal": 40,
+    "plasmid_fraction": 0.5745
+   },
+   {
+    "stratum": "Enterococcus faecium",
+    "contigs": 178,
+    "plasmid_derived": 95,
+    "chromosomal": 83,
+    "plasmid_fraction": 0.5337
+   },
+   {
+    "stratum": "Klebsiella pneumoniae",
+    "contigs": 138,
+    "plasmid_derived": 62,
+    "chromosomal": 76,
+    "plasmid_fraction": 0.4493
+   },
+   {
+    "stratum": "Enterococcus faecalis",
+    "contigs": 87,
+    "plasmid_derived": 27,
+    "chromosomal": 60,
+    "plasmid_fraction": 0.3103
+   },
+   {
+    "stratum": "Enterobacter spp.",
+    "contigs": 82,
+    "plasmid_derived": 24,
+    "chromosomal": 58,
+    "plasmid_fraction": 0.2927
+   },
+   {
+    "stratum": "Serratia spp.",
+    "contigs": 56,
+    "plasmid_derived": 4,
+    "chromosomal": 52,
+    "plasmid_fraction": 0.0714
+   }
+  ],
+  "argctx_by_class": [
+   {
+    "stratum": "SULFONAMIDE",
+    "contigs": 31,
+    "plasmid_derived": 29,
+    "chromosomal": 2,
+    "plasmid_fraction": 0.9355
+   },
+   {
+    "stratum": "QUATERNARY AMMONIUM",
+    "contigs": 20,
+    "plasmid_derived": 18,
+    "chromosomal": 2,
+    "plasmid_fraction": 0.9
+   },
+   {
+    "stratum": "GLYCOPEPTIDE",
+    "contigs": 32,
+    "plasmid_derived": 28,
+    "chromosomal": 4,
+    "plasmid_fraction": 0.875
+   },
+   {
+    "stratum": "PHENICOL",
+    "contigs": 39,
+    "plasmid_derived": 32,
+    "chromosomal": 7,
+    "plasmid_fraction": 0.8205
+   },
+   {
+    "stratum": "LINCOSAMIDE/MACROLIDE/STREPTOGRAMIN",
+    "contigs": 35,
+    "plasmid_derived": 27,
+    "chromosomal": 8,
+    "plasmid_fraction": 0.7714
+   },
+   {
+    "stratum": "TRIMETHOPRIM",
+    "contigs": 44,
+    "plasmid_derived": 27,
+    "chromosomal": 17,
+    "plasmid_fraction": 0.6136
+   },
+   {
+    "stratum": "QUINOLONE",
+    "contigs": 33,
+    "plasmid_derived": 20,
+    "chromosomal": 13,
+    "plasmid_fraction": 0.6061
+   },
+   {
+    "stratum": "AMINOGLYCOSIDE",
+    "contigs": 134,
+    "plasmid_derived": 77,
+    "chromosomal": 57,
+    "plasmid_fraction": 0.5746
+   },
+   {
+    "stratum": "BETA-LACTAM",
+    "contigs": 153,
+    "plasmid_derived": 55,
+    "chromosomal": 98,
+    "plasmid_fraction": 0.3595
+   },
+   {
+    "stratum": "TETRACYCLINE",
+    "contigs": 72,
+    "plasmid_derived": 24,
+    "chromosomal": 48,
+    "plasmid_fraction": 0.3333
+   },
+   {
+    "stratum": "LINCOSAMIDE/STREPTOGRAMIN",
+    "contigs": 33,
+    "plasmid_derived": 6,
+    "chromosomal": 27,
+    "plasmid_fraction": 0.1818
+   },
+   {
+    "stratum": "MACROLIDE/STREPTOGRAMIN",
+    "contigs": 29,
+    "plasmid_derived": 4,
+    "chromosomal": 25,
+    "plasmid_fraction": 0.1379
+   },
+   {
+    "stratum": "FOSFOMYCIN",
+    "contigs": 48,
+    "plasmid_derived": 0,
+    "chromosomal": 48,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "NITROFURAN/PHENICOL/QUINOLONE/TETRACYCLINE",
+    "contigs": 43,
+    "plasmid_derived": 0,
+    "chromosomal": 43,
+    "plasmid_fraction": 0.0
+   }
+  ],
+  "argctx_by_family": [
+   {
+    "stratum": "vanZ-A",
+    "contigs": 14,
+    "plasmid_derived": 14,
+    "chromosomal": 0,
+    "plasmid_fraction": 1.0
+   },
+   {
+    "stratum": "vanY-A",
+    "contigs": 14,
+    "plasmid_derived": 14,
+    "chromosomal": 0,
+    "plasmid_fraction": 1.0
+   },
+   {
+    "stratum": "vanA",
+    "contigs": 14,
+    "plasmid_derived": 14,
+    "chromosomal": 0,
+    "plasmid_fraction": 1.0
+   },
+   {
+    "stratum": "vanR-A",
+    "contigs": 14,
+    "plasmid_derived": 14,
+    "chromosomal": 0,
+    "plasmid_fraction": 1.0
+   },
+   {
+    "stratum": "vanH-A",
+    "contigs": 14,
+    "plasmid_derived": 14,
+    "chromosomal": 0,
+    "plasmid_fraction": 1.0
+   },
+   {
+    "stratum": "vanS-A",
+    "contigs": 14,
+    "plasmid_derived": 14,
+    "chromosomal": 0,
+    "plasmid_fraction": 1.0
+   },
+   {
+    "stratum": "vanX-A",
+    "contigs": 14,
+    "plasmid_derived": 14,
+    "chromosomal": 0,
+    "plasmid_fraction": 1.0
+   },
+   {
+    "stratum": "blaTEM",
+    "contigs": 19,
+    "plasmid_derived": 18,
+    "chromosomal": 1,
+    "plasmid_fraction": 0.9474
+   },
+   {
+    "stratum": "blaOXA",
+    "contigs": 17,
+    "plasmid_derived": 16,
+    "chromosomal": 1,
+    "plasmid_fraction": 0.9412
+   },
+   {
+    "stratum": "aadA",
+    "contigs": 17,
+    "plasmid_derived": 16,
+    "chromosomal": 1,
+    "plasmid_fraction": 0.9412
+   },
+   {
+    "stratum": "sul",
+    "contigs": 31,
+    "plasmid_derived": 29,
+    "chromosomal": 2,
+    "plasmid_fraction": 0.9355
+   },
+   {
+    "stratum": "dfrA",
+    "contigs": 22,
+    "plasmid_derived": 20,
+    "chromosomal": 2,
+    "plasmid_fraction": 0.9091
+   },
+   {
+    "stratum": "aph(3'')-Ib",
+    "contigs": 11,
+    "plasmid_derived": 10,
+    "chromosomal": 1,
+    "plasmid_fraction": 0.9091
+   },
+   {
+    "stratum": "aph(6)-Id",
+    "contigs": 11,
+    "plasmid_derived": 10,
+    "chromosomal": 1,
+    "plasmid_fraction": 0.9091
+   },
+   {
+    "stratum": "blaCTX-M",
+    "contigs": 11,
+    "plasmid_derived": 10,
+    "chromosomal": 1,
+    "plasmid_fraction": 0.9091
+   },
+   {
+    "stratum": "qacEdelta",
+    "contigs": 12,
+    "plasmid_derived": 10,
+    "chromosomal": 2,
+    "plasmid_fraction": 0.8333
+   },
+   {
+    "stratum": "erm(B)",
+    "contigs": 33,
+    "plasmid_derived": 27,
+    "chromosomal": 6,
+    "plasmid_fraction": 0.8182
+   },
+   {
+    "stratum": "aph(3')-IIIa",
+    "contigs": 18,
+    "plasmid_derived": 14,
+    "chromosomal": 4,
+    "plasmid_fraction": 0.7778
+   },
+   {
+    "stratum": "ant(6)-Ia",
+    "contigs": 16,
+    "plasmid_derived": 12,
+    "chromosomal": 4,
+    "plasmid_fraction": 0.75
+   },
+   {
+    "stratum": "tet(A)",
+    "contigs": 12,
+    "plasmid_derived": 9,
+    "chromosomal": 3,
+    "plasmid_fraction": 0.75
+   },
+   {
+    "stratum": "sat",
+    "contigs": 10,
+    "plasmid_derived": 7,
+    "chromosomal": 3,
+    "plasmid_fraction": 0.7
+   },
+   {
+    "stratum": "aac(6')-Ie/aph(2'')-Ia",
+    "contigs": 16,
+    "plasmid_derived": 11,
+    "chromosomal": 5,
+    "plasmid_fraction": 0.6875
+   },
+   {
+    "stratum": "qnrB",
+    "contigs": 22,
+    "plasmid_derived": 11,
+    "chromosomal": 11,
+    "plasmid_fraction": 0.5
+   },
+   {
+    "stratum": "tet(L)",
+    "contigs": 19,
+    "plasmid_derived": 9,
+    "chromosomal": 10,
+    "plasmid_fraction": 0.4737
+   },
+   {
+    "stratum": "dfrG",
+    "contigs": 15,
+    "plasmid_derived": 6,
+    "chromosomal": 9,
+    "plasmid_fraction": 0.4
+   },
+   {
+    "stratum": "tet(M)",
+    "contigs": 32,
+    "plasmid_derived": 7,
+    "chromosomal": 25,
+    "plasmid_fraction": 0.2188
+   },
+   {
+    "stratum": "blaCMY",
+    "contigs": 18,
+    "plasmid_derived": 1,
+    "chromosomal": 17,
+    "plasmid_fraction": 0.0556
+   },
+   {
+    "stratum": "blaSHV",
+    "contigs": 25,
+    "plasmid_derived": 1,
+    "chromosomal": 24,
+    "plasmid_fraction": 0.04
+   },
+   {
+    "stratum": "fosA",
+    "contigs": 48,
+    "plasmid_derived": 0,
+    "chromosomal": 48,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "oqxB",
+    "contigs": 46,
+    "plasmid_derived": 0,
+    "chromosomal": 46,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "oqxA",
+    "contigs": 45,
+    "plasmid_derived": 0,
+    "chromosomal": 45,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "msr(C)",
+    "contigs": 25,
+    "plasmid_derived": 0,
+    "chromosomal": 25,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "aac(6')-I",
+    "contigs": 25,
+    "plasmid_derived": 0,
+    "chromosomal": 25,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "lsa(A)",
+    "contigs": 25,
+    "plasmid_derived": 0,
+    "chromosomal": 25,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "blaSRT",
+    "contigs": 18,
+    "plasmid_derived": 0,
+    "chromosomal": 18,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "aac(6')",
+    "contigs": 17,
+    "plasmid_derived": 0,
+    "chromosomal": 17,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "blaACT",
+    "contigs": 17,
+    "plasmid_derived": 0,
+    "chromosomal": 17,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "tet(41)",
+    "contigs": 14,
+    "plasmid_derived": 0,
+    "chromosomal": 14,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "silA",
+    "contigs": 12,
+    "plasmid_derived": 0,
+    "chromosomal": 12,
+    "plasmid_fraction": 0.0
+   },
+   {
+    "stratum": "ssmE",
+    "contigs": 10,
+    "plasmid_derived": 0,
+    "chromosomal": 10,
+    "plasmid_fraction": 0.0
+   }
+  ],
+  "argctx_family_distribution": {
+   "families_reported": 40,
+   "at_or_above_90pc_plasmid": 15,
+   "at_or_below_10pc_plasmid": 14,
+   "between": 11,
+   "fraction_at_an_extreme": 0.725,
+   "reading": "the distribution is strongly bimodal: determinants are largely either plasmid-borne or chromosomal in this cohort, with few families intermediate"
+  },
+  "argctx_vanA": {
+   "genes": [
+    "vanA",
+    "vanH-A",
+    "vanR-A",
+    "vanS-A",
+    "vanX-A",
+    "vanY-A",
+    "vanZ-A"
+   ],
+   "n_genes": 7,
+   "contigs": 98,
+   "plasmid_derived": 98,
+   "plasmid_fraction": 1.0
+  },
+  "argctx_vanB": {
+   "genes": [
+    "vanB",
+    "vanH-B",
+    "vanR-B",
+    "vanS-B",
+    "vanW-B",
+    "vanX-B",
+    "vanY-B"
+   ],
+   "n_genes": 7,
+   "contigs": 14,
+   "plasmid_derived": 0,
+   "plasmid_fraction": 0.0
+  },
+  "argctx_vanD": {
+   "genes": [
+    "vanD",
+    "vanH-D",
+    "vanR-D",
+    "vanS-D",
+    "vanX-D"
+   ],
+   "n_genes": 5,
+   "contigs": 5,
+   "plasmid_derived": 0,
+   "plasmid_fraction": 0.0
+  },
+  "argctx_thresholds": {
+   "class_min_contigs": 20,
+   "family_min_contigs": 10
+  },
+  "source_file_sha256": {
+   "docs/closure/EVIDENCE_ARCHIVE_VERIFICATION.json": "3be7fe46f1ccfff17a8aa49a35df3436bfa6a92b3df4a43e51d09f5c976d428d",
+   "docs/evidence/P1.13_design/P1.13_AMENDED_PREEXECUTION_RECEIPT.json": "11ce17a79b9a8b2f6d73f8a9cf849efbe01df3894d1c7bc8d4dd16b19b661765",
+   "docs/evidence/P1.13_design/P1.13_CENSUS.tsv": "5f0010ea31a15ce29b6129d05f070c1afc8ab2726ded2c36e81795f9a3db905e",
+   "docs/evidence/P1.13_design/P1.13_ELIGIBLE_POOL.tsv": "db3fecdd29fe632940c634806efda2db6811c9e1ec081a86751bdf595d60b692",
+   "docs/evidence/P1.13_design/P1.13_EXCLUSION_LOG.tsv": "4e6cd5bc6441e256b45c7505f00c4fdd6367b6005118dc164f90e74948fa8297",
+   "docs/evidence/P1.13_provenance/P1.13_PANEL_FAILURE_REVIEW.md": "5304851ecdf27b7abdd05a44b863fe4e55d337e151cfed28df56a3286e89f720",
+   "docs/evidence/P1.13_provenance/P1.13_SELECTED_COHORT_v3.tsv": "874b0924deffef948dd50e00ee5c77c91d773354de4a1bb936162e4fec294205",
+   "docs/evidence/P1.13_results/P113_ARG_ALL_PREDICTORS.tsv": "1c7e1968dcdd8096390f63836855ee9f91df09d5f795955954652bd9cf4dfa94",
+   "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json": "1386c862699d0aa147b3a2721886d657171d21665fdc3863d010ebf25f99496b",
+   "docs/evidence/P1.13_results/P113_COMPARISON_ACCOUNTING_SUMMARY.json": "b81b7ac0e7fcc70a67582a0fefc82d9a734c9d839044af6bb837b7e0c134c200",
+   "docs/evidence/P1.13_results/P113_PAIRED_CONTRASTS.json": "b4bf86fb93873792018763f521851a355a1be3a467e630cc21ccbc70b4e470dd",
+   "docs/evidence/P1.13_results/P113_PREDICTOR_INVENTORY.tsv": "18b0200721de01105597f7eba0fdc344cb79ef2944058958d9742eb58c7e9b2b",
+   "docs/evidence/P1.13_results/P113_PRIMARY_GATE.json": "8b304b67e4f74ce2a896bffab073ced209bda90e20d648bf38ed6760227b939e",
+   "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv": "e574dbfb4ca4b347ff9104b3e1bb076843e4347ea2d78616108bde6893d20c71",
+   "docs/evidence/P1.13_results/RESULTS_FROZEN.json": "5abd3df0aa46298a0ed25f21dc9dbc5bb8a05cdc07e30eb54c0d74a2fbcc8db7",
+   "docs/manuscript/PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json": "948ecc06e09f7baed7e96f4af192fbd2936c8afa51adba3dfc858b3ab7db3807",
+   "docs/postfreeze/tables/PF01_TAXON_ROBUSTNESS.tsv": "fb79101ffa5d1c97af5126dba5b4126704008dc746435196d796d1039b7f54d4",
+   "docs/postfreeze/tables/PF02_LEAVE_ONE_TAXON_OUT.tsv": "a0b8d114e915ee04bc277e50edbad1558ddda1d9dcc3a05b9b7bdacc38141307",
+   "docs/postfreeze/tables/PF04b_ARG_PAIRED_CONTRASTS.tsv": "afb982bedaf1ca45419c7c98697253783a2b181e4dc778b256f1b30ba8a28e1f",
+   "docs/postfreeze/tables/PF05_PREVALENCE_SENSITIVITY.tsv": "d438782116ed24e4a557c41a69c708bf0f54a60162ffc8e27dead702d35c988a",
+   "docs/postfreeze/tables/PF06_CONTIG_LENGTH.tsv": "c114cb1123082d5da496a45abb179cf50501da1db3a0b767a2194569854cf9a5",
+   "docs/postfreeze/tables/PF07_DEPTH_AND_ASSEMBLY_QUALITY.tsv": "c3eeae8d7ffee66ec8531660c23c3d6c20ae6a08444e7c84b69a03a7af72ed6c",
+   "docs/postfreeze/tables/PF08_TRUTH_SENSITIVITY_GRID.json": "ea2371ce92c16c1c47d7108d2bf74a50bcfd29fc234e9992a33960b16962423a",
+   "docs/postfreeze/tables/PF08_TRUTH_SENSITIVITY_RESULTS.tsv": "98f516a91daea32ff5ccd1eaf3d91653aeb7ffa9c86b9a89e2eec9a4d8a97763",
+   "docs/postfreeze/tables/PF10a_REFERENCE_QUALITY.tsv": "0ae172ba82c315463fd15b4e7fe23af3498ae9f8f1a8894f9f11127a2f3552b5",
+   "docs/postfreeze/tables/PF10b_HIGH_CONFIDENCE_TRUTH_SENSITIVITY.tsv": "6d900d33d2f19d4e123310b96e7edf3eac57ba23c6fd280059548c555fd83ee5",
+   "docs/postfreeze/tables/PF11_RELATEDNESS_LEAKAGE_AUDIT.json": "d8ff54f1ab978c8c0aa05806b03e002cd98edfb7939c115d5704dac9b01ecc39",
+   "docs/postfreeze/tables/PF12_COMPARATOR_FAIRNESS.tsv": "986e27ac7163b2e8081830854d5ca594a3b2bcf820a2bc4c957cdae11ea9f595",
+   "docs/postfreeze/tables/PF12b_PAIRED_CONTRASTS_ALL_ROWS.tsv": "2717fed012a4638f6ecb46608ba18fafe920a087200943653d53bb29ad910fd2",
+   "docs/postfreeze/tables/PF13_SCORE_AND_CALIBRATION.json": "fb55dcd89eddbc48c41b331c816405b39b6334bd975650abffffc4458c05e576",
+   "docs/postfreeze/tables/PF14_COMPUTATIONAL_DEPLOYMENT.tsv": "fd05827da683a4909514b37b476f1497185b636d583e845d7f2b053390ddf69e",
+   "docs/postfreeze/tables/PF15_NEGATIVE_CONTROLS.json": "b7da2ad9f082cec0fd6655f4d2be0e33564e012233d5e067e2f8de99afd046fb",
+   "docs/postfreeze/tables/PF_SUMMARIES.json": "69da5d35b5a5d427099d7000222c13b1a2762445f8cb401b4aed39d408c390ea",
+   "docs/postfreeze/tables/PF_VERIFICATION_RECEIPT.json": "8bed595927896cd8141e0e5f842492281c77ab8ab226c2a3e6a88be80496f42f"
+  }
+ },
+ "provenance": {
+  "results_freeze_id": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "results_freeze_id"
+  },
+  "prediction_freeze_id": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "bound_prediction_freeze.freeze_id"
+  },
+  "join_id": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "truth_chain.join_id"
+  },
+  "frozen_prediction_table_sha256": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "bound_prediction_freeze.frozen_prediction_table_sha256"
+  },
+  "joined_table_sha256": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "joined_table.sha256"
+  },
+  "den_contigs_joined": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "denominators.contigs_joined"
+  },
+  "den_eligible_ge_1kb": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "denominators.eligible_ge_1kb"
+  },
+  "den_scored_resolved": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "denominators.scored_resolved"
+  },
+  "den_unresolved_excluded": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "denominators.unresolved_excluded"
+  },
+  "den_isolates": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "denominators.isolates"
+  },
+  "den_truth_chromosome": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "denominators.truth_chromosome"
+  },
+  "den_truth_plasmid": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "denominators.truth_plasmid"
+  },
+  "cohort_sha256": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "cohort.sha256"
+  },
+  "cohort_excluded_isolate": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "cohort.excluded_isolate"
+  },
+  "cohort_replacement_isolate": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "cohort.replacement_isolate"
+  },
+  "primary_PPV": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_GATE.json",
+   "field": "PPV"
+  },
+  "primary_PPV_ci95": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_GATE.json",
+   "field": "PPV_ci95"
+  },
+  "primary_recall": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_GATE.json",
+   "field": "recall"
+  },
+  "primary_recall_ci95": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_GATE.json",
+   "field": "recall_ci95"
+  },
+  "primary_requirement": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_GATE.json",
+   "field": "requirement"
+  },
+  "primary_P_PPV_ge_floor": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_GATE.json",
+   "field": "P_PPV_ge_floor"
+  },
+  "primary_endpoint_met": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_GATE.json",
+   "field": "PRIMARY_ENDPOINT_MET"
+  },
+  "primary_TP": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "v1.2-General@0.9285.TP"
+  },
+  "primary_FP": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "v1.2-General@0.9285.FP"
+  },
+  "primary_TN": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "v1.2-General@0.9285.TN"
+  },
+  "primary_FN": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "v1.2-General@0.9285.FN"
+  },
+  "primary_specificity": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "v1.2-General@0.9285.specificity"
+  },
+  "primary_NPV": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "v1.2-General@0.9285.NPV"
+  },
+  "primary_F1": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "v1.2-General@0.9285.F1"
+  },
+  "primary_balanced_accuracy": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "v1.2-General@0.9285.balanced_accuracy"
+  },
+  "primary_MCC": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "v1.2-General@0.9285.MCC"
+  },
+  "primary_coverage": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "v1.2-General@0.9285.coverage"
+  },
+  "primary_abstentions": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "v1.2-General@0.9285.abstained"
+  },
+  "predictor_inventory_19": {
+   "file": "docs/evidence/P1.13_results/P113_PREDICTOR_INVENTORY.tsv + P113_PRIMARY_METRICS.tsv + P113_COMPARATOR_METRICS.tsv",
+   "field": "all 19 rows joined on predictor key"
+  },
+  "n_predictor_rows": {
+   "file": "docs/evidence/P1.13_results/P113_PREDICTOR_INVENTORY.tsv",
+   "field": "row count"
+  },
+  "matched_denominator_n": {
+   "file": "docs/evidence/P1.13_results/P113_COMPARISON_ACCOUNTING_SUMMARY.json",
+   "field": "matched_common_denominator_n"
+  },
+  "matched_denominator_fraction": {
+   "file": "derived",
+   "field": "matched_common_denominator_n / denominators.scored_resolved"
+  },
+  "matched_index_F1": {
+   "file": "docs/evidence/P1.13_results/P113_COMPARISON_ACCOUNTING_SUMMARY.json",
+   "field": "ranked_F1_comparison_on_matched_denominator.index_F1"
+  },
+  "matched_index_PPV": {
+   "file": "docs/evidence/P1.13_results/P113_COMPARISON_ACCOUNTING_SUMMARY.json",
+   "field": "ranked_F1_comparison_on_matched_denominator.index_PPV"
+  },
+  "matched_index_recall": {
+   "file": "docs/evidence/P1.13_results/P113_COMPARISON_ACCOUNTING_SUMMARY.json",
+   "field": "ranked_F1_comparison_on_matched_denominator.index_recall"
+  },
+  "matched_rows_higher_F1": {
+   "file": "docs/evidence/P1.13_results/P113_COMPARISON_ACCOUNTING_SUMMARY.json",
+   "field": "rows_with_higher_F1_than_index"
+  },
+  "matched_count_higher_F1": {
+   "file": "docs/evidence/P1.13_results/P113_COMPARISON_ACCOUNTING_SUMMARY.json",
+   "field": "count_higher_F1"
+  },
+  "matched_rows_reaching_PPV_095": {
+   "file": "docs/evidence/P1.13_results/P113_COMPARISON_ACCOUNTING_SUMMARY.json",
+   "field": "non_index_rows_reaching_PPV_0.95"
+  },
+  "matched_eligible_for_F1_ranking": {
+   "file": "docs/evidence/P1.13_results/P113_COMPARISON_ACCOUNTING_SUMMARY.json",
+   "field": "eligible_for_F1_ranking"
+  },
+  "F1_undefined_rows": {
+   "file": "docs/evidence/P1.13_results/P113_COMPARISON_ACCOUNTING_SUMMARY.json",
+   "field": "rows_with_F1_undefined"
+  },
+  "pooled_rows_higher_F1": {
+   "file": "derived from P113_PRIMARY_METRICS.tsv + P113_COMPARATOR_METRICS.tsv",
+   "field": "F1 > index F1"
+  },
+  "pooled_count_higher_F1": {
+   "file": "derived",
+   "field": "len(pooled_rows_higher_F1)"
+  },
+  "pooled_rows_meeting_PPV095_and_full_coverage": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json",
+   "field": "core_claim_pooled.rows_meeting_both"
+  },
+  "pooled_third_party_meeting_PPV095_any_coverage": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json",
+   "field": "core_claim_pooled.third_party_meeting_ppv_any_coverage"
+  },
+  "pooled_core_claim_supported": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json",
+   "field": "core_claim_pooled.claim_supported"
+  },
+  "pooled_highest_third_party_PPV": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json",
+   "field": "core_claim_pooled.detail max PPV among third party"
+  },
+  "arg_bearing_n": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json",
+   "field": "arg_bearing_n"
+  },
+  "arg_non_arg_n": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json",
+   "field": "non_arg_n"
+  },
+  "arg_v12": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json",
+   "field": "v12_arg"
+  },
+  "arg_pareto_frontier": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json",
+   "field": "pareto_frontier"
+  },
+  "arg_pareto_count": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json",
+   "field": "len(pareto_frontier)"
+  },
+  "arg_third_party_meeting_PPV095_any_coverage": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json",
+   "field": "core_claim_arg.third_party_meeting_ppv_any_coverage"
+  },
+  "arg_rows_meeting_PPV095_and_full_coverage": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_PARETO_AND_CORE_CLAIM.json",
+   "field": "core_claim_arg.rows_meeting_both"
+  },
+  "arg_router": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_ALL_PREDICTORS.tsv",
+   "field": "router"
+  },
+  "arg_v11": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_ALL_PREDICTORS.tsv",
+   "field": "v1.1@0.9524"
+  },
+  "arg_plasgraph2": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_ALL_PREDICTORS.tsv",
+   "field": "tool:plASgraph2"
+  },
+  "arg_all_predictors": {
+   "file": "docs/evidence/P1.13_results/P113_ARG_ALL_PREDICTORS.tsv",
+   "field": "subset=ARG_bearing"
+  },
+  "arg_router_recall_penalty_vs_v12": {
+   "file": "derived",
+   "field": "v1.2 recall - router recall on ARG-bearing"
+  },
+  "arg_router_precision_gain_vs_v12": {
+   "file": "derived",
+   "field": "router PPV - v1.2 PPV on ARG-bearing"
+  },
+  "paired_contrasts_primary": {
+   "file": "docs/evidence/P1.13_results/P113_PAIRED_CONTRASTS.json",
+   "field": "all"
+  },
+  "paired_contrasts_all_rows": {
+   "file": "docs/postfreeze/tables/PF12b_PAIRED_CONTRASTS_ALL_ROWS.tsv",
+   "field": "all rows"
+  },
+  "paired_contrasts_arg": {
+   "file": "docs/postfreeze/tables/PF04b_ARG_PAIRED_CONTRASTS.tsv",
+   "field": "all rows"
+  },
+  "taxon_v12": {
+   "file": "docs/postfreeze/tables/PF01_TAXON_ROBUSTNESS.tsv",
+   "field": "model=v1.2-General@0.9285, label=taxon=*"
+  },
+  "n_taxa_below_PPV_floor": {
+   "file": "derived from PF01_TAXON_ROBUSTNESS.tsv",
+   "field": "count PPV < 0.95"
+  },
+  "taxa_below_PPV_floor": {
+   "file": "derived from PF01_TAXON_ROBUSTNESS.tsv",
+   "field": "PPV < 0.95"
+  },
+  "taxon_recall_fold_variation": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "taxonomic_heterogeneity.recall_fold_variation"
+  },
+  "loto": {
+   "file": "docs/postfreeze/tables/PF02_LEAVE_ONE_TAXON_OUT.tsv",
+   "field": "model=v1.2-General@0.9285"
+  },
+  "loto_PPV_range": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "leave_one_taxon_out.PPV_range_across_exclusions"
+  },
+  "loto_recall_range": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "leave_one_taxon_out.recall_range_across_exclusions"
+  },
+  "loto_floors_hold": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "leave_one_taxon_out.*_stays_above_*"
+  },
+  "isolate_macro_average_PPV": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "isolate_robustness.macro_average_PPV"
+  },
+  "isolate_macro_average_recall": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "isolate_robustness.macro_average_recall"
+  },
+  "isolate_median_PPV": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "isolate_robustness.median_PPV"
+  },
+  "isolate_median_recall": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "isolate_robustness.median_recall"
+  },
+  "isolate_max_abs_influence_on_pooled_PPV": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "isolate_robustness.max_abs_influence_on_pooled_PPV"
+  },
+  "isolate_max_abs_influence_on_pooled_recall": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "isolate_robustness.max_abs_influence_on_pooled_recall"
+  },
+  "isolate_most_influential_isolate": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "isolate_robustness.most_influential_isolate"
+  },
+  "isolate_IQR_recall": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "isolate_robustness.IQR_recall"
+  },
+  "isolates_with_zero_FP": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "isolate_robustness.error_concentration.isolates_with_zero_FP"
+  },
+  "top10_share_of_FP": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "isolate_robustness.error_concentration.top10_isolates_share_of_FP"
+  },
+  "top10_share_of_FN": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "isolate_robustness.error_concentration.top10_isolates_share_of_FN"
+  },
+  "prevalence_grid": {
+   "file": "docs/postfreeze/tables/PF05_PREVALENCE_SENSITIVITY.tsv",
+   "field": "all rows"
+  },
+  "observed_plasmid_prevalence": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "prevalence_sensitivity.observed_plasmid_prevalence"
+  },
+  "standardized_PPV_at_5pct": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "prevalence_sensitivity.standardized_PPV_at_5pct"
+  },
+  "standardized_PPV_at_50pct": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "prevalence_sensitivity.standardized_PPV_at_50pct"
+  },
+  "equal_taxon_weighted_PPV": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "prevalence_sensitivity.equal_taxon_weighted.equal_taxon_weighted_PPV"
+  },
+  "prevalence_lowest_grid_point_above_floor": {
+   "file": "docs/postfreeze/tables/PF05_PREVALENCE_SENSITIVITY.tsv",
+   "field": "min prevalence with PPV_above_0.95 true"
+  },
+  "prevalence_highest_grid_point_below_floor": {
+   "file": "docs/postfreeze/tables/PF05_PREVALENCE_SENSITIVITY.tsv",
+   "field": "max prevalence with PPV_above_0.95 false"
+  },
+  "prevalence_exact_crossing_0.95": {
+   "file": "derived (closed form)",
+   "field": "p* = 0.95(1-specificity) / (0.05*sensitivity + 0.95(1-specificity)) with sensitivity and specificity held at the frozen observed values; the analytic root of the PF05 grid"
+  },
+  "error_architecture": {
+   "file": "docs/evidence/P1.13_results/P113_PRIMARY_METRICS.tsv",
+   "field": "TP/FP/TN/FN for the four frozen rows"
+  },
+  "length_bins": {
+   "file": "docs/postfreeze/tables/PF06_CONTIG_LENGTH.tsv",
+   "field": "model=v1.2-General@0.9285"
+  },
+  "depth_and_assembly": {
+   "file": "docs/postfreeze/tables/PF07_DEPTH_AND_ASSEMBLY_QUALITY.tsv",
+   "field": "model=v1.2-General@0.9285"
+  },
+  "length_point_biserial_vs_truth": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "length_continuous.point_biserial_length_vs_truth"
+  },
+  "depth_pearson_vs_correct": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "depth_continuous.pearson_depth_vs_v12_correct"
+  },
+  "truth_sensitivity": {
+   "file": "docs/postfreeze/tables/PF08_TRUTH_SENSITIVITY_RESULTS.tsv",
+   "field": "model=v1.2-General@0.9285"
+  },
+  "truth_sensitivity_flip_definition": {
+   "file": "scripts/postfreeze/pf08_eval.py",
+   "field": "flips = sum(BIN[alt[k]] != BIN[primary[k]] for k in contigs resolved under both)"
+  },
+  "truth_sensitivity_grid": {
+   "file": "docs/postfreeze/tables/PF08_TRUTH_SENSITIVITY_GRID.json",
+   "field": "settings"
+  },
+  "unresolved_n": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "unresolved_bounds.n_unresolved_eligible"
+  },
+  "unresolved_composition": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "unresolved_bounds.composition"
+  },
+  "unresolved_by_taxon": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "unresolved_bounds.by_taxon"
+  },
+  "unresolved_by_length_band": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "unresolved_bounds.by_length_band"
+  },
+  "unresolved_by_ARG_status": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "unresolved_bounds.by_ARG_status"
+  },
+  "unresolved_best_case": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "unresolved_bounds.best_case_all_unresolved_favourable"
+  },
+  "unresolved_worst_case": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "unresolved_bounds.worst_case_all_unresolved_adverse"
+  },
+  "unresolved_worst_case_clears_floor": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "unresolved_bounds.PPV_stays_above_0.95_in_worst_case"
+  },
+  "reference_sources": {
+   "file": "docs/postfreeze/tables/PF10a_REFERENCE_QUALITY.tsv",
+   "field": "source column"
+  },
+  "reference_reports_readable": {
+   "file": "docs/postfreeze/tables/PF10a_REFERENCE_QUALITY.tsv",
+   "field": "assembly_report_readable"
+  },
+  "complete_resolution_isolates": {
+   "file": "docs/postfreeze/tables/PF10a_REFERENCE_QUALITY.tsv",
+   "field": "high_confidence_truth == True (renamed: complete-resolution isolate subset)"
+  },
+  "complete_resolution_mean_ref_plasmids": {
+   "file": "docs/postfreeze/tables/PF10a_REFERENCE_QUALITY.tsv",
+   "field": "mean reference_plasmids over subset"
+  },
+  "remainder_mean_ref_plasmids": {
+   "file": "docs/postfreeze/tables/PF10a_REFERENCE_QUALITY.tsv",
+   "field": "mean reference_plasmids over remainder"
+  },
+  "complete_resolution_mean_eligible_contigs": {
+   "file": "docs/postfreeze/tables/PF10a_REFERENCE_QUALITY.tsv",
+   "field": "mean eligible_contigs over subset"
+  },
+  "remainder_mean_eligible_contigs": {
+   "file": "docs/postfreeze/tables/PF10a_REFERENCE_QUALITY.tsv",
+   "field": "mean eligible_contigs over remainder"
+  },
+  "complete_resolution_taxon_mix": {
+   "file": "docs/postfreeze/tables/PF10a_REFERENCE_QUALITY.tsv",
+   "field": "taxon counts within subset"
+  },
+  "remainder_taxon_mix": {
+   "file": "docs/postfreeze/tables/PF10a_REFERENCE_QUALITY.tsv",
+   "field": "taxon counts within remainder"
+  },
+  "complete_resolution_subset_result": {
+   "file": "docs/postfreeze/tables/PF10b_HIGH_CONFIDENCE_TRUTH_SENSITIVITY.tsv",
+   "field": "label='highest-confidence truth subset' (renamed complete-resolution isolate subset)"
+  },
+  "complete_resolution_subset_prevalence": {
+   "file": "derived",
+   "field": "n_plasmid / n_scored in the complete-resolution isolate subset"
+  },
+  "calibration_v12": {
+   "file": "docs/postfreeze/tables/PF13_SCORE_AND_CALIBRATION.json",
+   "field": "model=v1.2-General"
+  },
+  "calibration_v11": {
+   "file": "docs/postfreeze/tables/PF13_SCORE_AND_CALIBRATION.json",
+   "field": "model=v1.1"
+  },
+  "calibration_curve_v12": {
+   "file": "docs/postfreeze/tables/PF13_SCORE_AND_CALIBRATION.json",
+   "field": "model=v1.2-General.calibration_curve"
+  },
+  "leakage_n_exact_overlap": {
+   "file": "docs/postfreeze/tables/PF11_RELATEDNESS_LEAKAGE_AUDIT.json",
+   "field": "n_exact_overlap"
+  },
+  "leakage_max_ANI_to_any_consumed_genome": {
+   "file": "docs/postfreeze/tables/PF11_RELATEDNESS_LEAKAGE_AUDIT.json",
+   "field": "max_ANI_to_any_consumed_genome"
+  },
+  "leakage_max_within_cohort_pairwise_ANI": {
+   "file": "docs/postfreeze/tables/PF11_RELATEDNESS_LEAKAGE_AUDIT.json",
+   "field": "max_within_cohort_pairwise_ANI"
+  },
+  "leakage_consumed_identifiers_loaded": {
+   "file": "docs/postfreeze/tables/PF11_RELATEDNESS_LEAKAGE_AUDIT.json",
+   "field": "consumed_identifiers_loaded"
+  },
+  "leakage_n_bioprojects": {
+   "file": "docs/postfreeze/tables/PF11_RELATEDNESS_LEAKAGE_AUDIT.json",
+   "field": "n_bioprojects"
+  },
+  "leakage_n_study_accessions": {
+   "file": "docs/postfreeze/tables/PF11_RELATEDNESS_LEAKAGE_AUDIT.json",
+   "field": "n_study_accessions"
+  },
+  "permutation_n": {
+   "file": "docs/postfreeze/tables/PF15_NEGATIVE_CONTROLS.json",
+   "field": "label_permutation.n_permutations"
+  },
+  "permutation_PPV_max": {
+   "file": "docs/postfreeze/tables/PF15_NEGATIVE_CONTROLS.json",
+   "field": "label_permutation.permuted_PPV_max"
+  },
+  "permutation_PPV_mean": {
+   "file": "docs/postfreeze/tables/PF15_NEGATIVE_CONTROLS.json",
+   "field": "label_permutation.permuted_PPV_mean"
+  },
+  "row_order_invariant": {
+   "file": "docs/postfreeze/tables/PF15_NEGATIVE_CONTROLS.json",
+   "field": "row_order_invariance.identical"
+  },
+  "deployment": {
+   "file": "docs/postfreeze/tables/PF14_COMPUTATIONAL_DEPLOYMENT.tsv",
+   "field": "all rows"
+  },
+  "deployment_total_executions": {
+   "file": "docs/postfreeze/tables/PF14_COMPUTATIONAL_DEPLOYMENT.tsv",
+   "field": "sum(n_executions)"
+  },
+  "deployment_total_failures": {
+   "file": "docs/postfreeze/tables/PF14_COMPUTATIONAL_DEPLOYMENT.tsv",
+   "field": "sum(failed_executions)"
+  },
+  "deployment_total_container_hours": {
+   "file": "docs/postfreeze/tables/PF14_COMPUTATIONAL_DEPLOYMENT.tsv",
+   "field": "sum(wall_total_hours)"
+  },
+  "postfreeze_n_checks": {
+   "file": "docs/postfreeze/tables/PF_VERIFICATION_RECEIPT.json",
+   "field": "n_checks"
+  },
+  "postfreeze_n_disagreements": {
+   "file": "docs/postfreeze/tables/PF_VERIFICATION_RECEIPT.json",
+   "field": "n_disagreements"
+  },
+  "postfreeze_verdict": {
+   "file": "docs/postfreeze/tables/PF_VERIFICATION_RECEIPT.json",
+   "field": "verdict"
+  },
+  "primary_verifier_values": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "independent_verifier.values_independently_recomputed"
+  },
+  "primary_verifier_disagreements": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "independent_verifier.disagreements"
+  },
+  "primary_verifier_verdict": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "independent_verifier.verdict"
+  },
+  "bootstrap": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "software_environment.bootstrap"
+  },
+  "truth_thresholds": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "truth_chain.thresholds"
+  },
+  "truth_mapper_sha256": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "truth_chain.mapper_sha256"
+  },
+  "truth_isolates_verified": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "truth_chain.isolates_verified"
+  },
+  "cohort_taxa": {
+   "file": "docs/evidence/P1.13_provenance/P1.13_SELECTED_COHORT_v3.tsv",
+   "field": "taxon counts"
+  },
+  "cohort_n": {
+   "file": "docs/evidence/P1.13_provenance/P1.13_SELECTED_COHORT_v3.tsv",
+   "field": "row count"
+  },
+  "funnel_census_candidates": {
+   "file": "docs/evidence/P1.13_design/P1.13_CENSUS.tsv",
+   "field": "distinct biosample count"
+  },
+  "funnel_excluded_ani_vs_consumed": {
+   "file": "docs/evidence/P1.13_design/P1.13_EXCLUSION_LOG.tsv",
+   "field": "exclusion_stage == ani_vs_consumed"
+  },
+  "funnel_eligible_pool": {
+   "file": "docs/evidence/P1.13_design/P1.13_ELIGIBLE_POOL.tsv",
+   "field": "distinct biosample count"
+  },
+  "funnel_excluded_ani_within_cohort": {
+   "file": "docs/evidence/P1.13_design/P1.13_EXCLUSION_LOG.tsv",
+   "field": "exclusion_stage == ani_within_p113"
+  },
+  "funnel_not_selected": {
+   "file": "docs/evidence/P1.13_design/P1.13_EXCLUSION_LOG.tsv",
+   "field": "exclusion_stage == not_selected"
+  },
+  "funnel_selected_from_pool": {
+   "file": "derived",
+   "field": "cohort v3 members present in the frozen eligible pool"
+  },
+  "funnel_added_from_fallback_tier": {
+   "file": "derived",
+   "field": "cohort v3 members outside the frozen eligible pool, admitted under amendment 001 as the 2022 fallback tier"
+  },
+  "funnel_reconciles": {
+   "file": "derived",
+   "field": "eligible pool minus within-cohort ANI exclusions minus not-selected equals the number of cohort members drawn from the pool"
+  },
+  "funnel_selection_tiers": {
+   "file": "docs/evidence/P1.13_design/P1.13_AMENDED_PREEXECUTION_RECEIPT.json",
+   "field": "recorded selection tiers including the 2022 fallback admitted under amendment 001"
+  },
+  "funnel_pool_by_taxon": {
+   "file": "docs/evidence/P1.13_design/P1.13_ELIGIBLE_POOL.tsv",
+   "field": "taxon counts"
+  },
+  "panel_units_total": {
+   "file": "derived",
+   "field": "13 panel units x 150 isolates"
+  },
+  "panel_units_failed": {
+   "file": "docs/postfreeze/tables/PF14_COMPUTATIONAL_DEPLOYMENT.tsv",
+   "field": "sum(failed_executions)"
+  },
+  "panel_units_succeeded": {
+   "file": "derived",
+   "field": "total executions minus failures"
+  },
+  "panel_failure_mechanisms": {
+   "file": "docs/evidence/P1.13_provenance/P1.13_PANEL_FAILURE_REVIEW.md",
+   "field": "failure-class table, counts reconciled to 72"
+  },
+  "panel_failure_mechanisms_sum": {
+   "file": "derived",
+   "field": "must equal panel_units_failed"
+  },
+  "truth_resolution_rate": {
+   "file": "derived",
+   "field": "scored_resolved / eligible_ge_1kb"
+  },
+  "macro_vs_micro_PPV_gap": {
+   "file": "docs/postfreeze/tables/PF_SUMMARIES.json",
+   "field": "abs(isolate_robustness.macro_vs_micro_PPV_gap)"
+  },
+  "arg_plasgraph2_contigs_answered": {
+   "file": "derived",
+   "field": "plASgraph2 ARG coverage x ARG-bearing n"
+  },
+  "verifier_values_total": {
+   "file": "docs/evidence/P1.13_results/RESULTS_FROZEN.json",
+   "field": "independent_verifier.values_independently_recomputed"
+  },
+  "verifier_total_values_and_checks": {
+   "file": "derived",
+   "field": "primary verifier values plus post-freeze independent checks"
+  },
+  "comparator_fairness": {
+   "file": "docs/postfreeze/tables/PF12_COMPARATOR_FAIRNESS.tsv",
+   "field": "all 19 rows"
+  },
+  "parsed_tool_calls": {
+   "file": "docs/closure/EVIDENCE_ARCHIVE_VERIFICATION.json",
+   "field": "parsed_tool_calls.total_rows"
+  },
+  "parsed_tool_call_files": {
+   "file": "docs/closure/EVIDENCE_ARCHIVE_VERIFICATION.json",
+   "field": "parsed_tool_calls.files"
+  },
+  "parsed_tool_calls_reconcile": {
+   "file": "docs/closure/EVIDENCE_ARCHIVE_VERIFICATION.json",
+   "field": "parsed_tool_calls.reconciles"
+  },
+  "archive_members": {
+   "file": "docs/closure/EVIDENCE_ARCHIVE_VERIFICATION.json",
+   "field": "members"
+  },
+  "archive_manifest_rows": {
+   "file": "docs/closure/EVIDENCE_ARCHIVE_VERIFICATION.json",
+   "field": "internal_manifest_rows"
+  },
+  "archive_download_intact": {
+   "file": "docs/closure/EVIDENCE_ARCHIVE_VERIFICATION.json",
+   "field": "download_intact"
+  },
+  "archive_verdict": {
+   "file": "docs/closure/EVIDENCE_ARCHIVE_VERIFICATION.json",
+   "field": "verdict"
+  },
+  "argctx_pooled": {
+   "file": "docs/manuscript/PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json",
+   "field": "pooled"
+  },
+  "argctx_by_taxon": {
+   "file": "docs/manuscript/PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json",
+   "field": "by_taxon"
+  },
+  "argctx_by_class": {
+   "file": "docs/manuscript/PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json",
+   "field": "by_class"
+  },
+  "argctx_by_family": {
+   "file": "docs/manuscript/PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json",
+   "field": "by_family"
+  },
+  "argctx_family_distribution": {
+   "file": "docs/manuscript/PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json",
+   "field": "family_distribution"
+  },
+  "argctx_vanA": {
+   "file": "docs/manuscript/PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json",
+   "field": "glycopeptide_operons.vanA_type"
+  },
+  "argctx_vanB": {
+   "file": "docs/manuscript/PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json",
+   "field": "glycopeptide_operons.vanB_type"
+  },
+  "argctx_vanD": {
+   "file": "docs/manuscript/PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json",
+   "field": "glycopeptide_operons.vanD_type"
+  },
+  "argctx_thresholds": {
+   "file": "docs/manuscript/PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json",
+   "field": "thresholds_prestated"
+  },
+  "source_file_sha256": {
+   "file": "derived",
+   "field": "sha256 of every cited source file"
+  }
+ }
+}

@@ -1,0 +1,64 @@
+amendment_id: P1.11_GENBANK_TRUTH_CORRECTION
+version: '1.0'
+status: FROZEN - correction rule fixed before the corrected truth was rebuilt
+declared_on: '2026-08-22'
+named_analyses:
+  definitive_full_cohort: P1.11-CORRECTED-TRUTH-ALL79
+  preserved_original: P1.11-INITIAL-REFSEQ-ONLY-AUDIT
+why_corrected_is_definitive: cohort membership, predictions, thresholds, biological truth rules and statistical
+  rules were ALL frozen before truth access; only an accession-column implementation defect was corrected.
+  The initial run excluded all 15 GenBank isolates because of that defect, not because of the frozen biological
+  truth rules, so it cannot serve as the intended full-cohort primary evaluation.
+initial_execution_preserved:
+  location: /data/trace-arg/p112/INITIAL_REFSEQ_ONLY_AUDIT (read-only)
+  contents:
+  - truth_initial (79 tables)
+  - logs_truth_initial
+  - truth acquisition receipt
+  - truth_pipeline_p112.DEFECTIVE.py
+  facts_recorded:
+  - predictions were valid and frozen
+  - 'reference acquisition was valid: 79/79 verified, 64 RefSeq / 15 GenBank / 0 unresolved'
+  - the error occurred only in assigning replicon roles for GenBank assembly reports
+  - 15 isolates became entirely ambiguous because the code always selected RefSeq-Accn, which is 'na'
+    in GenBank assembly reports
+  - the initial analysis is therefore a RefSeq-only audit, not a valid all-79 evaluation
+correction_rule:
+  '1': normalise accession strings by stripping whitespace only; versions preserved verbatim
+  '2': identify the accession actually present in the reference FASTA deflines
+  '3': use RefSeq-Accn when non-na AND present in the FASTA
+  '4': otherwise GenBank-Accn when non-na AND present in the FASTA
+  '5': two assembly-report rows claiming one FASTA accession is a conflict; fail closed
+  '6': no match, multiple matches, version conflict or unresolved role -> ambiguous, with reason
+  selection_never_uses:
+  - truth counts
+  - model performance
+  - class balance
+unchanged:
+- identity 0.95
+- coverage 0.80
+- margin 0.10
+- circular handling
+- min length 1000
+- chromosome/plasmid role definitions
+- ambiguity rules
+- frozen predictions
+- model thresholds
+- router
+- denominators
+- bootstrap contract (4000, seed 20260821, percentile 2.5/97.5)
+implementation:
+  resolver: scripts/p1_12/p111_accession_resolution.py
+  pipeline: /data/trace-arg/p112/env/run/truth_pipeline_p112_corrected.py
+  defective_original_preserved: /data/trace-arg/p112/env/run/truth_pipeline_p112.py
+  changed_lines: 47
+validation:
+  fixtures: docs/evidence/P1.11_ACCESSION_RESOLUTION_FIXTURES.json
+  n_fixtures: 19
+  passed: 19
+  failed: 0
+  refseq_byte_identity: 64 of 64 RefSeq truth tables byte-identical to the initial run
+  genbank_isolates_structurally_evaluated: 15 of 15
+  frozen_prediction_table_unchanged: true
+  freeze_marker_unchanged: true
+  no_prediction_field_read_by_truth_builder: true

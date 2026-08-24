@@ -1,0 +1,174 @@
+# =============================================================================================
+# P1.13 AMENDMENT 001 - Serratia release-date fallback, precision-statement correction,
+#                       and storage allocation
+# Frozen BEFORE any read download, assembly, panel execution, truth construction or scoring.
+# =============================================================================================
+amendment_id: P1.13_AMENDMENT_001
+design_id: P1.13-PROSPECTIVE-PUBLIC-MULTIGENUS-EXTERNAL-VALIDATION
+dated: 2026-08-22
+supersedes: nothing. The original 147-isolate design and its receipt are PRESERVED UNCHANGED as
+            historical evidence (P1.13_FROZEN_DESIGN.yaml, P1.13_PREEXECUTION_RECEIPT.json,
+            P1.13_SELECTED_COHORT.tsv).
+
+state_when_amended:
+  reads_downloaded: false
+  assemblies_built: false
+  panel_tools_executed: false
+  external_truth_constructed: false
+  model_scored: false
+  statement: >-
+    No P1.13 read, assembly, tool output, truth label or model score existed when this amendment
+    was written. The extension therefore cannot have been influenced by any outcome.
+
+# ---------------------------------------------------------------- 1. Serratia extension
+serratia_amendment:
+  cause: >-
+    solely that the prespecified quota of 25 isolates per taxon is infeasible for Serratia spp.
+    within the previously authorised 2023+ window. Only 33 eligible Serratia candidates exist
+    there, and declustering at the frozen ANI 99.5 threshold reduces them to 22 independent
+    isolates. The shortfall was identified before any execution.
+  authorised_tier_order_for_Serratia_only:
+    - release year >= 2024   (first preference)
+    - release year 2023      (second preference)
+    - release year 2022      (final fallback, this amendment)
+  all_other_taxa: retain the frozen >=2024 then 2023 rule, unchanged
+  final_target: exactly 25 per taxon and 150 total
+  procedure_used: >-
+    the already frozen deterministic recent-first farthest-point procedure. The procedure is
+    TIERED, so the 22 isolates already selected from the 2024+ and 2023 tiers were PRESERVED and
+    only the 3 remaining positions were filled from the 2022 tier. No complete recomputation was
+    required and NO previously selected isolate changed.
+  isolates_changed_from_the_147_design: none
+  isolates_added:
+    - biosample: SAMN12405233
+      assembly: GCF_021498225.1
+      release: 2022-01-18
+      estimated_coverage_x: 97.0
+      max_ANI_to_consumed: 84.95
+    - biosample: SAMN18917024
+      assembly: GCF_024086695.1
+      release: 2022-06-30
+      estimated_coverage_x: 343.5
+      max_ANI_to_consumed: 88.66
+    - biosample: SAMN23485811
+      assembly: GCF_022439565.1
+      release: 2022-03-02
+      estimated_coverage_x: 50.1
+      max_ANI_to_consumed: 95.02
+  hand_picking: none. Selection was by the frozen deterministic rule with lexical accession as the
+                final tie-breaker.
+  every_added_isolate_verified_for:
+    - Complete Genome, version_status latest, genome_rep Full, live, not excluded from RefSeq
+    - same-BioSample usable Illumina WGS PAIRED GENOMIC run
+    - estimated coverage above the 30x floor
+    - genomic FASTA, GBFF and assembly report all present
+    - ANI < 99.5 against every consumed development and validation genome
+    - the frozen within-taxon declustering rule
+    - no accession, BioSample, run or assembly overlap with DEV_250, P1.9, P1.10 or P1.11
+  final_composition:
+    total: 150
+    per_taxon: {Klebsiella pneumoniae: 25, Enterobacter spp.: 25, Citrobacter spp.: 25,
+                Serratia spp.: 25, Enterococcus faecium: 25, Enterococcus faecalis: 25}
+    by_tier: {"2024+": 123, "2023 fallback": 24, "2022 fallback (amendment 1)": 3}
+
+# ---------------------------------------------------------------- 2. precision statement
+precision_statement_correction:
+  what_was_wrong: >-
+    the previously reported projected PPV lower bound of 0.9518 was produced by scaling the WIDTH
+    of the P1.11 interval by sqrt(n). That is a heuristic planning projection. It is not a formal
+    power calculation and it is not a gate.
+  now_labelled: HEURISTIC PLANNING PROJECTION
+  added_analysis:
+    name: truth-blind cluster-aware precision projection
+    inputs: P1.11 aggregate and isolate-level data only
+    uses_no: [P1.13 truth, P1.13 calls, P1.13 scores]
+    method: >-
+      the design effect implied by the P1.11 clustered interval relative to a naive binomial
+      interval is inferred, then applied at the projected P1.13 positive-call count.
+    implied_design_effect: 2.910
+    projected_positive_calls: 1671
+    sensitivity:
+      true_PPV_0.950: {projected_lower_bound: 0.9322, clears_0.95: false}
+      true_PPV_0.960: {projected_lower_bound: 0.9440, clears_0.95: false}
+      true_PPV_0.966: {projected_lower_bound: 0.9512, clears_0.95: true}
+    reading: >-
+      if the true PPV is 0.950 the lower bound cannot clear 0.95 by construction; at 0.960 it does
+      not; only near 0.966 does a confidence-bound demonstration become likely.
+  no_promise: >-
+    P1.13 is NOT promised to demonstrate PPV >= 0.95. It may pass the frozen gate without
+    demonstrating that bound.
+  gate_distinction:
+    the_frozen_gate_unchanged: >-
+      v1.2-General over the complete cohort: selective PPV >= 0.95 AND selective recall > 0.50,
+      with the P1.11 coverage gate unchanged, uncertainty by isolate-cluster bootstrap with 4000
+      replicates.
+    gate_is_evaluated_on: the observed frozen estimand
+    gate_is_NOT: a requirement that the lower confidence bound exceed 0.95
+    reporting_rule: >-
+      passing the gate and demonstrating PPV > 0.95 by a confidence-bound criterion are DIFFERENT
+      claims. They are reported separately and one is never substituted for the other.
+
+# ---------------------------------------------------------------- 3. storage
+storage:
+  authorised: an additional 128 GiB working volume
+  what_was_found: >-
+    a 200 GiB volume (/dev/sdb, label gcdata, ext4) is ALREADY attached, mounted at /data,
+    writable, with 177.10 GiB free. No new volume was provisioned.
+  why_no_provisioning_was_attempted: >-
+    the OCI CLI is not installed and no OCI configuration exists on the host, so provisioning is
+    not possible from here; it requires operator action in the console. It was also unnecessary,
+    since adequate space already exists.
+  allocation_per_filesystem:   # free space on separate mounts is NOT treated as interchangeable
+    /data:
+      purpose: all P1.13 pipeline data (raw reads, downsampled reads, assemblies, panel outputs,
+               truth, archive, temporary files)
+      required_including_15pct_margin_GiB: 168.66
+      free_GiB: 177.10
+      residual_beyond_requirement_GiB: 8.44
+      fits: true
+      RISK: >-
+        this volume also carries unrelated workloads (pr_ani1 2.7 GiB, pr_context 6.0 GiB,
+        g_c_processing 86 MiB). Only 8.44 GiB of true spare remains beyond the P1.13 requirement,
+        and that spare is shared with those workloads for the duration of a run estimated at
+        about 62 hours.
+    /work:
+      purpose: Docker root and working layers (already the Docker Root Dir)
+      required_including_margin_GiB: 13.80
+      free_GiB: 113.60
+      fits: true
+      note: holds P1.11 evidence and the frozen images; neither is touched, moved or deleted
+    /:
+      purpose: not used by P1.13
+      free_GiB: 82.18
+  prior_wording_correction: >-
+    the minimum new-space shortfall was 66.7 GiB, NOT greater than 100 GB. The stop was justified
+    by insufficient available storage on the filesystem then in use, not by breaching the 100 GB
+    download rule. Actual read download for the amended 150-isolate cohort is 64.14 GiB
+    (68,866,804,867 bytes), which is below the 100 GB threshold.
+  prohibited: [deleting or relocating P1.11 evidence, deleting or relocating frozen Docker images,
+               silently moving Docker data or temporary files to another filesystem]
+
+# ---------------------------------------------------------------- 4. database representation
+database_representation_audit:
+  status: SNAPSHOT RECORDED, REPRESENTATION PENDING
+  recorded_now: [tool, image, image digest, database path, newest database file date]
+  still_to_measure: >-
+    whether each external reference genome or its plasmids is represented in each tool database.
+  method_frozen: >-
+    the frozen database-specific method for each tool, applied to each reference genome and its
+    replicons. Representation is MEASURED, never inferred from release year.
+  must_be_completed: before examining any P1.13 outcome
+  record_for_each: [tool and database, image digest / database snapshot, query identifier and
+                    matching rule, representation result, ambiguity or inability to test]
+  role: prediction-side covariate and sensitivity analysis only
+  prohibited_influence: [cohort inclusion, cohort exclusion, thresholds, the primary analysis]
+
+# ---------------------------------------------------------------- 5. unchanged
+unchanged_by_this_amendment:
+  - the frozen scientific endpoint and its gate
+  - all frozen model artefacts, thresholds, router, parsers, tool-state mappings and truth rules
+  - the 12-tool panel and AMRFinder workflow
+  - the ANI 99.5 independence threshold and the frozen distance method
+  - the 30x coverage floor, 100x downsample target and seed 20260821
+  - the eligibility rules for every taxon other than the Serratia date tier
+  - the external-validation hierarchy: P1.11 first, P1.13 second and larger

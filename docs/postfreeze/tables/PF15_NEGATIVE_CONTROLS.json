@@ -1,0 +1,44 @@
+{
+ "label_permutation": {
+  "n_permutations": 200,
+  "observed_PPV": 0.9769888231426693,
+  "permuted_PPV_mean": 0.23871137409598947,
+  "permuted_PPV_max": 0.27087442472057854,
+  "permuted_PPV_p95": 0.2564102564102564,
+  "observed_exceeds_all_permutations": true,
+  "verdict": "PASS - permuting labels destroys performance"
+ },
+ "row_order_invariance": {
+  "PPV_original": 0.9769888231426693,
+  "PPV_after_shuffle": 0.9769888231426693,
+  "identical": true,
+  "verdict": "PASS - contig ordering does not alter predictions or metrics"
+ },
+ "duplicate_contig_ids": {
+  "count": 0,
+  "verdict": "PASS"
+ },
+ "excluded_isolate_leakage": {
+  "SAMN26198730_present": false,
+  "verdict": "PASS"
+ },
+ "replacement_present": {
+  "SAMN37639065_present": true,
+  "verdict": "PASS"
+ },
+ "cohort_v2_leakage": {
+  "all_in_sealed_cohort": true,
+  "verdict": "PASS"
+ },
+ "zero_row_strata_fail_loudly": {
+  "implemented": true,
+  "mechanism": "every stratum records n_scored and n_plasmid; sparse strata are flagged SPARSE and CI is emitted as null rather than a smoothed value"
+ },
+ "boolean_categorical_mismatch_guard": {
+  "implemented": true,
+  "mechanism": "ARG_bearing_bool is case-normalised before comparison after the TC5 defect; truth_state is restricted to an explicit three-value set"
+ },
+ "deterministic_reconstruction": {
+  "note": "frozen table hash re-verified at join and at results freeze; unchanged"
+ }
+}

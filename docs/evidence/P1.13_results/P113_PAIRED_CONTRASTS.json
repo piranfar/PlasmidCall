@@ -1,0 +1,50 @@
+[
+ {
+  "contrast": "v1.2-General minus v1.1",
+  "delta_PPV": 0.0064005878485516865,
+  "delta_PPV_ci95": [
+   -0.008482805478886914,
+   0.02291992660149722
+  ],
+  "delta_recall": 0.38331102186523874,
+  "delta_recall_ci95": [
+   0.31896073667959896,
+   0.44550291256291463
+  ],
+  "paired": true,
+  "clustering": "isolate-level",
+  "n_boot": 4000
+ },
+ {
+  "contrast": "v1.2-General minus router",
+  "delta_PPV": -0.004170597147185706,
+  "delta_PPV_ci95": [
+   -0.00895654913889769,
+   -0.0003705554900491281
+  ],
+  "delta_recall": 0.058902275769745605,
+  "delta_recall_ci95": [
+   0.043633980239965724,
+   0.07650299686420829
+  ],
+  "paired": true,
+  "clustering": "isolate-level",
+  "n_boot": 4000
+ },
+ {
+  "contrast": "v1.1 minus router",
+  "delta_PPV": -0.010571184995737393,
+  "delta_PPV_ci95": [
+   -0.026461246662490976,
+   0.002914926351849141
+  ],
+  "delta_recall": -0.32440874609549314,
+  "delta_recall_ci95": [
+   -0.3794399851789413,
+   -0.2675731344633167
+  ],
+  "paired": true,
+  "clustering": "isolate-level",
+  "n_boot": 4000
+ }
+]

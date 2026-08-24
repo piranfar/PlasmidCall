@@ -1,0 +1,19 @@
+{
+ "analysis": "relatedness and leakage audit (assemblies/ANI only; no reads re-downloaded)",
+ "exact_identifier_overlap_with_consumed_sets": [],
+ "n_exact_overlap": 0,
+ "consumed_identifiers_loaded": 583,
+ "max_ANI_to_any_consumed_genome": 99.48,
+ "isolates_with_ANI_ge_99.5_to_consumed": [],
+ "max_within_cohort_pairwise_ANI": 99.48,
+ "within_cohort_pairs_ge_99.5": [],
+ "n_bioprojects": 2,
+ "largest_bioproject_size": 149,
+ "bioprojects_with_more_than_5_isolates": {
+  "PRJNA224116": 149
+ },
+ "n_study_accessions": 76,
+ "isolate_clustering_used_throughout": true,
+ "bioproject_clustered_sensitivity_needed": true,
+ "no_isolate_removed_post_hoc": true
+}

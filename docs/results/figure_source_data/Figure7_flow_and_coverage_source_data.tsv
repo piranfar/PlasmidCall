@@ -1,0 +1,32 @@
+panel	item	value
+a	MOB-recon: zero plasmid biomarkers raised an exception	31
+a	gplas2: upstream PlasmidEC predicted no plasmid contigs	26
+a	gplas2: internal R step exited non-zero	10
+a	PlasmidFinder: index error	5
+b	PlaScope	0.63259
+b	gplas2	0.790631
+b	MOB-recon	0.908654
+b	plASgraph2	0.941842
+b	PlasmidFinder	0.976096
+b	HyAsP	1.0
+b	PLASMe	1.0
+b	Plasmer	1.0
+b	PlasmidCall router	1.0
+b	PlasmidCall v1.1 (0.9524)	1.0
+b	PlasmidCall v1.1 (0.9605)	1.0
+b	PlasmidCall v1.2-General	1.0
+b	PlasmidEC	1.0
+b	Platon	1.0
+b	RFPlasmid	1.0
+b	all-chromosome	1.0
+b	any-tool-plasmid	1.0
+b	geNomad	1.0
+b	panel majority vote	1.0
+c	PlasmidCall v1.2-General FP	35
+c	PlasmidCall v1.1 (0.9524) FP	19
+c	PlasmidCall v1.1 (0.9605) FP	17
+c	PlasmidCall router FP	26
+c	PlasmidCall v1.2-General FN	755
+c	PlasmidCall v1.1 (0.9524) FN	1614
+c	PlasmidCall v1.1 (0.9605) FN	1678
+c	PlasmidCall router FN	887

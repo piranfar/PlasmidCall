@@ -1,0 +1,94 @@
+unit	image	check	result	detail
+plascope	p19c4-plascope:1.0	image_digest	MATCH	sha256:cfac6fdafa36ff94
+plascope	p19c4-plascope:1.0	image_tmp_empty	YES	safe to bind-mount over /tmp
+plascope	p19c4-plascope:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+plascope	p19c4-plascope:1.0	container_tmp_writable	OK	
+plascope	p19c4-plascope:1.0	uid_can_create_and_remove	OK	0:0
+plascope	p19c4-plascope:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/plascope/PREFLIGHT/.p113_sentinel_1
+plascope	p19c4-plascope:1.0	container_tmp_capacity	OK	119117076K available
+hyasp	p19c4-hyasp:1.0	image_digest	MATCH	sha256:6bfce30bd71ff284
+hyasp	p19c4-hyasp:1.0	image_tmp_empty	YES	safe to bind-mount over /tmp
+hyasp	p19c4-hyasp:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+hyasp	p19c4-hyasp:1.0	container_tmp_writable	OK	
+hyasp	p19c4-hyasp:1.0	uid_can_create_and_remove	OK	0:0
+hyasp	p19c4-hyasp:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/hyasp/PREFLIGHT/.p113_sentinel_1
+hyasp	p19c4-hyasp:1.0	container_tmp_capacity	OK	119117068K available
+rfplasmid	p19c4-rfplasmid:1.0	image_digest	MATCH	sha256:3443e560bdf30c9a
+rfplasmid	p19c4-rfplasmid:1.0	image_tmp_empty	YES	safe to bind-mount over /tmp
+rfplasmid	p19c4-rfplasmid:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+rfplasmid	p19c4-rfplasmid:1.0	container_tmp_writable	OK	
+rfplasmid	p19c4-rfplasmid:1.0	uid_can_create_and_remove	OK	0:0
+rfplasmid	p19c4-rfplasmid:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/rfplasmid/PREFLIGHT/.p113_sentinel_1
+rfplasmid	p19c4-rfplasmid:1.0	container_tmp_capacity	OK	119117060K available
+plasmidfinder	p19c4-plasmidfinder:1.0	image_digest	MATCH	sha256:8414abbe42588810
+plasmidfinder	p19c4-plasmidfinder:1.0	image_tmp_empty	YES	safe to bind-mount over /tmp
+plasmidfinder	p19c4-plasmidfinder:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+plasmidfinder	p19c4-plasmidfinder:1.0	container_tmp_writable	OK	
+plasmidfinder	p19c4-plasmidfinder:1.0	uid_can_create_and_remove	OK	0:0
+plasmidfinder	p19c4-plasmidfinder:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/plasmidfinder/PREFLIGHT/.p113_sentinel_1
+plasmidfinder	p19c4-plasmidfinder:1.0	container_tmp_capacity	OK	119117052K available
+platon	p19c4-platon:1.0	image_digest	MATCH	sha256:8d860d7cfaca3f29
+platon	p19c4-platon:1.0	image_tmp_empty	YES	safe to bind-mount over /tmp
+platon	p19c4-platon:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+platon	p19c4-platon:1.0	container_tmp_writable	OK	
+platon	p19c4-platon:1.0	uid_can_create_and_remove	OK	0:0
+platon	p19c4-platon:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/platon/PREFLIGHT/.p113_sentinel_1
+platon	p19c4-platon:1.0	container_tmp_capacity	OK	119117044K available
+amrfinder	p19c4-amrfinder:1.0	image_digest	MATCH	sha256:18580135caaf7ab0
+amrfinder	p19c4-amrfinder:1.0	image_tmp_empty	YES	safe to bind-mount over /tmp
+amrfinder	p19c4-amrfinder:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+amrfinder	p19c4-amrfinder:1.0	container_tmp_writable	OK	
+amrfinder	p19c4-amrfinder:1.0	uid_can_create_and_remove	OK	0:0
+amrfinder	p19c4-amrfinder:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/amrfinder/PREFLIGHT/.p113_sentinel_1
+amrfinder	p19c4-amrfinder:1.0	container_tmp_capacity	OK	119117036K available
+plasmidec	p19c4-plasmidec:1.0	image_digest	MATCH	sha256:6ae61ad78f3f2cbf
+plasmidec	p19c4-plasmidec:1.0	image_tmp_empty	YES	safe to bind-mount over /tmp
+plasmidec	p19c4-plasmidec:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+plasmidec	p19c4-plasmidec:1.0	container_tmp_writable	OK	
+plasmidec	p19c4-plasmidec:1.0	uid_can_create_and_remove	OK	0:0
+plasmidec	p19c4-plasmidec:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/plasmidec/PREFLIGHT/.p113_sentinel_1
+plasmidec	p19c4-plasmidec:1.0	container_tmp_capacity	OK	119117028K available
+plasme	p19c4-plasme:1.0	image_digest	MATCH	sha256:05a577da11f970df
+plasme	p19c4-plasme:1.0	image_tmp_empty	YES	safe to bind-mount over /tmp
+plasme	p19c4-plasme:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+plasme	p19c4-plasme:1.0	container_tmp_writable	OK	
+plasme	p19c4-plasme:1.0	uid_can_create_and_remove	OK	0:0
+plasme	p19c4-plasme:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/plasme/PREFLIGHT/.p113_sentinel_1
+plasme	p19c4-plasme:1.0	container_tmp_capacity	OK	119117020K available
+gplas2	p19c4-gplas2:1.0	image_digest	MATCH	sha256:88849320fa0b86f8
+gplas2	p19c4-gplas2:1.0	image_tmp_empty	YES	safe to bind-mount over /tmp
+gplas2	p19c4-gplas2:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+gplas2	p19c4-gplas2:1.0	container_tmp_writable	OK	
+gplas2	p19c4-gplas2:1.0	uid_can_create_and_remove	OK	0:0
+gplas2	p19c4-gplas2:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/gplas2/PREFLIGHT/.p113_sentinel_1
+gplas2	p19c4-gplas2:1.0	container_tmp_capacity	OK	119117008K available
+plasmer	nekokoe/plasmer:23.04.20	image_digest	MATCH	sha256:c64ba6e14f59f5ff
+plasmer	nekokoe/plasmer:23.04.20	image_tmp_empty	NO	2 entries would be masked
+plasmer	nekokoe/plasmer:23.04.20	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+plasmer	nekokoe/plasmer:23.04.20	container_tmp_writable	OK	
+plasmer	nekokoe/plasmer:23.04.20	uid_can_create_and_remove	OK	0:0
+plasmer	nekokoe/plasmer:23.04.20	sentinel_reaches_host	OK	/work/p113/tmp/tools/plasmer/PREFLIGHT/.p113_sentinel_1
+plasmer	nekokoe/plasmer:23.04.20	container_tmp_capacity	OK	119117000K available
+genomad	p19c4-genomad:1.0	image_digest	MATCH	sha256:98378fdda32a3219
+genomad	p19c4-genomad:1.0	image_tmp_empty	YES	safe to bind-mount over /tmp
+genomad	p19c4-genomad:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+genomad	p19c4-genomad:1.0	container_tmp_writable	OK	
+genomad	p19c4-genomad:1.0	uid_can_create_and_remove	OK	0:0
+genomad	p19c4-genomad:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/genomad/PREFLIGHT/.p113_sentinel_1
+genomad	p19c4-genomad:1.0	container_tmp_capacity	OK	119116992K available
+plasgraph2	p19c4-plasgraph2:1.0	image_digest	MATCH	sha256:beadd23183f4fde7
+plasgraph2	p19c4-plasgraph2:1.0	image_tmp_empty	NO	1 entries would be masked
+plasgraph2	p19c4-plasgraph2:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+plasgraph2	p19c4-plasgraph2:1.0	container_tmp_writable	OK	
+plasgraph2	p19c4-plasgraph2:1.0	uid_can_create_and_remove	OK	0:0
+plasgraph2	p19c4-plasgraph2:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/plasgraph2/PREFLIGHT/.p113_sentinel_1
+plasgraph2	p19c4-plasgraph2:1.0	container_tmp_capacity	OK	119116984K available
+mobsuite	p19c4-mobsuite:1.0	image_digest	MATCH	sha256:804f9ea5e88affaa
+mobsuite	p19c4-mobsuite:1.0	image_tmp_empty	NO	1 entries would be masked
+mobsuite	p19c4-mobsuite:1.0	env_TMPDIR_TMP_TEMP	OK	all three = /tmp
+mobsuite	p19c4-mobsuite:1.0	container_tmp_writable	OK	
+mobsuite	p19c4-mobsuite:1.0	uid_can_create_and_remove	OK	0:0
+mobsuite	p19c4-mobsuite:1.0	sentinel_reaches_host	OK	/work/p113/tmp/tools/mobsuite/PREFLIGHT/.p113_sentinel_1
+mobsuite	p19c4-mobsuite:1.0	container_tmp_capacity	OK	119116976K available
+host_process	-	host_TMPDIR_off_boot	OK	/dev/sdc
+concurrency	-	per_unit_temp_isolation	OK	tmp/tools/<tool>/<isolate>

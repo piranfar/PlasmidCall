@@ -1,0 +1,226 @@
+{
+ "receipt": "P1.11 pre-join hash receipt v2",
+ "status": "SUPERSEDING",
+ "generated_utc": "2026-08-22T04:46:04Z",
+ "supersedes": {
+  "documents": [
+   "docs/evidence/P1.12_PRE_JOIN_HASH_RECEIPT.md",
+   "docs/plans/P1.11_PROSPECTIVE_EVALUATION_AMENDMENT.yaml (hash_receipt block)"
+  ],
+  "stale_preflight_pinned": "scripts/p1_12/panel_preflight.py",
+  "stale_preflight_sha256": "edba943f6ad34dc2acac3091b18745c827299182eae500077281ba739840c535",
+  "why": "the original receipt pinned the preflight that P1.11_PREFLIGHT_IMPLEMENTATION_CORRECTION.yaml retired, and recorded unlabelled CRLF working-copy hashes that cannot reproduce from a checkout",
+  "originals_modified": false
+ },
+ "provenance_chain": [
+  "panel_preflight.py (edba943f, committed 6b03034) returned BLOCKED on the migrated host from three execution-verification defects",
+  "P1.11_PREFLIGHT_IMPLEMENTATION_CORRECTION.yaml recorded the defects and declared panel_preflight_p111_v2.py as the superseding implementation",
+  "P1.11_PREFLIGHT_SUPERSESSION_MANIFEST.json recorded both hashes",
+  "the predeclaration's own locked_preflight field already names v2; only its hash_receipt block still pinned the retired file",
+  "this receipt makes the canonical set explicit and machine-verifiable"
+ ],
+ "hash_domain_note": "Every entry records BOTH sha256_worktree (the bytes on this machine) and sha256_canonical_lf (the LF content git stores). .gitattributes declares *.py/*.yaml/*.md as text eol=lf, so sha256_canonical_lf is the value that reproduces from any checkout and is the one this gate verifies. No file content differs between the domains; git diff is empty.",
+ "canonical_cohort": {
+  "name": "P1.11_cohort_sealed.tsv",
+  "predeclared_in": "docs/plans/P1.11_PROSPECTIVE_EVALUATION_AMENDMENT.yaml (cohort block)",
+  "sha256": "0d0e547cd6f6546ac6f72e516885a74cf51dd3738be83b0a45f58cfbe999151f",
+  "local_path": "E:/AMR_Evidence_Data/P1.9_cleanroom/p111/P1.11_cohort_sealed.tsv",
+  "host_path": "/data/trace-arg/p111/manifests/P1.11_cohort_sealed.tsv",
+  "n_isolates": 79,
+  "n_columns": 25
+ },
+ "superseded_preflight_preserved": true,
+ "live_stale_imports": [],
+ "superseded_files_and_successors": {
+  "scripts/p1_12/router_fixtures.py": "scripts/p1_12/router_fixtures_v2.py",
+  "scripts/p1_12/evaluate_p111_locked.py": "scripts/p1_12/evaluate_p111_locked_v3.py",
+  "scripts/p1_12/panel_preflight.py": "scripts/p1_12/panel_preflight_p111_v2.py"
+ },
+ "expected_references_in_preserved_files": [
+  "scripts/p1_12/router_fixtures.py: import panel_preflight as PF"
+ ],
+ "locked_dependencies": {
+  "models/plasmidcall_v1.2-general/plasmidcall_v1_2_general.pkl": {
+   "sha256_worktree": "f5d1cd1202b5077030a4512fb0c801abbdf39998b7c170acade03c268d68d74d",
+   "sha256_canonical_lf": "f5d1cd1202b5077030a4512fb0c801abbdf39998b7c170acade03c268d68d74d",
+   "bytes": 10073,
+   "line_endings": "LF"
+  },
+  "models/plasmidcall_v1.2-general/P1.12_V1.2_COEFFICIENTS.tsv": {
+   "sha256_worktree": "b46b4416919f0509ff3de3c8acb7fd0e30a0645ac7b4e3f235eb57dd222bc6aa",
+   "sha256_canonical_lf": "b46b4416919f0509ff3de3c8acb7fd0e30a0645ac7b4e3f235eb57dd222bc6aa",
+   "bytes": 8530,
+   "line_endings": "LF"
+  },
+  "models/plasmidcall_v1.2-general/P1.12_V1.2_ENCODING_SPEC.json": {
+   "sha256_worktree": "13b5701c7fb1c014ef254586916e54751ba9e23caeb53a0a89f4583b54d519af",
+   "sha256_canonical_lf": "412eb43fac3573890187e3e4be75f99f4c8179dac957d5c69b3df370270ef12e",
+   "bytes": 3233,
+   "line_endings": "CRLF"
+  },
+  "models/plasmidcall_v1.2-general/P1.12_V1.2_FEATURE_DICTIONARY.tsv": {
+   "sha256_worktree": "6686e410d74f219b4a4eebce2da968b50c13ea77353df989a909a877c28b0ef0",
+   "sha256_canonical_lf": "6686e410d74f219b4a4eebce2da968b50c13ea77353df989a909a877c28b0ef0",
+   "bytes": 15342,
+   "line_endings": "LF"
+  },
+  "models/plasmidcall_v1.2-general/P1.12_V1.2_MODEL_PORTABLE.json": {
+   "sha256_worktree": "0fbb44c9e7c3053bc2d7e8a6d77cee80be486c03817ab11c58323a6023270e81",
+   "sha256_canonical_lf": "b2f00ee8a4668747e87d55e7abf2d6788656975c0fa40832cab621527bcc87a1",
+   "bytes": 13110,
+   "line_endings": "CRLF"
+  },
+  "models/plasmidcall_v1.2-general/P1.12_V1.2_TRAINING_RECEIPT.json": {
+   "sha256_worktree": "5371bbb7acc66c6dc4fd66b2e646fd424e3d2d1112171b6aa3de6b6e96429d8e",
+   "sha256_canonical_lf": "8d12111a8b23c5baf5bb305e85639f4391571b0cec7f5c33cf21d9f7cb4165a0",
+   "bytes": 1940,
+   "line_endings": "CRLF"
+  },
+  "scripts/p1_12/freeze_v12.py": {
+   "sha256_worktree": "15db49b2082ad36720b971d99fd456d0008dc3af3fb629f70358223b893657de",
+   "sha256_canonical_lf": "dbcdd9517da59fc4a2f97a12bb43c69706c6eba96027d8e3e4d4ce00c3519dde",
+   "bytes": 17950,
+   "line_endings": "CRLF"
+  },
+  "scripts/p1_12/plasmidcall_router.py": {
+   "sha256_worktree": "ba0572ec18c1a0d8ee90382131f2d715e98cf995bda5507986585c03eb47c8b2",
+   "sha256_canonical_lf": "ba0572ec18c1a0d8ee90382131f2d715e98cf995bda5507986585c03eb47c8b2",
+   "bytes": 6463,
+   "line_endings": "LF"
+  },
+  "scripts/p1_12/panel_preflight_p111_v2.py": {
+   "sha256_worktree": "fe8a075c8745ce605e3f61189807ac753a9babde8c6d05397b19cb803bbe069f",
+   "sha256_canonical_lf": "9958af1f3c78c8104cdbd3a17d05aa6f97e50955a7a167dd06ec348927e7c977",
+   "bytes": 19181,
+   "line_endings": "CRLF"
+  },
+  "scripts/p1_12/evaluate_p111_locked_v3.py": {
+   "sha256_worktree": "2bc3bac0b773f45031093d8044975bedf9367bb9a99fd35cee637164f7535b03",
+   "sha256_canonical_lf": "2bc3bac0b773f45031093d8044975bedf9367bb9a99fd35cee637164f7535b03",
+   "bytes": 43171,
+   "line_endings": "LF"
+  },
+  "scripts/p1_12/build_p111_contig_table.py": {
+   "sha256_worktree": "cf23c6e91c7529ee1045218e14a145b747a7e6c146a681d8c59a1cb76efbb9b5",
+   "sha256_canonical_lf": "cf23c6e91c7529ee1045218e14a145b747a7e6c146a681d8c59a1cb76efbb9b5",
+   "bytes": 23136,
+   "line_endings": "LF"
+  },
+  "scripts/p1_12/v11_scorer_p111.py": {
+   "sha256_worktree": "e8f4f0a1f328983f898421bfbd1f6a87fd896cda1a1eaca26ef965c1a93da3fc",
+   "sha256_canonical_lf": "e8f4f0a1f328983f898421bfbd1f6a87fd896cda1a1eaca26ef965c1a93da3fc",
+   "bytes": 16013,
+   "line_endings": "LF"
+  },
+  "models/plasmidcall_v1.1/plasmidcall_v1_1_m2.pkl": {
+   "sha256_worktree": "6c179825a6c608d0468d36c37e08d2511485f18a5c38d4c7369c93b12498c50f",
+   "sha256_canonical_lf": "6c179825a6c608d0468d36c37e08d2511485f18a5c38d4c7369c93b12498c50f",
+   "bytes": 167815,
+   "line_endings": "LF"
+  },
+  "scripts/p1_12/evaluate_p111_locked_v2.py": {
+   "sha256_worktree": "4906de6a0b770df288ae4b15bc90f0fad05f5865839a19648658fc03447868c1",
+   "sha256_canonical_lf": "4906de6a0b770df288ae4b15bc90f0fad05f5865839a19648658fc03447868c1",
+   "bytes": 31116,
+   "line_endings": "LF"
+  },
+  "scripts/p1_12/panel_preflight.py": {
+   "sha256_worktree": "edba943f6ad34dc2acac3091b18745c827299182eae500077281ba739840c535",
+   "sha256_canonical_lf": "edba943f6ad34dc2acac3091b18745c827299182eae500077281ba739840c535",
+   "bytes": 17942,
+   "line_endings": "LF"
+  },
+  "scripts/p1_12/evaluate_p111_locked.py": {
+   "sha256_worktree": "a3fd13242349af8b851a58507ecb3f5a1e0ba2fa5e05d8c668c44446303c596d",
+   "sha256_canonical_lf": "8ca7b0d656400566e7548c9e531840d4a423b51630a6b0fc69c9499e8fffe52c",
+   "bytes": 22955,
+   "line_endings": "CRLF"
+  },
+  "scripts/p1_12/router_fixtures.py": {
+   "sha256_worktree": "aed94ba98e0c8bfcac9dea70247042fdf52e3a8243c283f9d9a04881126c47fa",
+   "sha256_canonical_lf": "ac7ef6537aea9cb575c7366de3f682fd00a67e032687383c2935abe2ba73993a",
+   "bytes": 13204,
+   "line_endings": "CRLF"
+  },
+  "scripts/p1_12/router_fixtures_v2.py": {
+   "sha256_worktree": "8afe65674a3fb8987c839bbd4972b37856ff77651bf97f570d312d06649cf28b",
+   "sha256_canonical_lf": "8afe65674a3fb8987c839bbd4972b37856ff77651bf97f570d312d06649cf28b",
+   "bytes": 15667,
+   "line_endings": "LF"
+  },
+  "scripts/p1_12/p111_failclosed_fixtures.py": {
+   "sha256_worktree": "e5a6613eecff7cc96a7220d2fe54768bf1ef06c8f413801cf5b1e2abbaae1fab",
+   "sha256_canonical_lf": "e5a6613eecff7cc96a7220d2fe54768bf1ef06c8f413801cf5b1e2abbaae1fab",
+   "bytes": 12466,
+   "line_endings": "LF"
+  },
+  "scripts/p1_12/p111_builder_fixtures.py": {
+   "sha256_worktree": "4176970b43a1acb72a2f018febae8598cb7b2180ac3d7d41ba7904fd6134fcbe",
+   "sha256_canonical_lf": "4176970b43a1acb72a2f018febae8598cb7b2180ac3d7d41ba7904fd6134fcbe",
+   "bytes": 13734,
+   "line_endings": "LF"
+  },
+  "scripts/p1_12/v11_scorer_fixtures.py": {
+   "sha256_worktree": "e6148a00968c4539e49d1a950cb3e0cb4ff51452717e859f2bd69db9b7939f2d",
+   "sha256_canonical_lf": "e6148a00968c4539e49d1a950cb3e0cb4ff51452717e859f2bd69db9b7939f2d",
+   "bytes": 10829,
+   "line_endings": "LF"
+  },
+  "scripts/p1_12/preflight_v2_fixtures.py": {
+   "sha256_worktree": "6f6a2fe18e2335b784074d2e5e1748351cd6fa26ef9562e0987ba2dc3c957f88",
+   "sha256_canonical_lf": "6f6a2fe18e2335b784074d2e5e1748351cd6fa26ef9562e0987ba2dc3c957f88",
+   "bytes": 8903,
+   "line_endings": "LF"
+  },
+  "docs/plans/P1.11_PROSPECTIVE_EVALUATION_AMENDMENT.yaml": {
+   "sha256_worktree": "64422599f4244b7729fd2aca8b72def55b11b770af48035692a5e5555cf42007",
+   "sha256_canonical_lf": "41f0a66e907d3351fdf8b8dd4232efc470606f1a43f8cd4e5ab749c1e6489f3c",
+   "bytes": 15082,
+   "line_endings": "CRLF"
+  },
+  "docs/plans/P1.11_PREFLIGHT_IMPLEMENTATION_CORRECTION.yaml": {
+   "sha256_worktree": "cad3a9906f9a879d68fdd2e0db59616ff6a116dcd0abd4bda36b0037e9e8a28a",
+   "sha256_canonical_lf": "cad3a9906f9a879d68fdd2e0db59616ff6a116dcd0abd4bda36b0037e9e8a28a",
+   "bytes": 8141,
+   "line_endings": "LF"
+  },
+  "docs/plans/P1.11_TRUTH_SOURCE_AMENDMENT.yaml": {
+   "sha256_worktree": "f326b71431d261477383a7c83acb79eb5099ffc65ad27c7ad20cf59177246048",
+   "sha256_canonical_lf": "f326b71431d261477383a7c83acb79eb5099ffc65ad27c7ad20cf59177246048",
+   "bytes": 14805,
+   "line_endings": "LF"
+  },
+  "docs/plans/P1.11_PROVENANCE_AND_FAILCLOSED_CORRECTION.yaml": {
+   "sha256_worktree": "31c57d7098f3251499c3bd46e4935fdb44bc856e4aa580eef8c3574bee51d20c",
+   "sha256_canonical_lf": "31c57d7098f3251499c3bd46e4935fdb44bc856e4aa580eef8c3574bee51d20c",
+   "bytes": 22786,
+   "line_endings": "LF"
+  },
+  "docs/plans/P1.11_SELECTIVE_CLASSIFICATION_ADDENDUM.yaml": {
+   "sha256_worktree": "379cc190309f7560c730378e779da6a4e681bb78ea68b657b6a87dd31bf17fde",
+   "sha256_canonical_lf": "379cc190309f7560c730378e779da6a4e681bb78ea68b657b6a87dd31bf17fde",
+   "bytes": 16991,
+   "line_endings": "LF"
+  },
+  "docs/evidence/P1.11_V11_RECONSTRUCTION_RECEIPT.json": {
+   "sha256_worktree": "7a145bf9d844d3a2500acb1e7381b8fd15a90d45ea2d7ec2086590af8ed2d614",
+   "sha256_canonical_lf": "1c53a4ae73eab3a4d2dca572c23f21219945826012b25b230bdedee24805457d",
+   "bytes": 2592,
+   "line_endings": "CRLF"
+  },
+  "docs/evidence/P1.11_PREFLIGHT_SUPERSESSION_MANIFEST.json": {
+   "sha256_worktree": "6cebddd02b21586beb60473c7648fd9adfe91d9429d30ffd84b62e84f23f02cb",
+   "sha256_canonical_lf": "b8dc4a6464eb6d956f57618aa780957cfe0e2648124d734bd8e251afbc75fd78",
+   "bytes": 4916,
+   "line_endings": "CRLF"
+  },
+  "docs/evidence/P1.11_COHORT_PROVENANCE_DISCREPANCY.json": {
+   "sha256_worktree": "dfb855da9aad5a625319ff273f657cd3c90ca10f45a42028ecfe001f193d563a",
+   "sha256_canonical_lf": "dfb855da9aad5a625319ff273f657cd3c90ca10f45a42028ecfe001f193d563a",
+   "bytes": 5516,
+   "line_endings": "LF"
+  }
+ },
+ "n_locked": 30,
+ "authorisation_rule": "Joining or scoring P1.11 truth is authorised only when every locked dependency matches its sha256_canonical_lf here, no locked dependency is missing, no live import of the superseded preflight exists, and the cohort of record hashes to 0d0e547c... Any difference REFUSES authorisation."
+}

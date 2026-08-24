@@ -1,0 +1,23 @@
+--- p110/run_tool.sh
++++ p112/run_tool.sh
+@@ -1,9 +1,9 @@
+ #!/usr/bin/env bash
+-# P1.10 truth-blind runner (derived from the frozen P1.9C4 runner by path substitution only): one tool x one sample in one container. Mounts ONLY Product A (ro), the tool DB (ro), and the tool's own output dir.
++# P1.11 truth-blind runner (derived from the frozen P1.10 runner by path substitution only): one tool x one sample in one container. Mounts ONLY Product A (ro), the tool DB (ro), and the tool's own output dir.
+ # usage: run_tool.sh <tool> <sample>
+ set -uo pipefail
+ T=$1; S=$2
+-ROOT=/data/trace-arg; P=$ROOT/p110; IN=$P/assemblies/shortread/$S; DB=$ROOT/p19c4/db
++ROOT=/data/trace-arg; P=$ROOT/p112; IN=$P/assemblies/shortread/$S; DB=$ROOT/p19c4/db
+ OUT=$P/inference/native/$T/$S; LOGD=$P/inference/logs; REC=$P/inference/receipts; mkdir -p $OUT $LOGD $REC; chmod a+rwX $OUT
+ utc(){ date -u +%FT%TZ; }
+ IMG=p19c4-$T:1.0; MEM=24g; CPUS=8; THREADS=8
+@@ -27,7 +27,7 @@
+   *) echo "unknown tool $T"; exit 2;;
+ esac
+ DBM=${DBM:-}
+-DOCKER="docker run --rm --name p110_${T}_${S} --memory=$MEM --cpus=$CPUS -v $IN:/in:ro $DBM -v $OUT:/out $IMG bash -c \"$CMD\""
++DOCKER="docker run --rm --name p112_${T}_${S} --memory=$MEM --cpus=$CPUS -v $IN:/in:ro $DBM -v $OUT:/out $IMG bash -c \"$CMD\""
+ T0=$(date -u +%s); START=$(utc)
+ echo "$DOCKER" > $REC/${T}__${S}.cmd
+ bash -c "$DOCKER" > $LOGD/${T}__${S}.log 2>&1; RC=$?

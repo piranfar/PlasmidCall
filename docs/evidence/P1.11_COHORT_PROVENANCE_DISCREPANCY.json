@@ -1,0 +1,210 @@
+{
+ "record": "P1.11 cohort provenance discrepancy - factual evidence",
+ "phase": "Phase 1, frozen before any correction was applied",
+ "generated_utc": "2026-08-22T01:35:34Z",
+ "status": "READ-ONLY EVIDENCE. No file was modified to produce this record.",
+ "files": {
+  "sealed": {
+   "label": "predeclared canonical sealed cohort",
+   "path": "E:/AMR_Evidence_Data/P1.9_cleanroom/p111/P1.11_cohort_sealed.tsv",
+   "sha256": "0d0e547cd6f6546ac6f72e516885a74cf51dd3738be83b0a45f58cfbe999151f",
+   "bytes": 53696,
+   "lines": 80,
+   "data_rows": 79,
+   "n_columns": 25,
+   "columns": [
+    "biosample",
+    "assembly_accession",
+    "bioproject",
+    "submitter",
+    "strain",
+    "first_public_date",
+    "assembly_level",
+    "n_chromosome",
+    "n_plasmid",
+    "reference_genome_total_length",
+    "acquisition_route",
+    "primary_run",
+    "all_runs",
+    "instrument",
+    "read_count",
+    "base_count",
+    "fastq_bytes_ena",
+    "fastq_md5_ena",
+    "fastq_ftp_ena",
+    "ftppath_refseq",
+    "ftppath_genbank",
+    "ani_cluster_id",
+    "ani_cluster_size",
+    "ani_cluster_members",
+    "selected_as_representative_rule"
+   ],
+   "line_endings": "LF"
+  },
+  "independent": {
+   "label": "file read by the current acquire_truth.py (host copy: /data/trace-arg/p111/manifests/P1.11_cohort_independent.tsv)",
+   "path": "<session scratchpad>/indep.tsv",
+   "sha256": "586b9917af51b698f3b21ef877e48164e08ef736bcef028c753344bbfa6b1f5f",
+   "bytes": 48353,
+   "lines": 80,
+   "data_rows": 79,
+   "n_columns": 23,
+   "columns": [
+    "biosample",
+    "assembly_accession",
+    "bioproject",
+    "organism",
+    "strain",
+    "submitter",
+    "assembly_release_date",
+    "assembly_level",
+    "n_chromosome",
+    "n_plasmid",
+    "total_length",
+    "read_source",
+    "primary_run",
+    "all_runs",
+    "instrument",
+    "base_count",
+    "read_count",
+    "fastq_bytes",
+    "fastq_md5",
+    "fastq_ftp",
+    "ftppath_refseq",
+    "ftppath_genbank",
+    "source_query"
+   ],
+   "line_endings": "LF"
+  }
+ },
+ "hash_confirmations": {
+  "predeclaration_names_sealed_file": true,
+  "predeclared_hash_expected": "0d0e547cd6f6546ac6f72e516885a74cf51dd3738be83b0a45f58cfbe999151f",
+  "predeclared_hash_observed": "0d0e547cd6f6546ac6f72e516885a74cf51dd3738be83b0a45f58cfbe999151f",
+  "predeclared_hash_matches": true,
+  "acquire_truth_points_to": "/data/trace-arg/p111/manifests/P1.11_cohort_independent.tsv",
+  "acquire_truth_target_hash_expected": "586b9917af51b698f3b21ef877e48164e08ef736bcef028c753344bbfa6b1f5f",
+  "acquire_truth_target_hash_observed": "586b9917af51b698f3b21ef877e48164e08ef736bcef028c753344bbfa6b1f5f",
+  "acquire_truth_target_hash_matches": true
+ },
+ "comparison": {
+  "row_count": {
+   "sealed": 79,
+   "independent": 79,
+   "equal": true
+  },
+  "biosample_membership": {
+   "equal_as_sets": true,
+   "sealed_only": [],
+   "independent_only": []
+  },
+  "biosample_order": {
+   "identical_order": true,
+   "note": "row order identical",
+   "first_divergence_index": null
+  },
+  "assembly_accessions": {
+   "mismatches": []
+  },
+  "refseq_paths": {
+   "mismatches": []
+  },
+  "genbank_paths": {
+   "mismatches": []
+  },
+  "assembly_level": {
+   "mismatches": []
+  },
+  "source_split": {
+   "sealed": {
+    "refseq": 64,
+    "genbank": 15,
+    "none": 0
+   },
+   "independent": {
+    "refseq": 64,
+    "genbank": 15,
+    "none": 0
+   },
+   "per_isolate_source_disagreements": [],
+   "per_isolate_resolved_url_disagreements": []
+  },
+  "every_shared_column": {
+   "biosample": {
+    "mismatches": 0
+   },
+   "assembly_accession": {
+    "mismatches": 0
+   },
+   "bioproject": {
+    "mismatches": 0
+   },
+   "submitter": {
+    "mismatches": 0
+   },
+   "strain": {
+    "mismatches": 0
+   },
+   "assembly_level": {
+    "mismatches": 0
+   },
+   "n_chromosome": {
+    "mismatches": 0
+   },
+   "n_plasmid": {
+    "mismatches": 0
+   },
+   "primary_run": {
+    "mismatches": 0
+   },
+   "all_runs": {
+    "mismatches": 0
+   },
+   "instrument": {
+    "mismatches": 0
+   },
+   "read_count": {
+    "mismatches": 0
+   },
+   "base_count": {
+    "mismatches": 0
+   },
+   "ftppath_refseq": {
+    "mismatches": 0
+   },
+   "ftppath_genbank": {
+    "mismatches": 0
+   }
+  },
+  "columns_only_in_sealed": [
+   "first_public_date",
+   "reference_genome_total_length",
+   "acquisition_route",
+   "fastq_bytes_ena",
+   "fastq_md5_ena",
+   "fastq_ftp_ena",
+   "ani_cluster_id",
+   "ani_cluster_size",
+   "ani_cluster_members",
+   "selected_as_representative_rule"
+  ],
+  "columns_only_in_independent": [
+   "organism",
+   "assembly_release_date",
+   "total_length",
+   "read_source",
+   "fastq_bytes",
+   "fastq_md5",
+   "fastq_ftp",
+   "source_query"
+  ]
+ },
+ "blocking_test": {
+  "rule": "STOP with BLOCKED_COHORT_MISMATCH if the two files differ in membership, accessions or reference paths",
+  "membership_differs": false,
+  "accessions_differ": false,
+  "reference_paths_differ": false,
+  "verdict": "NO_SCIENTIFIC_DIFFERENCE"
+ },
+ "interpretation": "The defect is one of PROVENANCE, not content. The two files agree on every field any consumer reads. But the hash re-verified in the pre-join receipt belongs to the sealed file, while truth acquisition would read the other one - so the receipt would certify a file that was never used. Matching values today do not make a non-predeclared file canonical, which is why Decision A repoints to the sealed file rather than adopting the one currently referenced."
+}

@@ -1,0 +1,16 @@
+component	license_status	bundled_database	database_redistributable	obligation_on_us	doi
+geNomad	Apache-2.0 (verify at release)	geNomad DB	NO	cite Camargo et al. 2023; pull DB from upstream	10.1038/s41587-023-01953-y
+MOB-suite	Apache-2.0 (verify)	MOB-suite DB	NO	cite Robertson & Nash 2018	10.1099/mgen.0.000206
+Platon	GPL-3.0 (verify)	Platon DB	NO	cite Schwengers et al. 2020	10.1099/mgen.0.000398
+PlasmidFinder	Apache-2.0 (verify)	PlasmidFinder replicon DB	NO	cite Carattoli et al. 2014	10.1128/AAC.02412-14
+PlasmidEC / gplas2	(verify at release)	bundled classifiers	NO	cite Paganini et al. 2024	10.1099/mgen.0.001193
+PlaScope	(verify at release)	Centrifuge index	NO	cite Royer et al. 2018	10.1099/mgen.0.000211
+PLASMe	(verify at release)	plasmid DB + models	NO	cite Tang et al. 2023	10.1093/nar/gkad578
+plASgraph2	(verify at release)	trained GNN	NO	cite Sielemann et al. 2023	10.3389/fmicb.2023.1267695
+Plasmer	(verify at release)	k-mer DBs	NO	cite Zhu et al. 2023	10.1128/spectrum.04645-22
+RFPlasmid	(verify at release)	marker protein DBs	NO	cite van der Graaf-van Bloois et al. 2021	10.1099/mgen.0.000683
+HyAsP	(verify at release)	plasmid gene DB	NO	cite Muller & Chauve 2019	10.1093/bioinformatics/btz413
+AMRFinderPlus	US Government public domain (verify)	NCBI Reference Gene Catalog	NCBI terms	cite Feldgarden et al. 2022	10.1099/mgen.0.000832
+Unicycler / SPAdes	GPL-3.0 / GPLv2 (verify)	none	n/a	cite upstream	
+skani	MIT (verify)	none	n/a	cite upstream	
+ENA/NCBI sequence data	public archive terms	n/a	reference by accession	cite ENA/NCBI	

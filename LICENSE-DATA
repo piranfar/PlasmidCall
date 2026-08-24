@@ -1,0 +1,23 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Vahhab Piranfar
+
+This licence covers the DATA AND DOCUMENTATION in this repository: everything under docs/,
+including the derived tables, figure source data, evaluation receipts, design records and
+verification artefacts. The source code is licensed separately under the MIT Licence; see
+LICENSE.
+
+You are free to share and adapt this material for any purpose, including commercially, provided
+you give appropriate credit, provide a link to the licence, and indicate if changes were made.
+
+Full licence text: https://creativecommons.org/licenses/by/4.0/legalcode
+Summary:           https://creativecommons.org/licenses/by/4.0/
+
+ATTRIBUTION. Please cite the accompanying article and this repository. See CITATION.cff.
+
+NOT COVERED BY THIS LICENCE. The raw sequencing reads analysed in this study are public archive
+records held at the European Nucleotide Archive and NCBI. They are not redistributed here and
+are not the author's to license; they are cited by accession, with the checksum of every file as
+verified at acquisition, in docs/results/supplementary_data/Supplementary_Data_1.tsv. Third-party
+tools evaluated in this study carry their own licences, recorded in
+docs/release/THIRD_PARTY_LICENSE_AUDIT.tsv.

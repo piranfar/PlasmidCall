@@ -1,0 +1,40 @@
+{
+ "record": "P1.11 POST-FREEZE DEFECT - GenBank truth construction",
+ "status": "POST_FREEZE_DEFECT_REPORTED_NOT_CORRECTED",
+ "found_utc": "2026-08-22T05:30:18Z",
+ "severity": "MATERIAL - removes 15 of 79 isolates from every truth-resolved analysis",
+ "defect": {
+  "file": "/data/trace-arg/p112/env/run/truth_pipeline_p112.py",
+  "line": 140,
+  "code": "role[p[6]] = {\"class\": p[3].lower(), \"molecule\": p[2], \"length\": int(p[8]), ...}",
+  "p6_is": "column 7 of the NCBI assembly report = RefSeq-Accn",
+  "why_it_works_for_refseq": "RefSeq-Accn (NZ_AP040898.1) equals the FASTA defline id",
+  "why_it_fails_for_genbank": "GenBank assembly reports carry RefSeq-Accn = 'na' on every row; their FASTA deflines carry the GenBank-Accn (column 5, e.g. CM129771.1). The role dict is therefore keyed on 'na' and no replicon in the sequence file receives a chromosome/plasmid role.",
+  "consequence": "best_chromosome_hit and best_plasmid_hit are both empty for every contig, so every contig of every GenBank-referenced isolate is labelled ambiguous and excluded.",
+  "inherited_from": "P1.10, where all 39 references were RefSeq, so p[6] always resolved. The GenBank fallback authorised on 2026-08-22 exposed it.",
+  "not_a_biological_finding": true
+ },
+ "measured_impact": {
+  "genbank_isolates": 15,
+  "genbank_isolates_with_any_resolved_contig": 0,
+  "refseq_isolates": 64,
+  "refseq_isolates_with_any_resolved_contig": 64,
+  "label_profile_of_genbank_isolates": "100% ambiguous or below_min_length/unmapped; 0 resolved",
+  "isolates_contributing_to_CP2": "64 of 79",
+  "example": "SAMN09400867 -> {ambiguous: 159, below_min_length: 28}"
+ },
+ "effect_on_the_primary_result": {
+  "primary_stands": true,
+  "what_it_is": "the frozen confirmatory analysis as executed, over 5,586 truth-resolved contigs from 64 RefSeq-referenced isolates",
+  "what_it_is_not": "an analysis over all 79 sealed isolates",
+  "must_be_reported_as": "PASS on the 64 isolates whose truth could be constructed; the 15 GenBank-referenced isolates contributed no truth-resolved contig for a technical reason"
+ },
+ "governance": {
+  "rule_applied": "P1.11 results-integrity rule 8: a genuine post-freeze defect is reported, not silently corrected. Any corrected analysis must be SEPARATELY NAMED and cannot overwrite or replace the primary frozen evaluation.",
+  "frozen_prediction_table_untouched": true,
+  "truth_files_untouched": true,
+  "no_threshold_retuned": true,
+  "proposed_corrected_analysis": "P1.11-SUPPLEMENTARY-GENBANK-TRUTH: key replicon roles on the accession that actually appears in the reference FASTA - RefSeq-Accn when present, otherwise GenBank-Accn - rerun truth mapping for the 15 isolates only, and report as a separately named supplementary analysis alongside, never replacing, the primary.",
+  "requires_owner_approval": true
+ }
+}

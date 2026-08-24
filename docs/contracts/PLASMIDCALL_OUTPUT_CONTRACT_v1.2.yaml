@@ -1,0 +1,180 @@
+contract: PlasmidCall output contract
+version: "1.2"
+status: FROZEN CANDIDATE - AWAITING INDEPENDENT VALIDATION
+supersedes: null
+relationship_to_v1_1: >
+  v1.2 does NOT replace v1.1. The two models occupy disjoint domains and are combined by a
+  deterministic router. v1.1 remains frozen and unmodified; its contract
+  (PLASMIDCALL_OUTPUT_CONTRACT_v1.1.yaml) stays in force for its domain.
+frozen_on: 2026-08-20
+designation: >
+  DEVELOPMENT CANDIDATE. v1.2-General has NOT been independently validated. Every performance
+  figure recorded for it is retrospective, derived from data already consumed during development.
+  It may not be described as validated until the P1.11 primary confirmatory analysis reports.
+
+# ---------------------------------------------------------------------------- models
+
+models:
+  - name: PlasmidCall v1.1
+    domain: CP1
+    domain_definition: >
+      truth-resolved contig >= 1 kb carrying a core ARG under the frozen AMRFinderPlus rule
+      (type == AMR AND subtype == AMR AND scope == core AND class != EFFLUX)
+    estimator: M2 - HistGradientBoostingClassifier, featureset F_full_no_taxon
+    thresholds:
+      standard: 0.9524
+      high_confidence: 0.9605
+    status: VALIDATED BETA
+    changed_in_v1_2: false
+
+  - name: PlasmidCall v1.2-General
+    domain: GEN
+    domain_definition: every other truth-resolved contig >= 1 kb
+    estimator: standardised logistic regression over the 12 frozen categorical tool calls
+    threshold:
+      standard: 0.9285
+    derivation_target: development PPV 0.970
+    status: FROZEN CANDIDATE - NOT VALIDATED
+
+# ---------------------------------------------------------------------------- output classes
+
+routing:
+  core_arg_present: PlasmidCall v1.1
+  core_arg_absent: PlasmidCall v1.2-General
+  annotation_failed: routing_abstain
+  annotation_missing: routing_abstain
+  abstain_rule: >
+    A failed AMRFinderPlus annotation does not establish that a contig is ARG-bearing, so routing it
+    to the ARG-domain model would assert a property that was never measured. Translating the failure
+    into core_arg_absent would equally move the contig into the general domain on the strength of a
+    missing measurement. Both candidate outputs are computed and exposed, NO final routed class is
+    issued, and the contig is counted explicitly in router coverage and failure metrics.
+
+output_classes:
+  v1_1:
+    high_confidence_plasmid: score >= 0.9605
+    plasmid_selected: 0.9524 <= score < 0.9605
+    not_selected: score < 0.9524
+  v1_2_general:
+    plasmid_selected: probability >= 0.9285
+    not_selected: probability < 0.9285
+  routed:
+    routing_abstain: >
+      no final class; both candidate outputs retained; metrics undefined by construction and never
+      imputed
+
+not_selected_semantics: >
+  `not_selected` means NO POSITIVE PLASMID EVIDENCE at the operating point. It is NEVER a
+  chromosome call, and must never be reported, aggregated, counted or downstream-interpreted as
+  one. A contig may be not_selected because it is chromosomal, because the panel abstained,
+  because tools failed, or because the evidence was merely insufficient. These are different
+  states and the record distinguishes them.
+
+chromosome_call: >
+  Neither model emits a chromosome call. Absence of a positive plasmid call is not evidence of
+  chromosomal origin.
+
+# ---------------------------------------------------------------------------- probability
+
+probability:
+  always_retained: true
+  orientation: higher means more plasmid-like
+  v1_1_field: v11_score
+  v1_2_field: v12_probability
+  pooling: FORBIDDEN
+  pooling_rationale: >
+    The two probabilities come from different estimators fitted to different objectives on
+    different domains. They are not on a common calibrated scale. They must never be averaged,
+    concatenated, or presented as one calibrated probability. Any figure or table combining them
+    must state which model produced each value.
+
+# ---------------------------------------------------------------------------- required record
+
+required_fields_per_contig:
+  - routed_class
+  - routing_abstained
+  - model_selected
+  - routing_reason
+  - annotation_state
+  - v11_score
+  - v11_class
+  - v12_probability
+  - v12_class
+  - all 12 categorical tool calls, verbatim
+  - per-tool missingness and failure state
+  - n_tools_failed
+  - n_tools_missing
+  - full provenance of assembly, tool versions and truth mapping
+
+missingness_and_failure:
+  states: [present, no_hit, missing_output, parse_error, FAILED, MISSING]
+  rule: >
+    FAILED and MISSING are recorded as themselves. They are excluded from the valid-vote count and
+    are NEVER converted into a chromosome vote or a negative.
+  neutrality_rule: >
+    A one-hot block set to raw zero is NOT neutral after StandardScaler: each column becomes
+    (0 - mean)/scale, so an absent tool still shifts the logit. Measured before correction this
+    reached 2.97 logits with an arbitrary per-tool sign. Therefore any tool in a state NOT observed
+    during training has its 8-column block imputed to the training means, so the post-scaling block
+    is exactly 0.0 and its logit contribution is exactly 0.0. States observed in training keep their
+    learned encoding; PlasmidFinder/FAILED (218 CP2 contigs) is the only one.
+  neutrality_verification:
+    max_abs_scaled_value_in_neutralised_block: 0.0
+    max_abs_contribution_of_absent_unseen_tool: 0.0
+    all_available_tools_bit_identical: true
+    same_figure_without_neutralisation: 1.0479
+    no_op_on_training_data: true
+  neutrality_scope: >
+    The tool block is exactly neutral. The panel-summary block is NOT frozen: an absent tool is
+    excluded from n_valid, so those features honestly report a smaller panel. Freezing them would
+    mean pretending an absent tool had voted. Measured residual up to 0.6334 logits.
+  operational_precondition: >
+    Panel completeness must be verified before a run is considered evaluable. Losing PlaScope alone
+    takes recall from 0.7764 to 0.2013, below the 0.50 primary floor; losing four tools yields no
+    positive calls at all. The model degrades safely in PPV but sharply in recall.
+
+critical_tool_gate:
+  critical_tools: [PlaScope]
+  preflight: scripts/p1_12/panel_preflight.py
+  minimum_coverage: at least 95 percent of the 79 prespecified isolates, meaning 76 or more
+  if_not_met: >
+    OPERATIONALLY INCONCLUSIVE - neither PASS nor FAIL, reached even when the observed PPV and
+    recall would otherwise have met their floors
+  retries: at most 2 per technical failure, identical frozen image, database, command, parameters
+  no_post_hoc_tool_change: >
+    No tool may be patched, replaced or retuned after P1.11 processing begins.
+  preservation: >
+    Samples affected by a critical-panel failure are preserved with their outputs. They are never
+    silently discarded or relabelled, and are reported independently of truth.
+  plasmidfinder_failed_permitted: >
+    PlasmidFinder/FAILED remains permitted, having been observed during training with a defined
+    learned encoding.
+
+# ---------------------------------------------------------------------------- prohibitions
+
+prohibitions:
+  - v1.1 must not be refitted, recalibrated, or rethresholded.
+  - v1.2-General must not be refitted, recalibrated, or rethresholded.
+  - No third threshold-selection round is permitted.
+  - No P1.11 sequence, metadata or truth may be used to train, select, calibrate or tune any model.
+  - The two probabilities must not be pooled.
+  - v1.2-General must not be applied to CP1. On the development cohort it returns PPV 0.9054 there,
+    below the 0.95 floor. Routing is what keeps it out of that domain.
+  - A failed or missing ARG annotation must NEVER be routed to either model. The router abstains.
+  - Coefficients are conditional multivariable weights. They must not be reported or interpreted as
+    standalone biological tool effects, as tool accuracy, or as a ranking of tool quality.
+
+# ---------------------------------------------------------------------------- artifacts
+
+frozen_artifacts:
+  model_definition: models/plasmidcall_v1.2-general/P1.12_V1.2_MODEL_PORTABLE.json
+  serialized_estimator: models/plasmidcall_v1.2-general/plasmidcall_v1_2_general.pkl
+  neutrality_proof: docs/evidence/P1.12_V1.2_NEUTRALITY_PROOF.json
+  failure_sensitivity: docs/evidence/P1.12_V1.2_FAILURE_SENSITIVITY.tsv
+  phase0_waiver: docs/plans/P1.12_PHASE0_FIT_WAIVER.md
+  encoding_specification: models/plasmidcall_v1.2-general/P1.12_V1.2_ENCODING_SPEC.json
+  feature_dictionary: models/plasmidcall_v1.2-general/P1.12_V1.2_FEATURE_DICTIONARY.tsv
+  coefficients: models/plasmidcall_v1.2-general/P1.12_V1.2_COEFFICIENTS.tsv
+  training_receipt: models/plasmidcall_v1.2-general/P1.12_V1.2_TRAINING_RECEIPT.json
+  router: scripts/p1_12/plasmidcall_router.py
+  locked_evaluator: scripts/p1_12/evaluate_p111_locked.py

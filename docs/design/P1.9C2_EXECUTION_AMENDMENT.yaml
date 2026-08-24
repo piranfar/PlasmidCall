@@ -1,0 +1,69 @@
+amendment: P1.9C2 execution amendment — storage backing and phased concurrency
+date: 2026-08-17
+status: AMENDMENT — the original frozen protocol is UNCHANGED and its hash is preserved
+parent_protocol: docs/plans/P1.9C2_FROZEN_ASSEMBLY_PROTOCOL.yaml
+parent_protocol_sha256: 883a1034f1e193f4388d7d5e93c407d4a687419ed333c783c7250b5f4816e34b
+scope: execution and resource governance only; no scientific rule, threshold or label changed
+
+storage_backing:
+  docker_backing_path: E:\LeilaP Project\Docker File\DockerDesktopWSL\disk
+  docker_disk_image: docker_data.vhdx
+  consequence: >
+    Container-internal assembly scratch is PHYSICALLY on E:. It therefore counts toward the
+    100 GB attributable-usage cap and toward the E: free-space floor. The Docker virtual
+    capacity of 939 GB is NOT physical capacity; E: free space is the binding value.
+  prohibited_spillover_resolved: C:/D:/F:/G: are not used; backing is on E:
+
+baseline_measurements:
+  taken_utc: "2026-08-17"
+  e_total_gb: 465.6
+  e_used_gb: 102.4
+  e_free_gb: 363.2
+  docker_vhdx_allocated_gb: 43.62
+  p1_9_cleanroom_tree_gb: 22.67
+
+limits:
+  attributable_physical_usage_gb: 100.0
+  e_free_floor_gb: 300.0
+  cumulative_external_data_download_gb: 15.0
+  data_downloaded_to_date_gb: 11.561
+
+measured_smoke_evidence:
+  sample: robertson-benchmark_ecol-SAMN02991226
+  product: short-read evaluation assembly
+  wall_clock: "32:16.98"
+  peak_rss_gb: 4.57
+  exit_status: 0
+  io_fix_validated: true
+
+concurrency_policy:
+  short_read_phase:
+    authorised_maximum: 3
+    adopted: 2
+    justification: >
+      Owner permits up to 3 only while RAM limits are continuously respected. MEASURED peak
+      RSS is 4.57 GB per short-read assembly; 3 concurrent would demand 13.7 GB against a
+      15.5 GB Docker VM, leaving under 2 GB headroom. 2 concurrent needs 9.1 GB and leaves
+      ~6 GB. Adopting 2 is the setting that actually respects the stated condition.
+  hybrid_phase:
+    first_assembly_concurrency: 1
+    increase_rule: >
+      Only after the FIRST COMPLETE hybrid assembly has been measured for peak RAM and
+      physical disk growth. No increase on partial evidence.
+
+scratch_policy:
+  work_location: container filesystem (E:-backed Docker vhdx) for performance
+  copy_out: final FASTA, native GFA, logs and QC artifacts to E:\AMR_Evidence_Data\P1.9_cleanroom
+  removal_rule: >
+    Scratch is removed ONLY after checksum and completeness verification of the copied
+    artifacts. Never remove raw reads, reference assemblies, final assemblies, GFAs, logs or
+    receipts.
+
+per_slot_instrumentation:
+  - E: free space before and after
+  - Docker vhdx allocated size before and after
+  - peak RSS
+  - wall time
+stop_before_next_slot_if:
+  - predicted attributable physical usage would exceed 100 GB
+  - E: free space would fall below 300 GB

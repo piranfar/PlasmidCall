@@ -1,0 +1,15 @@
+method	ARG_contigs_evaluated	plasmid_borne_ARG_contigs_recovered	share_of_plasmid_borne_ARG_recovered	chromosomal_ARG_contigs_mislocalised_to_plasmid	selective_PPV	selective_recall	selective_F1
+HyAsP	218	153	0.9217	25	0.8596	0.9217	0.8895
+MOB-recon	218	153	0.9217	24	0.8644	0.9217	0.8921
+PLASMe	218	166	1.0000	43	0.7943	1.0000	0.8853
+PlaScope	215	162	0.9759	32	0.8351	0.9818	0.9025
+Plasmer	218	166	1.0000	36	0.8218	1.0000	0.9022
+PlasmidEC	218	163	0.9819	36	0.8191	0.9819	0.8932
+PlasmidFinder	206	26	0.1566	3	0.8966	0.1646	0.2781
+Platon	218	147	0.8855	34	0.8122	0.8855	0.8473
+RFPlasmid	218	161	0.9699	35	0.8214	0.9699	0.8895
+geNomad	218	113	0.6807	28	0.8014	0.6807	0.7362
+gplas2	201	151	0.9096	32	0.8251	0.9805	0.8961
+plASgraph2	198	108	0.6506	1	0.9908	0.7059	0.8244
+PlasmidCall v1.2-General @0.9285	218	148	0.8916	18	0.8916	0.8916	0.8916
+PlasmidCall router	218	92	0.5542	3	0.9684	0.5542	0.7050

@@ -1,0 +1,24 @@
+component	kind	version	image_tag	image_digest	database	redistributable	role
+Unicycler	assembler	0.5.1	p19c2-cleanroom:1.0	sha256:59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20	none	see tool licence	short-read assembly
+SPAdes	assembler core	3.15.5	p19c2-cleanroom:1.0	sha256:59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20	none	see tool licence	invoked by Unicycler
+skani	ANI	0.2.2	p19c2-cleanroom:1.0	sha256:59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20	none	see tool licence	genomic independence screen; contamination screen
+seqkit	read sampling	(frozen image)	p19c2-normalize:1.0	(local build)	none	see tool licence	deterministic downsampling
+BLAST+	alignment	2.16.0+	p19c2-cleanroom:1.0	sha256:59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20	none	see tool licence	invoked by Unicycler
+AMRFinderPlus	ARG annotation	(pinned image)	p19c4-amrfinder:1.0	sha256:18580135caaf7ab0a28f8ad98bdc93b77051ed86301913646667d09938bb9821	AMRFinderPlus DB (bundled)	NO - ship recipe + digest	ARG determinant calls
+MOB-suite (MOB-recon)	contig classifier	(pinned image)	p19c4-mobsuite:1.0	sha256:804f9ea5e88affaab2dd2a3959b1f4e715d1903deb3ac2e26bb9a037983d97f5	MOB-suite DB (bundled)	NO - ship recipe + digest	panel tool
+PlasmidEC	contig classifier	(pinned image)	p19c4-plasmidec:1.0	(local build)	bundled	NO - ship recipe + digest	panel tool; feeds gplas2
+gplas2	binning/classifier	(pinned image)	p19c4-gplas2:1.0	(local build)	bundled	NO - ship recipe + digest	panel tool; consumes PlasmidEC
+geNomad	contig classifier	(pinned image)	p19c4-genomad:1.0	(local build)	geNomad DB	NO - ship recipe + digest	panel tool
+PLASMe	contig classifier	(pinned image)	p19c4-plasme:1.0	(local build)	bundled	NO - ship recipe + digest	panel tool
+PlaScope	contig classifier	(pinned image)	p19c4-plascope:1.0	(local build)	Centrifuge index	NO - ship recipe + digest	panel tool; critical tool in P1.11 gate
+Plasmer	contig classifier	(pinned image)	nekokoe/plasmer:23.04.20	(upstream)	bundled	upstream image	panel tool
+PlasmidFinder	replicon detection	(pinned image)	p19c4-plasmidfinder:1.0	(local build)	PlasmidFinder DB	NO - ship recipe + digest	panel tool
+Platon	contig classifier	(pinned image)	p19c4-platon:1.0	(local build)	Platon DB	NO - ship recipe + digest	panel tool
+RFPlasmid	contig classifier	(pinned image)	p19c4-rfplasmid:1.0	(local build)	bundled	NO - ship recipe + digest	panel tool
+HyAsP	binning/classifier	(pinned image)	p19c4-hyasp:1.0	(local build)	gene DB	NO - ship recipe + digest	panel tool
+plASgraph2	graph classifier	(pinned image)	p19c4-plasgraph2:1.0	(local build)	model bundled	NO - ship recipe + digest	panel tool
+Python	analysis runtime	3.14.6	n/a	n/a	n/a	yes	candidate construction, freeze
+scikit-learn	ML runtime	1.9.0	n/a	n/a	n/a	yes	estimator load and inference
+numpy	numeric	2.5.0	n/a	n/a	n/a	yes	encoding and inference
+pandas	dataframes	3.0.3	n/a	n/a	n/a	yes	v1.1 scorer
+frozen parsers	parser	p19c4-parsers/1.7	n/a	n/a	n/a	yes	normalised call vocabulary

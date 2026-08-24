@@ -1,0 +1,20 @@
+{
+ "record": "P1.11 invalidated prediction candidates",
+ "prohibition": "must never appear in manuscript tables, evaluation results or the final evidence package, except in this corrective audit trail",
+ "candidates": {
+  "E:/AMR_Evidence_Data/P1.9_cleanroom/p111_candidate": {
+   "status": "INVALID_SUPERSEDED_DO_NOT_USE",
+   "table_sha256": "b297134f92026414e929dbaa3b062b14c4137233aa0ebed3d992a0f2730a1580",
+   "manifest_sha256": "bff98be97418196b401db643f07885c1d4f3ea7a175987dca6461791d551b455",
+   "reason": "correct model1_code column, but built while 47 isolates' valid MOB-recon evidence was still discarded by stale FAILED/255 receipts. MOB-recon availability read 0.353379 instead of 0.987094.",
+   "superseded_by": "p111_candidate_v3 (see P1.11_STATUS_RECONCILIATION_AMENDMENT.yaml)"
+  },
+  "_native_call_candidate": {
+   "status": "INVALID_SUPERSEDED_DO_NOT_USE",
+   "table_sha256": "f0c273e6f5c89702d9e5333a0b5a4629b647002e4db47caf5267a1aea7ae3545",
+   "manifest_sha256": "311c125a27729c4da30990f8af15b89773b8bb8e0f7fda0f2a670dd0962cab5d",
+   "reason": "builder read native_call (raw per-tool vocabulary) instead of model1_code (normalised 7-term). v1.2 positives read 196 vs 808 with the correct column.",
+   "superseded_by": "p111_candidate_v3"
+  }
+ }
+}

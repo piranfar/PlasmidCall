@@ -1,0 +1,161 @@
+# =============================================================================================
+# P1.13 AMENDMENT 002 - temporary-storage routing
+# Frozen BEFORE any read download, assembly, panel execution, truth construction or scoring.
+# =============================================================================================
+amendment_id: P1.13_AMENDMENT_002
+design_id: P1.13-PROSPECTIVE-PUBLIC-MULTIGENUS-EXTERNAL-VALIDATION
+dated: 2026-08-22
+supersedes: nothing. Amendment 001 and the original design remain in force and unchanged.
+
+cause: >-
+  /tmp on this host resolves to /dev/sda1, the 100 GB PortabilityRisk boot volume, and TMPDIR was
+  unset. A tool writing large temporary files would therefore land outside its assigned filesystem
+  and could exhaust the boot volume. This amendment routes every P1.13 temporary write onto
+  trace-arg-data (/dev/sdc) and makes that routing verifiable rather than assumed.
+
+# ---------------------------------------------------------------- 1. temp roots
+p113_root: /work/p113          # the established P1.13 root
+temporary_directories:
+  host_processes:  /work/p113/tmp/host
+  assembly:        /work/p113/tmp/assembly
+  per_tool_per_isolate: /work/p113/tmp/tools/<tool>/<isolate>
+backing_filesystem: /dev/sdc, label trace_arg_data, mounted /work
+prohibited:
+  - large temporary files on the boot filesystem (/dev/sda1)
+  - RAM tmpfs for tool workloads
+  - sharing one temporary directory between concurrent executions
+  - any temporary path under /data (PortabilityRisk_HDD, other project)
+
+# ---------------------------------------------------------------- 2. host-side processes
+host_side_contract:
+  applies_to: [read download and checksum verification, deterministic downsampling, assembly,
+               parsing, call-table construction, prediction generation]
+  environment_set_explicitly:
+    TMPDIR: the approved P1.13 temp path
+    TMP:    the same path
+    TEMP:   the same path
+  verification: a file created through mktemp under TMPDIR must resolve to /dev/sdc, not /dev/sda1
+
+# ---------------------------------------------------------------- 3. container executions
+container_contract:
+  bind: -v /work/p113/tmp/tools/<tool>/<isolate>:/tmp
+  environment: TMPDIR=/tmp, TMP=/tmp, TEMP=/tmp
+  rationale: >-
+    environment variables alone are insufficient because several tools write to /tmp directly
+    regardless of TMPDIR. The bind mount makes the routing structural rather than advisory.
+  per_execution_directory: >-
+    a distinct host directory per tool and per isolate, so concurrent executions cannot collide.
+  verification_required_per_image:
+    - live image digest equals the digest frozen in the P1.11 receipts
+    - the image ships no content under /tmp that a bind mount would mask
+    - container /tmp is writable by the container UID/GID, which can also remove its own files
+    - a sentinel written to container /tmp appears in the intended host directory
+    - df inside the container reports the trace-arg-data backing capacity, not the boot volume
+    - TMPDIR, TMP and TEMP all read /tmp inside the container
+
+# ---------------------------------------------------------------- 4. deviation record
+deviation_from_the_P1_11_runner:
+  what_changed: >-
+    the P1.11 runner (env/run/run_tool.sh) binds only Product A (ro), the tool database (ro) and
+    the tool's own output directory. It does not bind /tmp, so container temporary writes went to
+    the container writable layer inside Docker Root Dir. P1.13 adds an explicit /tmp bind and the
+    three temp environment variables.
+  what_did_NOT_change: >-
+    every input path, database mount, output path, command line, parameter, thread count, memory
+    limit, CPU limit and image digest is unchanged. No tool receives different data and no tool is
+    invoked differently in any scientifically meaningful respect.
+  why_it_is_authorised: >-
+    a resource-safety routing change requested explicitly by the operator before any execution.
+    It is recorded here rather than made silently.
+  residual_risk_checked: >-
+    binding over /tmp would mask any content an image ships there. Every image is checked for
+    baked /tmp content in the preflight, and a non-empty /tmp is a hard failure for that unit.
+
+# ---------------------------------------------------------------- 5. reserves
+filesystem_reserves_hard_minimums:
+  "/":        20 GiB available   # OS and small control/log files only
+  "/data":    30 GiB available   # raw and downsampled read staging
+  "/work": 30 GiB available   # assemblies, panel outputs, P1.13 temp, Docker, truth, archive
+enforcement: >-
+  all three filesystems are monitored continuously during execution. The runner stops before any
+  reserve is breached rather than after.
+protected_without_modification:
+  - /data/pr_context
+  - /data/pr_ani1
+  - /work/p19c4
+  - /work/p112
+  - /work/p110
+  - all frozen Docker images and all unrelated data
+isolation: >-
+  P1.13 does not read, write, investigate or incorporate any NM-V3, pr_context or pr_ani1
+  material. The two projects remain isolated.
+
+# ---------------------------------------------------------------- 6. retention
+raw_fastq_retention:
+  policy: RETAIN ALL verified raw FASTQ files through prediction freeze and final archival
+  earlier_deletion_proposal: WITHDRAWN
+  reason: the three-filesystem allocation accommodates full retention with every reserve met
+
+# ---------------------------------------------------------------- 7. preflight result
+preflight:
+  units_tested: 13
+  image_digest_match: 13 of 13 against the digests frozen in the P1.11 receipts
+  container_tmp_writable: 13 of 13
+  sentinel_reached_intended_host_directory: 13 of 13
+  env_TMPDIR_TMP_TEMP_correct: 13 of 13
+  uid_can_create_and_remove: 13 of 13
+  container_tmp_capacity_on_trace_arg_data: 13 of 13
+  host_TMPDIR_off_boot_volume: verified, resolves to /dev/sdc
+  images_shipping_content_under_tmp: 3
+  masked_content_investigated:
+    nekokoe/plasmer:23.04.20:
+      content: /tmp/R-4.2.0 source tree and R-4.2.0.tar.gz, 37 MB, dated 2022-2023
+      verdict: BUILD LEFTOVER, safe to mask
+      evidence: >-
+        R resolves to /usr/local/bin/R with R_HOME=/opt/R/lib/R; nothing in /scripts or
+        /usr/local/bin references /tmp/R-4.2.0; with the bind in place Rscript reports
+        "R version 4.2.0 (2022-04-22)".
+    p19c4-plasgraph2:1.0:
+      content: /tmp/tmp8r06ygk7, 275 KB, mode 0600, anonymous mkstemp name
+      verdict: BUILD LEFTOVER, safe to mask
+      evidence: an anonymous random name cannot be referenced by tool code; with the bind in
+                place plASgraph2_classify.py loads normally.
+    p19c4-mobsuite:1.0:
+      content: /tmp/tmpnhgshk_e, 49 bytes, mode 0600, anonymous mkstemp name
+      verdict: BUILD LEFTOVER, safe to mask
+      evidence: with the bind in place mob_recon reports version 3.1.7.
+  conclusion: the /tmp bind is safe for all 13 execution units
+
+# ---------------------------------------------------------------- 8. revised /work budget
+temporary_storage_allowance:
+  basis: >-
+    an ALLOWANCE, not a measurement. It cannot be measured before execution without downloading
+    reads. It is generous relative to the frozen commands, which already route the largest
+    temporary writers away from /tmp: rfplasmid to /out/tmp, PLASMe to /out/temp, geNomad,
+    HyAsP, PlaScope and plasmidEC to their output directories.
+  per_tool_execution_GiB: 2.0
+  max_concurrency: 8
+  tools_temp_peak_GiB: 16.0
+  host_and_assembly_temp_GiB: 2.0
+  total_temp_peak_GiB: 18.0
+  enforcement: >-
+    the runner measures all three filesystems before every stage and stops before a reserve is
+    breached rather than after. The allowance is a budget, not an assumption.
+revised_mnt_tah_budget:
+  panel_native_output_GiB: 29.62
+  docker_working_GiB: 12.00
+  temporary_storage_GiB: 18.00
+  archive_GiB: 3.33
+  truth_alignments_tables_GiB: 1.29
+  assemblies_GiB: 1.26
+  truth_reference_downloads_GiB: 0.66
+  logs_parsed_receipts_annotation_GiB: 0.15
+  subtotal_GiB: 66.31
+  with_15pct_margin_GiB: 76.26
+  available_GiB: 113.60
+  projected_peak_remaining_GiB: 37.34
+  reserve_required_GiB: 30
+  meets_reserve: true
+unchanged_budgets:
+  "/data": {need_GiB: 126.90, available_GiB: 177.10, remaining_GiB: 50.20, reserve_GiB: 30, meets: true}
+  "/": {need_GiB: 11.50, available_GiB: 82.17, remaining_GiB: 70.67, reserve_GiB: 20, meets: true}

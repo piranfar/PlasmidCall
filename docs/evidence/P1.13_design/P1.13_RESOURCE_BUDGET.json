@@ -1,0 +1,71 @@
+{
+ "cohort_n": 147,
+ "mean_genome_size": 4504604,
+ "genome_scale_vs_P1.11": 0.9009,
+ "components_bytes": {
+  "raw_reads": 67071696962,
+  "downsampled_reads": 31957860654,
+  "tool_native_output": 31801425979,
+  "docker_working_space": 12884901888,
+  "decompression_streaming_peak": 10950481136,
+  "download_duplication_transient": 6707169696,
+  "archive": 3571004292,
+  "truth_alignments_and_tables": 1390459376,
+  "assemblies": 1357301260,
+  "truth_reference_downloads": 710090150,
+  "logs": 75623597,
+  "parsed": 59495922,
+  "receipts": 16558697,
+  "annotation": 1669812
+ },
+ "components_GiB": {
+  "raw_reads": 62.47,
+  "downsampled_reads": 29.76,
+  "tool_native_output": 29.62,
+  "docker_working_space": 12.0,
+  "decompression_streaming_peak": 10.2,
+  "download_duplication_transient": 6.25,
+  "archive": 3.33,
+  "truth_alignments_and_tables": 1.29,
+  "assemblies": 1.26,
+  "truth_reference_downloads": 0.66,
+  "logs": 0.07,
+  "parsed": 0.06,
+  "receipts": 0.02,
+  "annotation": 0.0
+ },
+ "subtotal_GiB": 156.98,
+ "safety_margin_15pct_GiB": 23.55,
+ "PEAK_SIMULTANEOUS_DISK_GiB": 180.53,
+ "free_space_now_GiB": 113.8,
+ "fits_in_free_space": false,
+ "shortfall_GiB": 66.73,
+ "network_transfer_GiB": 63.13,
+ "download_exceeds_100GB_rule": false,
+ "read_download_GB_decimal": 67.07,
+ "compute": {
+  "panel_executions": 1911,
+  "panel_summed_wall_hours": 27.8,
+  "panel_cpu_hours_at_8cpu": 222.4,
+  "panel_elapsed_hours_at_8_concurrent": 3.5,
+  "assembly_elapsed_hours_estimate": 51.4,
+  "truth_construction_hours_estimate": 7.4,
+  "total_elapsed_hours_estimate": 62.3
+ },
+ "monetary_cost": {
+  "status": "not measurable from available data",
+  "reason": "no billing API access and no rate card is recorded in this project; the instance is already provisioned and running"
+ },
+ "basis": {
+  "P1.11_footprint": "measured directly with du -sb on the live host",
+  "read_volume": "actual fastq_bytes summed over the selected runs, not extrapolated",
+  "genome_scaling": "applied only to genome-proportional components"
+ },
+ "constraints": {
+  "must_not_delete": [
+   "P1.11 data",
+   "frozen Docker images"
+  ],
+  "standing_rule": "stop for approval if download or required new storage exceeds 100 GB"
+ }
+}

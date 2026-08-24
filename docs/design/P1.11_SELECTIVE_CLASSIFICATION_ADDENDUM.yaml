@@ -1,0 +1,324 @@
+# =============================================================================================
+# P1.11 ADDENDUM - PlasmidCall is evaluated as a SELECTIVE CLASSIFIER
+# =============================================================================================
+addendum_id: P1.11_SELECTIVE_CLASSIFICATION_ADDENDUM
+version: "1.0"
+status: PROSPECTIVE - issued before prediction freeze and before any truth operation
+declared_on: 2026-08-22
+supplements: docs/plans/P1.11_PROVENANCE_AND_FAILCLOSED_CORRECTION.yaml
+authorisation: >-
+  Owner, 2026-08-22: "PlasmidCall is a selective classifier: when a required model score is
+  unavailable, it does not issue either a plasmid or chromosome classification. Accordingly,
+  unavailable-score rows may be excluded from PPV and recall calculations, provided that abstention
+  and coverage are reported transparently and remain subject to a prespecified operational gate."
+
+# ---------------------------------------------------------------------------- timing
+
+timing:
+  issued_after: panel inference began
+  issued_before: [prediction freeze, truth acquisition, truth joining, outcome scoring]
+  verified_at_issue:
+    PREDICTIONS_FROZEN_json: ABSENT
+    p112_truth_hold: ABSENT
+    p112_paf_gbff_assembly_report_files: 0
+    cohort_isolates_with_any_truth_artefact: 0 of 79
+  statement: >-
+    This decision was made before truth acquisition, joining or scoring. No truth-dependent result
+    informed it. No P1.11 PPV or recall value existed, had been computed, or had been inspected by
+    anyone at the time the estimand was fixed.
+
+unchanged_by_this_addendum:
+  - model coefficients
+  - thresholds 0.9285 (v1.2-General), 0.9524 and 0.9605 (v1.1)
+  - the 79-isolate cohort and every isolate identifier and accession
+  - tool outputs, tool versions, images, databases, commands, retry rules
+  - the PPV >= 0.95 AND recall > 0.50 target
+  - the PlaScope critical-tool gate, which remains separate and unchanged
+  - panel execution
+
+# ---------------------------------------------------------------------------- 1. the estimand
+
+selective_classification_framework:
+  per_model_rules:
+    - valid score at or above threshold -> positive plasmid call
+    - valid score below threshold -> no positive plasmid call
+    - absent, non-numeric, infinite or NaN score -> model_abstain
+    - model_abstain is neither a positive nor a negative classification
+    - abstained rows are excluded from the PPV and recall denominators
+    - no abstained row may be silently converted to False, chromosome, negative or not_selected
+  primary_quantities:
+    selective_PPV: TP / (TP + FP)
+    selective_recall: TP / (TP + FN)
+    domain: >-
+      TP, FP, TN and FN are defined ONLY among score-evaluable, truth-eligible contigs - the rows
+      on which that model issued a valid score.
+  framing: >-
+    This is the DECLARED ESTIMAND for a selective prediction system. It is stated neutrally: it is
+    the quantity chosen, not a more conservative or less conservative variant of some other
+    quantity. Excluding rows on which the model issued no classification is not an adjustment
+    applied to a full-coverage estimand, and is not described as inflation.
+  why_a_gate_is_required: >-
+    A selective classifier can meet any precision target by declining to predict. The estimand is
+    therefore incomplete on its own, and is paired with mandatory coverage reporting and a frozen
+    coverage gate.
+
+# ---------------------------------------------------------------------------- 2. reporting
+
+mandatory_coverage_reporting:
+  co_reported_with_every_selective_metric:
+    - total truth-eligible contigs
+    - score-evaluable contigs
+    - model-abstained contigs
+    - overall score coverage
+    - abstention rate
+    - coverage by isolate
+    - coverage by species
+    - coverage by contig-length stratum
+    - coverage by plasmid/chromosome truth (only after truth is joined)
+    - number of isolates with zero or partial score coverage
+    - every reason for abstention, individually
+  formulae:
+    coverage: n_score_evaluable / n_truth_eligible
+    abstention_rate: n_model_abstain / n_truth_eligible
+  no_pooling: >-
+    abstention reasons are reported individually and are never pooled or suppressed. The distinct
+    reasons are score_unavailable, annotation_failed, annotation_missing, annotation_unparseable,
+    and score_unavailable+annotation_unavailable.
+  implemented_in: scripts/p1_12/evaluate_p111_locked_v3.py, coverage_block()
+  truth_stratified_view: >-
+    coverage_by_truth is emitted as the literal string "PENDING - reported only after truth is
+    joined" until truth exists. It is never estimated or back-filled.
+
+# ---------------------------------------------------------------------------- 3. the gate
+
+coverage_gate:
+  status: FROZEN AND IN FORCE
+  approved_by: >-
+    Owner, 2026-08-22: "Coverage gate approved exactly as proposed... Freeze these thresholds in
+    the selective-classification addendum before any P1.11 truth access."
+  frozen_on: 2026-08-22
+  frozen_before: [prediction freeze, truth acquisition, truth joining, outcome scoring]
+  thresholds_as_frozen:
+    v1_2_general: {overall_coverage_min: 0.99, per_isolate_coverage_min: 0.95}
+    v1_1: {overall_coverage_min: 0.95, per_isolate_coverage_min: 0.90}
+    router: {routed_coverage_min: 0.95}
+    isolates_with_zero_coverage_max: 0
+  failure_verdict: >-
+    failure of a model-specific gate yields COVERAGE-INCONCLUSIVE for that model - neither PASS nor
+    FAIL. Selective metrics are still reported alongside their coverage and are explicitly not
+    treated as a verdict.
+  predeclared_gate_already_existing: >-
+    none. A search of the P1.11 predeclaration and its amendments found no prior coverage or
+    abstention gate. The PlaScope critical-tool gate exists but governs TOOL availability, not
+    MODEL-SCORE availability, and is separate and unchanged.
+  selected_using: prediction-side information only
+  truth_used_in_selection: false
+
+  measured_truth_blind_basis:
+    date: 2026-08-22
+    panel_state_at_measurement: incomplete - 759 of 1027 runs, amrfinder not yet started
+    isolates: 79
+    total_assembled_contigs: 18368
+    contigs_ge_1kb: 7516
+    contigs_ge_1kb_per_isolate: {min: 22, p25: 60, median: 84, p75: 122, max: 306, mean: 95.1}
+    isolates_with_zero_contigs_ge_1kb: 0
+
+  decisive_structural_finding:
+    v1_2_general: >-
+      MEASURED, NOT ASSUMED: v1.2-General cannot abstain on tool failure. Executed against the
+      frozen pickle, an all-MISSING 12-tool row returns a finite probability (0.003733), as do
+      all-FAILED (0.005307), empty strings and unrecognised tokens. The encoding maps any absent
+      tool to MISSING and direct-block neutrality handles it, so predict() always yields a finite
+      number. v1.2 model_abstain can therefore arise only from a MALFORMED ROW, never from a tool
+      failure.
+    consequence: >-
+      A v1.2 coverage gate is close to vacuous as a scientific constraint and functions as a
+      malformed-input tripwire. The meaningful availability constraint for v1.2 is the PlaScope
+      critical-tool gate, which already exists and is unchanged. This is stated plainly so the
+      gate is not mistaken for a stronger safeguard than it is.
+    v1_1: >-
+      v1.1 score availability is currently 0 percent, because the v1.1 scoring step does not exist
+      yet. v1.1 has no persisted fitted estimator: evaluate_model1_p110.py refits the frozen
+      HistGradientBoosting estimator on the 1,460-row development set (featureset F_full_no_taxon)
+      at evaluation time. Until that step is built for P1.11, every v1.1 score is model_abstain and
+      Analysis B has no evaluable rows. This is a prerequisite, recorded as such.
+
+  proposed_thresholds:
+    v1_2_general:
+      overall_coverage_min: 0.99
+      per_isolate_coverage_min: 0.95
+      rationale: >-
+        v1.2 cannot abstain on tool failure, so any material shortfall indicates malformed rows or
+        a builder defect rather than a scientific limitation. A high floor is cheap to meet when
+        the pipeline is healthy and fails loudly when it is not.
+    v1_1:
+      overall_coverage_min: 0.95
+      per_isolate_coverage_min: 0.90
+      rationale: >-
+        CP1 is small - 130 contigs across 27 isolates in P1.10 - so the per-isolate view is fragile.
+        v1.1 abstention is expected to be all-or-nothing per isolate (the scoring step either runs
+        for an isolate or does not), which makes a per-isolate floor the binding constraint rather
+        than the overall one. 0.90 tolerates one partial isolate without tolerating a systematic
+        scoring failure.
+    router:
+      routed_coverage_min: 0.95
+      rationale: >-
+        routed coverage is reduced by ARG-annotation failure, which is a real operational mode with
+        an observed precedent: AMRFinder is one of the 13 runs and other tools in the panel have
+        terminally failed on 6 isolate-tool pairs. A 0.95 floor permits a small number of
+        annotation failures without permitting the routed configuration to be evaluated on a
+        minority of the cohort.
+    isolates_with_zero_coverage_max: 0
+    rationale_for_zero: >-
+      an isolate contributing no evaluable contig for a model contributes nothing to that model's
+      selective metrics while still consuming a cohort slot. Any such isolate must be surfaced
+      rather than silently absorbed.
+
+  failure_behaviour: >-
+    If a frozen coverage gate is not met, the run is reported COVERAGE-INCONCLUSIVE for the
+    affected model - neither PASS nor FAIL - by direct analogy with the existing OPERATIONALLY
+    INCONCLUSIVE verdict for the critical-tool gate. Selective metrics are still reported, with
+    their coverage, and are explicitly not treated as a verdict.
+# ---------------------------------------------------------------------------- gate scope
+
+what_the_v1_2_gate_IS_AND_IS_NOT:
+  # Added at the owner's instruction before freezing, so the gate is never mistaken for a
+  # biological-evidence safeguard.
+  it_is: a malformed-input and scoring-integrity gate
+  it_is_not: >-
+    protection against missing biological evidence. For v1.2-General a FINITE SCORE DOES NOT IMPLY
+    THAT THE EXPECTED TOOL EVIDENCE WAS AVAILABLE. The locked model intentionally maps missing or
+    failed tool blocks to finite predictions through direct-block neutrality, so a contig scored on
+    two surviving tools and a contig scored on all twelve are equally "covered" under this gate.
+  separate_and_unchanged: >-
+    PlaScope and every other predeclared tool-completeness check remain separate from this gate and
+    are unchanged by it.
+
+two_distinct_quantities:
+  1_model_coverage:
+    definition: fraction of eligible contigs receiving a FINITE model score
+    role: this is the denominator used for selective PPV and recall
+    gated_by: the coverage gate above
+  2_tool_evidence_completeness:
+    definition: number and fraction of EXPECTED TOOL OUTPUTS available
+    reported: overall, per isolate, and by tool
+    strata: [annotation_state, critical-tool availability]
+    gated_by: the PlaScope critical-tool gate and the predeclared tool-completeness checks
+    prohibition: >-
+      incomplete tool evidence must NOT be reinterpreted as model abstention when the locked model
+      returns a finite score. The two quantities are reported side by side and never merged.
+  why_separate: >-
+    conflating them would either hide evidence loss behind a healthy coverage figure, or
+    manufacture abstentions the locked model did not make. Neither is acceptable, so both are
+    measured and reported independently.
+  implemented_in: >-
+    scripts/p1_12/evaluate_p111_locked_v3.py - coverage_and_abstention (model coverage) and
+    tool_evidence_completeness (expected tool outputs), emitted as separate top-level blocks
+
+# ---------------------------------------------------------------------------- 4. deployment yield
+
+deployment_yield_secondary:
+  status: DESCRIPTIVE - prespecified, never a replacement for the selective primary metrics
+  reports:
+    - fraction of all eligible contigs receiving a valid model score
+    - fraction receiving a positive plasmid call
+    - fraction abstained
+    - positive-call yield per isolate
+    - routed coverage after ARG-annotation failures
+  implemented_in: scripts/p1_12/evaluate_p111_locked_v3.py, deployment_yield_secondary block
+
+# ---------------------------------------------------------------------------- 5-7. schema
+
+annotation_state_derivation:
+  source: canonical AMRFinder state receipts, per isolate, propagated to every contig
+  per_isolate_states:
+    ok: successful run with valid parseable output
+    failed: terminal failed run
+    missing: expected run/output absent
+    unparseable: success receipt present but required output invalid or unparseable
+  per_contig_rules:
+    - qualifying core ARG found -> annotation_state ok, ARG_bearing_bool true
+    - valid annotation, no qualifying core ARG -> annotation_state ok, ARG_bearing_bool false
+    - failed / missing / unparseable -> state preserved, ARG_bearing_bool NA, never false
+  prohibition: absence of an ARG is never inferred from annotation failure
+  implemented_in: scripts/p1_12/build_p111_contig_table.py, amrfinder_state() and build()
+
+standalone_versus_router:
+  - standalone v1.2-General scoring does not depend on AMRFinder success
+  - the routed configuration requires valid ARG annotation
+  - failed / missing / unparseable annotation -> router emits routing_abstain
+  - a valid standalone v1.2 score is never suppressed because AMRFinder failed
+  - CP1 membership and v1.1 CP1 evaluation require valid ARG annotation
+  - model-score abstention and routing abstention are separate fields and separate reported
+    quantities
+
+output_schema:
+  fields: [v11_score, v11_score_state, v11_call, v12_score, v12_score_state, v12_call,
+           annotation_state, ARG_bearing_bool, router_state, router_model, router_call,
+           abstention_reason]
+  controlled_vocabularies:
+    v11_score_state: [available, model_abstain]
+    v12_score_state: [available, model_abstain]
+    annotation_state: [ok, failed, missing, unparseable]
+    ARG_bearing_bool: [true, false, NA]
+    router_state: [routed, routing_abstain]
+    router_model: ["v1.1", "v1.2-General", ""]
+    call_values: [plasmid_selected, not_selected, high_confidence_plasmid, model_abstain, ""]
+    abstention_reason: ["", score_unavailable, annotation_failed, annotation_missing,
+                        annotation_unparseable, "score_unavailable+annotation_unavailable"]
+  invalid_combinations_rejected:
+    - annotation_state != ok together with ARG_bearing_bool == false
+    - any model_abstain mapped to a Boolean negative
+    - annotation_state outside the locked vocabulary
+    - an empty annotation_state, which means unrecorded rather than ok
+
+# ---------------------------------------------------------------------------- 8-9. verification
+
+builder_validation:
+  script: scripts/p1_12/build_p111_contig_table.py (validate())
+  checks: 14
+  result: 14 of 14 PASS on the fixture cohort
+prospective_fixtures:
+  script: scripts/p1_12/p111_builder_fixtures.py
+  n: 46
+  result: 46 passed, 0 failed
+  covers_all_16_predeclared_cases: true
+  exercises_production_functions: true
+  truth_consumed: false
+
+# ---------------------------------------------------------------------------- prerequisites
+
+prerequisites_before_prediction_freeze:
+  - id: P1
+    item: the panel must finish
+    state: IN PROGRESS - 759 of 1027 runs; amrfinder, plasmidec and gplas2 not yet started
+  - id: P2
+    item: the v1.1 scoring step for P1.11 must be built
+    state: SATISFIED 2026-08-22
+    scorer: scripts/p1_12/v11_scorer_p111.py
+    serialized_estimator: models/plasmidcall_v1.1/plasmidcall_v1_1_m2.pkl
+    reconstruction_receipt: docs/evidence/P1.11_V11_RECONSTRUCTION_RECEIPT.json
+    development_bundle_sha256: db558a6775f473662369fb1c358f28530f85883ea3767beb807d031d2646e091
+    development_bundle_matches_sealed: true
+    development_rows: 1460
+    design_matrix_shape: [1460, 51]
+    historical_equivalence_vs_P1_10:
+      n_compared: 10332
+      n_exactly_equal: 10332
+      max_abs_difference: 0.0
+      tolerance_declared_in_advance: 1.0e-12
+      exact_equality_achieved: true
+      classification_mismatches: 0
+      verdict: EQUIVALENT
+    fixtures: {suite: scripts/p1_12/v11_scorer_fixtures.py, classes: 12, n: 42, passed: 42,
+               failed: 0}
+    persisted_so_evaluation_never_refits: true
+    note: >-
+      the fit uses the sealed development bundle alone. No P1.11 data, truth, reference genome, ANI
+      output or label enters it, and nothing was tuned or selected on P1.11.
+  - id: P3
+    item: the coverage gate must be approved and frozen
+    state: AWAITING OWNER APPROVAL
+  - id: P4
+    item: the contig table must be built and pass validation on real data
+    state: BLOCKED BY P1 - the builder and its validation are written and pass on fixtures

@@ -1,0 +1,18 @@
+P1.13_PREDICTIONS_FROZEN_AWAITING_TRUTH_AUTHORIZATION
+======================================================
+dated: 2026-08-23
+freeze_id: P1.13-PREDICTION-FREEZE-001
+
+frozen prediction table : frozen/P1.13_FROZEN_PREDICTIONS.tsv
+  sha256 3bc733c0adab6e3864412e056597d931dd1f28d6e6dfb0238c4c915d07799c80
+freeze receipt          : frozen/PREDICTIONS_FROZEN.json
+  sha256 98e7902ac09bcb54c759c119d6e273ce2474179fd908dee423b69ba414a9b482
+reproduces the approved candidate byte-for-byte:
+  440f16bc7002c15135ac73a233545613ad6869eddf7d421cca6dc0a1060114f8
+independent rebuild from raw inputs        : byte-identical
+independent projection of the frozen table : byte-identical
+
+The freeze is IRREVERSIBLE for P1.13 primary evaluation.
+Truth has NOT been acquired, constructed, inspected, joined or scored.
+TRUTH UNBLINDING IS NOT AUTHORIZED. Nothing past this marker may touch truth
+without a new, explicit operator authorization naming this freeze_id.

@@ -1,0 +1,20 @@
+{
+ "model": "v1.2-General",
+ "threshold": 0.9285,
+ "PPV": 0.9769888231426693,
+ "PPV_ci95": [
+  0.9641574766290805,
+  0.9871803499327053
+ ],
+ "recall": 0.6630968317715306,
+ "recall_ci95": [
+  0.6205224426540249,
+  0.7051986827023455
+ ],
+ "requirement": "PPV >= 0.95 AND recall > 0.50",
+ "PPV_point_meets": true,
+ "PPV_lower_bound_meets": true,
+ "recall_meets": true,
+ "P_PPV_ge_floor": 0.99975,
+ "PRIMARY_ENDPOINT_MET": true
+}

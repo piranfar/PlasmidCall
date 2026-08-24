@@ -1,0 +1,20 @@
+method	method_family	operating_point	role	frozen_predeclared_status	total_eligible_denominator	truth_resolved_denominator	valid_prediction_count	tool_failure_count	abstention_count	coverage_on_resolved	failure_states	in_matched_common_denominator	matched_common_denominator_n	PPV_defined	recall_defined	F1_defined	undefined_or_exclusion_reason
+v1.2-General@0.9285	PlasmidCall v1.2-General	threshold 0.9285 (frozen)	PRIMARY / INDEX	frozen model	9784	9371	9371	0	0	1.0	abstains where no finite score / no panel evidence: 0	yes	4233	yes	yes	yes	
+v1.1@0.9524	PlasmidCall v1.1	threshold 0.9524 standard (frozen)	comparator	frozen model	9784	9371	9371	0	0	1.0	abstains where no finite score / no panel evidence: 0	yes	4233	yes	yes	yes	
+v1.1@0.9605_high_conf	PlasmidCall v1.1	threshold 0.9605 high-confidence (frozen)	comparator	frozen model	9784	9371	9371	0	0	1.0	abstains where no finite score / no panel evidence: 0	yes	4233	yes	yes	yes	
+router	PlasmidCall router	two-domain (frozen)	comparator	frozen strategy	9784	9371	9371	0	0	1.0	abstains where no finite score / no panel evidence: 0	yes	4233	yes	yes	yes	
+tool:HyAsP	HyAsP	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	1.0	FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0	yes	4233	yes	yes	yes	
+tool:MOB-recon	MOB-recon	tool-native default output	comparator	frozen third-party tool	9784	9371	8515	856	856	0.908654	FAILED=856 MISSING=0 unknown=0 unclassified=0 repeat=0	yes	4233	yes	yes	yes	
+tool:PLASMe	PLASMe	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	1.0	FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0	yes	4233	yes	yes	yes	
+tool:PlaScope	PlaScope	tool-native default output	comparator	frozen third-party tool	9784	9371	5928	0	3443	0.63259	FAILED=0 MISSING=0 unknown=0 unclassified=3443 repeat=0	yes	4233	yes	yes	yes	
+tool:Plasmer	Plasmer	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	1.0	FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0	yes	4233	yes	yes	yes	
+tool:PlasmidEC	PlasmidEC	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	1.0	FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0	yes	4233	yes	yes	yes	
+tool:PlasmidFinder	PlasmidFinder	tool-native default output	comparator	frozen third-party tool	9784	9371	9147	224	224	0.976096	FAILED=224 MISSING=0 unknown=0 unclassified=0 repeat=0	yes	4233	yes	yes	yes	
+tool:Platon	Platon	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	1.0	FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0	yes	4233	yes	yes	yes	
+tool:RFPlasmid	RFPlasmid	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	1.0	FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0	yes	4233	yes	yes	yes	
+tool:geNomad	geNomad	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	1.0	FAILED=0 MISSING=0 unknown=0 unclassified=0 repeat=0	yes	4233	yes	yes	yes	
+tool:gplas2	gplas2	tool-native default output	comparator	frozen third-party tool	9784	9371	7409	1084	1962	0.790631	FAILED=1084 MISSING=0 unknown=80 unclassified=0 repeat=798	yes	4233	yes	yes	yes	
+tool:plASgraph2	plASgraph2	tool-native default output	comparator	frozen third-party tool	9784	9371	8826	0	545	0.941842	FAILED=0 MISSING=0 unknown=545 unclassified=0 repeat=0	yes	4233	yes	yes	yes	
+baseline:majority_vote	panel majority vote	strict majority	comparator	frozen predeclared ensemble baseline	9784	9371	9371	0	0	1.0	abstains where no finite score / no panel evidence: 0	yes	4233	yes	yes	yes	
+baseline:any_tool_plasmid	any-tool-plasmid	>=1 tool	comparator	frozen predeclared baseline	9784	9371	9371	0	0	1.0	abstains where no finite score / no panel evidence: 0	yes	4233	yes	yes	yes	
+baseline:all_chromosome	all-chromosome	constant negative	comparator	frozen predeclared degenerate baseline	9784	9371	9371	0	0	1.0	abstains where no finite score / no panel evidence: 0	yes	4233	no	yes	no	PPV undefined: never returns a positive call on the truth-resolved set (TP+FP=0), so precision has no denominator; row retained and reported

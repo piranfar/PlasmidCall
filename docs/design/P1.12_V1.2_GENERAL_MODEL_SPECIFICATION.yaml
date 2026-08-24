@@ -1,0 +1,204 @@
+specification: PlasmidCall v1.2-General
+version: "1.2-General"
+status: FROZEN CANDIDATE
+frozen_on: 2026-08-20
+authorised_by: user GO decision, 2026-08-20
+phase0_waiver: docs/plans/P1.12_PHASE0_FIT_WAIVER.md
+
+# ---------------------------------------------------------------------------- what this model is
+
+purpose: >
+  A per-contig plasmid-vs-chromosome classifier for resolved contigs >= 1 kb that do NOT carry a
+  core ARG. It exists because PlasmidCall v1.1, tuned for the ARG-bearing population, recovers only
+  about half of true plasmid contigs in the general population at its operating point.
+
+selected_feature_set:
+  description: the 12 frozen categorical tool calls, and nothing else
+  rationale: >
+    A scoped 47-isolate probe compared categorical calls (B) against continuous native evidence
+    (C: 36 features from Platon, MOB-recon, geNomad, plASgraph2, RFPlasmid, PlaScope, PlasmidFinder,
+    plus structural and graph features) at matched PPV. At the PPV >= 0.95 floor the categorical set
+    reached recall 0.9457 and the continuous set 0.8674; adding Platon and MOB-recon continuous
+    features to the categorical set changed nothing (0.9457). Under the prespecified rule "prefer
+    the simpler model when recall differs by less than 0.02", the categorical set is the minimal
+    stable feature set. Continuous evidence helps only at stricter PPV floors, which the deployment
+    target does not use.
+  tools_not_run: [PlasmidHunter, gplasCC]
+  tools_not_run_rationale: >
+    Excluded by instruction and by redundancy. plasmidCC's E. coli model is adapted from PlaScope,
+    already in the panel; plasmidCC replaces plasmidEC, also in the panel; gplasCC is a lightweight
+    gplas2, also in the panel. Independently corroborated by
+    docs/CORRECTION_2026-08-16b_ecoli_plasmidcc_database.md.
+
+# ---------------------------------------------------------------------------- estimator
+
+estimator:
+  form: standardised logistic regression
+  pipeline:
+    - SimpleImputer(strategy="median", add_indicator=False)
+    - StandardScaler()
+    - LogisticRegression(max_iter=4000, C=1.0, solver="lbfgs", random_state=20260821)
+  scoring: "z = intercept + sum_i coef[i] * (x[i] - mean[i]) / scale[i] ; p = 1/(1+exp(-z))"
+  intercept: -5.1374386848
+  n_features: 102
+  n_effective_features: 38
+  n_inert_features: 64
+  inert_note: >
+    64 of the 102 columns have zero variance in the training cohort and an exactly-zero
+    coefficient. They are reserved schema for tool states the 39-isolate cohort never produced
+    (most abstention states, and 23 of the 24 FAILED/MISSING columns).
+  inert_is_not_neutral: >
+    A zero coefficient on an unseen column does NOT make that tool neutral. Under StandardScaler the
+    tool's ORDINARY categories become (0 - mean)/scale when the tool is absent, so the block still
+    shifts the logit - measured at up to 2.97 before correction, with an arbitrary per-tool sign.
+    Neutrality is achieved separately, by imputation. See missing_tool_neutrality.
+  imputer_note: >
+    Retained for schema stability. encode() never emits NaN, so the imputer is a no-op on
+    well-formed input; it exists so a malformed upstream row degrades to the training median rather
+    than crashing.
+  probability_orientation: predict_proba(...)[:, 1]; higher means more plasmid-like
+  inference_path: >
+    encode -> apply_neutrality -> pipeline. Scoring the raw encoding directly is INCORRECT and is
+    guarded against by a regression fixture.
+
+missing_tool_neutrality:
+  rule: >
+    A tool in a state NOT observed during training has its 8-column block (7 one-hot + 1 abstention
+    indicator) imputed to the training means, so the post-scaling block is exactly 0.0 and its logit
+    contribution is exactly 0.0. States observed in training keep their learned encoding.
+  observed_states_by_tool:
+    HyAsP: [chromosome, plasmid]
+    MOB-recon: [chromosome, plasmid]
+    PLASMe: [chromosome, plasmid]
+    PlaScope: [chromosome, plasmid, unclassified]
+    Plasmer: [chromosome, plasmid]
+    PlasmidEC: [chromosome, plasmid]
+    PlasmidFinder: [FAILED, chromosome, plasmid]
+    Platon: [chromosome, plasmid]
+    RFPlasmid: [chromosome, plasmid]
+    geNomad: [chromosome, plasmid]
+    gplas2: [chromosome, plasmid, repeat, unknown]
+    plASgraph2: [chromosome, plasmid, unknown]
+  verification:
+    max_abs_scaled_value_in_neutralised_block: 0.0
+    max_abs_contribution_of_absent_unseen_tool: 0.0
+    all_available_tools_bit_identical: true
+    same_figure_without_neutralisation: 1.0479
+    observed_state_retains_learned_weight: "PlasmidFinder/FAILED contribution +0.353307"
+    no_op_on_training_data: true
+  scope: >
+    The tool block is exactly neutral. The panel-summary block is NOT frozen: an absent tool is
+    excluded from n_valid, so those features honestly report a smaller panel. Freezing them would
+    mean pretending an absent tool had voted. Measured residual up to 0.6334 logits.
+  effect_on_fitted_model: >
+    None. Neutralisation is a strict no-op on the training data, where every state is observed by
+    construction. Clean complete-panel metrics are unchanged: PPV 0.9701, recall 0.7764, TP 486,
+    FP 15, TN 3170, FN 140.
+
+threshold:
+  standard: 0.9285
+  immutable: true
+  derivation_target: development PPV 0.970
+  derivation_rule: >
+    Smallest threshold on the leave-one-isolate-out scores achieving PPV >= 0.970 with at least 10
+    positive calls. Selected by target PPV, not by maximising recall.
+  why_0_970_and_not_0_950: >
+    Optimising to the 0.95 floor itself leaves a margin of 0.0013 and LOWERS projected power,
+    because with a complete 12-tool panel the primary endpoint is PPV-limited. Targeting 0.970 buys
+    margin against the floor at modest recall cost. Above 0.970 there is a cliff: at a 0.975 target
+    recall falls to 0.4329 on the matched-PPV frontier, which would leave almost no headroom above
+    the 0.50 primary floor.
+  no_further_selection: >
+    No third threshold-selection round is permitted. This threshold is fixed for P1.11.
+
+# ---------------------------------------------------------------------------- encoding
+
+encoding:
+  immutable: true
+  vocabulary_source: written as a constant at freeze time, NOT learned from data
+  tool_order: [HyAsP, MOB-recon, PLASMe, PlaScope, Plasmer, PlasmidEC, PlasmidFinder, Platon,
+               RFPlasmid, geNomad, gplas2, plASgraph2]
+  vocabulary: [chromosome, plasmid, unknown, unclassified, repeat, FAILED, MISSING]
+  blocks:
+    - {name: one_hot, columns: "0..83", rule: "tool_position * 7 + vocabulary_position"}
+    - {name: abstention_indicator, columns: "84..95", rule: "84 + tool_position"}
+    - {name: panel_summary, columns: "96..101",
+       order: [n_plasmid, n_chrom, n_valid, frac_plasmid, frac_chrom, agreement]}
+  unknown_vocabulary_term: >
+    A call outside the vocabulary is normalised to the empty string, which is not an observed state
+    for any tool, so the tool block is NEUTRALISED: it contributes exactly zero. It is an ABSENT
+    vote, never a negative one. A fixture asserts an out-of-vocabulary call scores identically to
+    an explicitly MISSING tool.
+  non_voting_states: [unknown, unclassified, repeat, FAILED, MISSING, "<empty string>"]
+  division_by_zero: "when n_valid == 0, frac_plasmid and frac_chrom are 0.0 by definition"
+
+# ---------------------------------------------------------------------------- training
+
+training:
+  cohort: P1.10 CP2
+  n_isolates: 39
+  n_contigs: 3811
+  n_plasmid: 626
+  n_chromosomal: 3185
+  p1_9_excluded_from_fit: true
+  p1_9_exclusion_rationale: >
+    The reported evidence, the PPV target and the threshold were all derived P1.10-only, because
+    P1.9 carries reference/database overlap risk and differs temporally. Fitting on P1.10 alone
+    keeps the estimator and the threshold resting on the same data. Fitting on 47 isolates while
+    quoting 39-isolate evidence would put them on different footings.
+  p1_11_used: false
+  p1_11_note: >
+    No P1.11 sequence, metadata or truth was read, joined, or used at any point in this freeze.
+  validation_scheme: leave-one-isolate-out, groups = isolate
+  preprocessing_scope: fitted inside each training fold only
+  seed: 20260821
+  determinism_check: >
+    The freeze was executed three times independently and produced a byte-identical serialized
+    estimator each time (SHA-256 54a292de7b416af7a103faaa04d6bbafdaad33a2d42da73e288a7f242ee88d6e).
+
+# ---------------------------------------------------------------------------- domain
+
+domain:
+  applies_to: all truth-resolved contigs >= 1 kb WITHOUT a core ARG
+  does_not_apply_to: CP1 (core-ARG-bearing contigs)
+  cp1_exclusion_evidence: >
+    On P1.10 CP1 (n=130, 105 plasmid) v1.2-General at 0.9285 returns PPV 0.9054 - below the 0.95
+    floor - against v1.1's 0.9636 at 0.9524. v1.2-General is worse where v1.1 was tuned. This is
+    the empirical basis for the router, not a design preference.
+
+coefficient_interpretation: >
+  These are CONDITIONAL MULTIVARIABLE weights: the contribution of one tool state given every other
+  tool in the panel. They must NOT be read as standalone biological tool effects, as measures of a
+  tool's accuracy, or as a ranking of tool quality. Coefficient magnitude, refit ablation and
+  deployment failure impact are three different quantities and disagree substantially - PlasmidFinder
+  carries a large positive coefficient yet removing it and refitting IMPROVES recall by 0.0160,
+  while PlaScope has a modest coefficient but its loss at inference costs 0.5751 of recall.
+
+failure_sensitivity:
+  method: >
+    The FROZEN model is fed the tool as unavailable, with neutrality applied. This is distinct from
+    feature ablation, which refits without the tool. An earlier analysis zeroed the one-hot block,
+    which is not neutral, and badly understated the impact.
+  worst_single_tool: {tool: PlaScope, PPV: 0.9618, recall: 0.2013, delta_recall: -0.5751}
+  multi_tool:
+    - {n: 2, tools: [PlaScope, Plasmer], positive_calls: 65, PPV: 1.0, recall: 0.1038}
+    - {n: 3, tools: [PlaScope, Plasmer, MOB-recon], positive_calls: 2, PPV: 1.0, recall: 0.0032}
+    - {n: 4, positive_calls: 0, PPV: null, recall: 0.0}
+    - {n: 6, positive_calls: 0, PPV: null, recall: 0.0}
+  interpretation: >
+    The model degrades SAFELY in PPV but SHARPLY in recall: it does not make bad calls, it stops
+    making calls. Losing PlaScope alone takes recall below the 0.50 primary floor. Panel
+    completeness is an operational precondition and must be verified before a run is considered
+    evaluable.
+
+top_coefficients:
+  - {feature: onehot__PlaScope__plasmid, coefficient: +0.60981}
+  - {feature: onehot__PlaScope__chromosome, coefficient: -0.60740}
+  - {feature: onehot__PlasmidFinder__plasmid, coefficient: +0.51867}
+  - {feature: onehot__plASgraph2__chromosome, coefficient: -0.40895}
+  - {feature: onehot__plASgraph2__plasmid, coefficient: +0.40550}
+  - {feature: onehot__Plasmer__chromosome, coefficient: -0.38680}
+  - {feature: onehot__Plasmer__plasmid, coefficient: +0.38680}
+  - {feature: onehot__gplas2__chromosome, coefficient: +0.38583}
+  - {feature: agreement, coefficient: -0.34887}
+  - {feature: onehot__MOB-recon__chromosome, coefficient: -0.33761}

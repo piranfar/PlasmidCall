@@ -1,0 +1,165 @@
+amendment: P1.11 preflight implementation correction
+version: "1.0"
+status: SUPERSEDING - issued BEFORE any P1.11 read was acquired
+declared_on: 2026-08-21
+scope: EXECUTION VERIFICATION ONLY
+
+# ---------------------------------------------------------------------------- what this is
+
+summary: >
+  The frozen panel_preflight.py returned BLOCKED on the migrated execution host. Investigation
+  established that every one of its critical failures was a defect in the CHECKING SCRIPT, not a
+  defect in the execution environment. The environment was independently verified correct by
+  stronger evidence. This amendment records the three confirmed defects, preserves the original
+  script and its BLOCKED output unaltered, and introduces a superseding implementation.
+
+preserved_unaltered:
+  original_script: scripts/p1_12/panel_preflight.py
+  original_sha256: edba943f6ad34dc2acac3091b18745c827299182eae500077281ba739840c535
+  note: >
+    The original file is NOT edited, reinterpreted or removed. It remains hash-addressable exactly
+    as committed in 6b03034. Its BLOCKED receipts are retained as evidence.
+  blocked_evidence:
+    - docs/evidence/preflight_evidence/P1.12_PREFLIGHT_RECEIPT_BLOCKED_p110env.json
+    - docs/evidence/preflight_evidence/P1.12_PREFLIGHT_RECEIPT_BLOCKED_p19c4env.json
+  superseded_by: scripts/p1_12/panel_preflight_p111_v2.py
+
+# ---------------------------------------------------------------------------- the three defects
+
+defects:
+
+  - id: D1
+    title: pre-build environment manifest treated as the as-executed baseline
+    detail: >
+      panel_preflight.py hardcodes docs/evidence/P1.9C4_ENV_MANIFEST_prestart.sha256 as its
+      identity baseline. That file is a PRESTART snapshot, taken before the P1.9C4 build and run
+      iterations, and it predates the revisions that produced parser version p19c4-parsers/1.7.
+    measured: >
+      Against the live p19c4/env tree the prestart manifest matched 10 of 21 files and differed on
+      11. ENV_PILOT_FREEZE.txt is also not a clean as-executed record: it matched 52 of 73 and, like
+      IMAGE_IDS.txt, accumulated multiple conflicting entries for run_tool.sh and parsers.py across
+      rebuild iterations.
+    why_it_does_not_affect_P1_11: >
+      P1.11 executes the P1.10 runner, not the P1.9C4 runner. The authoritative baseline is the
+      P1.10 AS-EXECUTED environment, captured in the P1.10 bundle that was transferred and verified
+      after the P1.10 run. Against that baseline the migrated host matched 19 of 19 files with 0
+      differences.
+    correction: >
+      v2 uses P1.10_ASEXECUTED_ENV_MANIFEST.json as the baseline and never consults the prestart
+      manifest.
+
+  - id: D2
+    title: external database directories required for tools whose databases are embedded in the image
+    detail: >
+      panel_preflight.py required a db/<tool> directory for all 12 panel tools. Only 6 tools mount
+      an external database. The frozen runner shows the other tools carry no DBM mount argument at
+      all, because their databases are installed inside their frozen images at build time.
+    external_database_tools: [platon, plascope, genomad, plasme, plasmer, hyasp]
+    embedded_database_tools: [mobsuite, plasmidfinder, rfplasmid, plasgraph2, gplas2, plasmidec,
+                              amrfinder]
+    embedded_evidence:
+      mobsuite: mobsuite__mob_init.log
+      plasmidfinder: [plasmidfinder__pf_db_install.log, plasmidfinder__plasmidfinder_db.commit]
+      rfplasmid: rfplasmid__rfplasmid_init.log
+      amrfinder: [amrfinder__amrfinder_db_version.txt, amrfinder__amrfinder_update.log]
+      plasgraph2: plasgraph2__plasgraph2.commit
+      gplas2: gplas2__gplas2.commit
+      plasmidec: plasmidec__plasmidec.commit
+    correction: >
+      v2 requires an external database directory ONLY for the 6 tools that mount one, and verifies
+      the 9 retained source archives against the P1.9C4 DB_RECEIPTS sha256. For embedded-database
+      tools it verifies the image ID and the retained initialisation or install receipt instead of
+      inventing an external directory requirement.
+
+  - id: D3
+    title: Dockerfiles and fetch_dbs.sh searched in the wrong directory
+    detail: >
+      panel_preflight.py resolved docker/<tool>/Dockerfile and db/fetch_dbs.sh relative to the
+      supplied --env-root. Those artefacts live under p19c4/env, while the runner and parsers that
+      P1.11 executes live under p110/env. No single env-root contains both.
+    correction: >
+      v2 resolves each artefact from the tree that actually holds it, verifies that p19c4/env and
+      p110/env both exist, and records the exact source path used for every check.
+
+# ---------------------------------------------------------------------------- scope guard
+
+these_are_execution_verification_defects_only:
+  explicitly_unchanged:
+    - the estimator
+    - model coefficients
+    - threshold 0.9285
+    - v1.1 threshold 0.9524 and high-confidence 0.9605
+    - tool commands
+    - tool images
+    - databases
+    - parsers
+    - cohort membership
+    - truth rules
+    - endpoint definitions
+    - the critical-tool operational gate (PlaScope, >= 76 of 79)
+  statement: >
+    Nothing scientific changed. The defects were in how the environment was CHECKED, never in what
+    the environment IS or in what will be computed. The frozen estimator
+    (f5d1cd1202b5077030a4512fb0c801abbdf39998b7c170acade03c268d68d74d) and the locked evaluator
+    (a3fd13242349af8b851a58507ecb3f5a1e0ba2fa5e05d8c668c44446303c596d) are untouched.
+
+# ---------------------------------------------------------------------------- derived runner
+
+derived_p1_11_runner:
+  rationale: >
+    run_tool.sh and parse_all.py hardcode their paths rather than taking them as arguments. P1.11
+    therefore requires derived copies, exactly as P1.10 was itself "derived from the frozen P1.9C4
+    runner by path substitution only".
+  run_tool_sh:
+    source: /data/trace-arg/p110/env/run/run_tool.sh
+    derivation: path and container-name-prefix substitution only (p110 -> p112)
+    lines_changed: 3
+    changes:
+      - header comment
+      - "ROOT/P path line: P=$ROOT/p110 -> P=$ROOT/p112"
+      - "container name prefix: p110_ -> p112_"
+    scientific_commands_unchanged: true
+    proof: >
+      All 13 CMD= strings hash identically after path normalisation:
+      fa6bcbc520107c3f81dba3750dc48bc1 on both source and derived.
+    container_limits_unchanged: "--memory=24g --cpus=8, THREADS=8"
+  parse_all_py:
+    source: /data/trace-arg/p110/env/run/parse_all.py
+    derivation: path substitution only (p110 -> p112)
+    lines_changed: 3
+  parsers_py:
+    derivation: copied byte-identical, 68599a94af066f2dd1437de4...
+    parser_version: p19c4-parsers/1.7
+    classification_vocabulary_unchanged: true
+
+# ---------------------------------------------------------------------------- pass criteria
+
+corrected_preflight_pass_requires:
+  - 13/13 image IDs match the P1.10 as-executed gate
+  - 9/9 retained external database archives match the P1.9C4 DB_RECEIPTS sha256
+  - every embedded-database tool has its image verified and its init/install receipt present
+  - 19/19 P1.10 as-executed environment files match
+  - derived P1.11 runner and parser hashes match the newly frozen receipt
+  - all 13 scientific CMD strings byte-identical after path normalisation
+  - PlaScope functional replay passes
+  - 13/13 tools complete the consumed-sample truth-blind smoke test
+  - 3636/3636 parsed calls reproduce P1.10 exactly
+  - the fixture suite passes completely
+
+fixture_coverage_required:
+  - all external-database tools present
+  - one required external database missing
+  - embedded-database tools with no external directory
+  - image-ID mismatch
+  - runner-command mismatch
+  - parser mismatch
+  - wrong environment path
+  - PlaScope replay match
+  - PlaScope replay mismatch
+  - missing prior baseline
+  - derived runner containing a scientific-command change
+
+ordering: >
+  This correction, the superseding implementation, the derived runner and parser, the fixture
+  outputs and the successful preflight receipt are all produced and hashed BEFORE any P1.11 read is
+  acquired.

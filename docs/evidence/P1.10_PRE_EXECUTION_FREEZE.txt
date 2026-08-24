@@ -1,0 +1,42 @@
+P1.10 PRE-EXECUTION FREEZE 2026-08-19T08:31:37Z
+All A-G artifacts hashed BEFORE any P1.10 acquisition, annotation or inference.
+Supersedes the stage A/B/C receipt of 2026-08-19T07:54:04Z and the cohort receipt of 08:20:17Z (both retained).
+All text artifacts are LF-normalised so the recorded SHA-256 equals both the on-disk and the committed-blob value.
+
+== repository documents ==
+c46642d46dd5e16126bda2cab2d167f0aa8a9b8f2413ce3c08c7ef5cd0811284 *docs/plans/P1.10_COHORT_AND_EVALUATION_CONTRACT.yaml
+05849b22b3a0f94f483b5802bbb6dd47d46c71a8482780652ba0b77a017e3e8a *docs/plans/P1.10_COPRIMARY_POPULATIONS_AMENDMENT.yaml
+b16039bf67209b27d0ef6afaebc0d258b654d28767b0002c71827d1f2ea166c6 *docs/plans/P1.10A_DEPLOYMENT_OPERATING_POINT_AMENDMENT.yaml
+f785806ca81ce644a323d92fe8f37b2e7ffb3b24bbc365fea4baf2ff2c1b86c9 *docs/plans/P1.10_PHASE0_FIT_WAIVER.md
+7779070a5143cc21f4b01527f8cbc30aefb1a09c86c817a617c2c71702154b66 *docs/contracts/MODEL1_OUTPUT_CONTRACT_v1.0.yaml
+a1476fd8031af4b77cc0bbad3aadf9ee01c89443948648a4fe7567dc0174624f *docs/evidence/P1.10B_dev_m2_reproduction_receipt.json
+350b539a2679527831e825fc1b6b70c6e952bc0a2a0d0a5295547eae8cddfc2e *docs/evidence/P1.10F_cohort_final.tsv
+65153f8dd74078bec4e8efc933eb6f769c93f9b92ad1c7b982e80e937c11f555 *docs/evidence/P1.10F_exclusion_ledger.json
+70e3949d5fe9967c0347833886083da227afffb88c0150f89185633cbaf42e52 *docs/evidence/P1.10_FREEZE_RECEIPT.txt
+
+== code ==
+b5b58c4aba97acd41864da076c28450310dea0dcb1010d66a95a3dee7189b148 *scripts/p1_10/build_candidate_inventory.py
+53375547b61de406ec38a547ed65ad9b1d5ba8e6f1ce24ff67e7f63ee105b333 *scripts/p1_10/reproduce_dev_m2.py
+340ef63ce773d0f7cfb79347f99cb38f209aa62a2bf5e168abdedceba92fcb5b *scripts/p1_10/rescore_p19.py
+9f37eda0661d90945d2d819c6a5efdf66fb5cf449b971ab1a2ced8f686696ffc *scripts/p1_10/shortlist_and_fetch.py
+
+== scientific-data artifacts (outside Git, referenced by hash) ==
+7baebea711e2a1ad8a23216a59cf8f26a7abb6235d6df3dcb8379d39db6959d9 */e/AMR_Evidence_Data/P1.9_cleanroom/p110/P1.10F_candidate_inventory.tsv
+3872d4afa2144471f8c9b060c59209424e3ade84fb0d8bec3fdddc48bf87b5f0 */e/AMR_Evidence_Data/P1.9_cleanroom/p110/P1.10F_shortlist.tsv
+350b539a2679527831e825fc1b6b70c6e952bc0a2a0d0a5295547eae8cddfc2e */e/AMR_Evidence_Data/P1.9_cleanroom/p110/P1.10F_cohort_final.tsv
+2a75d2f988ccd5d521aa75c749ef5631180cbb34e2f9bd0a465bbb031a4c8771 */e/AMR_Evidence_Data/P1.9_cleanroom/p110/P1.10F_clean_candidates.txt
+765c349f8df6949c849b2b4dc1f77242c68d9661de13570f5e6003d974e27462 */e/AMR_Evidence_Data/P1.9_cleanroom/p110/P1.10F_declustered_representatives.txt
+0e8cbe340c78f97489e55686c5282b0e0137b34ab128ffab713eaca6256ad355 */e/AMR_Evidence_Data/P1.9_cleanroom/p110/p110_screen_vs_dev.tsv
+9fd372030a86081018a2605b70d32751acc7989f6c865697f62ea41eaefbaf33 */e/AMR_Evidence_Data/P1.9_cleanroom/p110/p110_screen_cand_vs_cand.tsv
+64688b45492eb3f02062bf08f29c8e535732704742b56b3af3f4759466956174 */e/AMR_Evidence_Data/P1.9_cleanroom/p110/P1.10F_fetch_receipt.json
+f402a37443c325dd99772ad116898b3e901579f1fc475683eb1fc03d902a8ed5 */e/AMR_Evidence_Data/P1.9_cleanroom/p110/P1.10D_p19_rescore_results.json
+61a33c50b3e599425896b56e1346ebfd6df03a3df29a47b009e68119fd73c306 */e/AMR_Evidence_Data/P1.9_cleanroom/p110/P1.10D_p19_contig_deployment_table.tsv
+
+== preserved development bundle ==
+49507e4963761753cd767fd36149e0c360d07add7089c02b5944c5f14dd0c5ba */e/AMR_Evidence_Data/P1.9_cleanroom/model1_development_bundle/PRESERVATION_RECEIPT.txt
+0aa717c629dbefd7db5462adf092eebd23e14182af99e783fc25ff191e1cb1b9 */e/AMR_Evidence_Data/P1.9_cleanroom/model1_development_bundle/PRESERVATION_MANIFEST.sha256
+db558a6775f473662369fb1c358f28530f85883ea3767beb807d031d2646e091 */e/AMR_Evidence_Data/P1.9_cleanroom/model1_development_bundle/predictions.xlsx
+
+== genome files deliberately EXCLUDED from Git ==
+397M	/e/AMR_Evidence_Data/P1.9_cleanroom/p110/genomes
+80 candidate + 250 development genomes retained in the scientific-data tree only

@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software or these data, please cite the article and this repository."
+title: "PlasmidCall: code, frozen models and derived data"
+abstract: >-
+  Code, frozen models and derived data for a study of the genomic context of antimicrobial
+  resistance determinants in 150 bacterial genomes across six taxa, and of the prospectively
+  sealed evaluation of plasmid-origin classification built on those labels.
+type: software
+authors:
+  - family-names: Piranfar
+    given-names: Vahhab
+    affiliation: "Independent Researcher, Jersey City, NJ, USA"
+    email: vahab.p@gmail.com
+license: MIT
+license-url: "https://opensource.org/licenses/MIT"
+version: 1.0.0
+repository-code: "https://github.com/piranfar/PlasmidCall"
+keywords:
+  - antimicrobial resistance
+  - plasmid
+  - bacterial genomics
+  - short-read assembly
+  - contig classification
+  - prospective validation

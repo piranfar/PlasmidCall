@@ -1,0 +1,44 @@
+--- versions/p113_downsample.py.v1_original	2026-08-22 18:40:23.517594507 +0000
++++ versions/p113_downsample.py.v2_floor_tmp_hardlink	2026-08-22 19:03:37.588791523 +0000
+@@ -20,6 +20,7 @@
+ NORMIMG = "p19c2-normalize:1.0"
+ SEED = 20260821
+ TARGET_COV = 100.0
++MIN_USABLE_COV = 30.0   # frozen design, P1.13_FROZEN_DESIGN.yaml: minimum_usable_coverage
+ 
+ 
+ def run(bs, genome_size):
+@@ -36,6 +37,15 @@
+     # 1-2 raw pair validated exactly, coverage recomputed from bases
+     pre = validate_pair(r1, r2)
+     pre_cov = coverage_from_bases(pre["bases"], genome_size)
++    # The frozen design declares a 30x minimum usable coverage. Selection used ENA's DECLARED
++    # coverage estimate; this is the first point where coverage is recomputed from actual
++    # sequenced bases. Enforce the frozen floor here rather than assembling an isolate that
++    # does not meet the design's own eligibility contract.
++    if pre_cov < MIN_USABLE_COV:
++        raise PairError("recomputed raw coverage %.2fx is below the frozen minimum usable "
++                        "coverage of %.1fx; this isolate does not satisfy the frozen "
++                        "eligibility contract and is not assembled"
++                        % (pre_cov, MIN_USABLE_COV))
+ 
+     frac = min(1.0, TARGET_COV / pre_cov) if pre_cov > 0 else 1.0
+     o1, o2 = out + "/R1.fastq.gz", out + "/R2.fastq.gz"
+@@ -45,10 +55,15 @@
+         for src, dst in ((r1, o1), (r2, o2)):
+             if os.path.islink(dst) or os.path.exists(dst):
+                 os.remove(dst)
+-            os.symlink(src, dst)
++            # HARD link, not symlink: the assembly container mounts only down/<bs>, so an
++            # absolute symlink into raw/ dangles inside the container. raw/ and down/ share a
++            # filesystem, so a hard link costs no extra space and presents a real file.
++            os.link(src, dst)
+         post, downsampled = pre, False
+     else:
+-        tmp = P + "/tmp/host"
++        # per-isolate scratch: phase 2 runs concurrently, so a shared /tmp mount would
++        # let two seqkit containers collide. Isolation here keeps each run independent.
++        tmp = P + "/tmp/host/" + bs
+         os.makedirs(tmp, exist_ok=True)
+         cmd = ("seqkit sample -p %.6f -s %d -o /o/R1.fastq.gz /r/%s && "
+                "seqkit sample -p %.6f -s %d -o /o/R2.fastq.gz /r/%s"

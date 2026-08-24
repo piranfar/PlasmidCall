@@ -1,0 +1,13 @@
+tool	image	image_digest	software_version	db_path	db_newest_mtime	db_bytes	db_checksum_method
+MOB-recon	p19c4-mobsuite:1.0	sha256:804f9ea5e88affaab2dd2a3959b1f4e715d1903deb3ac2e26bb9a037983d97f5	not_queried	NA	NA	NA	sha256 deferred to execution phase (multi-GB trees)
+RFPlasmid	p19c4-rfplasmid:1.0	sha256:3443e560bdf30c9a012e8d5d917a69b17284dbd63c8859e4183c13d623e88407	not_queried	/root/.cache/matplotlib/fontlist-v390.json	2026-08-19	32300	sha256 deferred to execution phase (multi-GB trees)
+plASgraph2	p19c4-plasgraph2:1.0	sha256:beadd23183f4fde7d4f157f3fa81328f52051649980533fe69ffaa1e82666d65	not_queried	/usr/local/share/man/man1/ttx.1	2026-08-19	5377	sha256 deferred to execution phase (multi-GB trees)
+PlasmidEC	p19c4-plasmidec:1.0	sha256:6ae61ad78f3f2cbfc9fc94106124b72ad2df9464070be96a60ca76a02a0a56dd	not_queried	/root/.cache/matplotlib/fontlist-v390.json	2026-08-19	33075	sha256 deferred to execution phase (multi-GB trees)
+gplas2	p19c4-gplas2:1.0	sha256:88849320fa0b86f81e85940ce297c3d17050a1f03ff4be4aed9312ed145c6a03	not_queried	/root/.cache/pip/selfcheck/2ed3ede5f9e074b03f6b4f6fb58146089c52beb4bcf6dfe279fd1a92	2026-08-19	89	sha256 deferred to execution phase (multi-GB trees)
+Plasmer	nekokoe/plasmer:23.04.20	sha256:c64ba6e14f59f5ff2143d808d651f5a57175a6ea8226e4233b58c2c8d75ee5ac	not_queried	/usr/local/share/info/libitm.info	2023-04-12	61707	sha256 deferred to execution phase (multi-GB trees)
+HyAsP	p19c4-hyasp:1.0	sha256:6bfce30bd71ff2845530c744d73104cf542e413ef6760b0558095dfbaef3bfbe	not_queried	/root/.cache/pip/selfcheck/ab2bb442149194bcbab5700d8f932112632ba9320db09910f4a4422b	2026-08-19	92	sha256 deferred to execution phase (multi-GB trees)
+PlasmidFinder	p19c4-plasmidfinder:1.0	sha256:8414abbe42588810e04d0623f4400092e5942035096ee7738af909556b9a2e58	not_queried	NA	NA	NA	sha256 deferred to execution phase (multi-GB trees)
+Platon	p19c4-platon:1.0	sha256:8d860d7cfaca3f29bdf72dfa8f22bb0ea20be977dd3c371ad6e49884035ca31a	not_queried	NA	NA	NA	sha256 deferred to execution phase (multi-GB trees)
+PlaScope	p19c4-plascope:1.0	sha256:cfac6fdafa36ff942524b021abe51d4eb946a658bb30c990def3004612b0b3a5	not_queried	NA	NA	NA	sha256 deferred to execution phase (multi-GB trees)
+geNomad	p19c4-genomad:1.0	sha256:98378fdda32a3219bf20905445f0326975e19f45f3f0940a857dcc315ec15861	not_queried	NA	NA	NA	sha256 deferred to execution phase (multi-GB trees)
+PLASMe	p19c4-plasme:1.0	sha256:05a577da11f970df4e8c662e832155d8dd2eb4a9dfc6fd1cb458ada1e9105ead	not_queried	NA	NA	NA	sha256 deferred to execution phase (multi-GB trees)

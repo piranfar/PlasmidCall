@@ -1,0 +1,448 @@
+{
+ "arg_bearing_n": 635,
+ "non_arg_n": 8736,
+ "pareto_frontier": [
+  {
+   "row": "v1.2-General@0.9285",
+   "PPV": 0.9409090909090909,
+   "recall": 0.7781954887218046,
+   "coverage": 1.0
+  },
+  {
+   "row": "v1.1@0.9524",
+   "PPV": 0.9493670886075949,
+   "recall": 0.2819548872180451,
+   "coverage": 1.0
+  },
+  {
+   "row": "router",
+   "PPV": 0.9493670886075949,
+   "recall": 0.2819548872180451,
+   "coverage": 1.0
+  },
+  {
+   "row": "tool:HyAsP",
+   "PPV": 0.890625,
+   "recall": 0.8571428571428571,
+   "coverage": 1.0
+  },
+  {
+   "row": "tool:MOB-recon",
+   "PPV": 0.891566265060241,
+   "recall": 0.8345864661654135,
+   "coverage": 0.9165354330708662
+  },
+  {
+   "row": "tool:PLASMe",
+   "PPV": 0.8184615384615385,
+   "recall": 1.0,
+   "coverage": 1.0
+  },
+  {
+   "row": "tool:Plasmer",
+   "PPV": 0.8745874587458746,
+   "recall": 0.9962406015037594,
+   "coverage": 1.0
+  },
+  {
+   "row": "tool:Platon",
+   "PPV": 0.9051724137931034,
+   "recall": 0.7894736842105263,
+   "coverage": 1.0
+  },
+  {
+   "row": "tool:plASgraph2",
+   "PPV": 0.9562841530054644,
+   "recall": 0.7675438596491229,
+   "coverage": 0.9212598425196851
+  },
+  {
+   "row": "baseline:majority_vote",
+   "PPV": 0.8784722222222222,
+   "recall": 0.9511278195488722,
+   "coverage": 1.0
+  }
+ ],
+ "v12_on_pareto_frontier": true,
+ "v12_dominated_by": [],
+ "v12_arg": {
+  "PPV": 0.9409090909090909,
+  "PPV_ci95": [
+   0.897848,
+   0.972851
+  ],
+  "recall": 0.7781954887218046,
+  "recall_ci95": [
+   0.713259,
+   0.837121
+  ],
+  "coverage": 1.0
+ },
+ "core_claim_pooled": {
+  "label": "POOLED resolved set (n=9371)",
+  "rows_meeting_both": [
+   "v1.2-General@0.9285",
+   "v1.1@0.9524",
+   "v1.1@0.9605_high_conf",
+   "router"
+  ],
+  "third_party_meeting_both": [],
+  "third_party_meeting_ppv_any_coverage": [],
+  "claim_supported": true,
+  "detail": [
+   {
+    "row": "v1.2-General@0.9285",
+    "third_party_or_baseline": false,
+    "PPV": 0.9769888231426693,
+    "coverage": 1.0,
+    "meets_ppv_floor": true,
+    "complete_coverage": true,
+    "meets_both": true
+   },
+   {
+    "row": "v1.1@0.9524",
+    "third_party_or_baseline": false,
+    "PPV": 0.9705882352941176,
+    "coverage": 1.0,
+    "meets_ppv_floor": true,
+    "complete_coverage": true,
+    "meets_both": true
+   },
+   {
+    "row": "v1.1@0.9605_high_conf",
+    "third_party_or_baseline": false,
+    "PPV": 0.9706896551724138,
+    "coverage": 1.0,
+    "meets_ppv_floor": true,
+    "complete_coverage": true,
+    "meets_both": true
+   },
+   {
+    "row": "router",
+    "third_party_or_baseline": false,
+    "PPV": 0.981159420289855,
+    "coverage": 1.0,
+    "meets_ppv_floor": true,
+    "complete_coverage": true,
+    "meets_both": true
+   },
+   {
+    "row": "tool:HyAsP",
+    "third_party_or_baseline": true,
+    "PPV": 0.8446389496717724,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:MOB-recon",
+    "third_party_or_baseline": true,
+    "PPV": 0.8859981078524125,
+    "coverage": 0.9086543591932558,
+    "meets_ppv_floor": false,
+    "complete_coverage": false,
+    "meets_both": false
+   },
+   {
+    "row": "tool:PLASMe",
+    "third_party_or_baseline": true,
+    "PPV": 0.6495701156240735,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:PlaScope",
+    "third_party_or_baseline": true,
+    "PPV": 0.4985983179815779,
+    "coverage": 0.6325899050261445,
+    "meets_ppv_floor": false,
+    "complete_coverage": false,
+    "meets_both": false
+   },
+   {
+    "row": "tool:Plasmer",
+    "third_party_or_baseline": true,
+    "PPV": 0.8495854717726017,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:PlasmidEC",
+    "third_party_or_baseline": true,
+    "PPV": 0.7279279279279279,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:PlasmidFinder",
+    "third_party_or_baseline": true,
+    "PPV": 0.9148264984227129,
+    "coverage": 0.9760964678262726,
+    "meets_ppv_floor": false,
+    "complete_coverage": false,
+    "meets_both": false
+   },
+   {
+    "row": "tool:Platon",
+    "third_party_or_baseline": true,
+    "PPV": 0.93626138189609,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:RFPlasmid",
+    "third_party_or_baseline": true,
+    "PPV": 0.6659597030752916,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:geNomad",
+    "third_party_or_baseline": true,
+    "PPV": 0.6074685193226227,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:gplas2",
+    "third_party_or_baseline": true,
+    "PPV": 0.7570573139435415,
+    "coverage": 0.7906306690854765,
+    "meets_ppv_floor": false,
+    "complete_coverage": false,
+    "meets_both": false
+   },
+   {
+    "row": "tool:plASgraph2",
+    "third_party_or_baseline": true,
+    "PPV": 0.8754208754208754,
+    "coverage": 0.9418418525237434,
+    "meets_ppv_floor": false,
+    "complete_coverage": false,
+    "meets_both": false
+   },
+   {
+    "row": "baseline:majority_vote",
+    "third_party_or_baseline": true,
+    "PPV": 0.897787610619469,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "baseline:any_tool_plasmid",
+    "third_party_or_baseline": true,
+    "PPV": 0.41857841293719444,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "baseline:all_chromosome",
+    "third_party_or_baseline": true,
+    "PPV": null,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   }
+  ]
+ },
+ "core_claim_arg": {
+  "label": "ARG-bearing subset (n=635)",
+  "rows_meeting_both": [],
+  "third_party_meeting_both": [],
+  "third_party_meeting_ppv_any_coverage": [
+   "tool:plASgraph2"
+  ],
+  "claim_supported": false,
+  "detail": [
+   {
+    "row": "v1.2-General@0.9285",
+    "third_party_or_baseline": false,
+    "PPV": 0.9409090909090909,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "v1.1@0.9524",
+    "third_party_or_baseline": false,
+    "PPV": 0.9493670886075949,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "v1.1@0.9605_high_conf",
+    "third_party_or_baseline": false,
+    "PPV": 0.9466666666666667,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "router",
+    "third_party_or_baseline": false,
+    "PPV": 0.9493670886075949,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:HyAsP",
+    "third_party_or_baseline": true,
+    "PPV": 0.890625,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:MOB-recon",
+    "third_party_or_baseline": true,
+    "PPV": 0.891566265060241,
+    "coverage": 0.9165354330708662,
+    "meets_ppv_floor": false,
+    "complete_coverage": false,
+    "meets_both": false
+   },
+   {
+    "row": "tool:PLASMe",
+    "third_party_or_baseline": true,
+    "PPV": 0.8184615384615385,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:PlaScope",
+    "third_party_or_baseline": true,
+    "PPV": 0.5102639296187683,
+    "coverage": 0.7984251968503937,
+    "meets_ppv_floor": false,
+    "complete_coverage": false,
+    "meets_both": false
+   },
+   {
+    "row": "tool:Plasmer",
+    "third_party_or_baseline": true,
+    "PPV": 0.8745874587458746,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:PlasmidEC",
+    "third_party_or_baseline": true,
+    "PPV": 0.7987012987012987,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:PlasmidFinder",
+    "third_party_or_baseline": true,
+    "PPV": 0.575,
+    "coverage": 0.9669291338582677,
+    "meets_ppv_floor": false,
+    "complete_coverage": false,
+    "meets_both": false
+   },
+   {
+    "row": "tool:Platon",
+    "third_party_or_baseline": true,
+    "PPV": 0.9051724137931034,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:RFPlasmid",
+    "third_party_or_baseline": true,
+    "PPV": 0.7368421052631579,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:geNomad",
+    "third_party_or_baseline": true,
+    "PPV": 0.7644444444444445,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "tool:gplas2",
+    "third_party_or_baseline": true,
+    "PPV": 0.8095238095238095,
+    "coverage": 0.8377952755905512,
+    "meets_ppv_floor": false,
+    "complete_coverage": false,
+    "meets_both": false
+   },
+   {
+    "row": "tool:plASgraph2",
+    "third_party_or_baseline": true,
+    "PPV": 0.9562841530054644,
+    "coverage": 0.9212598425196851,
+    "meets_ppv_floor": true,
+    "complete_coverage": false,
+    "meets_both": false
+   },
+   {
+    "row": "baseline:majority_vote",
+    "third_party_or_baseline": true,
+    "PPV": 0.8784722222222222,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "baseline:any_tool_plasmid",
+    "third_party_or_baseline": true,
+    "PPV": 0.5341365461847389,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   },
+   {
+    "row": "baseline:all_chromosome",
+    "third_party_or_baseline": true,
+    "PPV": null,
+    "coverage": 1.0,
+    "meets_ppv_floor": false,
+    "complete_coverage": true,
+    "meets_both": false
+   }
+  ]
+ }
+}

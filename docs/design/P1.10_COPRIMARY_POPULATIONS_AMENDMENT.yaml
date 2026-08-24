@@ -1,0 +1,62 @@
+# P1.10 — CO-PRIMARY POPULATIONS AMENDMENT
+# Supersedes one clause of P1.10_COHORT_AND_EVALUATION_CONTRACT.yaml v1.0.
+# Frozen and hashed BEFORE any P1.10 inference, acquisition or annotation. Nothing had been executed
+# under the superseded clause, so no result is affected.
+amendment_id: P1.10_COPRIMARY_POPULATIONS_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-19'
+authorisation: 'Owner 2026-08-19: proceed with the frozen 39-isolate E. coli cohort; report two
+  predeclared co-primary populations; do not conditionally replace one after observing its composition.'
+
+supersedes:
+  document: 'docs/plans/P1.10_COHORT_AND_EVALUATION_CONTRACT.yaml'
+  document_sha256_at_supersession: 'c46642d46dd5e16126bda2cab2d167f0aa8a9b8f2413ce3c08c7ef5cd0811284'
+  clause: 'arg_eligibility.chromosome_arm_contingency (and the single-primary framing of populations)'
+  superseded_text: >
+    "If the P1.10 primary population contains FEWER THAN 30 truth-chromosome contigs, the primary
+    analysis is DEMOTED to a supporting analysis and the SECONDARY population becomes the primary
+    reporting population."
+  reason_for_supersession: >
+    The superseded clause made the identity of the primary population conditional on an observed
+    property of that population. Even though the rule was declared in advance, a composition-triggered
+    switch is a data-dependent choice of endpoint. Two unconditional co-primary populations remove that
+    dependency entirely and are strictly more rigorous. Nothing was executed under the old clause.
+
+# ---------------------------------------------------------------- the replacement
+co_primary_populations:
+  CP1_core_ARG:
+    definition: 'truth-resolved Product A contigs >= 1 kb that are core-ARG-bearing under the frozen rule'
+    arg_rule: 'AMRFinderPlus 4.2.7: Element type == AMR AND Element subtype == AMR AND scope == core AND class != EFFLUX'
+    role: 'CO-PRIMARY. Aligned to the development evaluation domain (RGI/CARD non-efflux).'
+  CP2_all_resolved:
+    definition: 'ALL truth-resolved Product A contigs >= 1 kb, regardless of ARG status'
+    role: 'CO-PRIMARY. The deployment-realistic domain.'
+  rules:
+    - 'Both populations are declared primary BEFORE acquisition, annotation and inference.'
+    - 'Neither may replace, demote or substitute for the other after its composition is observed.'
+    - 'Results for the two are reported SEPARATELY and are never pooled into a single headline figure.'
+    - 'The frozen target PPV >= 0.95 AND recall > 0.50 is applied to BOTH, and a MET / NOT MET verdict is
+       stated for each independently at the standard operating point 0.9605.'
+    - 'If the two verdicts disagree, both are reported as they stand; neither is preferred post hoc.'
+    - 'Population composition (n, plasmid/chromosome split, prevalence, contig-length distribution) is
+       reported for both, so that a degenerate arm is visible rather than silently absorbed.'
+  degenerate_arm_handling: >
+    If either co-primary population turns out to have a very small chromosome or plasmid arm, that fact is
+    REPORTED as a limitation affecting the interpretability of specificity/MCC for that population. It does
+    NOT change which populations are primary, and it does NOT suppress the population's target verdict.
+
+# ---------------------------------------------------------------- unchanged
+unchanged_from_contract_v1_0:
+  cohort: '39 independent E. coli genome clusters; all retained; no outcome- or difficulty-based removal'
+  operating_points: {standard: 0.9605, very_high_confidence: 0.9776, continuous_M2_score: 'always retained'}
+  species_scope: 'E. coli only for this phase, by owner instruction; not reconsidered or expanded here'
+  reporting_levels: [contig, isolate, genome_cluster, plasmid_replicon_event, cohort]
+  separate_buckets_never_forced: [ambiguous, unmapped, below_1kb, non_core_ARG_resolved,
+                                  tool_FAILED, tool_MISSING, model_abstentions]
+  denominator_rules: 'unchanged; recall denominators are all truth plasmid contigs in the population'
+  uncertainty: 'cluster bootstrap over the 39 independent genome clusters, 10000 replicates, seed 20260816'
+  sensitivity_analyses: ['leave-MOB-recon-out', 'leave-PLASMe-out', 'leave-geNomad-out',
+                         'threshold-sensitivity curve over all six development-derived operating points']
+  prohibitions: ['refitting on P1.10', 'threshold selection on P1.10', 'panel reduction',
+                 'feature imputation', 'any change after outcomes are seen',
+                 'removing isolates for anticipated difficulty or outcome']

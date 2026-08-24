@@ -1,0 +1,332 @@
+{
+ "n": 65,
+ "n_failed": 0,
+ "failed": [],
+ "fixtures": [
+  {
+   "fixture": "core ARG hit -> core_arg_present",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "EFFLUX class excluded -> core_arg_absent",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "non-core scope excluded -> core_arg_absent",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "empty hit list is a real negative -> core_arg_absent",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "annotation could not run -> annotation_failed",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "annotation never attempted -> annotation_missing",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "core_arg_present routes to v1.1",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "core_arg_absent routes to v1.2-General",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "annotation_failed routes to NO model (abstain)",
+   "pass": true,
+   "detail": "annotation_failed_routing_abstain"
+  },
+  {
+   "fixture": "annotation_missing routes to NO model (abstain)",
+   "pass": true,
+   "detail": "annotation_missing_routing_abstain"
+  },
+  {
+   "fixture": "annotation failure is NEVER translated to core_arg_absent",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "annotation failure is NEVER routed to the ARG-domain model",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "abstain record issues no final routed class",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "abstain retains the v1.1 score and class",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "abstain retains the v1.2 probability and class",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "abstain retains the annotation failure state",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "abstain tolerates an uncomputable v1.1 score",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "coverage counts abstentions explicitly",
+   "pass": true,
+   "detail": "abstain_fraction=0.40"
+  },
+  {
+   "fixture": "v1.1 exactly at 0.9524 is plasmid_selected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "v1.1 just below 0.9524 is not_selected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "v1.1 exactly at 0.9605 is high_confidence_plasmid",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "v1.2 exactly at 0.9285 is plasmid_selected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "v1.2 just below 0.9285 is not_selected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "frozen v1.2 threshold is exactly 0.9285",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "bundle threshold is exactly 0.9285",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "no class is ever 'chromosome'",
+   "pass": true,
+   "detail": "['high_confidence_plasmid', 'not_selected', 'plasmid_selected']"
+  },
+  {
+   "fixture": "PlasmidFinder/FAILED OBSERVED in training -> learned encoding kept",
+   "pass": true,
+   "detail": "contribution=+0.353307"
+  },
+  {
+   "fixture": "every unseen failure/missing state contributes EXACTLY zero",
+   "pass": true,
+   "detail": "max |contribution| = 0.000e+00 over 23 unseen states"
+  },
+  {
+   "fixture": "every neutralised block scales to EXACTLY zero",
+   "pass": true,
+   "detail": "max |scaled value| = 0.000e+00"
+  },
+  {
+   "fixture": "available tools keep their contributions bit-identical",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "regression guard: un-neutralised raw-zero blocks are NOT neutral",
+   "pass": true,
+   "detail": "max |contribution| without neutralisation = 1.0479"
+  },
+  {
+   "fixture": "2 simultaneous tool failures contribute exactly zero",
+   "pass": true,
+   "detail": "sum |contribution| = 0.000e+00"
+  },
+  {
+   "fixture": "3 simultaneous tool failures contribute exactly zero",
+   "pass": true,
+   "detail": "sum |contribution| = 0.000e+00"
+  },
+  {
+   "fixture": "6 simultaneous tool failures contribute exactly zero",
+   "pass": true,
+   "detail": "sum |contribution| = 0.000e+00"
+  },
+  {
+   "fixture": "11 simultaneous tool failures contribute exactly zero",
+   "pass": true,
+   "detail": "sum |contribution| = 0.000e+00"
+  },
+  {
+   "fixture": "all 12 tools MISSING yields a probability, not a crash",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "all 12 tools MISSING is not_selected (no positive evidence)",
+   "pass": true,
+   "detail": "p=0.003733"
+  },
+  {
+   "fixture": "all 12 tools FAILED is not_selected",
+   "pass": true,
+   "detail": "p=0.005307"
+  },
+  {
+   "fixture": "out-of-vocabulary call is treated as unavailable, not as a vote",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "FAILED and MISSING are recorded as distinct states",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "an unseen FAILED is never converted into a chromosome vote",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "higher probability means more plasmid-like",
+   "pass": true,
+   "detail": "0.999822 > 0.000503"
+  },
+  {
+   "fixture": "unanimous plasmid is selected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "unanimous chromosome is not_selected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "every required provenance field is retained",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "fixture": "all 12 tool calls are retained verbatim",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "scores are never pooled",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "ARG-bearing contig takes the v1.1 class even when v1.2 disagrees",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "non-ARG contig takes the v1.2 class even when v1.1 disagrees",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "PlaScope is the prespecified critical tool",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "evaluator and preflight name the SAME critical tool across naming spaces",
+   "pass": true,
+   "detail": "evaluator=['PlaScope'] (panel display names), preflight=['plascope'] (runner keys)"
+  },
+  {
+   "fixture": "minimum critical coverage is 95%",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "denominator is the 79 prespecified isolates",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "gate arithmetic: 76 of 79 meets the minimum, 75 does not",
+   "pass": true,
+   "detail": "minimum = 76 isolates"
+  },
+  {
+   "fixture": "at most two retries, identical frozen image/db/command/parameters",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "PlasmidFinder/FAILED remains permitted (observed, learned encoding)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "no other tool has a permitted trained failure state",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "FAILED and MISSING count as unavailable for the gate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "an unavailable critical tool is never silently treated as a vote",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "the 13 frozen scientific command strings are pinned by block hash",
+   "pass": true,
+   "detail": "CMD_BLOCK_HASH=44f8d17d0b406fccae57423c5111cf55"
+  },
+  {
+   "fixture": "preflight pins the frozen parser version",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "the display-name -> runner-key map covers all 12 panel tools exactly",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "preflight covers all 12 panel tools plus amrfinder (13 runner keys)",
+   "pass": true,
+   "detail": "13 runner keys"
+  },
+  {
+   "fixture": "every panel tool is classified as external-DB or embedded-DB, none omitted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "fixture": "no P1.11 fixture imports the superseded preflight",
+   "pass": true,
+   "detail": "panel_preflight_p111_v2"
+  }
+ ]
+}

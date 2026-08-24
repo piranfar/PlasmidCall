@@ -1,0 +1,150 @@
+{
+ "section": "9 - final shutdown audit",
+ "generated_utc": "2026-08-22T06:36:51Z",
+ "host": "PortabilityRisk",
+ "statement": "This audit records what exists and where, so the execution host can be stopped without loss. This script does not stop, terminate or reconfigure the instance, and no instance, volume, snapshot or billing setting was created or changed at any point in this work.",
+ "frozen_artefacts": [
+  {
+   "path": "p112/inference/frozen/P1.11_FROZEN_PREDICTIONS.tsv",
+   "exists": true,
+   "bytes": 7613149,
+   "sha256": "0767da157051ff469b8830982aa168c558ce5b4cb6e1bc82ba81d4e9acb3e40d",
+   "mode": "0o444",
+   "expected_sha256": "0767da157051ff469b8830982aa168c558ce5b4cb6e1bc82ba81d4e9acb3e40d",
+   "matches_expected": true
+  },
+  {
+   "path": "p112/inference/PREDICTIONS_FROZEN.json",
+   "exists": true,
+   "bytes": 53146,
+   "sha256": "f0551fa15a9eb0b281f2f88b0990c2bfa6510a9b8ef5d9dfac8a2e69a4fc5124",
+   "mode": "0o444",
+   "expected_sha256": "f0551fa15a9eb0b281f2f88b0990c2bfa6510a9b8ef5d9dfac8a2e69a4fc5124",
+   "matches_expected": true
+  },
+  {
+   "path": "p112/inference/P1.11_call_table_reconciled.tsv",
+   "exists": true,
+   "bytes": 18234579,
+   "sha256": "59bf47b7c9f7d89aed2787935712e8d86b26ee039232c4813bd6451fcc50c4d4",
+   "mode": "0o664"
+  },
+  {
+   "path": "p112/receipts/P1.11_truth_acquisition_receipt.json",
+   "exists": true,
+   "bytes": 91359,
+   "sha256": "e4218d3ae3f9bac3fd2fb6a9a2ec8bd3215af06787ab93b75cafed68b70a52ae",
+   "mode": "0o664"
+  },
+  {
+   "path": "p112/plasmidcall_v1_2_general.pkl",
+   "exists": true,
+   "bytes": 10073,
+   "sha256": "f5d1cd1202b5077030a4512fb0c801abbdf39998b7c170acade03c268d68d74d",
+   "mode": "0o644"
+  },
+  {
+   "path": "p111/manifests/P1.11_cohort_independent.tsv",
+   "exists": true,
+   "bytes": 48353,
+   "sha256": "586b9917af51b698f3b21ef877e48164e08ef736bcef028c753344bbfa6b1f5f",
+   "mode": "0o664"
+  }
+ ],
+ "panel_execution": {
+  "expected_units": "13 components x 79 isolates = 1027",
+  "receipts_written": 1027,
+  "per_tool_receipts": {
+   "plasmer": 79,
+   "hyasp": 79,
+   "plasme": 79,
+   "mobsuite": 79,
+   "platon": 79,
+   "plasgraph2": 79,
+   "plasmidfinder": 79,
+   "gplas2": 79,
+   "plasmidec": 79,
+   "amrfinder": 79,
+   "rfplasmid": 79,
+   "genomad": 79,
+   "plascope": 79
+  },
+  "receipt_status_counts": {
+   "OK": 972,
+   "FAILED": 55
+  },
+  "state_markers_done": 1019,
+  "state_markers_failed": 8,
+  "genuine_operational_failures": "2 gplas2, 4 PlasmidFinder, 2 MOB-recon; all rc=1 after 3 attempts, preserved, never retried into success",
+  "mobrecon_receipt_caveat": "49 MOB-recon receipts read not-OK, but a truth-blind provenance audit established that 47 of those executions completed with valid output behind a stale FAILED receipt. Both the original receipts and the reconciled provenance are retained."
+ },
+ "truth": {
+  "isolates": 79,
+  "label_counts": {
+   "chromosome": 6035,
+   "plasmid": 1209,
+   "below_min_length": 10852,
+   "ambiguous": 120,
+   "unmapped": 152
+  },
+  "result_id": "P1.11-CORRECTED-TRUTH-ALL79",
+  "superseded_but_preserved": "P1.11-INITIAL-REFSEQ-ONLY-AUDIT",
+  "truth_hold_mode": "0o755"
+ },
+ "principal_result": {
+  "verdict": "PASS",
+  "model": "PlasmidCall v1.2-General @ 0.9285",
+  "n": 7244,
+  "TP": 942,
+  "FP": 33,
+  "TN": 6002,
+  "FN": 267,
+  "selective_PPV": 0.9662,
+  "selective_PPV_ci95": [
+   0.9449,
+   0.9836
+  ],
+  "selective_recall": 0.7792,
+  "selective_recall_ci95": [
+   0.7353,
+   0.8239
+  ],
+  "selective_F1": 0.8626,
+  "coverage": 1.0,
+  "re_derived_by_every_post_truth_script_as_a_precondition": true
+ },
+ "archive": {
+  "tree": "p112/ARCHIVE_P1.11",
+  "manifest": "p112/ARCHIVE_P1.11/ARCHIVE_MANIFEST.tsv",
+  "manifest_rows": 2996,
+  "tree_bytes": 2112403513,
+  "packaged": "/work/P1.11_ARCHIVE.tar.zst",
+  "packaged_bytes": 883470815,
+  "packaged_sha256": "370a84a74ce52574fc14f8970fc6fcd71e4e7ac6b15e8d986050385985ea5661",
+  "verification": "manifest regenerated and 400 random entries recomputed, 0 mismatches"
+ },
+ "images": {
+  "file": "p112/POSTTRUTH/images/p112_all_images.tar.zst",
+  "bytes": 15384173298,
+  "sha256": "abe433e7f0f1e09ae35fcacfcf33eadee694e3f5894188a1c58aa617dd8d2720",
+  "n_images": 16,
+  "n_identity_preserved": 16
+ },
+ "disk": {
+  "mnt_tah": "/dev/sdc        492G  375G  117G  77% /work",
+  "root": "/dev/sda1        97G   15G   83G  16% /"
+ },
+ "what_remains_only_on_this_host": [
+  "p112/inference/native  (raw per-tool outputs, ~18 GB) - not archived; regenerable from the preserved images plus the sealed assemblies, and the parsed call table IS archived",
+  "p112/assemblies and p112/raw (input assemblies and reads)",
+  "the reference genomes downloaded for truth construction",
+  "the 94.22 GB Docker build cache, deliberately not preserved"
+ ],
+ "shutdown_position": {
+  "safe_to_stop": true,
+  "why": "every frozen artefact, the corrected all-79 truth, the reconciled call table, all 1027 receipts, the complete post-truth analysis set and the 16 container images are checksummed and preserved; the archive is additionally transferred off-host",
+  "action_taken_by_this_agent": "NONE - the instance is left running",
+  "reason": "the standing instruction is explicit: do not shut down the server. Stopping the instance is the operator's decision, not this agent's.",
+  "if_the_operator_chooses_to_stop": "stop, do not terminate. The Block Volume must be retained; nothing here authorises deleting it."
+ }
+}

@@ -1,0 +1,35 @@
+{
+ "method": "truth-blind cluster-aware precision projection. The P1.11 clustered interval is used to infer a design effect, which is then applied at the P1.13 positive-call count. Uses P1.11 aggregate/isolate-level data only; no P1.13 truth, call or score exists.",
+ "assumptions": [
+  "contigs per isolate scale with genome size",
+  "plasmid-contig prevalence as in P1.11",
+  "recall and PPV as in P1.11 for projecting the positive-call count",
+  "between-isolate dispersion equal to that implied by the P1.11 interval"
+ ],
+ "implied_design_effect_from_P1.11": 2.91,
+ "projected_positive_calls": 1671,
+ "sensitivity_across_true_PPV": {
+  "0.950": {
+   "projected_95pct_lower_bound": 0.9322,
+   "lower_bound_clears_0.95": false,
+   "halfwidth": 0.0178
+  },
+  "0.960": {
+   "projected_95pct_lower_bound": 0.944,
+   "lower_bound_clears_0.95": false,
+   "halfwidth": 0.016
+  },
+  "0.966": {
+   "projected_95pct_lower_bound": 0.9512,
+   "lower_bound_clears_0.95": true,
+   "halfwidth": 0.0148
+  }
+ },
+ "interpretation": "If the true PPV is 0.950 the lower bound cannot clear 0.95 by construction. At 0.960 it is marginal. Only near 0.966 does a confidence-bound demonstration become likely. This is a HEURISTIC PLANNING PROJECTION, not a formal power calculation and not a gate.",
+ "gate_distinction": {
+  "the_frozen_gate_is": "the observed frozen estimand: selective PPV >= 0.95 and selective recall > 0.50 for v1.2-General over the complete cohort, with the P1.11 coverage gate unchanged",
+  "that_is_NOT": "a requirement that the lower confidence bound exceed 0.95",
+  "must_not_be_substituted": "passing the gate on the point estimate and demonstrating PPV > 0.95 by a confidence-bound criterion are different claims and are reported separately",
+  "no_promise": "P1.13 is not promised to demonstrate PPV >= 0.95"
+ }
+}

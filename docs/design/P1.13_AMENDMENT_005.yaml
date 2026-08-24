@@ -1,0 +1,175 @@
+# =============================================================================================
+# P1.13 AMENDMENT 005 - technical exclusion of a contaminated isolate and its deterministic
+# replacement.
+#
+# Executed unattended under the operator decision rule of 2026-08-23. The scientific design,
+# selection rule, tools, databases, models, thresholds and endpoints are unchanged. Only cohort
+# membership changes, by exactly one isolate, for a documented contamination finding.
+# =============================================================================================
+amendment_id: P1.13_AMENDMENT_005
+design_id: P1.13-PROSPECTIVE-PUBLIC-MULTIGENUS-EXTERNAL-VALIDATION
+dated: 2026-08-23
+supersedes: nothing. The design and amendments 001-004 remain in force.
+authority: >-
+  operator decision rule issued 2026-08-23, which authorised replacement ONLY if a truth-blind
+  taxonomic contamination screen confirmed substantial contamination or incorrect taxonomic
+  identity, and required a stop-and-report otherwise.
+
+classification:
+  type: cohort amendment for a technical exclusion
+  truth_blind: true
+  made_before_prediction_construction: true
+  truth_accessed: none
+  predictions_frozen: none
+
+# ---------------------------------------------------------------- 1. the excluded isolate
+excluded_isolate:
+  biosample: SAMN26198730
+  assembly_accession: GCF_040586835.1
+  taxon: Enterococcus faecalis
+  run_accession: SRR18507859
+  disposition: >-
+    RETAINED as a documented technical exclusion. The isolate, its reads, its rejected assembly,
+    its assembler log and its rejection receipt are all preserved. Nothing was deleted.
+  retained_at:
+    - provenance/attempts/SAMN26198730/attempt1/rejected_output/   (assembly, GFA, assembler log)
+    - contamination_screen/                                        (screening evidence)
+    - /data/p113_reads/raw/SAMN26198730/, /data/p113_reads/down/SAMN26198730/
+  not_a_tool_or_biological_failure: >-
+    the assembler exited 0 and the execution path was sound. This is a property of the deposited
+    sequencing data, not of the pipeline.
+
+# ---------------------------------------------------------------- 2. how it was detected
+detection:
+  detected_by: the fail-closed assembly acceptance gate introduced in amendment 004
+  rejection_reason: >-
+    total assembly length 10224257 bp outside the predeclared plausibility band 1973931-3665872 bp
+    for a declared genome size of 2819902 bp
+  assembly_shape: {contigs: 2993, total_length: 10224257, longest_contig: 122143,
+                   contigs_ge_1000bp: 1541}
+  depth_was_not_the_cause: >-
+    raw depth 179.27x, downsampled to 99.96x. Ample coverage, so the oversized fragmented assembly
+    is not a low-coverage artefact.
+
+# ---------------------------------------------------------------- 3. the screening evidence
+contamination_screen:
+  method: >-
+    skani 0.2.2 from the hash-pinned p19c2-cleanroom:1.0 image with --min-af 15. This is the
+    frozen genomic-independence method already used for cohort selection, applied unchanged.
+  method_status: frozen and already approved; no new method was introduced
+  truth_separation: >-
+    only whole-assembly aggregate statistics were computed. No per-contig replicon assignment, no
+    chromosome or plasmid label, and no truth artefact was derived, read or stored. The comparison
+    establishes taxonomic composition only.
+
+  primary_result_assembly_vs_its_own_declared_reference:
+    reference: SAMN26198730.fna.gz (GCF_040586835.1), 2819902 bp
+    ANI: 99.97
+    align_fraction_reference: 95.75
+    align_fraction_query: 26.98
+    interpretation: >-
+      taxonomic identity is CORRECT. The declared genome is genuinely present and almost completely
+      recovered, at 95.75 percent of the reference. But only 26.98 percent of the assembly is that
+      genome, so approximately 7.4 Mb, about 73 percent of the assembly, is foreign DNA.
+
+  independent_corroboration_reference_free_gc:
+    contigs_ge_1kb: 1541
+    total_bp: 9666165
+    gc_median: 59.6
+    gc_range: {min: 27.6, p25: 56.1, median: 59.6, p75: 61.4, max: 67.6}
+    bp_at_gc_below_40: {bp: 2526382, percent: 26.1}
+    bp_at_gc_40_or_above: {bp: 7139783, percent: 73.9}
+    interpretation: >-
+      Enterococcus faecalis has a GC content near 37.5 percent. The assembly is bimodal: 26.1
+      percent of sequence sits below GC 40, and 73.9 percent sits at a median GC of 59.6, which is
+      incompatible with E. faecalis. This is a reference-free result and it agrees with the skani
+      aligned fraction to within one percentage point, 26.1 versus 26.98.
+
+  breadth_check_against_the_whole_reference_pool:
+    references_compared: 835
+    references_matched: 93
+    observation: >-
+      every other match is an E. faecalis strain matching the SAME correct 25 percent of the
+      assembly at align_fraction_query near 25. Nothing in the pool accounts for the foreign 73
+      percent, consistent with a contaminant outside the six study taxa.
+
+  verdict: SUBSTANTIAL CONTAMINATION CONFIRMED
+  verdict_basis: >-
+    two methodologically independent lines of evidence, one reference-based and one reference-free,
+    agree that roughly three quarters of the assembly is not the declared organism. The condition
+    for replacement in the operator decision rule is met.
+
+# ---------------------------------------------------------------- 4. the replacement
+replacement:
+  rule_applied: >-
+    the ALREADY FROZEN selection rule, unchanged: eligibility and historical-overlap exclusions;
+    ANI < 99.5 against every consumed genome and against every already-selected isolate; most
+    recent permitted release year first; farthest-point selection on the frozen distance 100 - ANI
+    from skani 0.2.2 --min-af 15; assembly accession lexical order as the final tie-break.
+  minimality: >-
+    the 24 surviving Enterococcus faecalis isolates were held FIXED and exactly ONE isolate was
+    drawn. Re-running the taxon greedily would have churned other members and changed more of the
+    cohort than the single technical exclusion requires.
+  selection_command: python3 env/p113_replace.py
+  selection_script_sha256: recorded in provenance/VERSION_MANIFEST_v2.json
+  candidates_considered: {pool_2024_plus: 9, pool_2023: 34}
+  candidates_skipped_for_ani_independence: 9
+  year_pool_note: >-
+    all 9 candidates in the preferred 2024+ pool were within ANI 99.5 of an already-selected
+    isolate and were correctly skipped, so selection fell through to the 2023 fallback pool. This
+    is the frozen rule operating as designed, and mirrors the Serratia fallback already recorded
+    in amendment 001.
+  selected:
+    biosample: SAMN37639065
+    assembly_accession: GCF_032681005.1
+    taxon: Enterococcus faecalis
+    strain: ES-3222
+    seq_rel_date: "2023-10-15"
+    year_pool: 2023 fallback
+    run_accession: SRR26748297
+    study_accession: PRJNA1023047
+    instrument_model: Illumina MiSeq
+    library_selection: RANDOM
+    genome_size: 2770393
+    read_count: 1188921
+    base_count: 709571812
+    estimated_coverage: 256.1
+    min_distance_to_the_24_retained: 0.98
+    equivalent_min_ani: 99.02
+  independence_confirmed: ANI 99.02 to its nearest retained neighbour, below the 99.5 threshold
+  selection_inputs_never_used: >-
+    plasmid count, chromosome/plasmid truth, ARG content, tool output, model score, expected
+    performance, and any assembly outcome of any isolate
+
+# ---------------------------------------------------------------- 5. hashes
+input_hashes:
+  _eligible_stage2.json: c82ac94a85802eca
+  file_availability.tsv: 69f9c158dcdfebc2
+  screen/p113_vs_consumed.tsv: 7ab937d39f14cf39
+  screen/p113_vs_p113.tsv: 3f865086c71e4e72
+  P1.13_ELIGIBLE_POOL.tsv: db3fecdd29fe6329
+cohort_hashes:
+  before_v2: 2e47d15b30a42181b5537d88
+  after_v3: 874b0924deffef948dd50e00
+cohort_composition_after:
+  total: 150
+  per_taxon: {Klebsiella pneumoniae: 25, Enterobacter spp.: 25, Citrobacter spp.: 25,
+              Serratia spp.: 25, Enterococcus faecium: 25, Enterococcus faecalis: 25}
+
+# ---------------------------------------------------------------- 6. execution of the replacement
+replacement_execution:
+  requirement: >-
+    the replacement is acquired, md5-verified, exact-pair validated, coverage-floor checked,
+    downsampled and assembled through the SAME production path and the SAME fail-closed atomic
+    acceptance gate as every other isolate. No shortcut and no manual assembly.
+  gate_before_phase_4: >-
+    full reconciliation must report exactly 150 accepted isolates, zero missing, zero conflicts,
+    zero unvalidated publications and zero hash mismatches. Phase 4 does not start otherwise.
+
+unchanged_by_this_amendment:
+  - the selection rule itself
+  - tools, databases, images and their digests
+  - models, thresholds and the router
+  - target depth, seed and sampling algorithm
+  - scientific endpoints and the analysis plan
+  - the other 149 isolates

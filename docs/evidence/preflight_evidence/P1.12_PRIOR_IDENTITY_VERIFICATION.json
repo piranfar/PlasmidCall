@@ -1,0 +1,268 @@
+{
+ "functional_replay": [
+  {
+   "tool": "plascope",
+   "sample": "SAMD00077842",
+   "identical": true
+  }
+ ],
+ "generated_utc": "2026-08-21T06:18:48Z",
+ "reference_file": "manifests/P1.12_PRIOR_IDENTITY_REFERENCE.json",
+ "reference_sha256": "ac66410c162c6ef3ea825ed9950544cf374a86e3bec27c5df52642cc3cea9a73",
+ "critical_tools": [
+  "plascope"
+ ],
+ "n_checks": 34,
+ "n_not_pass": 0,
+ "n_critical_fail": 0,
+ "critical_failures": [],
+ "checks": [
+  {
+   "stage": "A",
+   "check": "nekokoe/plasmer:23.04.20 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "c64ba6e14f59f5ff"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-amrfinder:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "18580135caaf7ab0"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-genomad:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "98378fdda32a3219"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-gplas2:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "88849320fa0b86f8"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-hyasp:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "6bfce30bd71ff284"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-mobsuite:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "804f9ea5e88affaa"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-plascope:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": true,
+   "detail": "cfac6fdafa36ff94"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-plasgraph2:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "beadd23183f4fde7"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-plasme:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "05a577da11f970df"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-plasmidec:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "6ae61ad78f3f2cbf"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-plasmidfinder:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "8414abbe42588810"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-platon:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "8d860d7cfaca3f29"
+  },
+  {
+   "stage": "A",
+   "check": "p19c4-rfplasmid:1.0 matches as-executed id",
+   "state": "PASS",
+   "critical": false,
+   "detail": "3443e560bdf30c9a"
+  },
+  {
+   "stage": "B",
+   "check": "customizedKraken2DB.tar.xz sha256 matches prior record",
+   "state": "PASS",
+   "critical": false,
+   "detail": "9bd4daaf23f476bb"
+  },
+  {
+   "stage": "B",
+   "check": "genomad_db_v1.5.tar.gz sha256 matches prior record",
+   "state": "PASS",
+   "critical": false,
+   "detail": "70512f89dcf5e779"
+  },
+  {
+   "stage": "B",
+   "check": "hyasp_ncbi_blacklist.txt sha256 matches prior record",
+   "state": "PASS",
+   "critical": false,
+   "detail": "4f6395b963922c3f"
+  },
+  {
+   "stage": "B",
+   "check": "hyasp_ncbi_database_genes.fasta.bz2 sha256 matches prior record",
+   "state": "PASS",
+   "critical": false,
+   "detail": "ce95711c546b6aff"
+  },
+  {
+   "stage": "B",
+   "check": "hyasp_plasmids.csv sha256 matches prior record",
+   "state": "PASS",
+   "critical": false,
+   "detail": "52033e830af10e0f"
+  },
+  {
+   "stage": "B",
+   "check": "plascope_chromosome_plasmid_db.tar.gz sha256 matches prior record",
+   "state": "PASS",
+   "critical": true,
+   "detail": "0f658761d3478903"
+  },
+  {
+   "stage": "B",
+   "check": "plasme_DB.zip sha256 matches prior record",
+   "state": "PASS",
+   "critical": false,
+   "detail": "3375080dec8e6151"
+  },
+  {
+   "stage": "B",
+   "check": "plasmerMainDB.tar.xz sha256 matches prior record",
+   "state": "PASS",
+   "critical": false,
+   "detail": "8c26eff87860e06a"
+  },
+  {
+   "stage": "B",
+   "check": "platon_db_v1.5.0.tar.gz sha256 matches prior record",
+   "state": "PASS",
+   "critical": false,
+   "detail": "68e6875b4a75fe15"
+  },
+  {
+   "stage": "C",
+   "check": "env manifest loaded",
+   "state": "PASS",
+   "critical": false,
+   "detail": "19 files, local P1.10 bundle, transferred and veri"
+  },
+  {
+   "stage": "C",
+   "check": "run/driver.sh matches P1.10 as-executed",
+   "state": "PASS",
+   "critical": true,
+   "detail": "39716cdf591d803b"
+  },
+  {
+   "stage": "C",
+   "check": "run/parse_all.py matches P1.10 as-executed",
+   "state": "PASS",
+   "critical": true,
+   "detail": "1368faa316e10268"
+  },
+  {
+   "stage": "C",
+   "check": "run/parsers.py matches P1.10 as-executed",
+   "state": "PASS",
+   "critical": true,
+   "detail": "68599a94af066f2d"
+  },
+  {
+   "stage": "C",
+   "check": "run/run_tool.sh matches P1.10 as-executed",
+   "state": "PASS",
+   "critical": true,
+   "detail": "0e5bd8623c3cf1cf"
+  },
+  {
+   "stage": "C",
+   "check": "whole env tree identical to P1.10 as-executed",
+   "state": "PASS",
+   "critical": true,
+   "detail": "19 match, 0 differ, 0 missing"
+  },
+  {
+   "stage": "C",
+   "check": "parser version is the frozen one",
+   "state": "PASS",
+   "critical": true,
+   "detail": "p19c4-parsers/1.7"
+  },
+  {
+   "stage": "C",
+   "check": "PlaScope frozen token '/db/plascope/chromosome_plasmid_db'",
+   "state": "PASS",
+   "critical": true,
+   "detail": ""
+  },
+  {
+   "stage": "C",
+   "check": "PlaScope frozen token '-k 1000'",
+   "state": "PASS",
+   "critical": true,
+   "detail": ""
+  },
+  {
+   "stage": "C",
+   "check": "PlaScope frozen token 'centrifuge -f'",
+   "state": "PASS",
+   "critical": true,
+   "detail": ""
+  },
+  {
+   "stage": "D",
+   "check": "plascope replay SAMD00077842_summary.tsv byte-identical to P1.10",
+   "state": "PASS",
+   "critical": true,
+   "detail": "3b5af586c3cae747"
+  },
+  {
+   "stage": "D",
+   "check": "plascope replay SAMD00077842_extendedresults.tsv record-set identical to P1.10 (order-insensitive)",
+   "state": "PASS",
+   "critical": true,
+   "detail": "44c58083b342a4f0"
+  }
+ ],
+ "semantics": {
+  "PASS": "verified against a record that predates this run",
+  "FAIL": "contradicts the prior record",
+  "NO_PRIOR_RECORD": "no prior evidence of this kind exists to compare against",
+  "NO_PRIOR_ARCHIVE_RETAINED": "the source archive was not kept. This is NOT the same as missing prior evidence: identity may still be established by the stage-D functional replay, which ties the live database directly to the P1.10 run. A tree hash generated now would be a new baseline and is never presented as proof of prior identity"
+ },
+ "evidence_chain_note": "For each database the strongest available evidence is used: a retained source archive hash (B), else a functional replay against retained P1.10 outputs (D). The critical PlaScope database must be established by at least one of these.",
+ "VERDICT": "PASS",
+ "critical_database_identity_established": true
+}

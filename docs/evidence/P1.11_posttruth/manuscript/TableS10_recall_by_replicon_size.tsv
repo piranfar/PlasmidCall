@@ -1,0 +1,6 @@
+replicon_size_band_assembled_bp	tier	n_replicons	n_contigs	recovered_TP	missed_FN	contig_level_recall	note
+<10 kb	EXPLORATORY	148	150	140	10	0.9333	
+10-<50 kb	EXPLORATORY	48	102	84	18	0.8235	
+50-<100 kb	EXPLORATORY	79	418	320	98	0.7656	
+100-<200 kb	EXPLORATORY	48	443	334	109	0.7540	
+>=200 kb	EXPLORATORY	6	96	64	32	0.6667	indicative only, few replicons

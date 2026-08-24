@@ -1,0 +1,258 @@
+amendment: P1.11 prospective evaluation
+version: "1.0"
+status: PREDECLARED - SEALED BEFORE ANY P1.11 OUTCOME IS OBSERVED
+declared_on: 2026-08-20
+locked_evaluator: scripts/p1_12/evaluate_p111_locked.py
+locked_preflight: scripts/p1_12/panel_preflight_p111_v2.py
+locked_preflight_sha256: fe8a075c8745ce605e3f61189807ac753a9babde8c6d05397b19cb803bbe069f
+locked_preflight_supersedes:
+  file: scripts/p1_12/panel_preflight.py
+  sha256: edba943f6ad34dc2acac3091b18745c827299182eae500077281ba739840c535
+  status: PRESERVED UNCHANGED; returned BLOCKED on three execution-verification defects
+  correction: docs/plans/P1.11_PREFLIGHT_IMPLEMENTATION_CORRECTION.yaml
+  supersession_manifest: docs/evidence/P1.11_PREFLIGHT_SUPERSESSION_MANIFEST.json
+  scientific_parameters_changed: false
+
+# ---------------------------------------------------------------------------- cohort
+
+cohort:
+  source: E:/AMR_Evidence_Data/P1.9_cleanroom/p111/P1.11_cohort_sealed.tsv
+  sha256: 0d0e547cd6f6546ac6f72e516885a74cf51dd3738be83b0a45f58cfbe999151f
+  n_isolates: 79
+  columns: 25
+  contains_predictions_or_truth: false
+  sealed: true
+  independence:
+    ani_threshold: 0.995
+    tool: skani 0.2.2 --min-af 15
+    screened_against: [development set, P1.9, P1.10, itself]
+    exclusions: 172 consumed-cohort ANI exclusions, 55 internal clonal pairs
+    deposition_date_floor: 2025-09-11
+  status_at_declaration: NOT ACQUIRED, NOT ASSEMBLED, NOT INFERRED
+
+n_target_note: >
+  N >= 200 independent isolates was shown to be unreachable: 286 candidates yielded 79 independent
+  isolates, and accrual runs at about 6.0 usable isolates per month, so 200 would take roughly 20
+  months. N = 79 is Wave 1 of a sequential design, not a compromise on a reachable target.
+
+# ------------------------------------------------------- critical-tool preflight and completeness
+
+critical_tool_gate:
+  critical_tools: [PlaScope]
+  criticality_basis: >
+    Prespecified on development evidence: PlaScope absence takes v1.2-General recall from
+    approximately 0.7764 to approximately 0.2013 - below the 0.50 primary floor - while PPV holds.
+    A run without PlaScope is therefore not a fair test of the frozen operating point.
+    See docs/evidence/P1.12_V1.2_FAILURE_SENSITIVITY.tsv.
+
+  before_any_p1_11_inference:
+    - Verify the frozen PlaScope image, executable, database hash and expected command.
+    - Run a truth-blind PlaScope smoke test on an ALREADY CONSUMED sample, never a P1.11 isolate.
+    - Require valid output, exact contig-ID reconciliation and parser success.
+    - Verify the same for the remaining 11 tools as a panel-health preflight.
+    - Freeze the resulting preflight receipt BEFORE P1.11 processing begins.
+  preflight_blocks_processing: >
+    A critical failure in the preflight exits non-zero and blocks P1.11 processing. The acceptance
+    criteria were authored and hashed before any P1.11 inference, so they cannot be chosen after
+    observing how the tools behave.
+  frozen_identities_checked:
+    images: >
+      13 as-executed image IDs from the P1.10 stage-1 gate. Verified directly, which is stronger
+      than hashing Dockerfiles.
+    environment: >
+      19 files against P1.10_ASEXECUTED_ENV_MANIFEST.json, the AS-EXECUTED baseline. The P1.9C4
+      ENV_MANIFEST_prestart.sha256 is a PRESTART snapshot and is NOT used: it predates the
+      revisions that produced parser 1.7 and matches neither env tree on disk.
+    derived_runner: >
+      the P1.11 runner and parser, derived from P1.10 by path and container-prefix substitution
+      only, hashed against P1.11_DERIVED_RUNNER_RECEIPT.json with all 13 scientific CMD strings
+      proven byte-identical (path-normalised hash 44f8d17d0b406fccae57423c5111cf55).
+    parser_version: p19c4-parsers/1.7
+    plascope_command: >
+      centrifuge -f --threads $THREADS -x /db/plascope/chromosome_plasmid_db -U $FAN -k 1000
+      --report-file /out/${S}_summary.tsv -S /out/${S}_extendedresults.tsv
+    external_databases: >
+      the 6 tools that mount an external database require one; their 9 retained source archives are
+      verified against the P1.9C4 DB_RECEIPTS sha256, which is direct evidence of prior identity.
+    embedded_databases: >
+      the 7 tools whose database is built into the frozen image mount no external database and are
+      NOT required to have one. They are verified by image ID plus the retained initialisation or
+      install receipt.
+    functional_replay: >
+      PlaScope re-run on a retained P1.10 input; summary byte-identical, per-read output compared
+      as a sorted record set because centrifuge emits records in thread-completion order.
+    end_to_end: >
+      13/13 tools on a consumed sample and 3636/3636 parsed calls reproducing P1.10 exactly.
+
+  during_p1_11:
+    - Record every tool state for every sample.
+    - At most 2 retries of a TECHNICAL execution failure, using the identical frozen image,
+      database, command and parameters.
+    - Do not patch, replace or retune any tool after P1.11 processing begins.
+    - Persistent PlaScope failure is a prespecified CRITICAL-PANEL FAILURE.
+    - Preserve affected samples and their outputs. Never silently discard or relabel them.
+    - Report critical-panel coverage, failure counts and affected contigs INDEPENDENTLY of truth.
+    - "PlasmidFinder/FAILED continues to be permitted; that state was observed during training
+       and carries a defined learned encoding."
+    - Preserve explicit FAILED/MISSING states for all other tools.
+
+  minimum_coverage:
+    rule: critical-tool availability for at least 95% of the 79 prespecified isolates
+    minimum_isolates: 76
+    availability_definition: >
+      a tool is AVAILABLE for an isolate when it produced a usable call on at least one contig of
+      that isolate. An explicit tool-state table, when supplied, takes precedence over inference
+      from the contig table.
+    if_not_met: OPERATIONALLY INCONCLUSIVE
+    inconclusive_semantics: >
+      Neither PASS nor FAIL. The frozen operating point was never fairly tested, so no verdict on
+      the model is available. This outcome is reached even when the observed PPV and recall would
+      otherwise have met their floors - the gate is evaluated first and is not overridden by a
+      favourable result.
+    if_met_with_some_failures: >
+      Report the PRIMARY complete-critical-panel result, plus a SEPARATE failure-inclusive
+      sensitivity analysis over all isolates. The sensitivity analysis is non-gating and never
+      replaces the primary.
+
+  verified_gate_behaviour:
+    - {coverage: "79/79 = 100.0%", gate: MET, primary: scored, sensitivity: not_applicable}
+    - {coverage: "76/79 = 96.2%", gate: MET, primary: scored, sensitivity: reported}
+    - {coverage: "71/79 = 89.9%", gate: NOT MET,
+       primary: OPERATIONALLY INCONCLUSIVE,
+       note: "reached even though PPV and recall both met their floors"}
+
+# ---------------------------------------------------------------------------- analyses
+
+analysis_A_primary_confirmatory:
+  gating: true
+  model: PlasmidCall v1.2-General
+  population: >
+    CP2 - all truth-resolved contigs >= 1 kb, restricted to complete-critical-panel isolates
+  threshold: 0.9285
+  threshold_fixed: true
+  pass_rule: "PPV >= 0.95 AND recall > 0.50"
+  gate_precondition: >
+    The critical-tool completeness gate is evaluated FIRST. If it is not met the verdict is
+    OPERATIONALLY INCONCLUSIVE regardless of the observed metrics.
+  verdict_wording_if_met: >
+    PASS. PlasmidCall v1.2-General met its predeclared primary endpoint on an independent,
+    ANI-screened, temporally separated cohort of 79 isolates: PPV >= 0.95 and recall > 0.50 on all
+    truth-resolved contigs >= 1 kb at the frozen threshold 0.9285. The model is designated
+    VALIDATED BETA for the general (non-core-ARG) domain.
+  verdict_wording_if_not_met: >
+    FAIL. PlasmidCall v1.2-General did not meet its predeclared primary endpoint. The observed PPV
+    and recall are reported as measured. The model remains a DEVELOPMENT CANDIDATE and must not be
+    described as validated. No threshold may be re-selected to recover a PASS; the frozen operating
+    point is the claim that was tested.
+  partial_outcome_rule: >
+    Both conditions must hold. Meeting one and missing the other is a FAIL, reported with both
+    numbers and with which condition failed named explicitly.
+  verdict_wording_if_gate_not_met: >
+    OPERATIONALLY INCONCLUSIVE. Critical-tool coverage fell below 95% of the 79 prespecified
+    isolates, so the frozen operating point was not fairly tested. This is neither a PASS nor a
+    FAIL: no verdict on PlasmidCall v1.2-General is available from this run. The observed metrics,
+    the critical-panel coverage, the failure counts and the affected contigs are all reported. The
+    model remains a DEVELOPMENT CANDIDATE. No threshold may be re-selected, and the run may not be
+    rescored by relaxing the gate.
+
+analysis_A2_failure_inclusive_sensitivity:
+  gating: false
+  trigger: reported whenever any critical-tool failure occurred
+  population: CP2 including critical-tool-failed isolates
+  purpose: >
+    Shows what the frozen operating point would have produced had the incomplete-panel isolates
+    been scored. Non-gating, and never a substitute for the primary: those isolates were scored on
+    a panel the operating point was not characterised for.
+
+analysis_B_key_secondary:
+  gating: false
+  model: PlasmidCall v1.1
+  population: CP1 - truth-resolved core-ARG-bearing contigs >= 1 kb
+  thresholds: [0.9524, 0.9605]
+  reporting: as observed, whatever the result
+  power_caveat: >
+    CP1 is structurally unpowerable at this cohort size. The recall margin at the v1.1 operating
+    point is +0.0048, giving P(PASS) 0.403 at N=39 and only 0.565 at N=400. A CP1 result here is
+    descriptive. It does not confirm or refute v1.1 and does not gate anything.
+
+analysis_C_routed_deployment:
+  gating: false
+  system: the two-domain router with explicit abstention
+  routing_rule: >
+    core_arg_present -> v1.1; core_arg_absent -> v1.2-General;
+    annotation_failed or annotation_missing -> routing_abstain
+  strata: [overall, CP1_arg_bearing, CP2_non_arg, length_1-10kb, length_10-50kb, "length_>=50kb",
+           circular, linear, gfa_isolated_deg0, "gfa_connected_deg>0", routing_abstain]
+  metrics: [n, n_plasmid, TP, FP, TN, FN, PPV, recall, specificity, n_routed_v1.1, n_routed_v1.2,
+            n_routing_abstain]
+  abstain_handling: >
+    Abstained contigs are EXCLUDED from every routed stratum and reported as a separate count. No
+    PPV or recall is emitted for them: they carry no routed class, so those metrics are undefined by
+    construction and must never be imputed. Router coverage reports the abstain fraction explicitly.
+  cp1_membership: >
+    CP1 membership requires a SUCCESSFUL annotation. A contig whose annotation failed cannot be
+    assigned to CP1 and is excluded from analysis B, with the excluded count reported.
+  score_pooling: FORBIDDEN
+
+# ---------------------------------------------------------------------------- discipline
+
+locked_conditions:
+  no_refitting: true
+  no_recalibration: true
+  no_threshold_search: true
+  no_additional_comparators: >
+    Comparators are locked to those named here and are evaluated without refitting.
+  no_post_hoc_population: >
+    CP1 and CP2 are defined by the existing frozen rules. No new population may be defined after
+    outcomes are seen.
+  deviation_policy: >
+    Any deviation from the locked evaluator invalidates the confirmatory claim. If a defect in the
+    evaluator is discovered after P1.11 outcomes are known, the corrected result is reported AS A
+    DEVIATION alongside the original; the original stands in the record.
+
+hash_receipt_before_join:
+  requirement: >
+    The SHA-256 of the locked evaluator and of the frozen estimator must be recorded BEFORE P1.11
+    truth is joined to P1.11 predictions, and re-verified at reporting time.
+  evaluator_sha256: a3fd13242349af8b851a58507ecb3f5a1e0ba2fa5e05d8c668c44446303c596d
+  preflight_sha256: edba943f6ad34dc2acac3091b18745c827299182eae500077281ba739840c535
+  estimator_sha256: f5d1cd1202b5077030a4512fb0c801abbdf39998b7c170acade03c268d68d74d
+
+# ---------------------------------------------------------------------------- projections
+
+projected_power:
+  status: PLANNING ESTIMATE ONLY - not evidence about v1.2 performance
+  artifact: docs/evidence/P1.12_V1.2_PROJECTED_POWER.json
+  basis: cluster bootstrap over the 39 P1.10 isolates, leave-one-isolate-out calls, N = 79
+  binding_constraint: PPV, with a complete 12-tool panel
+  binding_constraint_note: >
+    With a complete panel, recall clears its 0.50 bar by roughly 0.28 while PPV clears its 0.95
+    floor by roughly 0.02, so P(PASS) is governed almost entirely by the false-positive rate. A
+    sensitivity grid over the false-positive-rate multiplier is recorded rather than a single
+    headline number. Tool failure INVERTS this: there recall collapses and becomes binding.
+  tool_failure_method: >
+    The frozen model is fed the tool as unavailable through apply_neutrality. An earlier version
+    zeroed the one-hot block, which is NOT neutral after StandardScaler, and reported
+    single_tool_failure P(PASS) 0.977. That figure was wrong and is superseded by the values below.
+  scenarios:
+    expected: {P_PASS: 0.969, PPV_median: 0.9707, recall_median: 0.7769}
+    modest_degradation: {P_PASS: 0.781, PPV_median: 0.9598, recall_median: 0.6988}
+    conservative_degradation: {P_PASS: 0.171, PPV_median: 0.9377, recall_median: 0.6212}
+    sample_loss_15pct: {P_PASS: 0.775, PPV_median: 0.9599, recall_median: 0.6993}
+    single_tool_failure_worst: {P_PASS: 0.000, PPV_median: 0.9625, recall_median: 0.2020,
+                                tool: PlaScope}
+    single_tool_failure_median: {P_PASS: 0.941, PPV_median: 0.9682, recall_median: 0.6679,
+                                 tool: geNomad}
+    median_tool_failure_plus_modest: {P_PASS: 0.672, PPV_median: 0.9556, recall_median: 0.6008}
+  panel_completeness_precondition: >
+    Loss of the single most influential tool drives P(PASS) to 0.000: recall falls to 0.2020, far
+    below the 0.50 floor. Panel completeness must therefore be verified BEFORE a P1.11 run is
+    considered evaluable. A run with an incomplete panel is not a fair test of the frozen operating
+    point and must be reported as such rather than scored as a FAIL.
+  scenario_units:
+    recall_multiplier: fraction of true positives retained
+    fp_rate_multiplier: multiplier on the observed false-positive rate among true negatives (0.00471)
+  caveat: >
+    These project the frozen decision rule onto a cohort resembling P1.10. P1.11 is a different,
+    later, ANI-independent cohort and its sampling distribution is unknown. No number here is
+    evidence about v1.2 performance.

@@ -1,0 +1,109 @@
+# =============================================================================================
+# P1.13 AMENDMENT 003 - exact read-pair validation
+# Validation strengthening ONLY. Frozen before any production downsampling or assembly.
+# =============================================================================================
+amendment_id: P1.13_AMENDMENT_003
+design_id: P1.13-PROSPECTIVE-PUBLIC-MULTIGENUS-EXTERNAL-VALIDATION
+dated: 2026-08-22
+supersedes: nothing. Amendments 001 and 002 and the original design remain in force.
+
+why_count_equality_was_insufficient: >-
+  The previous guard compared only the number of records in R1 and R2. Equal counts do not prove
+  that the same read pairs were retained, nor that they were retained in the same order. Two files
+  can hold identical record counts while carrying different reads, or the same reads permuted. An
+  assembler fed such a pair would silently produce a corrupted assembly, and nothing downstream
+  would reveal it. The guard is replaced by position-by-position identity comparison.
+
+state_at_the_pause:
+  production_downsampling_performed: NONE
+  production_assembly_performed: NONE
+  evidence: >-
+    0 down markers, 0 downsample receipts, 0 downsampled directories, 0 assembly markers,
+    0 assemblies on disk, 0 panel receipts. The runner was still in phase 1 with 27 of 150
+    isolates acquired and md5-verified.
+  consequence: >-
+    nothing needed quarantine, revalidation or rebuilding. No assembly was produced from an
+    unvalidated pair.
+
+normalization_rule:
+  removes_only:
+    - a trailing slash-1 or slash-2 mate suffix
+    - the Illumina whitespace mate field
+  everything_else: preserved exactly
+  worked_example: >-
+    the header "@A00:1:FC:1:1101:1234:1 1:N:0:ATCG" normalises to "A00:1:FC:1:1101:1234:1"
+
+checks_before_downsampling:
+  - equal record counts in R1 and R2
+  - identical normalized identifier at every record position
+  - no duplicate normalized identifiers
+  - valid FASTQ structure, failing closed on truncation, a missing plus line, or a
+    sequence and quality length mismatch
+  - achieved coverage recomputed from retained sequence bases, never from file size
+
+checks_after_downsampling:
+  - equal record counts in R1 and R2
+  - exact equality of the normalized identifier sequence, position by position
+  - no duplicate normalized identifiers
+  - valid FASTQ structure
+  - retained pair count equal to the declared deterministic outcome, verified on a second pass
+  - coverage recomputed from retained bases
+  streaming: >-
+    comparison and digest are streamed; no large intermediate file is produced. A count-only check
+    is prohibited and is not used anywhere in the production path.
+
+seqkit_pairing_demonstrated_not_assumed:
+  question: >-
+    the frozen algorithm runs seqkit sample separately on R1 and R2 with the same seed. Whether
+    that preserves pairing was demonstrated rather than assumed.
+  method: production-path fixture, 2000 synthetic Illumina-style pairs, frozen p19c2-normalize image
+  result_at_p_0_25: {retained_R1: 480, retained_R2: 480, id_stream_digests_identical: true}
+  result_at_p_0_50: {retained_R1: 978, retained_R2: 978, id_stream_digests_identical: true}
+  conclusion: >-
+    separate invocations at a fixed seed select identical record positions. The algorithm is
+    unchanged; it is now verified on every isolate rather than trusted.
+  note_on_an_earlier_misreport: >-
+    a first version of this fixture counted lines in a gzip file as raw bytes and reported
+    "retained about 2 records". That figure was an artefact of the count, not of the sampler. It
+    was corrected and the fixture re-run before any conclusion was drawn.
+
+fixtures:
+  file: P1.13_PAIRING_FIXTURES.json
+  passed: 15 of 15
+  exercise_the_production_functions: true
+  cases:
+    - correctly paired
+    - equal counts with one mismatched id
+    - same ids in different order
+    - missing mate
+    - duplicate id
+    - slash-1 and slash-2 suffix normalisation
+    - Illumina whitespace mate-field normalisation
+    - truncated FASTQ
+    - retained count below the declared target
+    - retained count equal to the declared target
+    - independently sampled mates retaining different records
+    - header without an at sign
+    - production raw pair valid
+    - seqkit separate invocations preserve pairing
+    - seqkit retention is proportional
+
+enforcement_in_the_production_path:
+  downsampler: env/p113_downsample.py, called by the runner for every isolate
+  failure_behaviour: >-
+    an isolate whose pair fails any check is marked failed and no assembly is attempted for it.
+    The assembly function refuses outright to assemble an isolate lacking a passed validation
+    marker.
+  receipt_per_isolate: >-
+    records raw and retained pair counts, both id-stream digests, the fraction, the seed, and
+    coverage recomputed from bases at both stages.
+
+unchanged_by_this_amendment:
+  - cohort membership and the 150 selected isolates
+  - run accessions
+  - the 100x target depth
+  - seed 20260821
+  - the sampling algorithm, seqkit sample with a proportion, in the frozen image
+  - the assembler and its parameters
+  - the 12-tool panel and AMRFinder workflow
+  - models, thresholds and the router

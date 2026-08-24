@@ -1,0 +1,394 @@
+# =============================================================================================
+# P1.11 PROSPECTIVE CORRECTION - cohort provenance and fail-closed evaluation
+# =============================================================================================
+amendment_id: P1.11_PROVENANCE_AND_FAILCLOSED_CORRECTION
+version: "1.0"
+status: SUPERSEDING - prospective correction, issued before any P1.11 outcome exists
+declared_on: 2026-08-22
+authorisation: >-
+  Owner, 2026-08-22: "Approve a single prospective P1.11 correction amendment covering provenance
+  and fail-closed evaluation defects B and C. Proceed without stopping, restarting, modifying, or
+  otherwise disturbing the running 12-tool panel."
+
+# ---------------------------------------------------------------------------- timing
+
+position_in_execution_timeline:
+  issued_after: panel inference began
+  issued_before:
+    - prediction freeze
+    - truth acquisition
+    - truth mapping
+    - truth joining
+    - outcome scoring
+  verified_at_issue:
+    PREDICTIONS_FROZEN_json: ABSENT
+    p112_truth_hold: ABSENT
+    p112_assembly_report_files: 0
+    p112_gbff_files: 0
+    p112_paf_or_mapping_files: 0
+    p112_contig_level_truth_tables: 0
+    p111_cohort_isolates_with_any_truth_artefact: 0 of 79
+  statement: >-
+    This correction was issued while the 12-tool panel was still executing and before any P1.11
+    truth existed in any form. No P1.11 outcome, metric, PPV or recall value had been generated or
+    inspected by anyone at the time these decisions were locked.
+
+raw_panel_inference_is_unaffected: >-
+  Nothing in this amendment touches the panel. No tool was stopped, restarted, re-run or
+  reconfigured; no tool output was read, rewritten or deleted; no image, database, command,
+  parameter, CPU limit, memory limit or retry rule was altered. The correction operates strictly
+  downstream of tool execution, on cohort provenance and on the evaluation code path.
+
+# ---------------------------------------------------------------------------- why fail-closed
+
+estimand_note:
+  # SUPERSEDED 2026-08-22 by docs/plans/P1.11_SELECTIVE_CLASSIFICATION_ADDENDUM.yaml.
+  # An earlier draft of this block analysed the exclusion of abstained rows as a directional
+  # "effect" on PPV and recall that required defending. That framing is withdrawn. PlasmidCall is
+  # evaluated as a SELECTIVE CLASSIFIER, and selective_PPV / selective_recall over score-evaluable
+  # rows are the DECLARED ESTIMAND - not an adjustment to some other quantity. Rows carrying no
+  # classification are outside the denominators by construction.
+  framework: selective classification
+  declared_estimand: >-
+    selective_PPV = TP/(TP+FP) and selective_recall = TP/(TP+FN), with TP/FP/TN/FN defined only
+    among score-evaluable, truth-eligible contigs.
+  governed_by: docs/plans/P1.11_SELECTIVE_CLASSIFICATION_ADDENDUM.yaml
+  paired_safeguard: >-
+    because a selective classifier could otherwise meet a target by declining to predict, coverage
+    and abstention are co-reported with every metric and are subject to a separately frozen
+    coverage gate. That gate - not a claim about directionality - is what prevents abstention from
+    purchasing precision.
+  decision_D_note: >-
+    the allowlist form of ann_ok is deliberately stricter than the previous blocklist: an
+    unrecognised annotation state now abstains or errors rather than being read as success.
+
+why_this_correction_could_not_be_tuned_to_a_result: >-
+  The safeguard is timing and disclosure, not impossibility. P1.11 truth has not been acquired, constructed, or accessed by the evaluation workflow. It has not been
+  acquired, mapped, joined or scored by that workflow. This is a statement about what the P1.11
+  prediction workflow consumed, not a claim that no reference-related file can exist anywhere on
+  the host. No P1.11 PPV or recall value exists, none has been computed,
+  and none was inspected by anyone before these decisions were fixed and hashed. There was
+  therefore no observed outcome to tune toward, and the direction any correction happens to push a
+  future metric could not have been known when it was chosen. Every effect above is reported with
+  its own denominator so a reader can subtract it. The PASS rule, thresholds, endpoints,
+  populations and bootstrap seed are untouched.
+
+# ---------------------------------------------------------------------------- the defects
+
+defects:
+  - id: B1
+    title: truth acquisition read a cohort file that is not the predeclared sealed cohort
+    discovered_how: >-
+      An adversarial documentation-verification agent, re-deriving threshold provenance, noticed
+      that the cohort named in the truth-source amendment (P1.11_cohort_independent.tsv, 23
+      columns) is not the file the P1.11 predeclaration seals (P1.11_cohort_sealed.tsv, 25
+      columns, sha256 0d0e547c...) and whose hash the pre-join receipt re-verifies as INTACT.
+    affected_files:
+      - /data/trace-arg/p112/env/run/acquire_truth.py (interim derivation, COH pointed at the
+        non-predeclared file)
+      - docs/plans/P1.11_TRUTH_SOURCE_AMENDMENT.yaml (recorded that file as "sealed_cohort")
+    measured: >-
+      The two files agree on every field any consumer reads - same 79 BioSamples in identical row
+      order, 0 assembly-accession mismatches, 0 RefSeq-path mismatches, 0 GenBank-path mismatches,
+      identical 64/15 source split, and 0 mismatches across all 15 shared columns. The defect is
+      PROVENANCE, not content - see docs/evidence/P1.11_COHORT_PROVENANCE_DISCREPANCY.json.
+    why_it_matters: >-
+      The hash the pre-join receipt certifies would have belonged to a file truth acquisition never
+      opened. Matching values today do not make a non-predeclared file canonical, and a future
+      divergence would have gone undetected.
+
+  - id: C1
+    title: an unavailable model score was silently converted into a negative prediction
+    discovered_how: >-
+      A code-reading verification agent traced numeric() -> np.nan -> `v11 >= V11_THRESHOLD` and
+      demonstrated by execution that NaN compares False. Confirmed independently:
+      input [nan, 0.9524, 0.9605, 0.90] yielded calls [0, 1, 1, 0].
+    affected_files:
+      - scripts/p1_12/evaluate_p111_locked.py (numeric(), c11, c11h, analysis B, analysis C)
+    why_it_matters: >-
+      A missing score and a genuinely low score became indistinguishable. Both counted as
+      not-selected and entered the confusion matrix as negatives, which silently inflates the
+      denominator for recall and contradicts the programme rule that unavailable evidence is never
+      converted into a negative call.
+
+  - id: D1
+    title: annotation_state defaulted to "ok", disabling routing abstention entirely
+    discovered_how: >-
+      The same agent found `r.get("annotation_state", "ok")` and observed that the column is absent
+      from the upstream contig table, so every contig would read as successfully annotated and
+      n_routing_abstain would always be 0, with no warning.
+    affected_files:
+      - scripts/p1_12/evaluate_p111_locked.py (ann_ok, analysis B, analysis C, per-contig output)
+    why_it_matters: >-
+      It infers "no core ARG" from unavailable annotation. That is precisely the inference the
+      router correction of 2026-08-20 was created to forbid, reintroduced through a default value.
+
+  - id: B2
+    title: the pre-join receipt pins the SUPERSEDED preflight
+    discovered_how: audit of the predeclaration's hash_receipt block against locked_preflight
+    affected_files:
+      - docs/plans/P1.11_PROSPECTIVE_EVALUATION_AMENDMENT.yaml (hash_receipt block,
+        preflight_sha256 = edba943f..., the retired implementation)
+      - docs/evidence/P1.12_PRE_JOIN_HASH_RECEIPT.md (same stale pin)
+      - scripts/p1_12/router_fixtures.py (imported the superseded module)
+    why_it_matters: >-
+      The gate that must be satisfied before truth is joined would certify a file the programme
+      had already retired for three execution-verification defects.
+
+  - id: B3
+    title: pinned hashes are non-reproducible CRLF working-copy values
+    discovered_how: >-
+      While re-deriving the evaluator, its on-disk hash (a3fd1324...) did not match the value git
+      stores. Investigation showed the file is CRLF in the worktree while .gitattributes declares
+      *.py text eol=lf, so the committed content hashes 8ca7b0d6...
+    measured: 9 of 19 pinned dependencies carry a CRLF working-copy hash
+    affected_files:
+      - scripts/p1_12/evaluate_p111_locked.py, panel_preflight_p111_v2.py, freeze_v12.py,
+        evidence_v12.py, emit_dictionary.py, router_fixtures.py
+      - models/plasmidcall_v1.2-general/P1.12_V1.2_{ENCODING_SPEC,MODEL_PORTABLE,TRAINING_RECEIPT}.json
+    why_it_matters: >-
+      This is exactly the failure docs/HASH_AND_LINE_ENDING_POLICY.md was written to prevent: a
+      hash mismatch that means "the checkout rules differ" rather than "the bytes changed". The
+      pre-join gate would fail on 9 entries from a fresh checkout. NO FILE CONTENT DIFFERS -
+      git diff is empty. It is a recording defect, not corruption.
+
+# ---------------------------------------------------------------------------- decisions
+
+decision_A_canonical_cohort:
+  ruling: >-
+    P1.11_cohort_sealed.tsv, sha256 0d0e547cd6f6546ac6f72e516885a74cf51dd3738be83b0a45f58cfbe999151f,
+    remains the SOLE canonical cohort. P1.11_cohort_independent.tsv is NOT adopted as a
+    replacement, and the fact that its values currently match is explicitly not a reason to adopt
+    it.
+  transfer:
+    procedure: scp over the project's existing key-based channel, hash-verified after arrival
+    host_path: /data/trace-arg/p111/manifests/P1.11_cohort_sealed.tsv
+    sha256_after_transfer: 0d0e547cd6f6546ac6f72e516885a74cf51dd3738be83b0a45f58cfbe999151f
+    matches_predeclared: true
+    bytes: 53696
+    data_rows: 79
+    columns: 25
+    set_read_only: true
+    existing_files_overwritten: none
+  script:
+    original_preserved: /data/trace-arg/p112/env/run/acquire_truth.v1-interim.superseded.py
+    original_sha256: 181e69b3d1d9fe08d4cf05ec6643c2679b7d6f6afe91d3d411d4002939b07b68
+    corrected: /data/trace-arg/p112/env/run/acquire_truth_v2.py
+    corrected_sha256: d67b0959a4c2e31fa17e96361e826987797877441f90622981dc271c2d97f166
+    corrected_sha256_at_first_derivation: 6df0b4043909ee0377b084e8973aecad7a32d0129627470c7978cefc434572eb
+    post_verification_fixes: >-
+      the stale P1.10 docstring (which still said 39 isolates and RefSeq-only, contradicting the
+      code) was rewritten, and the bare `assert len(rows) == 79` was replaced with an explicit
+      if/sys.exit(9) because a bare assert is a no-op under python3 -O and this is a scientific
+      gate, not a developer assertion
+    derived_from: /data/trace-arg/p110/env/run/acquire_truth.py (frozen P1.10 original)
+    derivation: mechanical, anchor-checked, refuses to write unless every anchor matches exactly once
+    changed_lines: 44
+    residual_p110_references: 0
+    added_guard: >-
+      the script now hashes its cohort file and REFUSES to run unless it equals the predeclared
+      canonical value, so this class of substitution becomes impossible rather than merely
+      discouraged
+    columns_read_from_cohort: [biosample, assembly_accession, ftppath_refseq, ftppath_genbank]
+    all_read_columns_present_in_sealed_file: true
+  wiring:
+    # Found by adversarial verification: the corrected script had been created but never wired in,
+    # which made Decision A inert. Running the chain would have executed exactly the defective path.
+    defect_found: >-
+      chain_freeze_to_truth.sh invoked acquire_truth.py (byte-identical to the superseded interim,
+      reading the NON-PREDECLARED cohort with no identity guard); nothing anywhere invoked
+      acquire_truth_v2.py. The chain also carried two further un-substituted P1.10 remnants: it
+      read receipts/P1.10_truth_acquisition_receipt.json, which v2 never writes, and its gate
+      required verified == "39" against a 79-isolate cohort.
+    corrected_by: /data/trace-arg/p112/env/run/chain_freeze_to_truth_v2.sh
+    original_preserved: /data/trace-arg/p112/env/run/chain_freeze_to_truth.sh
+    original_sha256: e7b69827d3a3778f6a471ab655459549c0a2fbf31c98d2af599e8fe88c67ae48
+    corrected_sha256: e8dc114259e57259ee4d8ce473e95d3ed0ed74f71a7dad9025a91f60358870f1
+    substantive_changes: 3
+    unchanged_in_the_chain: [freeze gate, truth_hold 0700 lockdown, mapping step, all thresholds]
+    runnable_trap_removed: >-
+      /data/trace-arg/p112/env/run/acquire_truth.py was removed AFTER cmp confirmed it byte-identical
+      to acquire_truth.v1-interim.superseded.py (both 181e69b3...). The bytes are preserved; only
+      the runnable canonical name is gone, so no caller or habit can reach the defective cohort.
+  dry_run:
+    performed: true
+    downloads: 0
+    truth_artefacts_created: 0
+    cohort_identity_guard: PASS
+    cohort_assertion_79: PASS
+    refseq_preferred: 64
+    genbank_fallback: 15
+    unresolvable_or_malformed: 0
+    genbank_isolates_assembly_level: all 15 Complete Genome
+
+decision_B_preflight_receipt:
+  canonical_preflight: scripts/p1_12/panel_preflight_p111_v2.py
+  canonical_preflight_sha256_canonical_lf: 9958af1f3c78c8104cdbd3a17d05aa6f97e50955a7a167dd06ec348927e7c977
+  canonical_preflight_sha256_worktree: fe8a075c8745ce605e3f61189807ac753a9babde8c6d05397b19cb803bbe069f
+  superseded_preflight: scripts/p1_12/panel_preflight.py
+  superseded_preflight_sha256: edba943f6ad34dc2acac3091b18745c827299182eae500077281ba739840c535
+  originals_modified: false
+  superseding_receipt: docs/evidence/P1.11_PRE_JOIN_HASH_RECEIPT_v2.json
+  gate: scripts/p1_12/prejoin_verify_v2.py
+  gate_behaviour: >-
+    verifies every locked dependency against its CANONICAL LF hash, confirms the superseded
+    preflight is preserved byte-intact, confirms no live import of it remains, and exits non-zero -
+    REFUSING authorisation to join or score - on any difference
+  stale_import_fixed:
+    file: scripts/p1_12/router_fixtures.py
+    disposition: PRESERVED UNCHANGED; superseded by scripts/p1_12/router_fixtures_v2.py
+  hash_domain_policy: >-
+    every entry records sha256_worktree and sha256_canonical_lf; the canonical LF value is the one
+    verified, because it is the value that reproduces from any checkout
+
+decision_C_missing_model_scores:
+  rule: >-
+    A missing, absent, empty, non-numeric, infinite or NaN model score is NEVER converted to a
+    negative prediction.
+  implementation: scripts/p1_12/evaluate_p111_locked_v2.py
+  mechanism:
+    - score_available() validates the raw cell BEFORE any comparison is made
+    - classify_with_abstain() emits -1 for unavailable rows instead of thresholding NaN
+    - unavailable rows are labelled model_abstain and excluded from that model's TP/FP/TN/FN
+    - a valid BELOW-threshold score remains a genuine negative and stays in the matrix
+    - counts and denominators are reported separately in B_key_secondary.denominators and in
+      score_availability
+    - rows are retained in the failure-inclusive sensitivity view and never silently dropped
+    - per-contig output records v11_score_state and v12_score_state
+  audited_for_both_models: true
+  denominator_handling_defined_before_truth_access: >-
+    analysis B reports n_CP1_after_annotation_filter, n_scored and n_model_abstain_v1_1. Metrics
+    use n_scored. This is fixed here, before any truth exists.
+
+decision_D_annotation_state_and_router:
+  rule: >-
+    The evaluator must not use r.get("annotation_state", "ok") or any equivalent permissive
+    default.
+  implementation: scripts/p1_12/evaluate_p111_locked_v2.py
+  mechanism:
+    - annotation_state is REQUIRED in the input schema; a missing COLUMN is a hard error naming the
+      column and the required upstream fix
+    - an EMPTY value is a hard error; empty means unrecorded, not ok
+    - the vocabulary is validated; an unrecognised value is a hard error and is never coerced to ok
+    - per-row failed / missing / unavailable annotation routes to routing_abstain
+    - a contig is never inferred to be free of core ARGs on the basis of unavailable annotation
+    - unavailable annotation is never routed to v1.1 or v1.2
+    - routing-abstention counts are reported explicitly and are observable in the per-contig output
+  vocabulary:
+    ok_states: [ok, annotated, success, succeeded]
+    unavailable_states: [annotation_failed, annotation_missing, failed, missing, unavailable, error]
+
+  # ------------------------------------------------------------------ REQUIRED UPSTREAM CORRECTION
+  upstream_status: BLOCKING_UNTIL_IMPLEMENTED
+  upstream_finding: >-
+    The upstream contig table CANNOT currently represent annotation failure. Inspected the actual
+    P1.10 contig table (the structural precedent, 56 columns, 10,332 rows): it has no
+    annotation_state column, and ARG_bearing / ARG_bearing_bool are strictly boolean with exactly
+    two distinct values and zero empty cells. There is no third state. parse_all.py, which produces
+    the P1.11 call table, contains zero references to ARG annotation. The P1.11 contig-table
+    builder does not exist yet on the execution host.
+  required_upstream_correction: >-
+    Before predictions are frozen, the P1.11 contig-table builder MUST emit a per-contig
+    annotation_state column drawn from the amrfinder per-sample run state, which the panel already
+    records at inference/state/amrfinder__<sample>.done|.failed. A sample whose amrfinder run
+    failed must yield annotation_failed for every contig of that sample; a sample with no amrfinder
+    marker at all must yield annotation_missing. ARG_bearing_bool must not be emitted as False for
+    such a sample.
+  why_this_is_not_a_retrofit: >-
+    The P1.11 contig table has not been built. Specifying the column now is prospective, not a
+    change to existing data.
+  consequence_if_not_implemented: >-
+    evaluate_p111_locked_v2.py will refuse to run, by design. That is the intended fail-closed
+    behaviour: an evaluation that cannot distinguish "annotated, no core ARG" from "annotation
+    unavailable" must not silently produce a verdict.
+
+known_latent_issue_not_corrected_here:
+  file: scripts/p1_12/plasmidcall_router.py
+  issue: >-
+    classify_v11 and classify_v12 guard only `score is None`, then compare with a bare >=. A NaN
+    reaching either would return not_selected - the same defect class as C1.
+  why_not_corrected: >-
+    the router is a hash-pinned frozen artefact, and the path is UNREACHABLE from the corrected
+    evaluator: evaluate_p111_locked_v2.py calls RT.classify_v11 / RT.classify_v12 only inside an
+    `if v11_avail[i]` / `if v12_avail[i]` guard, so an unavailable score never reaches them. It is
+    recorded here rather than silently fixed, because changing a pinned artefact to close an
+    unreachable path would cost real provenance for no behavioural gain.
+  reachable_from_v2_evaluator: false
+
+decision_E_fixtures:
+  new_suites:
+    - file: scripts/p1_12/p111_failclosed_fixtures.py
+      exercises: the production functions of evaluate_p111_locked_v2.py and its real main() via
+        subprocess over synthetic tables
+      n_fixtures: 41
+      result: 41 passed, 0 failed
+    - file: scripts/p1_12/router_fixtures_v2.py
+      supersedes: scripts/p1_12/router_fixtures.py (PRESERVED UNCHANGED)
+      n_fixtures: 65
+      result: 65 passed, 0 failed
+  predeclared_cases_all_covered:
+    1_valid_v11_below_threshold_is_a_real_not_selected: PASS
+    2_valid_v11_at_threshold_is_selected: PASS
+    3_nan_v11_is_model_abstain_not_negative: PASS
+    4_absent_v11_is_model_abstain: PASS
+    5_nan_v12_is_model_abstain: PASS
+    6_missing_annotation_state_column_is_a_hard_failure: PASS
+    7_per_row_failed_annotation_routes_to_routing_abstain: PASS
+    8_valid_no_core_arg_routes_to_v12: PASS
+    9_valid_core_arg_routes_to_v11: PASS
+    10_no_truth_column_or_truth_path_is_consumed: PASS
+  no_duplicated_test_only_logic: >-
+    the suites import and call the production module; a regression in production behaviour fails
+    them
+  naming_space_note: >-
+    the canonical v2 preflight works in RUNNER-KEY space ("plascope", "mobsuite") while the
+    encoding and evaluator work in PANEL DISPLAY-NAME space ("PlaScope", "MOB-recon"). The
+    superseding fixture states the mapping explicitly rather than inferring it by string transform,
+    because MOB-recon is invoked as mobsuite and no transform relates them.
+
+# ---------------------------------------------------------------------------- locked
+
+scientific_quantities_that_remain_locked:
+  - the 79-isolate cohort membership, and every isolate identifier and accession
+  - all tool outputs, tool versions, images, databases, commands, parameters and retry rules
+  - model coefficients and model files
+  - feature definitions and the immutable 102-feature encoding
+  - thresholds 0.9285 (v1.2-General standard), 0.9524 (v1.1 standard), 0.9605 (v1.1 high
+    confidence)
+  - endpoints and PASS/FAIL criteria (PPV >= 0.95 AND recall > 0.50, CP2, threshold 0.9285)
+  - the co-primary population definitions CP1 and CP2
+  - "truth-mapping thresholds: identity 0.95, merged coverage 0.80, margin 0.10, min length 1000"
+  - replicon-role rules and topology source
+  - "the critical-tool gate: PlaScope on >= 76 of 79 isolates"
+  - the cluster-bootstrap seed 20260821 and N_BOOT 4000
+  - panel execution
+verified_locked_by: >-
+  scripts/p1_12/router_fixtures_v2.py (65 fixtures) and the constant-equality proof emitted during
+  the evaluator derivation, which confirmed V12_THRESHOLD, V11_THRESHOLD, V11_HIGH,
+  PRIMARY_PPV_FLOOR, PRIMARY_RECALL_FLOOR, N_BOOT, BOOT_SEED, CRITICAL_COVERAGE_MIN and
+  N_PRESPECIFIED_ISOLATES all IDENTICAL between the original and the corrected evaluator.
+
+preservation:
+  principle: corrections supersede; nothing historical is overwritten
+  worktree_files_modified_BEFORE_this_correction:
+    note: >-
+      disclosed for completeness. These four tracked files were already modified in the worktree
+      when this correction began and are unrelated to it; they carry the acquisition and assembly
+      fixes recorded in docs/evidence/P1.11_ACQUISITION_CORRECTION_RECORD.md. This correction did
+      not touch them.
+    files:
+      - scripts/p1_12/p111_acquire.sh
+      - scripts/p1_12/p111_acquire_sra.sh
+      - scripts/p1_12/p111_assemble.sh
+      - scripts/p1_12/p111_infer.sh
+  preserved_unaltered:
+    - scripts/p1_12/evaluate_p111_locked.py
+    - scripts/p1_12/panel_preflight.py
+    - scripts/p1_12/router_fixtures.py
+    - docs/plans/P1.11_PROSPECTIVE_EVALUATION_AMENDMENT.yaml
+    - docs/evidence/P1.12_PRE_JOIN_HASH_RECEIPT.md
+    - /data/trace-arg/p112/env/run/acquire_truth.v1-interim.superseded.py
+    - /data/trace-arg/p111/manifests/P1.11_cohort_independent.tsv
+    - /data/trace-arg/p112/env/run/chain_freeze_to_truth.sh
+    - scripts/p1_12/matched_ppv.py (Phase 3 erratum only; byte-unchanged)
+    - scripts/p1_12/plasmidcall_router.py

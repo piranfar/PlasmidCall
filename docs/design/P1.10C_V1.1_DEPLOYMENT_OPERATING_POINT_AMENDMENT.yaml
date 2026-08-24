@@ -1,0 +1,127 @@
+# P1.10C — PLASMIDCALL v1.1 DEPLOYMENT OPERATING-POINT AMENDMENT
+# Frozen 2026-08-20, BEFORE any subsequent cohort was examined.
+amendment_id: P1.10C_V1.1_DEPLOYMENT_OPERATING_POINT_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-20'
+model: 'PlasmidCall v1.1 (see docs/NAMING.md)'
+authorisation: >
+  Owner, 2026-08-20: "Revise the PlasmidCall v1.1 operating-point decision... Preserve the original
+  P1.10 preregistered verdict, but use the independent operating-characteristic results to establish
+  a more useful deployment contract... Designate the current implementation validated beta. Freeze
+  before any subsequent cohort is examined." Owner selected 0.9524 as the standard threshold in
+  preference to the initially proposed 0.9378, after the CP1 shortfall at 0.9378 was surfaced.
+
+# ---------------------------------------------------------------- 1. what this is, and is not
+nature_of_this_decision:
+  is: >
+    A POST-VALIDATION DEPLOYMENT DECISION. It sets the operating point at which PlasmidCall v1.1 is
+    to be run in practice, and freezes it so that the next independent cohort can confirm it
+    prospectively.
+  is_not: >
+    A revision of the P1.10 preregistered verdict. That verdict was produced at the preregistered
+    standard operating point 0.9605, under a contract fixed before execution and an evaluation script
+    hashed before predictions were joined to truth. It is recorded unchanged in
+    docs/evidence/P1.10_independent_validation_2026-08-20.md and is FINAL for PlasmidCall v1.0.
+  the_verdict_it_does_not_touch:
+    target: 'PPV >= 0.95 AND recall > 0.50 at 0.9605, applied to CP1 and CP2 separately'
+    CP1_M0:  {PPV: 0.9737, recall: 0.3524, verdict: NOT_MET}
+    CP1_M2:  {PPV: 0.9796, recall: 0.4571, verdict: NOT_MET}
+    CP2_M0:  {PPV: 0.9844, recall: 0.4042, verdict: NOT_MET}
+    CP2_M2:  {PPV: 0.9773, recall: 0.4824, verdict: NOT_MET}
+    statement: 'Precision was met throughout. Recall was met nowhere. The target was NOT MET.'
+
+# ---------------------------------------------------------------- 2. the decision
+decision:
+  standard_deployment_threshold: 0.9524
+  high_confidence_threshold: 0.9605
+  classes:
+    high_confidence_plasmid: 'M2_score >= 0.9605'
+    plasmid_selected:        '0.9524 <= M2_score < 0.9605'
+    not_selected:            'M2_score < 0.9524'
+  not_selected_semantics: 'no positive plasmid evidence; NEVER a chromosome call, never a negative'
+  continuous_score: 'M2_score is always retained and emitted; thresholds are a reporting layer over
+    it, never a replacement'
+  also_retained: 'M0 three-state call, all 12 individual tool outputs, tool disagreement counts,
+    explicit FAILED / MISSING states, and full provenance'
+  contract: 'docs/contracts/PLASMIDCALL_OUTPUT_CONTRACT_v1.1.yaml'
+  note_on_0_9605: >
+    The preregistered v1.0 standard threshold is not discarded. It is retained as the
+    high-confidence tier, so every call that would have been made under v1.0 is still identifiable
+    under v1.1.
+
+# ---------------------------------------------------------------- 3. justification
+justification:
+  provenance_of_the_value: >
+    0.9524 is one of the five development fold thresholds [0.9732, 0.9605, 0.9378, 0.9718, 0.9524],
+    each produced by the frozen rule "smallest threshold with inner-OOF PPV >= 0.95 and >= 10
+    positive calls" applied per outer fold on development data only. The VALUE is development-derived
+    and was not invented from the evaluation cohort.
+  criterion: >
+    Of the six development-derived operating points, 0.9524 is the ONLY one at which BOTH co-primary
+    populations simultaneously satisfy PPV >= 0.95 and recall > 0.50 on P1.10. This is the criterion
+    the co-primary amendment states, applied to both arms as that amendment requires.
+  observed_in_sample_on_P1_10:
+    at_0_9524:
+      CP1: {TP: 53,  FP: 2,  FN: 52,  PPV: 0.9636, recall: 0.5048, both_criteria: MET}
+      CP2: {TP: 331, FP: 10, FN: 295, PPV: 0.9707, recall: 0.5288, both_criteria: MET}
+    at_0_9605_preregistered:
+      CP1: {TP: 48,  FP: 1, FN: 57,  PPV: 0.9796, recall: 0.4571, both_criteria: NOT_MET}
+      CP2: {TP: 302, FP: 7, FN: 324, PPV: 0.9773, recall: 0.4824, both_criteria: NOT_MET}
+    gain: 'recall +4.8 points on CP1 and +4.6 on CP2, for 1.6 and 0.7 points of PPV respectively'
+  why_not_0_9378:
+    considered: true
+    rejected: true
+    reason: >
+      Higher recall (CP2 0.5911) but CP1 PPV falls to 0.9365, BELOW the 0.95 floor (TP 59, FP 4).
+      Describing it as satisfying "PPV >= 0.95 and recall > 0.50" would be true of CP2 alone and
+      false of CP1, and the co-primary amendment forbids demoting a population after observing it.
+      0.9378 is additionally the MINIMUM of the five fold thresholds, i.e. the most recall-favourable
+      choice available, which is where in-sample optimism is largest.
+
+# ---------------------------------------------------------------- 4. the limitation that governs all use
+epistemic_limitation:
+  headline: 'THIS OPERATING POINT IS NOT INDEPENDENTLY VALIDATED.'
+  detail: >
+    The choice among the six development-derived points was made AFTER the P1.10 results were seen.
+    That is operating-point selection informed by the evaluation cohort. The figures in section 3 are
+    IN-SAMPLE to P1.10 and carry optimistic bias of unknown magnitude. They describe what was
+    observed; they do not establish what will be observed.
+  what_may_be_claimed: >
+    "PlasmidCall v1.0 was independently validated on P1.10 and did not meet its recall target."
+    "PlasmidCall v1.1 deploys at a development-derived operating point selected with knowledge of
+    those results, and awaits prospective confirmation."
+  what_may_NOT_be_claimed: >
+    That PlasmidCall meets PPV >= 0.95 and recall > 0.50. The only preregistered test of that
+    statement returned NOT MET. The 0.9524 figures are not a second, passing test - they are the same
+    data read at a different point.
+  designation: 'VALIDATED BETA - the specification and the verdict are validated; the operating point
+    is not.'
+  mitigation_of_record: >
+    The point is frozen on 2026-08-20, before any subsequent cohort is examined or acquired. This is
+    what converts the next evaluation into confirmation rather than a second selection.
+
+# ---------------------------------------------------------------- 5. what happens next
+prospective_confirmation:
+  requirement: >
+    The next independent cohort tests the FIXED v1.1 operating point 0.9524 as a preregistered
+    hypothesis. No threshold may be re-selected on that cohort, whatever it returns.
+  independence: 'must satisfy the P1.10F standard: no BioSample overlap and no ANI >= 99.5 link to
+    the development collection, to P1.9, or to P1.10; deposition-date floor reapplied'
+  populations: 'both co-primary populations, reported separately, as in P1.10'
+  outcome_semantics:
+    confirmed: 'PPV >= 0.95 and recall > 0.50 at 0.9524 in both populations -> the operating point
+      graduates from validated beta'
+    not_confirmed: 'reported as such. A third selection round is NOT permitted. Failure to confirm
+      means the deployment claim is withdrawn, not retuned.'
+  consumed_cohort_lock: >
+    P1.10 now joins P1.9 as a CONSUMED cohort. It may never again serve as a fresh independent test
+    of PlasmidCall, and no future threshold, calibration or model selection may use it.
+
+# ---------------------------------------------------------------- 6. prohibitions, unchanged
+prohibitions:
+  - refitting, recalibration or hyperparameter change of any kind
+  - panel reduction or feature replacement
+  - re-selecting the operating point on any future cohort
+  - reinterpreting abstentions or not_selected as ordinary negatives
+  - citing the 0.9524 figures as independent validation
+  - reopening or restating the P1.10 verdict

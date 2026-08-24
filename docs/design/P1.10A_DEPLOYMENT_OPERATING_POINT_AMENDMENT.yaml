@@ -1,0 +1,123 @@
+# P1.10A — MODEL 1 DEPLOYMENT OPERATING-POINT AMENDMENT
+# Frozen and hashed BEFORE the P1.9 re-scoring is reported and BEFORE any P1.10 inference.
+# Establishes the development-derived deployment operating point for M2. No refitting,
+# no target-cohort optimisation, no change to the frozen model specification.
+amendment_id: P1.10A_DEPLOYMENT_OPERATING_POINT_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-19'
+authorisation: >
+  Owner, 2026-08-19: continue Model 1 from the completed P1.9C4 artifacts; establish the
+  development-derived deployment operating point; re-score the existing frozen P1.9 predictions
+  locally; preserve P1.9 as a deployment/operating-point CHARACTERISATION cohort; build a strictly
+  independent P1.10 cohort. Owner additionally approved seven audit-derived corrections (see
+  audit_derived_corrections below) before authorising execution.
+
+# ---------------------------------------------------------------- basis
+basis:
+  audit: 'Independent read-only audit of P1.9C2-P1.9C4, 2026-08-19. Material finding: the P1.9C4
+    verdict "recall target NOT MET" was produced at a single-fit threshold 0.9776 that is stricter
+    than every development fold threshold, and the verdict reverses at all five of them. The verdict
+    was therefore not robust to the threshold realisation.'
+  development_reproduction:
+    receipt: 'docs/evidence/P1.10B_dev_m2_reproduction_receipt.json'
+    sha256: 'a1476fd8031af4b77cc0bbad3aadf9ee01c89443948648a4fe7567dc0174624f'
+    result: 'EXACT. M2 TP=189 FP=13 TN=1167 FN=91 PPV=0.9356435643564357 recall=0.675 coverage=1.0;
+      M0 TP=104 FP=5 TN=1117 FN=0 unresolved=234. Estimator, hyperparameters, seed (20260816),
+      feature order, encoding, class orientation and threshold rule all verified identical.'
+    fold_thresholds_reproduced: [0.9732, 0.9605, 0.9378, 0.9718, 0.9524]
+    fold_threshold_median: 0.9605
+    environment: {python: 3.14.6, scikit-learn: 1.9.0, pandas: 3.0.3, numpy: 2.5.0}
+  development_dataset:
+    file: 'model1_development_bundle/predictions.xlsx'
+    sha256: 'db558a6775f473662369fb1c358f28530f85883ea3767beb807d031d2646e091'
+    rows_ARG_bearing: 1460
+    target_plasmid: 280
+    target_chromosome: 1180
+    isolate_grouping_units: 245
+
+# ---------------------------------------------------------------- the operating points
+deployment_operating_points:
+  standard_deployment_threshold: 0.9605
+  derivation: >
+    Median of the five pre-existing development-fold thresholds (0.9732, 0.9605, 0.9378, 0.9718,
+    0.9524), each produced by the frozen rule "smallest threshold with inner-OOF PPV >= 0.95 and
+    >= 10 positive calls" applied per outer fold on development data only. The median is computed
+    exclusively from development-derived quantities; no target-cohort data enters its derivation.
+  very_high_confidence_threshold: 0.9776
+  very_high_confidence_derivation: >
+    The single-fit threshold obtained by applying the same frozen rule once to the full 1,460-row
+    development set (as executed in P1.9C4). Retained as a stricter, higher-precision operating point.
+  continuous_score: 'M2_score MUST always be retained and emitted; the thresholds are reporting
+    layers over it, never a replacement for it.'
+
+output_classes:
+  - class: very_high_confidence_plasmid
+    rule: 'M2_score >= 0.9776'
+  - class: supported_plasmid
+    rule: '0.9605 <= M2_score < 0.9776'
+  - class: not_selected
+    rule: 'M2_score < 0.9605'
+    semantics: >
+      AUDIT-DERIVED CORRECTION 4. "not_selected" means NO POSITIVE PLASMID EVIDENCE at the deployment
+      threshold. It is NOT a positive chromosome call. This preserves the frozen contract stated at
+      08_p17_frozen.py lines 13-14: "the pipeline emits plasmid_high_confidence vs NOT-SELECTED.
+      'not selected' is NOT 'high-confidence chromosome'". Any downstream consumer that needs a
+      chromosome assertion must take it from M0 (three-state) or from truth, never from this class.
+
+prohibitions:
+  - target-cohort fitting of any kind
+  - threshold optimisation or selection on any evaluation cohort
+  - refitting, recalibration or hyperparameter change
+  - panel reduction, feature replacement or imputation
+  - reinterpreting abstentions as ordinary negatives
+
+# ---------------------------------------------------------------- status of the P1.9 re-scoring
+p1_9_rescoring_status:
+  role_of_p1_9: >
+    "A real-world deployment and operating-point CHARACTERISATION cohort with partial genomic
+    relatedness to the development collection." P1.9 demonstrated a successful end-to-end
+    deployment: 104 tool-sample runs, 0 failures, 0 missing cells, exact identifier reconciliation
+    and verified truth-blindness. It is not a failed experiment and no P1.9 artifact is invalidated.
+  epistemic_status_of_the_rescore: >
+    AUDIT-DERIVED CORRECTION 1 (owner-approved). The P1.9 re-scoring at 0.9605 is a POST-HOC,
+    FULLY DISCLOSED RE-ANALYSIS and an ERRATUM to a non-robust verdict. It is NOT confirmatory
+    evidence that the Model 1 target is met, because the decision to adopt the fold-threshold median
+    was taken after the per-threshold behaviour on P1.9 had been observed during the audit.
+    Mitigation of record: the verdict is identical at ALL FIVE development fold thresholds, so the
+    conclusion does not depend on which one is selected.
+  formal_target_verdict: 'DEFERRED TO P1.10. No PPV/recall target verdict is claimed from P1.9.'
+  consumed_cohort_lock:
+    prior_state: >
+      The P1.9C4 finalization recorded the eight P1.9 samples as a consumed external validation
+      cohort barred from threshold selection, calibration and model selection.
+    supersession: >
+      That lock is SUPERSEDED IN PART by this amendment, on the record and with reasons: the
+      re-scoring is permitted solely as a disclosed erratum/characterisation analysis. The lock
+      REMAINS in force for any confirmatory claim, any future threshold or model selection, and any
+      Model 1 v2 development. P1.9 can never again serve as a fresh independent test cohort.
+
+# ---------------------------------------------------------------- audit-derived corrections carried into execution
+audit_derived_corrections:
+  1: 'P1.9 rescore framed as erratum/characterisation, not target achievement; verdict deferred to P1.10.'
+  2: 'P1.9 described as deployment/operating-point CHARACTERISATION cohort (not "confirmation").'
+  3: 'P1.10 independence must additionally exclude isolates belonging to the TOOLS own training/development
+      corpora (e.g. MOB-suite/Robertson2018, plASgraph2 ESKAPEE training set, PLSDB-derived resources),
+      or, where undeterminable, record the limitation and run a leave-that-tool-out sensitivity analysis.
+      Rationale: all eight P1.9 samples are listed in P1.9_proposed_exclusions.csv as "MOB-suite
+      development corpus" yet MOB-recon voted as a full panel member, undisclosed.'
+  4: 'Sub-threshold class is "not_selected", never "non-plasmid"/chromosome (see output_classes).'
+  5: 'P1.10 core-ARG eligibility pinned exactly: AMRFinderPlus Element type=AMR AND Element subtype=AMR
+      AND scope=core AND class != EFFLUX — the operational alignment to the development RGI/CARD rule
+      (non-efflux, strict/perfect). Fixes the P1.9 primary set, where 30/98 qualifying rows were
+      scope=plus and 21/31 chromosome contigs qualified only via an efflux gene.'
+  6: 'The P1.10 cohort size is an OUTCOME of the frozen criteria, not a target. If fewer than 15
+      qualifying isolates are found, report a blocker rather than relaxing any criterion.'
+  7: 'The Phase-0 fitting waiver is recorded explicitly (docs/plans/P1.10_PHASE0_FIT_WAIVER.md)
+      rather than executed silently.'
+
+preserved_frozen_hashes_unchanged:
+  truth_bundle_FROZEN: 'c2c7a1aa4e49a6d47dd2ea10d808bf7fa09ea52155604541a6e7919fb9c90eda'
+  prediction_matrix_FROZEN: '3226409449de1f7cd3f506817724ad81b78160043b2ce6e02388fbe1426c4ca0'
+  arg_bearing_FROZEN: 'd6a18f1dc58fce27aa1e8834774476962c5d4bd44991b1def215e6bba0296d00'
+  evaluation_code_prejoin: '398c546c3b22d1af71cea2a14f20d848cf21934ab2953a4d7bab79e6c96eb9e8'
+  development_predictions_xlsx: 'db558a6775f473662369fb1c358f28530f85883ea3767beb807d031d2646e091'

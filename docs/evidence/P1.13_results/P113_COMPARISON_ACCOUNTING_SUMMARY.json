@@ -1,0 +1,91 @@
+{
+ "total_predictor_rows": 19,
+ "index_row": "v1.2-General@0.9285",
+ "comparator_rows": 18,
+ "distinct_methods": 18,
+ "methods_with_multiple_operating_points": {
+  "PlasmidCall v1.1": [
+   "v1.1@0.9524",
+   "v1.1@0.9605_high_conf"
+  ]
+ },
+ "rows_with_F1_defined": [
+  "v1.1@0.9524",
+  "v1.1@0.9605_high_conf",
+  "router",
+  "tool:HyAsP",
+  "tool:MOB-recon",
+  "tool:PLASMe",
+  "tool:PlaScope",
+  "tool:Plasmer",
+  "tool:PlasmidEC",
+  "tool:PlasmidFinder",
+  "tool:Platon",
+  "tool:RFPlasmid",
+  "tool:geNomad",
+  "tool:gplas2",
+  "tool:plASgraph2",
+  "baseline:majority_vote",
+  "baseline:any_tool_plasmid"
+ ],
+ "rows_with_F1_undefined": [
+  {
+   "row": "baseline:all_chromosome",
+   "reason": "PPV undefined: predictor never returns a positive call on the truth-resolved set (TP+FP=0), so precision has no denominator"
+  }
+ ],
+ "rows_with_PPV_defined": 17,
+ "all_rows_share_matched_common_denominator": true,
+ "matched_common_denominator_n": 4233,
+ "matched_common_denominator_note": "contigs on which ALL 19 predictor rows produce a call; used for the ranked comparison so coverage differences cannot explain metric differences",
+ "ranked_F1_comparison_on_matched_denominator": {
+  "index_F1": 0.8592178770949721,
+  "index_PPV": 0.9746514575411914,
+  "index_recall": 0.7682317682317682,
+  "eligible_for_F1_ranking": 17,
+  "excluded_from_F1_ranking": [
+   {
+    "row": "baseline:all_chromosome",
+    "reason": "F1 undefined"
+   }
+  ],
+  "rows_with_higher_F1_than_index": [
+   {
+    "row": "tool:Plasmer",
+    "F1": 0.93713163064833
+   },
+   {
+    "row": "baseline:majority_vote",
+    "F1": 0.9133777549974372
+   },
+   {
+    "row": "tool:MOB-recon",
+    "F1": 0.8756698821007503
+   },
+   {
+    "row": "tool:PlasmidEC",
+    "F1": 0.8739495798319327
+   },
+   {
+    "row": "tool:gplas2",
+    "F1": 0.8739495798319327
+   }
+  ],
+  "count_higher_F1": 5,
+  "non_index_rows_reaching_PPV_0.95": [
+   {
+    "row": "v1.1@0.9524",
+    "PPV": 0.9790697674418605
+   },
+   {
+    "row": "v1.1@0.9605_high_conf",
+    "PPV": 0.9773299748110831
+   },
+   {
+    "row": "router",
+    "PPV": 0.9774964838255977
+   }
+  ],
+  "count_reaching_PPV_0.95": 3
+ }
+}

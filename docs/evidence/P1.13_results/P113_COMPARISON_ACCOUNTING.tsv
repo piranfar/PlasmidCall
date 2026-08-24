@@ -1,0 +1,20 @@
+predictor_row	method_family	operating_point	role	frozen_predeclared_status	total_eligible_denominator	truth_resolved_denominator	valid_prediction_count	tool_failure_count	non_specific_call_count	abstention_count	coverage_on_resolved	matched_common_denominator_inclusion	matched_common_denominator_n	PPV_defined	recall_defined	F1_defined	TP	FP	TN	FN	undefined_or_exclusion_reason
+v1.2-General@0.9285	PlasmidCall v1.2-General	threshold 0.9285 (frozen)	PRIMARY / INDEX	frozen model	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	1486	35	7095	755	
+v1.1@0.9524	PlasmidCall v1.1	threshold 0.9524 standard (frozen)	comparator	frozen model	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	627	19	7111	1614	
+v1.1@0.9605_high_conf	PlasmidCall v1.1	threshold 0.9605 high-confidence (frozen)	comparator	frozen model	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	563	17	7113	1678	
+router	PlasmidCall router	two-domain: ARG-bearing to v1.1, else v1.2-General (frozen)	comparator	frozen strategy	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	1354	26	7104	887	
+tool:HyAsP	HyAsP	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	1544	284	6846	697	
+tool:MOB-recon	MOB-recon	tool-native default output	comparator	frozen third-party tool	9784	9371	8515	856	0	856	0.908654	yes	4233	yes	yes	yes	1873	241	6033	368	
+tool:PLASMe	PLASMe	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	2191	1182	5948	50	
+tool:PlaScope	PlaScope	tool-native default output	comparator	frozen third-party tool	9784	9371	5928	0	3443	3443	0.63259	yes	4233	yes	yes	yes	1245	1252	3344	87	
+tool:Plasmer	Plasmer	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	2152	381	6749	89	
+tool:PlasmidEC	PlasmidEC	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	2020	755	6375	221	
+tool:PlasmidFinder	PlasmidFinder	tool-native default output	comparator	frozen third-party tool	9784	9371	9147	224	0	224	0.976096	yes	4233	yes	yes	yes	290	27	6929	1901	
+tool:Platon	Platon	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	1748	119	7011	493	
+tool:RFPlasmid	RFPlasmid	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	1884	945	6185	357	
+tool:geNomad	geNomad	tool-native default output	comparator	frozen third-party tool	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	1399	904	6226	842	
+tool:gplas2	gplas2	tool-native default output	comparator	frozen third-party tool	9784	9371	7409	1084	878	1962	0.790631	yes	4233	yes	yes	yes	1770	568	4892	179	
+tool:plASgraph2	plASgraph2	tool-native default output	comparator	frozen third-party tool	9784	9371	8826	0	545	545	0.941842	yes	4233	yes	yes	yes	1300	185	6721	620	
+baseline:majority_vote	panel majority vote	strict majority of informative tool calls	comparator	frozen predeclared baseline	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	2029	231	6899	212	
+baseline:any_tool_plasmid	any-tool-plasmid	positive if >=1 tool calls plasmid	comparator	frozen predeclared baseline	9784	9371	9371	0	0	0	1.0	yes	4233	yes	yes	yes	2226	3092	4038	15	
+baseline:all_chromosome	all-chromosome	constant negative	comparator	frozen predeclared degenerate baseline	9784	9371	9371	0	0	0	1.0	yes	4233	no	yes	no	0	0	7130	2241	PPV undefined: predictor never returns a positive call on the truth-resolved set (TP+FP=0), so precision has no denominator

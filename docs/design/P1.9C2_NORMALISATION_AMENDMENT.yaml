@@ -1,0 +1,126 @@
+# P1.9C2 NORMALISATION + STAGE-SPECIFIC RESOURCE AMENDMENT
+# Frozen and hashed BEFORE any hybrid assembly output has ever been produced.
+amendment_id: P1.9C2_NORMALISATION_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-18'
+authorisation: 'Owner: APPROVED OPTION A - upstream-consistent duplicate-ID disambiguation, then unmodified Filtlong v0.2.1'
+
+preserved_frozen_protocol:
+  path: docs/plans/P1.9C2_FROZEN_ASSEMBLY_PROTOCOL.yaml
+  sha256: '883a1034f1e193f4388d7d5e93c407d4a687419ed333c783c7250b5f4816e34b'
+  status: UNCHANGED_AND_REVERIFIED
+prior_amendments:
+  - {id: P1.9C2_EXECUTION_AMENDMENT, sha256: '86db796448db499289f181945c77b5cb8931088e15198e87ba634888a7e9ac54'}
+  - {id: P1.9C2_RESOURCE_RETRY_AMENDMENT, sha256: '5b89b9090ddeafa82d3ffcf8bd4591493e25a72675238a281e59d0c990f50405'}
+
+performance_blindness:
+  no_hybrid_assembly_output_has_ever_been_produced: true
+  attempt_1: 'exit 137, cgroup OOM at the 12 GB limit, died at miniasm start'
+  attempt_2: 'operator emergency stop at 36.5 min on the Windows memory floor'
+  rule_defined_before_any_successful_hybrid_output: true
+  selection_independent_of_TRACE_ARG: true
+  selection_independent_of_assembly_quality: true
+  justification: 'the 100x target derives solely from the frozen Phase A short-read assembly length; no hybrid metric exists to tune against'
+
+duplicate_identifier_cause:
+  observation: '25,396 of 188,860 records repeat an earlier name; 163,464 unique names; maximum multiplicity 137'
+  cause: 'PacBio subreads: the SRA/ENA FASTQ conversion assigns one spot index per ZMW, so distinct subreads of one molecule share DRR065950.N'
+  records_are_genuinely_distinct: true
+  example: 'DRR065950.46 occurs as a 17,957 bp read and as a 54 bp read with different sequence'
+  filtlong_behaviour: 'filtlong v0.2.1 hard-errors on duplicate names and wrote 0 bases'
+
+disambiguation_policy:
+  source_authority: 'pinned Unicycler 0.5.1'
+  source_file: '/opt/conda/lib/python3.10/site-packages/unicycler/read_ref.py'
+  source_sha256: 'b9606bedc1559fdcb84db56087cfac4a7e7bad55867de2f78f0fc96e841852f0'
+  function: 'load_long_reads, line 93'
+  policy_lines: '144-151'
+  name_extraction: 'original_name = stripped_line[1:].split()[0], line 138'
+  rule: 'occurrence 1 keeps the name; occurrence n becomes name_n; a while-loop over the seen-set guarantees global uniqueness'
+  collision_test_on_this_file: 'PASS - zero names contain an underscore, zero names match the <x>_<digits> pattern; the only non-alphanumeric character in any name is a period'
+  algorithm_modified: false
+  unicycler_modified: false
+  filtlong_modified: false
+  no_biological_record_removed: true
+  bytes_changed: 'header first token only; every sequence byte and quality byte preserved'
+
+disambiguation_evidence:
+  input_records: 188860
+  output_records: 188860
+  input_bases: 2260137873
+  output_bases: 2260137873
+  records_renamed: 25396
+  unique_final_names: 188860
+  duplicate_final_names: 0
+  per_record_sequence_hash_mismatches: 0
+  per_record_quality_hash_mismatches: 0
+  record_order_preserved: true
+  renamed_fastq_sha256: '281e25fcb756ba95c55fedc94bf957a9c26704d841fd73f6eca4d4c5599919d7'
+  provenance_map_sha256: '702141c7be0e9a4e3fed2edd03bba7b253dd00b9414061634e5ad9d5c7068e41'
+  determinism: 'two independent runs byte-identical'
+
+normalisation_rule:
+  scope: 'prospective and identical for all eight samples'
+  target_bases: '100 x the frozen Phase A short-read assembly length of that same sample'
+  if_observed_le_target: 'retain all long reads unchanged'
+  tool: 'filtlong v0.2.1, official release, unmodified'
+  image: 'p19c2-normalize:1.0, sha256:6e46960381c9f58cf6b2d3bd3f57c58ba3210ad28a9b29e36d5c5b25d053c10c'
+  command: 'filtlong --target_bases <T> <renamed.fastq.gz>'
+  weights: 'filtlong defaults - length_weight 1, mean_q_weight 1, window_q_weight 1'
+  extra_thresholds_added: none
+  base_budget_semantics: 'the target is a budget; the final accepted read is kept whole and never trimmed'
+
+sample_SAMD00056131:
+  phase_a_assembly_length_bp: 5170447
+  phase_a_assembly_sha256: 'ee74f348aeca904cdf9c49bce3dbf27fd348693094f74de655b4ca72ef260926'
+  target_bases: 517044700
+  observed_reads: 188860
+  observed_bases: 2260137873
+  observed_depth_x: 437.13
+  retained_reads: 17307
+  retained_bases: 517058846
+  overshoot_bases: 14146
+  achieved_depth_x: 100.0027
+  fraction_reads_retained: 0.09164
+  fraction_bases_retained: 0.22877
+  retained_min_len: 12652
+  retained_median_len: 28174
+  retained_n50: 31322
+  retained_max_len: 76704
+  mean_phred_before: 8.876
+  mean_phred_after: 9.662
+  quality_component_active: 'the single longest read of 78,417 bp was NOT retained; the longest retained read is 76,704 bp, so ranking was not length-only'
+  duplicate_names_in_output: 0
+  fastq_structural_validation: PASS
+  normalised_uncompressed_sha256: 'e232e8f698eb16bcced6e79e10f679aa14c58af9ff29251c36f839e5354a0e10'
+  normalised_gz_sha256: '31384685e01d895e2bbb58b59ec5d4f03d6e6809f3caa21ffcf2461cf70c11bc'
+  normalised_gz_bytes: 449132082
+  filtlong_determinism: 'two independent runs byte-identical'
+  source_immutable_before_and_after: '1913d45df62a4429c5c34f818395b897f865c47e0e29854aff339c9a6204a0d7'
+
+spades_memory_option:
+  option: "--spades_options '-m 12'"
+  effect: 'suppresses the automatic -m 1024; exactly one -m token in the final SPAdes command'
+  source_evidence: 'spades_func.py lines 236-239'
+  dry_audit_i0: 'spades.py -o /tmp/h/spades_assembly -k 27 --threads 8 --isolate -1 R1 -2 R2 -m 12'
+  dry_audit_i1: 'spades.py -o /tmp/h/spades_assembly -k 27,45 --threads 8 --restart-from k27 -m 12'
+
+resources:
+  wsl: {memory: 22GB, processors: 8, swap: 12GB, swapFile: 'E:\\AMR_Evidence_Data\\wsl_swap.vhdx'}
+  container: {memory: 20g, memory_swap: 28g, cpus: 8, concurrency: 1, threads: 8}
+
+unchanged_scientific_parameters:
+  raw_read_sha256: 'all three match the P1.9C1 receipts'
+  phase_a_products: unchanged
+  cohort_membership: '8 samples, unchanged'
+  assembler_mode: unicycler_hybrid
+  kmer_schedule: '27,53,71,87,99,111,119,127'
+  kmer_schedule_note: 'derived from short reads only, so long-read normalisation cannot alter it'
+  bridging_thresholds: unchanged
+  product_separation: 'Product A short-read = Model 1 input only; Product B hybrid = truth reference only'
+
+mandatory_stop: 'STOP after SAMD00056131 whether successful or not.'
+
+assembly_command_verbatim: |
+  docker run --rm --memory=20g --memory-swap=28g --cpus=8 -v "E:\AMR_Evidence_Data\P1.9_cleanroom:/work" p19c2-cleanroom:1.0 bash -c "set -e; unicycler -1 /work/raw/robertson-benchmark_ecol-SAMD00056131/DRR065947_1.fastq.gz -2 /work/raw/robertson-benchmark_ecol-SAMD00056131/DRR065947_2.fastq.gz -l /work/raw_normalized/robertson-benchmark_ecol-SAMD00056131/DRR065950_subreads.norm100x.fastq.gz -o /tmp/h -t 8 --keep 1 --spades_options '-m 12'; mkdir -p /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131; du -sb /tmp/h | cut -f1 > /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/scratch_bytes.txt; cp /tmp/h/assembly.fasta /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.fasta; cp /tmp/h/assembly.gfa /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.gfa; cp /tmp/h/unicycler.log /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/unicycler_hybrid.log; a=$(md5sum /tmp/h/assembly.fasta | cut -d' ' -f1); b=$(md5sum /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.fasta | cut -d' ' -f1); c=$(md5sum /tmp/h/assembly.gfa | cut -d' ' -f1); d=$(md5sum /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.gfa | cut -d' ' -f1); test $a = $b; test $c = $d; echo VERIFIED_BEFORE_SCRATCH_DELETE fasta=$a gfa=$c > /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/copy_verification.txt; rm -rf /tmp/h; echo SCRATCH_REMOVED_AFTER_VERIFY"
+assembly_command_sha256: 'dfb0c39499a60a6a5deb4175a736210ffd32c006bc64603428fbbc12697356c2'

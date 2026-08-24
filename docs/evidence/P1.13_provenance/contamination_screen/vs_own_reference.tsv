@@ -1,0 +1,2 @@
+Ref_file	Query_file	ANI	Align_fraction_ref	Align_fraction_query	Ref_name	Query_name
+/work/screen/genomes/p113/SAMN26198730.fna.gz	/work/contamination_screen/SAMN26198730_assembly.fasta	99.97	95.75	26.98	NZ_CP095333.1 Enterococcus faecalis strain 19CA02SA02 chromosome, complete genome	1 length=122143 depth=0.95x

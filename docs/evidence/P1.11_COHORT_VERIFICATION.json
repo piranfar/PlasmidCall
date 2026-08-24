@@ -1,0 +1,41 @@
+{
+ "generated_utc": "2026-08-21T15:01:07Z",
+ "checks": {
+  "ena_md5_and_size": {
+   "expected": 150,
+   "verified": 150,
+   "mismatched": 0,
+   "missing": 0,
+   "pass": true
+  },
+  "sra_sha256": {
+   "expected": 8,
+   "verified": 8,
+   "bad": 0,
+   "pass": true
+  },
+  "paired_inputs": {
+   "expected": 79,
+   "with_pair": 79,
+   "pass": true
+  },
+  "size_ceiling": {
+   "bytes": 34283204841,
+   "gb": 31.93,
+   "limit_gb": 100,
+   "pass": true
+  },
+  "no_stray_partials": {
+   "found": [],
+   "pass": true
+  },
+  "gzip_integrity": {
+   "valid": 158,
+   "corrupt": 0,
+   "pass": true
+  }
+ },
+ "problems": [],
+ "VERDICT": "PASS",
+ "n_fastq_files": 158
+}

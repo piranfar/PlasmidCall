@@ -1,0 +1,11 @@
+{
+ "reason": "authorised cohort amendment P1.13_AMENDMENT_005: technical exclusion of the contaminated isolate SAMN26198730 and its deterministic replacement by SAMN37639065",
+ "previous_cohort_file": "P1.13_SELECTED_COHORT_v2.tsv",
+ "previous_sha256": "2e47d15b30a42181b5537d88a2cd61401b711e6001ac0a3904ee387ebefd8dd1",
+ "new_cohort_file": "P1.13_SELECTED_COHORT_v3.tsv",
+ "new_sha256": "874b0924deffef948dd50e00ee5c77c91d773354de4a1bb936162e4fec294205",
+ "isolates": 150,
+ "authorised_by": "operator decision rule 2026-08-23, conditional on a confirmed contamination screen",
+ "drift_guard_note": "the runner's cohort-drift guard correctly refused to start on the changed hash. The stored hash is updated deliberately and recorded here rather than the guard being bypassed or removed.",
+ "transition_utc": "2026-08-23T08:10:49Z"
+}

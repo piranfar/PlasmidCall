@@ -1,0 +1,191 @@
+biological_sample_id,species,partition,source_study,reasons,scope,performance_based
+robertson-benchmark_cfre-SAMN02713684,Citrobacter freundii,cfre-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_cfre-SAMN04014863,Citrobacter freundii,cfre-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_abau-SAMN10163228,Acinetobacter baumannii,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_abau-SAMN10163233,Acinetobacter baumannii,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_abau-SAMN16357205,Acinetobacter baumannii,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_abau-SAMN16357501,Acinetobacter baumannii,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_abau-SAMN16357502,Acinetobacter baumannii,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_easb-SAMN16357574,Enterobacter asburiae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ebug-SAMN16357569,Enterobacter bugandensis,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ecan-SAMN16357570,Enterobacter cancerogenus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_eclo-SAMN02934530,Enterobacter cloacae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_eclo-SAMN16357573,Enterobacter cloacae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ecol-SAMD00056131,Escherichia coli,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ecol-SAMN02991226,Escherichia coli,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ecol-SAMN04014847,Escherichia coli,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ecol-SAMN04014852,Escherichia coli,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ecol-SAMN04014855,Escherichia coli,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ecol-SAMN04014856,Escherichia coli,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ecol-SAMN04014858,Escherichia coli,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ecol-SAMN04014860,Escherichia coli,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_efae-SAMN03339922,Enterococcus faecium,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_efae-SAMN06173336,Enterococcus faecium,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ehor-SAMN02713646,Enterobacter hormaechei,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ehor-SAMN02713683,Enterobacter hormaechei,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ehor-SAMN03733769,Enterobacter hormaechei,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ehor-SAMN11056357,Enterobacter hormaechei,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ehor-SAMN16357247,Enterobacter hormaechei,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ehor-SAMN16357576,Enterobacter hormaechei,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_ehor-SAMN16357577,Enterobacter hormaechei,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_erog-SAMN10163217,Enterobacter roggenkampii,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_erog-SAMN16357572,Enterobacter roggenkampii,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_exxx-SAMN03996308,Enterobacter xxx,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMEA3357010,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMEA3357043,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMEA3357077,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMEA3357080,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMEA3357223,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMEA3357268,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMEA3357272,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMEA3357328,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN01057614,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN02786856,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN03024573,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN03024583,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN03996301,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN07312483,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN07312488,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN07312490,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN10163190,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN11056344,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN11056345,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN11056346,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN11056490,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357245,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357448,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357449,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357450,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357451,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357452,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357453,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357454,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357455,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357456,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357457,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357458,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357459,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357460,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357461,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357462,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357463,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357464,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357465,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357466,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357467,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357468,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357470,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357471,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_kpne-SAMN16357472,Klebsiella pneumoniae,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_paer-SAMN10163177,Pseudomonas aeruginosa,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_paer-SAMN10163199,Pseudomonas aeruginosa,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_paer-SAMN10346774,Pseudomonas aeruginosa,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_paer-SAMN11056482,Pseudomonas aeruginosa,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_paer-SAMN16357210,Pseudomonas aeruginosa,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN02700075,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255442,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255444,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255445,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255446,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255448,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255449,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255451,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255453,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255454,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255458,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255460,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255463,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255464,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255466,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255469,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255474,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255479,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255481,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255482,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255486,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03255487,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN03996304,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN07312456,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN10163180,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN11056375,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN11056481,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN11056488,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN16357255,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN16357387,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_saur-SAMN16357388,Staphylococcus aureus,eskapee-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+boostrom_abau-SAMEA12292436,Acinetobacter baumannii,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_abau-SAMEA12292492,Acinetobacter baumannii,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_abau-SAMEA12292493,Acinetobacter baumannii,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_abau-SAMEA12292496,Acinetobacter baumannii,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_abau-SAMEA12292515,Acinetobacter baumannii,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_abau-SAMEA12292546,Acinetobacter baumannii,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_paer-SAMEA12292472,Pseudomonas aeruginosa,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_paer-SAMEA12292473,Pseudomonas aeruginosa,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_paer-SAMEA12292475,Pseudomonas aeruginosa,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_paer-SAMEA12292477,Pseudomonas aeruginosa,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_paer-SAMEA12292478,Pseudomonas aeruginosa,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_paer-SAMEA12292479,Pseudomonas aeruginosa,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_paer-SAMEA12292490,Pseudomonas aeruginosa,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+boostrom_saur-SAMEA12292583,Staphylococcus aureus,eskapee-train,Boostrom2022,plASgraph2 training sample; no public short-read accession - clean-room rebuild impossible,primary-cohort,NO
+mlplasmids_efae-E0139,Enterococcus faecium,eskapee-train,ArredondoAlonso2018,plASgraph2 training sample; non-archival sample identifier,primary-cohort,NO
+mlplasmids_efae-E4227,Enterococcus faecium,eskapee-train,ArredondoAlonso2018,plASgraph2 training sample; non-archival sample identifier,primary-cohort,NO
+mlplasmids_efae-E4438,Enterococcus faecium,eskapee-train,ArredondoAlonso2018,plASgraph2 training sample; non-archival sample identifier,primary-cohort,NO
+mlplasmids_efae-E6055,Enterococcus faecium,eskapee-train,ArredondoAlonso2018,plASgraph2 training sample; non-archival sample identifier,primary-cohort,NO
+mlplasmids_efae-E7040,Enterococcus faecium,eskapee-train,ArredondoAlonso2018,plASgraph2 training sample; non-archival sample identifier,primary-cohort,NO
+mlplasmids_efae-E7171,Enterococcus faecium,eskapee-train,ArredondoAlonso2018,plASgraph2 training sample; non-archival sample identifier,primary-cohort,NO
+mlplasmids_efae-E7357,Enterococcus faecium,eskapee-train,ArredondoAlonso2018,plASgraph2 training sample; non-archival sample identifier,primary-cohort,NO
+mlplasmids_efae-E7441,Enterococcus faecium,eskapee-train,ArredondoAlonso2018,plASgraph2 training sample; non-archival sample identifier,primary-cohort,NO
+mlplasmids_efae-E8284,Enterococcus faecium,eskapee-train,ArredondoAlonso2018,plASgraph2 training sample; non-archival sample identifier,primary-cohort,NO
+mlplasmids_efae-E8481,Enterococcus faecium,eskapee-train,ArredondoAlonso2018,plASgraph2 training sample; non-archival sample identifier,primary-cohort,NO
+shaw-2021_eclo-SAMN15148478,Enterobacter cloacae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_eclo-SAMN15148534,Enterobacter cloacae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_eclo-SAMN15148541,Enterobacter cloacae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_eclo-SAMN15148612,Enterobacter cloacae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_eclo-SAMN15148633,Enterobacter cloacae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_eclo-SAMN15148668,Enterobacter cloacae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_eclo-SAMN15148690,Enterobacter cloacae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_eclo-SAMN15148770,Enterobacter cloacae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_ecol-SAMN15147948,Escherichia coli,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_ecol-SAMN15148054,Escherichia coli,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_ecol-SAMN15148145,Escherichia coli,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_ecol-SAMN15148272,Escherichia coli,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_ecol-SAMN15148318,Escherichia coli,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_ecol-SAMN15148346,Escherichia coli,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_ecol-SAMN15148412,Escherichia coli,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_ecol-SAMN15148474,Escherichia coli,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_ecol-SAMN15148538,Escherichia coli,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_ecol-SAMN15148693,Escherichia coli,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_exxx-SAMN15148503,Enterobacter sp.,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_exxx-SAMN15148756,Enterobacter sp.,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_kpne-SAMN15148443,Klebsiella pneumoniae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_kpne-SAMN15148530,Klebsiella pneumoniae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_kpne-SAMN15148557,Klebsiella pneumoniae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_kpne-SAMN15148709,Klebsiella pneumoniae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+shaw-2021_kpne-SAMN15148715,Klebsiella pneumoniae,eskapee-train,Shaw2021,plASgraph2 training sample,tool-specific,NO
+small2_abau-SAMN05238571,Acinetobacter baumannii,eskapee-train,Chan2020,plASgraph2 training sample,tool-specific,NO
+small2_abau-SAMN05238628,Acinetobacter baumannii,eskapee-train,Chan2020,plASgraph2 training sample,tool-specific,NO
+small2_abau-SAMN05238672,Acinetobacter baumannii,eskapee-train,Chan2020,plASgraph2 training sample,tool-specific,NO
+small2_abau-SAMN05238697,Acinetobacter baumannii,eskapee-train,Chan2020,plASgraph2 training sample,tool-specific,NO
+small2_saur-SAMD00180470,Staphylococcus aureus,eskapee-train,Hikichi2019,plASgraph2 training sample,tool-specific,NO
+small2_saur-SAMD00180471,Staphylococcus aureus,eskapee-train,Hikichi2019,plASgraph2 training sample,tool-specific,NO
+small2_saur-SAMD00180472,Staphylococcus aureus,eskapee-train,Hikichi2019,plASgraph2 training sample,tool-specific,NO
+small2_saur-SAMD00180473,Staphylococcus aureus,eskapee-train,Hikichi2019,plASgraph2 training sample,tool-specific,NO
+small2_saur-SAMD00180474,Staphylococcus aureus,eskapee-train,Hikichi2019,plASgraph2 training sample,tool-specific,NO
+small2_saur-SAMD00180475,Staphylococcus aureus,eskapee-train,Hikichi2019,plASgraph2 training sample,tool-specific,NO
+small2_saur-SAMD00180476,Staphylococcus aureus,eskapee-train,Hikichi2019,plASgraph2 training sample,tool-specific,NO
+small2_saur-SAMD00180477,Staphylococcus aureus,eskapee-train,Hikichi2019,plASgraph2 training sample,tool-specific,NO
+small2_saur-SAMD00258402,Staphylococcus aureus,eskapee-train,Ono2021,plASgraph2 training sample,tool-specific,NO
+small3_paer-SAMEA5578836,Pseudomonas aeruginosa,eskapee-train,Silke2020,plASgraph2 training sample,tool-specific,NO
+small3_paer-SAMEA5578860,Pseudomonas aeruginosa,eskapee-train,Silke2020,plASgraph2 training sample,tool-specific,NO
+small3_paer-SAMN10374626,Pseudomonas aeruginosa,eskapee-train,Magalhaes2019,plASgraph2 training sample,tool-specific,NO
+small_kpne-SAMN21365994,Klebsiella pneumoniae,eskapee-train,Acman2021,plASgraph2 training sample,tool-specific,NO
+small_kpne-SAMN21366002,Klebsiella pneumoniae,eskapee-train,Acman2021,plASgraph2 training sample,tool-specific,NO
+small_kpne-SAMN21366037,Klebsiella pneumoniae,eskapee-train,Acman2021,plASgraph2 training sample,tool-specific,NO
+small_kpne-SAMN21366047,Klebsiella pneumoniae,eskapee-train,Acman2021,plASgraph2 training sample,tool-specific,NO
+small_kpne-SAMN21366070,Klebsiella pneumoniae,eskapee-train,Acman2021,plASgraph2 training sample,tool-specific,NO
+robertson-benchmark_koxy-SAMN02786843,Klebsiella oxytoca,koxy-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_koxy-SAMN03733631,Klebsiella oxytoca,koxy-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_sent-SAMN02800603,Salmonella enterica,sent-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_sent-SAMN03988471,Salmonella enterica,sent-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_sent-SAMN03996249,Salmonella enterica,sent-test,Robertson2018,MOB-suite development corpus,tool-specific,NO
+robertson-benchmark_sent-SAMN04285042,Salmonella enterica,sent-test,Robertson2018,MOB-suite development corpus,tool-specific,NO

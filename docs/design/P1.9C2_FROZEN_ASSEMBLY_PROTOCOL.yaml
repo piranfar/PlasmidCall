@@ -1,0 +1,170 @@
+protocol: P1.9C2 clean-room assembly, graph construction and truth-readiness
+version: 1.0
+status: FROZEN BEFORE EXECUTION — hashed before any assembly was run
+date: 2026-08-17
+cohort: P1.9C1 frozen Tier-1 cohort, 8 biological samples, 6 genome clusters
+cohort_audit_zip_sha256: c58579f0557a13e05684ea9346a03b62eb7f6ab3a9eb117bf309d6fa6eccdd2f
+cohort_membership: NOT REOPENED. Independence thresholds NOT altered.
+
+# ============================================================ scientific separation
+separation_mandatory:
+  product_A_short_read_evaluation:
+    inputs: Illumina paired reads ONLY
+    outputs: short-read contig FASTA + assembler-native GFA
+    role: the ONLY assembly/graph eligible as Model 1 input
+    prohibition: >
+      No long-read information may influence its contigs, graph, filtering, labels or
+      parameters. The short-read assembly is produced by a separate command that never
+      receives the -l/--long argument.
+    path_convention: assemblies/shortread/<sample>/ and graphs/shortread/<sample>/
+  product_B_hybrid_reference:
+    inputs: the same sample's Illumina paired reads + PacBio SMRT long reads
+    outputs: hybrid reference assembly
+    role: reference for truth construction and assembly validation ONLY
+    prohibition: >
+      No hybrid-derived feature, contig, coverage value or graph structure is ever exposed
+      to Model 1.
+    path_convention: assemblies/hybrid/<sample>/
+  enforcement: separation is explicit in paths, filenames, manifests and every report
+
+# ============================================================ verified inputs
+inputs:
+  samples: 8
+  raw_files: 24
+  raw_sha256_reverified: 24/24 at P1.9C2 pre-flight, 0 failures
+  short_read_platform: ILLUMINA, layout PAIRED (8/8)
+  long_read_platform: PACBIO_SMRT, layout SINGLE (8/8)
+  technology_uncertainty: NONE — no sample requires a guessed assembler mode
+  pairing_source: ENA filereport, authoritative; recorded per run in the acquisition manifest
+
+# ============================================================ environment
+environment:
+  image_tag: p19c2-cleanroom:1.0
+  image_id: sha256:59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20
+  image_size_gb: 2.12
+  image_class: SOFTWARE TOOLCHAIN — not a database or reference collection
+  base_digest: sha256:475730daef12ff9c0733e70092aeeefdf4c373a584c952dac3f7bdb739601990
+  tools:
+    unicycler: 0.5.1
+    spades: 3.15.5
+    racon: 1.5.0
+    minimap2: 2.28-r1209
+    samtools: "1.20"
+    blast: 2.16.0+
+    skani: 0.2.2
+    seqkit: v2.8.2
+    python: 3.10.20
+  compatibility_patch_status: NONE
+
+# ============================================================ commands (frozen)
+commands:
+  short_read_assembly:
+    template: >
+      unicycler -1 <R1> -2 <R2> -o <OUT> -t <THREADS> --keep 1
+    note: no -l argument; long reads are not present in this command by construction
+    native_graph: assembly.gfa produced by Unicycler; NEVER synthesised from FASTA
+  hybrid_assembly:
+    template: >
+      unicycler -1 <R1> -2 <R2> -l <LONG> -o <OUT> -t <THREADS> --keep 1
+    long_read_mode: PacBio SMRT reads supplied via -l; Unicycler auto-detects long-read type
+  confirmatory_ani:
+    template: skani dist -q <QUERY> -r <REF> -t <THREADS>
+    role: confirmation only; sourmash remains the screening stage
+  mapping_short_to_hybrid:
+    template: minimap2 -x asm5 -c --cs <HYBRID> <SHORT_CONTIGS>
+defaults: assembler defaults are used unmodified; no per-sample tuning
+per_sample_tuning: PROHIBITED after viewing any assembly result
+
+# ============================================================ resources
+resources:
+  host_cpu: 16
+  host_ram_total_gb: 31.8
+  host_ram_available_at_freeze_gb: 10.3
+  threads_per_slot: 8
+  max_parallel: 1
+  concurrency_basis: >
+    MEASURED RAM, not CPU count. SPAdes on a bacterial genome commonly peaks near 8-16 GB;
+    with 10.3 GB available, two concurrent assemblies would risk memory overcommit and
+    swap-thrash. Concurrency is therefore 1 and may be revised upward only if the smoke
+    test demonstrates a materially lower peak.
+  timeout_per_slot_seconds: 43200
+  retry_policy: manual only via resume.ps1 -RetryFailed; no silent retry
+  output_retention: --keep 1 (final assembly + graph + logs); intermediates discarded
+  quarantine: partial or failed output moved to quarantine/, never overwritten
+
+# ============================================================ QC thresholds (frozen)
+qc_thresholds:
+  short_read_assembly:
+    min_total_length_mb: 4.0
+    max_total_length_mb: 7.0
+    max_contigs: 2000
+    min_n50_bp: 10000
+    gfa_required: true
+    gfa_min_segments: 1
+  hybrid_reference:
+    min_total_length_mb: 4.0
+    max_total_length_mb: 7.0
+    expect_chromosome_sized_replicon_mb: 4.0
+    circularity_recorded: true
+  identifier_audit:
+    require_exact_reversible_reconciliation: true
+    normalization: NONE unless documented and reversible
+  failure_handling: >
+    A sample failing QC is retained and reported as FAILED with reasons; it is never
+    silently dropped and never excluded for performance.
+
+# ============================================================ replicon interpretation
+replicon_rules:
+  PROHIBITED:
+    - assuming the largest replicon is the chromosome without reference evidence
+    - assigning plasmid/chromosome truth from replicon size alone
+    - discarding ambiguous or unresolved replicons
+  required: every replicon retains length, circularity, depth and resolution status
+
+# ============================================================ truth framework
+truth_labels: [plasmid, chromosome, mobile_plasmid_like_chromosomal, ambiguous, unmapped]
+truth_rules:
+  mapping: minimap2 asm5, short-read contigs vs the sample's OWN hybrid reference
+  identity_threshold: 0.95
+  coverage_threshold: 0.80 of contig length, merged non-overlapping intervals
+  ambiguity_margin: 0.10 difference between best chromosome and best plasmid covered fraction
+  minimum_contig_length: 1000
+  mobile_plasmid_like_chromosomal: >
+    derived from reference LOCATION (chromosomal) PLUS independently defined mobile-element
+    evidence. NEVER from Model 1 errors or predictions.
+  retained_classes: ambiguous and unmapped are retained, never forced into binary classes
+  reported_anomalies:
+    - multi-mapping contigs
+    - repeat-shared contigs
+    - contigs spanning replicon boundaries
+    - insufficient-coverage mappings
+    - discordant reference evidence
+
+# ============================================================ smoke test
+smoke_test:
+  predeclared_sample: robertson-benchmark_ecol-SAMN02991226
+  predeclaration_basis: >
+    Chosen BEFORE execution as the smallest total read volume (0.812 GB) so the deterministic
+    check completes fastest. Selection is size-based and performance-blind.
+  purpose: verify determinism, measure wall time, RAM and disk before dispatching the cohort
+  determinism_check: short-read assembly run twice; GFA and FASTA hashes must match
+
+# ============================================================ prohibitions
+prohibited_during_p1_9c2:
+  - running Model 1, gplasCC, MOB-recon or any comparator
+  - inspecting performance or adjusting truth rules from predictions
+  - reopening cohort membership or independence thresholds
+  - per-sample parameter tuning after seeing results
+  - starting Tier 2 or Tier 3
+  - placing bulk data inside the Git repository
+limits:
+  cumulative_external_data_download_gb: 15.0
+  data_downloaded_to_date_gb: 11.561
+  attributable_peak_disk_gb: 100.0
+  e_drive_free_floor_gb: 300.0
+
+stop_conditions:
+  - scientific contradiction
+  - eligibility-changing result
+  - resource-limit breach
+  - assembler mode uncertain for any sample (not triggered: all 8 are Illumina + PacBio)

@@ -1,0 +1,103 @@
+{
+ "clean_oof": {
+  "TP": 486,
+  "FP": 15,
+  "TN": 3170,
+  "FN": 140,
+  "PPV": 0.9700598802395209,
+  "recall": 0.7763578274760383,
+  "specificity": 0.9952904238618524
+ },
+ "v11_comparator": {
+  "TP": 331,
+  "FP": 10,
+  "TN": 3175,
+  "FN": 295,
+  "PPV": 0.9706744868035191,
+  "recall": 0.5287539936102237,
+  "specificity": 0.9968602825745683
+ },
+ "in_sample_final": {
+  "TP": 500,
+  "FP": 12,
+  "TN": 3173,
+  "FN": 126,
+  "PPV": 0.9765625,
+  "recall": 0.7987220447284346,
+  "specificity": 0.9962323390894819
+ },
+ "threshold": 0.9285,
+ "ppv_target": 0.97,
+ "threshold_rederived_from_clean_oof": 0.9285,
+ "isolates_improved": 32,
+ "isolates_worsened": 3,
+ "recall_gain": 0.24760383386581464,
+ "observed_states": {
+  "HyAsP": [
+   "chromosome",
+   "plasmid"
+  ],
+  "MOB-recon": [
+   "chromosome",
+   "plasmid"
+  ],
+  "PLASMe": [
+   "chromosome",
+   "plasmid"
+  ],
+  "PlaScope": [
+   "chromosome",
+   "plasmid",
+   "unclassified"
+  ],
+  "Plasmer": [
+   "chromosome",
+   "plasmid"
+  ],
+  "PlasmidEC": [
+   "chromosome",
+   "plasmid"
+  ],
+  "PlasmidFinder": [
+   "FAILED",
+   "chromosome",
+   "plasmid"
+  ],
+  "Platon": [
+   "chromosome",
+   "plasmid"
+  ],
+  "RFPlasmid": [
+   "chromosome",
+   "plasmid"
+  ],
+  "geNomad": [
+   "chromosome",
+   "plasmid"
+  ],
+  "gplas2": [
+   "chromosome",
+   "plasmid",
+   "repeat",
+   "unknown"
+  ],
+  "plASgraph2": [
+   "chromosome",
+   "plasmid",
+   "unknown"
+  ]
+ },
+ "neutrality": {
+  "max_abs_scaled_in_neutralised_block": 0.0,
+  "max_abs_contribution_absent_unseen_tool": 0.0,
+  "all_available_tools_unchanged": true,
+  "max_abs_dlogit_panel_unseen": 0.633399713547758,
+  "no_op_on_training_data": true
+ },
+ "n_features": 102,
+ "n_contigs": 3811,
+ "n_isolates": 39,
+ "intercept": -5.137438684822173,
+ "model_sha256": "f5d1cd1202b5077030a4512fb0c801abbdf39998b7c170acade03c268d68d74d",
+ "seed": 20260821
+}

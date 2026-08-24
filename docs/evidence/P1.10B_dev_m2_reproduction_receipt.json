@@ -1,0 +1,144 @@
+{
+ "artifact": "P1.10B_DEV_M2_REPRODUCTION_RECEIPT",
+ "utc": "2026-08-19T07:52:22Z",
+ "input": {
+  "predictions_xlsx": "E:/AMR_Evidence_Data/P1.9_cleanroom/model1_development_bundle/predictions.xlsx",
+  "sha256": "db558a6775f473662369fb1c358f28530f85883ea3767beb807d031d2646e091",
+  "sheets_used": [
+   "Plasmid Detection",
+   "Ground-truth",
+   "Assembly Statistics",
+   "Species"
+  ],
+  "rows_all": 12795,
+  "rows_ARG_bearing": 1460,
+  "target_plasmid": 280,
+  "target_chromosome": 1180,
+  "isolate_grouping_units": 245
+ },
+ "environment": {
+  "python": "3.14.6",
+  "sklearn": "1.9.0",
+  "pandas": "3.0.3",
+  "numpy": "2.5.0"
+ },
+ "spec": {
+  "estimator": "HistGradientBoostingClassifier(max_depth=3,max_iter=200,learning_rate=0.06,min_samples_leaf=25,l2_regularization=1.0)",
+  "featureset": "F_full_no_taxon",
+  "seed": 20260816,
+  "outer": "StratifiedGroupKFold(5,shuffle,random_state=SEED)",
+  "inner": "StratifiedGroupKFold(4,shuffle,random_state=SEED+fold)",
+  "group": "Sample ID",
+  "threshold_rule": "smallest thr with inner-OOF PPV>=0.95 and >=10 positive calls",
+  "class_orientation": "predict_proba[:,1] == P(plasmid); y = (Ground-truth class == 'plasmid')",
+  "target_coding": "plasmid=1, chromosome=0",
+  "abstention_vocabulary": [
+   "repeat",
+   "unclassified",
+   "unknown"
+  ],
+  "feature_order": [
+   "HyAsP",
+   "MOB-recon",
+   "PLASMe",
+   "PlaScope",
+   "Plasmer",
+   "PlasmidEC",
+   "PlasmidFinder",
+   "Platon",
+   "RFPlasmid",
+   "geNomad",
+   "gplas2",
+   "plASgraph2",
+   "n_valid",
+   "n_plasmid",
+   "n_chrom",
+   "n_abstain",
+   "frac_plasmid",
+   "frac_chrom",
+   "agreement",
+   "SR contig length",
+   "log10_len",
+   "log10_nsr",
+   "abst_HyAsP",
+   "abst_MOB-recon",
+   "abst_PLASMe",
+   "abst_PlaScope",
+   "abst_Plasmer",
+   "abst_PlasmidEC",
+   "abst_PlasmidFinder",
+   "abst_Platon",
+   "abst_RFPlasmid",
+   "abst_geNomad",
+   "abst_gplas2",
+   "abst_plASgraph2"
+  ]
+ },
+ "reproduced": {
+  "M2": {
+   "TP": 189,
+   "FP": 13,
+   "TN": 1167,
+   "FN": 91,
+   "unresolved": 0,
+   "plasmid_PPV": 0.9356435643564357,
+   "plasmid_recall": 0.675,
+   "coverage": 1.0
+  },
+  "M0": {
+   "TP": 104,
+   "FP": 5,
+   "TN": 1117,
+   "FN": 0,
+   "unresolved": 234,
+   "plasmid_PPV": 0.9541284403669725,
+   "plasmid_recall": 0.37142857142857144,
+   "coverage": 0.8397260273972603
+  },
+  "fold_thresholds": [
+   0.9732,
+   0.9605,
+   0.9378,
+   0.9718,
+   0.9524
+  ],
+  "fold_threshold_median": 0.9605
+ },
+ "authoritative": {
+  "M2": {
+   "TP": 189,
+   "FP": 13,
+   "TN": 1167,
+   "FN": 91,
+   "PPV": 0.9356435643564357,
+   "recall": 0.675,
+   "coverage": 1.0
+  },
+  "M0": {
+   "TP": 104,
+   "FP": 5,
+   "TN": 1117,
+   "FN": 0,
+   "unresolved": 234,
+   "PPV": 0.9541284403669725,
+   "recall": 0.37142857142857144
+  },
+  "fold_thresholds": [
+   0.9732,
+   0.9605,
+   0.9378,
+   0.9718,
+   0.9524
+  ],
+  "fold_threshold_median": 0.9605
+ },
+ "verdict": {
+  "M2_confusion_matrix_exact": true,
+  "M2_PPV_exact": true,
+  "M2_recall_exact": true,
+  "M0_exact": true,
+  "fold_thresholds_exact": true,
+  "median_is_0_9605": true,
+  "ALL_PASS": true
+ }
+}

@@ -1,0 +1,13 @@
+asset	title	format	status	sha256	size_bytes	source_data
+Figure1_study_design.svg	Study design, frozen boundaries and truth barrier	SVG (editable vector)	COMPLETE - truth-independent	f7e2b5d2314229338c2e74191f4eb846452ef36bef9f9ee9e6acf398ce269b97	3682	PREDICTIONS_FROZEN.json, P1.13_FROZEN_DESIGN.yaml, AMENDMENT_005
+Figure2_flow.svg	Cohort, execution and eligibility flow	SVG (editable vector)	COMPLETE - truth-independent	62ac491bd642e9f17feba5bb6f7db67abc628cd5922e04bc651937cd4774c901	4165	PREDICTIONS_FROZEN.json, P1.13_FROZEN_DESIGN.yaml, AMENDMENT_005
+Figure3	Primary performance	SVG/PDF/PNG (pending)	BLOCKED - awaiting truth authorization			P113_PRIMARY_METRICS.tsv (does not exist)
+Figure4	Selective prediction, coverage and abstention	SVG/PDF/PNG (pending)	BLOCKED - awaiting truth authorization			P113_PRIMARY_METRICS.tsv (does not exist)
+Figure5	Species and technical-strata generalization	SVG/PDF/PNG (pending)	BLOCKED - awaiting truth authorization			P113_PRIMARY_METRICS.tsv (does not exist)
+Figure6	Failure and error architecture	SVG/PDF/PNG (pending)	PARTIAL - failure panels are truth-independent			P113_PRIMARY_METRICS.tsv (does not exist)
+Figure7	ARG-bearing contig implications	SVG/PDF/PNG (pending)	BLOCKED - awaiting truth authorization			P113_PRIMARY_METRICS.tsv (does not exist)
+Table1	Cohort and denominators	XLSX/TSV	COMPLETE - truth-independent			frozen artefacts
+Table2	Tool panel, versions, databases and output definitions	XLSX/TSV	COMPLETE - truth-independent			frozen artefacts
+Table3	Primary external performance	XLSX/TSV	BLOCKED - awaiting truth authorization			P113_*_METRICS.tsv
+Table4	Species-stratified performance	XLSX/TSV	BLOCKED - awaiting truth authorization			P113_*_METRICS.tsv
+Table5	Failure and applicability summary	XLSX/TSV	COMPLETE - truth-independent			frozen artefacts

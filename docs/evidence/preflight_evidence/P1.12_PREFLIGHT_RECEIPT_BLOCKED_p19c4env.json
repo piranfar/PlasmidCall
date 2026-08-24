@@ -1,0 +1,473 @@
+{
+ "generated_utc": "2026-08-21T06:43:24Z",
+ "purpose": "critical-tool preflight and panel-health gate, frozen before P1.11 processing",
+ "critical_tools": [
+  "PlaScope"
+ ],
+ "critical_rationale": "PlaScope absence takes v1.2-General recall from 0.7764 to 0.2013 on the development cohort, below the 0.50 primary floor. See docs/evidence/P1.12_V1.2_FAILURE_SENSITIVITY.tsv",
+ "critical_coverage_min": 0.95,
+ "n_prespecified_isolates": 79,
+ "max_retries": 2,
+ "retry_rule": "technical execution failure only, identical frozen image, database, command and parameters; no patching, replacement or retuning",
+ "permitted_trained_failure_states": {
+  "PlasmidFinder": [
+   "FAILED"
+  ]
+ },
+ "frozen_parser_version": "p19c4-parsers/1.7",
+ "frozen_plascope_command": "centrifuge -f --threads $THREADS -x /db/plascope/chromosome_plasmid_db -U $FAN -k 1000 --report-file /out/${S}_summary.tsv -S /out/${S}_extendedresults.tsv",
+ "env_root": "/work/p19c4/env",
+ "db_root": "/work/p19c4/db",
+ "databases": {
+  "hyasp": {
+   "tree_sha256": "04539116d71e35561d3a025014896b8dcb9605ea56b554dfb41fc54c642bf2aa",
+   "n_files": 3
+  },
+  "mobsuite": null,
+  "plasme": {
+   "tree_sha256": "c68afa40cbc5f2c21dd96ecdda515a4b48f5d94c0cf146bd9fb4bd41b3af36a9",
+   "n_files": 49
+  },
+  "plascope": {
+   "tree_sha256": "76e2e323aa7be091dfc80bab1ab1ebdcef3705bd1bc7618bbe174cfbd4f4d82a",
+   "n_files": 3
+  },
+  "plasmer": {
+   "tree_sha256": "4ca1faec08746b9d7494ec8b264d82381d8f99f1360ffb9063d457c9514d4ec2",
+   "n_files": 59
+  },
+  "plasmidec": null,
+  "plasmidfinder": null,
+  "platon": {
+   "tree_sha256": "32ba8233c25242effb6ce2ec4420baa1a1992fe82784545f59d5d0bdb7b62378",
+   "n_files": 31
+  },
+  "rfplasmid": null,
+  "genomad": {
+   "tree_sha256": "f1a5416be2862d94f4ff89f8264d75d05247eba3fc65c7b026c45074ffbe4b50",
+   "n_files": 35
+  },
+  "gplas2": null,
+  "plasgraph2": null
+ },
+ "smoke_sample": null,
+ "smoke_tool_states": null,
+ "checks": [
+  {
+   "stage": 1,
+   "check": "frozen environment manifest present",
+   "pass": true,
+   "critical": false,
+   "detail": "21 entries"
+  },
+  {
+   "stage": 1,
+   "check": "HyAsP Dockerfile hash matches frozen",
+   "pass": true,
+   "critical": false,
+   "detail": "c44f97b319e4bbbc"
+  },
+  {
+   "stage": 1,
+   "check": "MOB-recon Dockerfile hash matches frozen",
+   "pass": true,
+   "critical": false,
+   "detail": "421cc8beba88d36c"
+  },
+  {
+   "stage": 1,
+   "check": "PLASMe Dockerfile hash matches frozen",
+   "pass": false,
+   "critical": false,
+   "detail": "got b20bd9be6bd893eb want a48786bc976a8283"
+  },
+  {
+   "stage": 1,
+   "check": "PlaScope Dockerfile hash matches frozen",
+   "pass": false,
+   "critical": true,
+   "detail": "got 6c9af0535d5286c0 want 726e7872262e8cb6"
+  },
+  {
+   "stage": 1,
+   "check": "Plasmer Dockerfile in frozen manifest",
+   "pass": false,
+   "critical": false,
+   "detail": "docker/plasmer/Dockerfile"
+  },
+  {
+   "stage": 1,
+   "check": "PlasmidEC Dockerfile hash matches frozen",
+   "pass": false,
+   "critical": false,
+   "detail": "got 6e5f74e12e75a5b6 want 0154a406be31f0c8"
+  },
+  {
+   "stage": 1,
+   "check": "PlasmidFinder Dockerfile hash matches frozen",
+   "pass": false,
+   "critical": false,
+   "detail": "got ca033925b7f52bc1 want b78a1971dee16a58"
+  },
+  {
+   "stage": 1,
+   "check": "Platon Dockerfile hash matches frozen",
+   "pass": true,
+   "critical": false,
+   "detail": "20a2bccba168fa05"
+  },
+  {
+   "stage": 1,
+   "check": "RFPlasmid Dockerfile hash matches frozen",
+   "pass": false,
+   "critical": false,
+   "detail": "got acb1ebb9ea301e2a want b22c0d35aa6bd7d3"
+  },
+  {
+   "stage": 1,
+   "check": "geNomad Dockerfile hash matches frozen",
+   "pass": false,
+   "critical": false,
+   "detail": "got 19ca679a437af55f want fa529f0721dfb36d"
+  },
+  {
+   "stage": 1,
+   "check": "gplas2 Dockerfile hash matches frozen",
+   "pass": false,
+   "critical": false,
+   "detail": "got e7b118cfbb43b055 want 72ea15ba4e07a0a1"
+  },
+  {
+   "stage": 1,
+   "check": "plASgraph2 Dockerfile hash matches frozen",
+   "pass": true,
+   "critical": false,
+   "detail": "f1ebfdbcb29534a5"
+  },
+  {
+   "stage": 1,
+   "check": "run/run_tool.sh hash matches frozen",
+   "pass": false,
+   "critical": true,
+   "detail": "got 2779a5069eaa5cf3 want 530e4580a37b9930"
+  },
+  {
+   "stage": 1,
+   "check": "run/parsers.py hash matches frozen",
+   "pass": false,
+   "critical": true,
+   "detail": "got 68599a94af066f2d want fb1be389a661ab68"
+  },
+  {
+   "stage": 1,
+   "check": "run/parse_all.py hash matches frozen",
+   "pass": true,
+   "critical": true,
+   "detail": "a23ffb2ac814d796"
+  },
+  {
+   "stage": 1,
+   "check": "db/fetch_dbs.sh hash matches frozen",
+   "pass": false,
+   "critical": true,
+   "detail": "got c12315c976d9953c want 1ae592c6d66fdad6"
+  },
+  {
+   "stage": 1,
+   "check": "parser version is the frozen one",
+   "pass": true,
+   "critical": true,
+   "detail": "p19c4-parsers/1.7"
+  },
+  {
+   "stage": 2,
+   "check": "PlaScope command is byte-for-byte the frozen invocation",
+   "pass": true,
+   "critical": true,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "PlaScope uses the frozen database path",
+   "pass": true,
+   "critical": true,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "PlaScope retains -k 1000 with no size or coverage filter",
+   "pass": true,
+   "critical": true,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "HyAsP has a frozen command branch",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "MOB-recon has a frozen command branch",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "PLASMe has a frozen command branch",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "PlaScope has a frozen command branch",
+   "pass": true,
+   "critical": true,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "Plasmer has a frozen command branch",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "PlasmidEC has a frozen command branch",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "PlasmidFinder has a frozen command branch",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "Platon has a frozen command branch",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "RFPlasmid has a frozen command branch",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "geNomad has a frozen command branch",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "gplas2 has a frozen command branch",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 2,
+   "check": "plASgraph2 has a frozen command branch",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "HyAsP database hashed",
+   "pass": true,
+   "critical": false,
+   "detail": "3 files, 04539116d71e3556"
+  },
+  {
+   "stage": 3,
+   "check": "MOB-recon database directory present",
+   "pass": false,
+   "critical": false,
+   "detail": "/work/p19c4/db/mobsuite"
+  },
+  {
+   "stage": 3,
+   "check": "PLASMe database hashed",
+   "pass": true,
+   "critical": false,
+   "detail": "49 files, c68afa40cbc5f2c2"
+  },
+  {
+   "stage": 3,
+   "check": "PlaScope database hashed",
+   "pass": true,
+   "critical": true,
+   "detail": "3 files, 76e2e323aa7be091"
+  },
+  {
+   "stage": 3,
+   "check": "Plasmer database hashed",
+   "pass": true,
+   "critical": false,
+   "detail": "59 files, 4ca1faec08746b9d"
+  },
+  {
+   "stage": 3,
+   "check": "PlasmidEC database directory present",
+   "pass": false,
+   "critical": false,
+   "detail": "/work/p19c4/db/plasmidec"
+  },
+  {
+   "stage": 3,
+   "check": "PlasmidFinder database directory present",
+   "pass": false,
+   "critical": false,
+   "detail": "/work/p19c4/db/plasmidfinder"
+  },
+  {
+   "stage": 3,
+   "check": "Platon database hashed",
+   "pass": true,
+   "critical": false,
+   "detail": "31 files, 32ba8233c25242ef"
+  },
+  {
+   "stage": 3,
+   "check": "RFPlasmid database directory present",
+   "pass": false,
+   "critical": false,
+   "detail": "/work/p19c4/db/rfplasmid"
+  },
+  {
+   "stage": 3,
+   "check": "geNomad database hashed",
+   "pass": true,
+   "critical": false,
+   "detail": "35 files, f1a5416be2862d94"
+  },
+  {
+   "stage": 3,
+   "check": "gplas2 database directory present",
+   "pass": false,
+   "critical": false,
+   "detail": "/work/p19c4/db/gplas2"
+  },
+  {
+   "stage": 3,
+   "check": "plASgraph2 database directory present",
+   "pass": false,
+   "critical": false,
+   "detail": "/work/p19c4/db/plasgraph2"
+  },
+  {
+   "stage": 3,
+   "check": "HyAsP database matches the frozen receipt",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "MOB-recon database matches the frozen receipt",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "PLASMe database matches the frozen receipt",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "PlaScope database matches the frozen receipt",
+   "pass": true,
+   "critical": true,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "Plasmer database matches the frozen receipt",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "PlasmidEC database matches the frozen receipt",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "PlasmidFinder database matches the frozen receipt",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "Platon database matches the frozen receipt",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "RFPlasmid database matches the frozen receipt",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "geNomad database matches the frozen receipt",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "gplas2 database matches the frozen receipt",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 3,
+   "check": "plASgraph2 database matches the frozen receipt",
+   "pass": true,
+   "critical": false,
+   "detail": ""
+  },
+  {
+   "stage": 4,
+   "check": "smoke test executed",
+   "pass": true,
+   "critical": false,
+   "detail": "SKIPPED by --skip-smoke; identity checks only"
+  }
+ ],
+ "n_checks": 58,
+ "n_failed": 17,
+ "n_critical_failed": 4,
+ "critical_failed": [
+  "PlaScope Dockerfile hash matches frozen",
+  "run/run_tool.sh hash matches frozen",
+  "run/parsers.py hash matches frozen",
+  "db/fetch_dbs.sh hash matches frozen"
+ ],
+ "VERDICT": "BLOCKED"
+}

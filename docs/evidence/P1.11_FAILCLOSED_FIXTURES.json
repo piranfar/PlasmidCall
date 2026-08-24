@@ -1,0 +1,263 @@
+{
+ "suite": "P1.11 fail-closed correction fixtures",
+ "module_under_test": "scripts/p1_12/evaluate_p111_locked_v2.py",
+ "exercises_production_functions": true,
+ "n_fixtures": 41,
+ "n_passed": 41,
+ "n_failed": 0,
+ "verdict": "PASS",
+ "fixtures": [
+  {
+   "fixture": "1  valid score below threshold is AVAILABLE (a real negative)",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "fixture": "2  valid score at threshold is AVAILABLE",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "fixture": "3  float NaN is UNAVAILABLE",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "fixture": "3b string 'nan' is UNAVAILABLE",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "fixture": "4  empty string is UNAVAILABLE",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "fixture": "4b None is UNAVAILABLE",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "fixture": "5  +inf is UNAVAILABLE",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "fixture": "5b -inf is UNAVAILABLE",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "fixture": "   non-numeric text is UNAVAILABLE",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "fixture": "   exact 0.0 is AVAILABLE (a real score, not missing)",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "fixture": "1  below-threshold available score -> 0 (negative)",
+   "expected": 0,
+   "observed": 0,
+   "pass": true
+  },
+  {
+   "fixture": "2  at-threshold available score    -> 1 (selected)",
+   "expected": 1,
+   "observed": 1,
+   "pass": true
+  },
+  {
+   "fixture": "3  unavailable score               -> -1 (abstain, NOT 0)",
+   "expected": -1,
+   "observed": -1,
+   "pass": true
+  },
+  {
+   "fixture": "   no unavailable row was scored as a negative",
+   "expected": 0,
+   "observed": 0,
+   "pass": true
+  },
+  {
+   "fixture": "   REGRESSION GUARD: raw `nan >= t` would have yielded False (a negative)",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "fixture": "6  missing annotation_state COLUMN -> non-zero exit",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "fixture": "6b failure names the column and refuses to default it",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "fixture": "6c empty annotation_state value -> non-zero exit (empty is not 'ok')",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "fixture": "6d unrecognised annotation_state -> non-zero exit (never coerced to ok)",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "fixture": "   production main() completed on a well-formed table",
+   "expected": 0,
+   "observed": 0,
+   "pass": true
+  },
+  {
+   "fixture": "7  per-row annotation_failed -> routing_abstain",
+   "expected": "routing_abstain",
+   "observed": "routing_abstain",
+   "pass": true
+  },
+  {
+   "fixture": "7b per-row annotation_missing -> routing_abstain",
+   "expected": "routing_abstain",
+   "observed": "routing_abstain",
+   "pass": true
+  },
+  {
+   "fixture": "7c routing abstentions are counted and observable",
+   "expected": 2,
+   "observed": 2,
+   "pass": true
+  },
+  {
+   "fixture": "8  valid no-core-ARG annotation -> v1.2-General",
+   "expected": "v1.2-General",
+   "observed": "v1.2-General",
+   "pass": true
+  },
+  {
+   "fixture": "9  valid core-ARG annotation -> v1.1",
+   "expected": "v1.1",
+   "observed": "v1.1",
+   "pass": true
+  },
+  {
+   "fixture": "3  NaN v1.1 score -> model_abstain (not a negative)",
+   "expected": "model_abstain",
+   "observed": "model_abstain",
+   "pass": true
+  },
+  {
+   "fixture": "4  absent v1.1 score -> model_abstain",
+   "expected": "model_abstain",
+   "observed": "model_abstain",
+   "pass": true
+  },
+  {
+   "fixture": "3b abstained row emits no v1.1 class",
+   "expected": "model_abstain",
+   "observed": "model_abstain",
+   "pass": true
+  },
+  {
+   "fixture": "1  valid below-threshold score keeps a real class",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "fixture": "2  valid at-threshold score is selected",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "fixture": "   model abstentions counted separately from router abstentions",
+   "expected": 2,
+   "observed": 2,
+   "pass": true
+  },
+  {
+   "fixture": "   score-availability block reports the v1.1 abstain count",
+   "expected": 2,
+   "observed": 2,
+   "pass": true
+  },
+  {
+   "fixture": "   analysis B reports its denominators explicitly",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "fixture": "   analysis B excludes abstained rows from the scored denominator",
+   "expected": 2,
+   "observed": 2,
+   "pass": true
+  },
+  {
+   "fixture": "   no abstained row entered B's confusion matrix",
+   "expected": 3,
+   "observed": 3,
+   "pass": true
+  },
+  {
+   "fixture": "5  NaN v1.2 probability -> unavailable under the production predicate",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "fixture": "5b NaN v1.2 -> -1 abstain, valid 0.99 -> 1",
+   "expected": [
+    -1,
+    1
+   ],
+   "observed": [
+    -1,
+    1
+   ],
+   "pass": true
+  },
+  {
+   "fixture": "10  evaluator source references no truth_hold path",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "fixture": "10b evaluator never opens a .paf / assembly_report / gbff",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  },
+  {
+   "fixture": "10c fixtures used only synthetic in-memory tables under a temp dir",
+   "expected": true,
+   "observed": true,
+   "pass": true
+  },
+  {
+   "fixture": "10d no real P1.11 truth artefact exists to consume",
+   "expected": false,
+   "observed": false,
+   "pass": true
+  }
+ ]
+}

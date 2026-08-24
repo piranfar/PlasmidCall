@@ -1,0 +1,98 @@
+# P1.9C2 CACHE-CONSTRAINED RESOURCE AMENDMENT
+# Resource governance only. No biological parameter is touched.
+amendment_id: P1.9C2_CACHE_CONSTRAINED_AMENDMENT
+version: '1.0'
+date_utc: '2026-08-18'
+authorisation: 'Owner: APPROVED - P1.9C2 NORMALIZED HYBRID RETRY, CACHE-CONSTRAINED RESOURCE PROFILE'
+
+change_class: RESOURCE_GOVERNANCE_ONLY
+intent: 'force page-cache reclamation inside the container cgroup and preserve Windows host memory'
+not_outcome_driven: true
+outcome_driven_tuning_statement: 'no hybrid assembly output has ever been produced, so no assembly-quality or TRACE-ARG metric exists that could have influenced this choice; the profile is derived solely from measured memory accounting'
+
+preserved_hashes_unchanged:
+  frozen_assembly_protocol: '883a1034f1e193f4388d7d5e93c407d4a687419ed333c783c7250b5f4816e34b'
+  execution_amendment: '86db796448db499289f181945c77b5cb8931088e15198e87ba634888a7e9ac54'
+  resource_retry_amendment: '5b89b9090ddeafa82d3ffcf8bd4591493e25a72675238a281e59d0c990f50405'
+  normalisation_amendment: 'c9cda44a718dc708a4598317d5546fe42afad1206e86ae544acba9d3ff95748b'
+  normalised_long_reads_sha256: '31384685e01d895e2bbb58b59ec5d4f03d6e6809f3caa21ffcf2461cf70c11bc'
+  original_long_reads_sha256: '1913d45df62a4429c5c34f818395b897f865c47e0e29854aff339c9a6204a0d7'
+  unicycler_read_ref_source_sha256: 'b9606bedc1559fdcb84db56087cfac4a7e7bad55867de2f78f0fc96e841852f0'
+  assembly_image_digest: 'sha256:59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20'
+
+basis:
+  attempt_2_classification: OPERATOR_EMERGENCY_STOP
+  attempt_2_cause: 'host memory pressure from cgroup-charged file-page cache'
+  attempt_2_peak_cgroup_total_gb: 18.291
+  attempt_2_peak_swap_gb: 0.001
+  attempt_2_spades_cap_honoured: true
+  attempt_2_spades_invocations_with_m_12: 6
+  attempt_2_spades_invocations_with_m_1024: 0
+  mechanism: 'cgroup v2 charges file page cache to the cgroup, so SPAdes scratch I/O was counted on top of its 12 GB resident memory; nothing in the previous profile bounded it'
+  evidence: 'memory.current oscillated 14.18 to 3.90 to 6.71 GB, the signature of reclaimable cache; swap was effectively unused despite 8 GB being available'
+
+resource_changes:
+  wsl_memory: {from: 22GB, to: 18GB}
+  wsl_swap: {from: 12GB, to: 12GB, unchanged: true, location: 'E:\\AMR_Evidence_Data\\wsl_swap.vhdx'}
+  wsl_processors: {from: 8, to: 8, unchanged: true}
+  container_memory: {from: 20g, to: 14g}
+  container_memory_swap: {from: 28g, to: 22g}
+  container_cpus: {from: 8, to: 8, unchanged: true}
+  sparseVhd: NOT_SET
+  experimental_settings: NONE
+  docker_compaction_or_prune: NONE
+  rationale: 'a 14 GB cgroup ceiling forces the kernel to reclaim file cache at 14 GB instead of letting it grow to 18 GB, while still leaving 2 GB of headroom above the 12 GB SPAdes resident cap; an 18 GB VM guarantees Windows retains roughly 13 GB'
+
+unchanged_scientific_parameters:
+  sample: robertson-benchmark_ecol-SAMD00056131
+  mode: unicycler_hybrid
+  assembler_image: 'p19c2-cleanroom:1.0'
+  spades_memory_option: "--spades_options '-m 12'"
+  threads: 8
+  concurrency: 1
+  kmer_schedule: '27,53,71,87,99,111,119,127'
+  bridging_thresholds: unchanged
+  short_reads: 'original paired Illumina, unchanged'
+  long_reads: 'frozen normalised 100x file, unchanged'
+  long_read_file_altered: false
+  filtlong_selection_altered: false
+  read_identifiers_altered: false
+  cohort_membership_altered: false
+  downsampling_or_filtering_added: false
+
+dry_token_audit:
+  method_1_source_level: 'build_spades_command called directly for all eight k-rounds'
+  rounds_audited: 8
+  m_tokens_per_round: 1
+  m_value: '12'
+  m_1024_present: false
+  method_2_quoting_path: 'a probe .cmd generated exactly as worker.ps1 does, executed through cmd.exe into bash, printing argv'
+  probe_argc: 15
+  probe_argv_13: '--spades_options'
+  probe_argv_14: '-m 12'
+  quoting_intact: true
+  accidental_quoting_change: false
+
+monitoring:
+  cgroup_v2_counters: [memory.current, memory.peak, memory.swap.current, memory.swap.peak, memory.events]
+  cgroup_v2_memory_stat_fields: [anon, file, file_dirty, file_writeback, inactive_file, active_file, kernel, slab]
+  rationale: 'anonymous demand must be separable from reclaimable file-page cache'
+  host_and_storage: [windows_available_memory, vm_memory, vm_swap, e_free_gb, vhdx_bytes, container_state, stage, log_freshness]
+  interval_seconds: 30
+  hard_timeout_hours: 14
+
+emergency_rules:
+  windows_available_floor_gb: 1.5
+  windows_floor_consecutive_observations_required: 2
+  single_transient_observation_is_recorded_not_fatal: true
+  docker_unhealthy: abort
+  e_free_floor_gb: 10
+  oom_kill_threshold: 'memory.events oom_kill greater than 0'
+  memory_swap_limit_reached: abort
+  no_progress_timeout: abort
+
+mandatory_stop: 'STOP after SAMD00056131 whether successful or not; the remaining seven hybrids require explicit approval.'
+
+launch_command_verbatim: |
+  docker run --rm --memory=14g --memory-swap=22g --cpus=8 -v "E:\AMR_Evidence_Data\P1.9_cleanroom:/work" p19c2-cleanroom:1.0 bash -c "set -e; unicycler -1 /work/raw/robertson-benchmark_ecol-SAMD00056131/DRR065947_1.fastq.gz -2 /work/raw/robertson-benchmark_ecol-SAMD00056131/DRR065947_2.fastq.gz -l /work/raw_normalized/robertson-benchmark_ecol-SAMD00056131/DRR065950_subreads.norm100x.fastq.gz -o /tmp/h -t 8 --keep 1 --spades_options '-m 12'; mkdir -p /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131; du -sb /tmp/h | cut -f1 > /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/scratch_bytes.txt; cp /tmp/h/assembly.fasta /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.fasta; cp /tmp/h/assembly.gfa /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.gfa; cp /tmp/h/unicycler.log /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/unicycler_hybrid.log; a=$(md5sum /tmp/h/assembly.fasta | cut -d' ' -f1); b=$(md5sum /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.fasta | cut -d' ' -f1); c=$(md5sum /tmp/h/assembly.gfa | cut -d' ' -f1); d=$(md5sum /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/hybrid.gfa | cut -d' ' -f1); test $a = $b; test $c = $d; echo VERIFIED_BEFORE_SCRATCH_DELETE fasta=$a gfa=$c > /work/assemblies/hybrid/robertson-benchmark_ecol-SAMD00056131/copy_verification.txt; rm -rf /tmp/h; echo SCRATCH_REMOVED_AFTER_VERIFY"
+launch_command_sha256: '76e3ec01f395b2120d77b2c0a3550ae422bbae72b26991191539f232f5cb1e30'

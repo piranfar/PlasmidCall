@@ -1,0 +1,9 @@
+comparison,blocker,resolution_path,status
+DEV_250 x PG2_436,0/250 development accessions recovered,owner supplies Circling_in_on_plasmids_-_Supplementary_Tables_bbaf589.xlsx,IDENTIFIER_INCOMPLETE
+DEV_250 x PLASEVAL_53,0/250 development accessions recovered,same owner-supplied XLSX,IDENTIFIER_INCOMPLETE
+DEV_250 x CG137,0/250 development accessions recovered,same owner-supplied XLSX,IDENTIFIER_INCOMPLETE
+PG2_436 x PLASEVAL_53,sequence relatedness untested,Part F protocol after acquisition approval,SEQUENCE_RELATEDNESS_PENDING
+PG2_436 x CG137,sequence relatedness untested,Part F protocol,SEQUENCE_RELATEDNESS_PENDING
+PLASEVAL_53 x CG137,sequence relatedness untested,Part F protocol,SEQUENCE_RELATEDNESS_PENDING
+PG2 non-archival sample IDs (10),"ArredondoAlonso2018 samples carry study IDs, not BioSample",dereference via figshare deposits and ENA PRJEB28495,IDENTIFIER_INCOMPLETE
+PG2 samples without public short reads (14),"Boostrom2022 reads were author-supplied, not archived",clean-room rebuild impossible for these,EXCLUDED_FROM_PRIMARY

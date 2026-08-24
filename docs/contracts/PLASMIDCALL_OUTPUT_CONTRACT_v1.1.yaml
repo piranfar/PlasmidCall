@@ -1,0 +1,150 @@
+# PLASMIDCALL OUTPUT CONTRACT v1.1
+# The interface PlasmidCall exposes to downstream systems, including PortabilityRisk.
+# Frozen 2026-08-20, BEFORE any subsequent cohort was examined.
+#
+# Supersedes MODEL1_OUTPUT_CONTRACT_v1.0.yaml IN PART: only the deployment class boundaries change.
+# v1.0 is NOT edited. It is hash-recorded in two freeze receipts
+# (7779070a5143cc21f4b01527f8cbc30aefb1a09c86c817a617c2c71702154b66) and remains the authoritative
+# record of what was frozen before the P1.10 verdict.
+contract_id: PLASMIDCALL_OUTPUT_CONTRACT
+version: '1.1'
+date_utc: '2026-08-20'
+status: FROZEN
+model: 'PlasmidCall (formerly "Model 1"; see docs/NAMING.md)'
+supersedes:
+  document: 'docs/contracts/MODEL1_OUTPUT_CONTRACT_v1.0.yaml'
+  document_sha256: '7779070a5143cc21f4b01527f8cbc30aefb1a09c86c817a617c2c71702154b66'
+  scope_of_supersession: 'deployment class boundaries ONLY'
+  unchanged: >
+    The estimator specification, seed, featureset, panel, ARG rules, M0 three-state rule, retention
+    requirements, consumption rules and the not_selected semantics are all carried over verbatim.
+    No refit, no recalibration, no hyperparameter change, no panel change.
+governing_amendment: 'docs/plans/P1.10C_V1.1_DEPLOYMENT_OPERATING_POINT_AMENDMENT.yaml'
+
+# ---------------------------------------------------------------- epistemic status
+status_of_this_release:
+  designation: 'VALIDATED BETA'
+  what_is_validated: >
+    The MODEL SPECIFICATION and the P1.10 preregistered verdict. PlasmidCall v1.0 was evaluated on a
+    strictly independent 39-isolate cohort under a preregistered contract, with the evaluation script
+    hashed before predictions were joined to truth. That verdict was NOT MET on recall in both
+    co-primary populations, and it stands unrevised.
+  what_is_NOT_validated: >
+    THIS OPERATING POINT. The standard threshold was moved from 0.9605 to 0.9524 AFTER the P1.10
+    results were seen. Both values are development-derived fold thresholds, so neither is invented
+    from the evaluation cohort - but the CHOICE among the six available points used knowledge of
+    P1.10 outcomes. The operating characteristics quoted below are therefore IN-SAMPLE to P1.10 and
+    carry optimistic bias of unknown size. They must not be cited as independent validation.
+  why_this_is_still_disciplined: >
+    The point is frozen NOW, before any subsequent cohort is examined, so the next independent cohort
+    delivers PROSPECTIVE CONFIRMATION rather than a second selection. Freezing before looking is what
+    separates a deployment decision from threshold shopping.
+  relationship_to_the_verdict: >
+    This is a post-validation deployment decision. It does not revise, soften or recompute the P1.10
+    verdict, which is recorded at 0.9605 in
+    docs/evidence/P1.10_independent_validation_2026-08-20.md and is final for v1.0.
+
+# ---------------------------------------------------------------- the change
+deployment_classes:
+  field: deployment_class
+  values:
+    high_confidence_plasmid: 'M2_score >= 0.9605'
+    plasmid_selected:        '0.9524 <= M2_score < 0.9605'
+    not_selected:            'M2_score < 0.9524'
+  not_selected_semantics: >
+    NO POSITIVE PLASMID EVIDENCE at the deployment threshold. It is NOT a chromosome call, NOT a
+    negative, and NOT a zero. This is unchanged from v1.0 and is non-negotiable: a consumer needing a
+    chromosome assertion must take it from M0 or from truth. The class covers a large and
+    systematically biased fraction of true plasmid-borne contigs.
+  change_from_v1_0:
+    v1_0: 'very_high_confidence >= 0.9776 | supported 0.9605-0.9776 | not_selected < 0.9605'
+    v1_1: 'high_confidence >= 0.9605 | plasmid_selected 0.9524-0.9605 | not_selected < 0.9524'
+    effect: >
+      The selection boundary moves from 0.9605 to 0.9524, admitting more contigs as plasmid. The
+      0.9776 very-high-confidence tier is retired as a class boundary; 0.9605 is retained as the
+      high-confidence tier, so the previous standard threshold survives as the stricter band.
+
+# ---------------------------------------------------------------- why 0.9524
+operating_point_selection:
+  chosen: 0.9524
+  provenance: 'one of the five development fold thresholds [0.9732, 0.9605, 0.9378, 0.9718, 0.9524],
+    each produced by the frozen rule "smallest threshold with inner-OOF PPV >= 0.95 and >= 10 positive
+    calls" applied per outer fold on development data only.'
+  criterion_applied: >
+    Of the six development-derived operating points, 0.9524 is the ONLY one at which both co-primary
+    populations simultaneously show PPV >= 0.95 and recall > 0.50 on P1.10.
+  observed_on_P1_10_IN_SAMPLE:
+    CP1_core_ARG:     {n: 130,   TP: 53,  FP: 2,  FN: 52,  PPV: 0.9636, recall: 0.5048}
+    CP2_all_resolved: {n: 3811,  TP: 331, FP: 10, FN: 295, PPV: 0.9707, recall: 0.5288}
+  comparison_at_the_preregistered_point_0_9605:
+    CP1_core_ARG:     {TP: 48,  FP: 1, FN: 57,  PPV: 0.9796, recall: 0.4571}
+    CP2_all_resolved: {TP: 302, FP: 7, FN: 324, PPV: 0.9773, recall: 0.4824}
+  rejected_alternative_0_9378:
+    reason: >
+      0.9378 gives higher recall (CP2 0.5911) but CP1 PPV falls to 0.9365, BELOW the 0.95 floor
+      (TP 59, FP 4). The co-primary amendment applies the target to both populations separately and
+      forbids demoting one after its composition is observed, so an operating point that fails CP1
+      cannot be described as meeting the intended profile. 0.9378 is also the MINIMUM of the five
+      fold thresholds, which makes it the most recall-favourable choice available and therefore the
+      one carrying the largest in-sample optimism.
+  trade_accepted: >
+    Relative to 0.9605, moving to 0.9524 gains +4.8 points of recall on CP1 and +4.6 on CP2, at a
+    cost of 1.6 and 0.7 points of PPV respectively. Both populations remain inside the intended
+    profile in-sample.
+
+# ---------------------------------------------------------------- retention, unchanged and mandatory
+mandatory_retention:
+  - M2_score              # continuous, ALWAYS emitted; the thresholds are a reporting layer over it,
+                          # never a replacement for it
+  - M0_call               # three-state {plasmid, chromosome, abstain}; abstain is informative
+  - tool_calls            # all 12 native calls in the exact development vocabulary
+  - tool_disagreement     # n_valid, n_plasmid, n_chrom, n_abstain, agreement
+  - failed_missing        # explicit FAILED / MISSING, never mapped to a class or to zero
+  - provenance            # model version, dataset and matrix hashes, parser version,
+                          # tool versions and database identities
+rule: >
+  A consumer that keeps only the class label has broken this contract. The continuous score, the
+  abstentions, the per-tool evidence and the missingness states travel together or not at all.
+
+# ---------------------------------------------------------------- carried over verbatim from v1.0
+model_specification:
+  M0: 'unfitted rule; agreement >= 0.90 over non-abstaining tools; majority class; else abstain'
+  M2: >
+    HistGradientBoostingClassifier(max_depth=3, max_iter=200, learning_rate=0.06,
+    min_samples_leaf=25, l2_regularization=1.0, random_state=20260816), featureset F_full_no_taxon,
+    fitted on the 1,460 ARG-bearing development rows.
+  class_orientation: 'predict_proba[:,1] == P(plasmid)'
+  development_dataset_sha256: 'db558a6775f473662369fb1c358f28530f85883ea3767beb807d031d2646e091'
+  development_reproduction_receipt: 'docs/evidence/P1.10B_dev_m2_reproduction_receipt.json'
+status_of_this_output:
+  is: 'EVIDENCE - a plasmid-origin assessment derived from a 12-tool panel.'
+  is_not: 'genomic-context ground truth.'
+  rule: >
+    PlasmidCall output must never be substituted for a truth label, trained on as if it were observed
+    genomic context, or calibrated to.
+consumption_rules_for_portabilityrisk:
+  permitted: 'high-confidence rule-in / uncertainty-aware component only'
+  prohibited:
+    - treating any PlasmidCall output as genomic-context ground truth
+    - collapsing abstain or not_selected into a negative class
+    - discarding the continuous M2_score in favour of the class label alone
+    - fitting or tuning on P1.9 or P1.10 truth
+
+# ---------------------------------------------------------------- limitations
+known_limitations:
+  - 'THE OPERATING POINT IS NOT INDEPENDENTLY VALIDATED. See status_of_this_release. Prospective
+     confirmation on the next independent cohort is required before any performance claim is made
+     at 0.9524.'
+  - 'Recall remains the binding constraint. At 0.9524 on P1.10, 295 of 626 true plasmid contigs in
+     CP2 are still not selected.'
+  - 'CP1 is small and unbalanced: 130 contigs, 105 plasmid against 25 chromosome. Specificity and MCC
+     on CP1 have limited interpretability, and its PPV estimate rests on 2 false positives.'
+  - 'Contig-level and replicon-level recall differ substantially. At 0.9605 the locked evaluation
+     recovered 88 of 130 plasmid replicons (0.677) while contig recall was 0.482. Replicon-level
+     behaviour at 0.9524 was NOT computed by the locked evaluation and must not be assumed.'
+  - 'PlasmidFinder failed on 2 of 39 isolates (691 contigs) through an upstream parser defect. Those
+     contigs carry an explicit FAILED state and an 11-tool effective panel.'
+  - 'Species scope: P1.10 is 39/39 E. coli. Generalisation beyond E. coli / Enterobacterales at
+     deployment-era tool versions is NOT tested.'
+  - 'Panel dependence: leave-MOB-recon-out reduces CP2 recall from 0.482 to 0.441 at 0.9605. The
+     panel is not robust to losing that member.'

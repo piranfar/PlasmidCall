@@ -1,0 +1,350 @@
+# =============================================================================================
+# P1.13 AMENDMENT 004 - execution-integrity corrections, provenance and reconciliation
+#
+# These are NOT scientific protocol changes. They are corrections to the production
+# implementation, made truth-blind and before any prediction was constructed. The scientific
+# design is unchanged.
+# =============================================================================================
+amendment_id: P1.13_AMENDMENT_004
+design_id: P1.13-PROSPECTIVE-PUBLIC-MULTIGENUS-EXTERNAL-VALIDATION
+dated: 2026-08-22
+supersedes: nothing. The original design and amendments 001, 002 and 003 remain in force.
+
+classification:
+  type: execution-integrity correction
+  truth_blind: true
+  made_before_prediction_construction: true
+  truth_accessed: none
+  predictions_frozen: none
+  statement: >-
+    every correction below concerns whether an artefact is what it claims to be. None concerns
+    what an artefact means. No cohort membership, run accession, target depth, seed, sampling
+    algorithm, assembler, tool panel, model or threshold was altered.
+
+unchanged_and_verified:
+  cohort_sha256_prefix: 2e47d15b30a42181
+  verified: identical before and after every correction
+  cohort_size: 150
+  target_depth: 100x
+  seed: 20260821
+  assembler_image: p19c2-cleanroom:1.0
+  assembler_image_id: sha256:59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20
+
+# ---------------------------------------------------------------- 1. the four defects
+defects:
+
+  - id: DEFECT_1_corrupt_resume_acquisition
+    what: >-
+      curl -C - resumed onto files left partial by an interrupted run, appending from the wrong
+      logical offset. md5 was checked once, after the retry loop, so a corrupt file could never be
+      recovered by retrying: each retry resumed onto the same corruption.
+    why_it_mattered: >-
+      one of the two affected files returned at EXACTLY the declared byte length with the wrong
+      content. A size check or a record-count check would have passed it.
+    detected_by: md5 verification against the ENA-declared checksum
+    affected_isolates: [SAMN40123745, SAMN48144070]
+    affected_files:
+      - {isolate: SAMN48144070, file: SRR36372753_1.fastq.gz, on_disk: 344064,
+         expected: 261467249, mode: truncated}
+      - {isolate: SAMN40123745, file: SRR39132974_2.fastq.gz, on_disk: 249221239,
+         expected: 249221239, mode: correct_size_wrong_content}
+    external_cause_excluded: >-
+      HEAD requests to both ENA URLs returned exactly the expected content lengths, so this was
+      local transfer corruption and not a data-availability defect. Neither isolate left the cohort.
+    fix: >-
+      an md5-failing file is treated as corrupt rather than partial, deleted, refetched from byte
+      zero, and md5 is re-checked inside the retry loop.
+    took_effect: runner restart 2026-08-22T18:37:39Z, phase 1 re-entered
+    outcome_after_fix: {verified: 150, failed: 0, elapsed: 77s}
+
+  - id: DEFECT_2_unenforced_coverage_floor
+    what: >-
+      the frozen design declares minimum_usable_coverage 30x. Nothing in the execution path
+      enforced it. Selection used ENA's DECLARED coverage; the downsample receipts are the first
+      point at which coverage is recomputed from actual sequenced bases, and the two can disagree.
+    why_it_mattered: a predeclared eligibility criterion was assumed rather than guaranteed
+    fix: the floor is enforced where coverage is recomputed from bases, failing closed
+    took_effect: 2026-08-22T18:40:23Z in code; phase 2 fully re-run from 18:47:16Z
+    affected_isolates: all 150 gain the guarantee
+    isolates_excluded_by_the_floor: 0
+    audit: >-
+      independently audited across all 150 receipts, including the 10 produced before the code
+      change. Zero isolates fall below 30x. Lowest recomputed raw depth is 34.61x (SAMN46862834).
+      The floor is therefore satisfied for the whole cohort by measurement, not only by code path.
+
+  - id: DEFECT_3_symlink_unresolvable_in_container
+    what: >-
+      for isolates already below the 100x target no downsampling is required, and the verified raw
+      reads were linked into down/<isolate> with an ABSOLUTE symlink into raw/. The assembly
+      container mounts only down/<isolate>, so inside the container the link pointed at a path that
+      does not exist.
+    why_it_mattered: >-
+      the host showed a readable file; the container reported "could not find /reads/R1.fastq.gz".
+      Left unfixed this would have destroyed 56 of 150 isolates, 37 percent of the cohort, with an
+      error that reads like missing data rather than a mount defect.
+    fix: >-
+      hard links. raw/ and down/ share a filesystem, so the container sees a real file at no
+      storage cost. 112 links converted in place, 0 unresolved, /data usage unchanged.
+    took_effect: 2026-08-22T19:03:37Z, applied to code and to all existing links simultaneously
+    affected_isolates_count: 56
+    affected_isolates_list: provenance/AFFECTED_ISOLATES.json
+    residual_guard: >-
+      the acceptance gate now rejects any isolate whose assembler input is a symlink, so this
+      defect cannot silently recur.
+
+  - id: DEFECT_4_output_directory_not_writable_by_container_user
+    what: >-
+      the assembly container runs as mambauser uid 57439. The scratch directory was created mode
+      777; the OUTPUT directory was created with mkdir -p and no mode change, owned by ubuntu uid
+      1000.
+    why_it_mattered: >-
+      every assembly ran to completion, SPAdes succeeded, and the final copy failed with
+      "cp: cannot create regular file '/out/shortread.fasta': Permission denied". The scratch
+      directory was then removed, discarding the work. This consumed full assembly compute for 15
+      isolates and produced nothing. It is an infrastructure failure, NOT a biological or tool
+      failure, and must not be counted as one.
+    fix: all 150 output directories pre-created writable; staging directories created writable
+    took_effect: 2026-08-22T19:30Z approx, repairing in-flight and queued isolates
+    affected_isolates_count: 15
+    affected_isolates_list: provenance/AFFECTED_ISOLATES.json
+
+  - id: DEFECT_5_assembler_resumed_stale_scratch
+    what: >-
+      unicycler silently resumes from an existing SPAdes graph. Scratch directories from the run
+      that was stopped for this amendment survived, because the host user cannot unlink files
+      written by the container user (uid 57439, mode 644, inside a 755 directory it owns), so the
+      runner's rm -rf failed with permission denied and was never checked.
+    consequence: >-
+      five isolates were ACCEPTED in about two seconds each, publishing a graph computed during the
+      earlier, defective run under a new attempt's provenance. The assembly metrics were plausible
+      and the fail-closed content checks all passed, because the artefact was a real assembly. It
+      was simply not the assembly this attempt claimed to have computed.
+    detected_by: >-
+      wall-clock implausibility. A two-second assembly is impossible, which prompted reading the
+      assembler log, where the reuse is stated explicitly: "SPAdes graph already exists. Will use
+      this graph instead of running SPAdes".
+    affected_isolates: [SAMN15488622, SAMN26796377, SAMN26796439, SAMN29503689, SAMN29503815]
+    disposition: >-
+      all five acceptances quarantined to provenance/contaminated_resumed_scratch/ with their
+      markers, receipts, published artefacts and logs. None entered the accepted set. All scratch
+      and staging purged with root privileges. Live state returned to 0 accepted, 0 rejected.
+    fix:
+      - scratch is now attempt-specific, tmp/assembly/<isolate>/attempt<N>, so a previous attempt's
+        graph is never visible to a new one even if cleanup fails
+      - scratch is purged with root privileges inside a container, since the host user cannot
+        unlink container-user-owned files
+      - the acceptance gate now REJECTS any attempt whose assembler log or attempt stdout contains
+        evidence of scratch reuse, and requires positive evidence that SPAdes executed
+    regression_tested: >-
+      the gate was run against the known-contaminated artefact and rejected it, publishing nothing
+      and creating no marker. Verified, not assumed.
+    lesson: >-
+      the content-verification checks were necessary but not sufficient. Every artefact-level check
+      passed. Only provenance of the COMPUTATION, not of the artefact, could distinguish a genuine
+      run from a resumed one. Cheap plausibility signals such as elapsed time remain worth watching.
+
+common_property:
+  statement: >-
+    all four defects share one property: the artefact passed the obvious check and was wrong at the
+    point of use. A file with the exactly correct byte count and the wrong content. A link that
+    resolves on the host and not in the container. An assembly that succeeds and is then discarded.
+    Counting, sizing and listing all reported success in at least one case. Only verification of
+    actual content at the point of use detected them. This is the same principle that motivated
+    replacing the count-only pairing guard in amendment 003.
+
+# ---------------------------------------------------------------- 2. preserved provenance
+provenance:
+  location: provenance/
+  version_manifest: provenance/VERSION_MANIFEST.json
+  preserved_script_versions:
+    - {file: p113_run.sh.v1_original,               sha256_prefix: a7664bdcc848a424, mtime_utc: 2026-08-22T18:37:10Z}
+    - {file: p113_run.sh.v2_acquisition_fix,        sha256_prefix: fc1c263ce0d11f06, mtime_utc: 2026-08-22T18:46:11Z}
+    - {file: p113_run.sh.v3_parallel_phase2,        sha256_prefix: ad6f6a2fe3d89b10, mtime_utc: 2026-08-22T18:46:11Z}
+    - {file: p113_downsample.py.v1_original,        sha256_prefix: ed57fff2ded21942, mtime_utc: 2026-08-22T18:40:23Z}
+    - {file: p113_downsample.py.v2_floor_tmp_hardlink, sha256_prefix: d839d138e6fad87d, mtime_utc: 2026-08-22T19:03:37Z}
+    - {file: p113_pairing.py.v1_unchanged,          sha256_prefix: 24c203c674953d3f, mtime_utc: 2026-08-22T17:16:55Z}
+  per_defect_diffs:
+    - DEFECT1_acquisition_resume.diff
+    - DEFECT234_downsample_combined.diff
+    - DEFECT_phase2_parallelisation.diff
+  known_gap_declared_honestly: >-
+    intermediate states of p113_downsample.py were not separately snapshotted. Only the original
+    and the final version exist as files. Defects 2 and 3, and the per-isolate scratch change, are
+    therefore bundled in one version transition. They remain individually attributable through
+    DEFECT234_downsample_combined.diff, which contains three disjoint hunks, and through the code
+    comments and timestamps. This gap is recorded rather than concealed.
+  preserved_failed_attempts: provenance/failed_attempts/  (15 first-attempt logs plus master log)
+  preserved_historical_markers: provenance/HISTORICAL_MARKERS.json  (19 markers)
+  quarantined_preatomic_assemblies: provenance/preatomic_assemblies/  (4 isolates)
+
+# ---------------------------------------------------------------- 3. phase 2 parallelisation
+phase_2_parallelisation:
+  classification: performance change, scientifically inert
+  what: phase 2 ran serially on a 64-core machine; parallelised to 12 concurrent
+  required_change: per-isolate scratch directories, since a shared /tmp mount is unsafe concurrently
+  determinism_verified_not_assumed:
+    method: an already-completed isolate was re-run under the new code and compared field by field
+    isolate: SAMN10435561
+    result: bit-identical
+    fraction: {old: 0.821601, new: 0.821601}
+    retained_pairs: {old: 1704891, new: 1704891}
+    retained_id_stream_sha256: identical
+    coverage_x: {old: 100.01, new: 100.01}
+  argument: >-
+    each isolate is a pure function of its own reads, its own recomputed fraction and the frozen
+    seed. Execution order cannot affect any output. This was demonstrated, not asserted.
+
+# ---------------------------------------------------------------- 4. fail-closed acceptance
+assembly_acceptance:
+  module: env/p113_assembly_accept.py
+  sha256_prefix: 025137b4445154e7
+  principle: >-
+    an assembly is a CANDIDATE until every check passes. Nothing is written to the final path
+    before validation completes.
+  atomic_publication:
+    - the assembler writes only into assemblies/_staging/<isolate>/attempt<N>/
+    - validation runs against the staged artefact
+    - validated files are moved to the final path with os.replace, atomic within one filesystem
+    - the .done marker is created LAST, so a marker cannot exist without a validated artefact
+  required_checks_all_fail_closed:
+    - frozen input and run identity against the frozen cohort
+    - passed raw md5 receipt
+    - passed exact R1/R2 id-stream validation
+    - passed coverage-floor state
+    - sha256 of the exact downsampled or passthrough reads fed to the assembler
+    - assembler input is a real file, never a symlink
+    - assembler image digest and the exact command
+    - exit code 0
+    - non-empty final FASTA and GFA
+    - valid FASTA structure, failing closed on malformation or non-nucleotide characters
+    - unique contig identifiers
+    - total assembly length inside the predeclared plausibility band
+    - final assembly sha256 for FASTA and GFA
+    - exactly one terminal effective state per isolate
+  plausibility_band:
+    rule: 0.70 to 1.30 times the isolate's own declared genome size
+    declared_now: >-
+      the frozen design lists assembly quality and contig length as prespecified SECONDARY
+      analyses but defines no numeric total-length rule. This band is therefore predeclared here,
+      truth-blind, and is stated as newly predeclared rather than presented as pre-existing.
+    purpose: >-
+      a gross-implausibility detector for a failed or contaminated assembly. It is NOT an assembly
+      quality metric and is not used to judge assembly quality anywhere.
+  eligible_contig_length:
+    value: 1000
+    source: inherited frozen P1.12 convention, MINLEN in truth_pipeline_p112.py. Not invented here.
+
+# ---------------------------------------------------------------- 5. retries
+retry_policy:
+  attempt_numbering: derived from durable per-attempt logs, logs/asm__<isolate>__attempt<N>.log
+  every_failed_attempt_retained: true
+  rejected_output_retained: provenance/attempts/<isolate>/attempt<N>/rejected_output
+  stale_output_cannot_leak: >-
+    each attempt writes to a fresh attempt-specific staging directory which is removed before use.
+    A rejected attempt's output is moved out of the staging tree entirely. No partial or stale
+    output can enter a final assembly.
+  retry_must_match: >-
+    a successful retry is required to carry the same input hashes, image digest, command, parameters
+    and seed as recorded in its receipt. These are captured per attempt and are compared during
+    reconciliation.
+  classification_rule: >-
+    the 15 isolates lost to DEFECT_4 failed for an infrastructure reason. They must NOT be counted
+    or reported as biological failures or tool failures anywhere.
+
+# ---------------------------------------------------------------- 6. reconciliation
+reconciliation_before_phase_4:
+  script: env/p113_asm_reconcile.py
+  must_all_hold:
+    - expected isolates 150
+    - accepted .done states exactly 150, otherwise stop
+    - zero missing states
+    - zero isolates holding both .done and .failed
+    - zero final FASTAs without a completed validation receipt
+    - zero final FASTAs whose sha256 is absent from its receipt
+    - zero outputs resolving outside the P1.13 root
+    - deterministic rerun comparison on the predeclared pilot isolates
+  on_failure: stop and report. Do not proceed to phase 4.
+
+deterministic_rerun_pilot:
+  predeclared_before_rerun: true
+  isolates: [SAMN26796377, SAMN29503689, SAMN29503815, SAMN47788335]
+  why_these: >-
+    these four were published under the pre-atomic path and were quarantined rather than trusted.
+    They are reassembled under the acceptance gate, which yields a genuine independent rerun of the
+    same inputs. They were chosen because the transition created them, not because their content
+    was inspected. No assembly content, truth, ARG or tool output influenced the choice.
+  comparison: >-
+    sha256 of the reassembled FASTA against the quarantined pre-atomic FASTA, plus contig count,
+    total length and N50.
+  interpretation_declared_in_advance: >-
+    a byte-identical result demonstrates determinism. A non-identical result does NOT invalidate
+    the cohort: SPAdes is not contractually deterministic across runs. Any difference will be
+    reported with its magnitude and will be treated as a measured property of the assembler, not
+    as a defect, unless the assemblies differ grossly.
+
+# ---------------------------------------------------------------- 7. depth as a covariate
+depth_covariate:
+  status: frozen as a PREDICTION-SIDE covariate before any truth access
+  gating: NON-GATING. Does not alter cohort membership, thresholds, or the primary endpoint.
+  recorded_per_isolate:
+    - raw depth recomputed from sequenced bases
+    - retained depth recomputed from retained bases
+    - passthrough versus downsampled state
+    - assembly N50, total length, contig count, eligible-contig count at >= 1000 bp
+  measured_distribution_at_freeze:
+    n: 150
+    downsampled_to_target: 94
+    retained_in_full: 56
+    min: 34.61
+    p25: 79.81
+    median: 99.93
+    p75: 99.98
+    max: 100.06
+  predeclared_strata:
+    basis: already-frozen technical thresholds only. No outcome informed these boundaries.
+    strata:
+      - {name: "30_to_50x",   n_at_freeze: 8}
+      - {name: "50_to_75x",   n_at_freeze: 24}
+      - {name: "75_to_100x",  n_at_freeze: 24}
+      - {name: "ge_100x",     n_at_freeze: 94}
+    boundary_tolerance:
+      value_x: 0.5
+      applies_to: the 100x target boundary ONLY. The 50x and 75x boundaries take no tolerance.
+      rule: retained depth >= 99.5x is classified at-target
+      why_needed: >-
+        deterministic proportional sampling lands the target in the range 99.85 to 100.06x, so a
+        naive ">= 100" test misfiles most downsampled isolates into the 75-to-100x stratum. Without
+        the tolerance the strata compute as 8/24/92/26, which is an artefact of the sampler rather
+        than a property of the cohort.
+      verified: >-
+        under this rule all 94 downsampled isolates classify at-target and ZERO passthrough
+        isolates are promoted across the boundary, so the tolerance never reclassifies an isolate
+        that genuinely failed to reach the target. Counts verified by direct computation over all
+        150 receipts, not inferred.
+    counts_verified_by_computation: {30_to_50x: 8, 50_to_75x: 24, 75_to_100x: 24, ge_100x: 94, total: 150}
+    covariate_table: P1.13_DEPTH_COVARIATE.csv
+  continuous_analysis: >-
+    retained depth is additionally evaluated continuously in an isolate-clustered exploratory
+    model, secondary and non-gating.
+  power_statement_required: >-
+    these strata are descriptive. Adequate power is NOT claimed. The 30-to-50x stratum contains
+    only 8 isolates and cannot support a reliable stratum-specific estimate.
+  language_rule: >-
+    depth variation is a MEASURED covariate, not a demonstrated confounder. It must not be
+    described as a confounder unless and until an association is measured. An earlier working note
+    that called it a confounder is superseded by this clause.
+
+# ---------------------------------------------------------------- 8. operational rules
+operational_stop_rules:
+  continue_only_while: successes accumulate normally
+  stop_and_report_if:
+    - another systematic failure class appears
+    - the accepted assembly rate remains unexpectedly low
+    - outputs fail reconciliation
+    - filesystem reserves are approached
+    - more than 10 percent of isolates fail for a new common infrastructure reason
+  reserves: {"/": 20, "/data": 30, "/work": 30}   # GiB, unchanged
+
+terminal_state_authorised:
+  reach: P1.13_PREDICTIONS_READY_FOR_FREEZE_APPROVAL
+  not_authorised: [truth access, truth construction, prediction freeze]

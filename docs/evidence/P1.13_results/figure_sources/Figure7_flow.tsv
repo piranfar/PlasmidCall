@@ -1,0 +1,13 @@
+stage	n
+contigs assembled	19320
+eligible >=1kb	9784
+ineligible <1kb	9536
+truth RESOLVED (scored)	9371
+truth ambiguous	300
+truth unmapped	113
+v1.2 abstained	0
+router abstained	0
+v1.2 FP	35
+v1.2 FN	755
+v1.2 TP	1486
+v1.2 TN	7095

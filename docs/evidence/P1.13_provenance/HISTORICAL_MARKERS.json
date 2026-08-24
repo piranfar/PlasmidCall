@@ -1,0 +1,149 @@
+{
+ "markers_preserved": [
+  {
+   "biosample": "SAMN26796377",
+   "marker": "done",
+   "mtime_utc": "2026-08-22T19:28:26Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN29503689",
+   "marker": "done",
+   "mtime_utc": "2026-08-22T19:36:19Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN29503815",
+   "marker": "done",
+   "mtime_utc": "2026-08-22T19:35:29Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN47788335",
+   "marker": "done",
+   "mtime_utc": "2026-08-22T19:31:54Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMD00499712",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:02:12Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN10435572",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:02:12Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN15488622",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:24:39Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN22837217",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:02:12Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN26198497",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:02:12Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN26198498",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:02:12Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN26796439",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:24:29Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN30974101",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:02:27Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN41071142",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:02:27Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN44510955",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:02:48Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN46343359",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:02:48Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN48451385",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:02:59Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN49850453",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:03:16Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN49850454",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:03:28Z",
+   "origin": "pre_atomic_acceptance"
+  },
+  {
+   "biosample": "SAMN49850455",
+   "marker": "failed",
+   "mtime_utc": "2026-08-22T19:19:47Z",
+   "origin": "pre_atomic_acceptance"
+  }
+ ],
+ "preatomic_assemblies_quarantined": [
+  {
+   "biosample": "SAMN26796377",
+   "quarantined_utc": "2026-08-22T19:28:26Z",
+   "shortread.fasta_sha256": "db01f2ddfe9b3a73f1e1a3d3fb6f32b6c54ad52efe3e284b69768392843aa6e1",
+   "shortread.gfa_sha256": "0eff1782e5c73a8b2b01c7c29f25d6e6f1e029a7a683890d0dcc76a655720bb9",
+   "unicycler_shortread.log_sha256": "1b5e247698974c261fdc942663e1c88c3269f8f049268731869bac0f174a4844"
+  },
+  {
+   "biosample": "SAMN29503689",
+   "quarantined_utc": "2026-08-22T19:36:19Z",
+   "shortread.fasta_sha256": "3ed50373d9c0fd6325720b76717f73ac35465f8cbfd128c9a4ac192a71f5751a",
+   "shortread.gfa_sha256": "8403d70a7fb32898ec76f1ce9e4318ced761e1b5a9a6336a3acd081558f28626",
+   "unicycler_shortread.log_sha256": "cd4f49e5aa5f8c1afc2880ebe52eae94b926200dadda62d28edcae18635e30c2"
+  },
+  {
+   "biosample": "SAMN29503815",
+   "quarantined_utc": "2026-08-22T19:35:27Z",
+   "shortread.fasta_sha256": "bff85e112919ed9a3875499377f636039d1e2dd58fe58439e33cce702829745b",
+   "shortread.gfa_sha256": "cf7007a405c83e9000efc036a170d3211a880ced0f8fb26b69aca3c852e495da",
+   "unicycler_shortread.log_sha256": "edfdc69b2bebf04de61b2628fa6c52df2b47df2bde27885af6d59b5c35667282"
+  },
+  {
+   "biosample": "SAMN47788335",
+   "quarantined_utc": "2026-08-22T19:31:52Z",
+   "shortread.fasta_sha256": "1da61a4c06373d1e861bafeec77787802543b044ecf5d2f6d21ca48f4ae18e27",
+   "shortread.gfa_sha256": "37a330d33305cf55aed7111bb490bb55c3fee1158e31c370f238537e10053234",
+   "unicycler_shortread.log_sha256": "2c9c9ec84b5052af45e5948a86e7f2701eba9e1774be6a423571e941eedc5951"
+  }
+ ],
+ "policy": "markers are preserved, never deleted; one effective state is derived fresh under the fail-closed atomic acceptance gate"
+}

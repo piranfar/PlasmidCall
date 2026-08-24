@@ -1,0 +1,35 @@
+--- versions/p113_run.sh.v2_acquisition_fix	2026-08-22 18:46:11.277619920 +0000
++++ versions/p113_run.sh.v3_parallel_phase2	2026-08-22 18:46:11.277619920 +0000
+@@ -103,17 +103,28 @@
+ # ------------------------------------------------------------------ phase 2: downsample
+ say "PHASE 2 deterministic downsample to ${TARGET_COV}x, seed $SEED, with EXACT pairing validation"
+ say "  count equality alone is insufficient and is not used; every pair is validated by position-by-position normalized id"
+-while IFS=$'	' read -r bs asm bp tax org inf tid stid rel asmn ftpp src rc gsz nruns run study inst libsel rdc bcc fq md5 fbytes cov tier; do
+-  [ "$bs" = "biosample" ] && continue
+-  [ -e "$ST/down__$bs.done" ] && continue
+-  guard
++DSLOTS=${DSLOTS:-12}
++say "  running $DSLOTS isolates concurrently; each isolate is a pure function of its own reads, its own recomputed fraction and the frozen seed, so order cannot change any output"
++dn=0
++down_one(){
++  local bs=$1 gsz=$2
+   if python3 "$P/env/p113_downsample.py" "$bs" "$gsz" >> "$LOGD/downsample.log" 2>&1; then
+     touch "$ST/down__$bs.done"; rm -f "$ST/down__$bs.failed"
+   else
+     touch "$ST/down__$bs.failed"
+     say "DOWNSAMPLE/PAIRING FAILED $bs - see logs/downsample.log (fails closed, no assembly will use it)"
+   fi
++}
++while IFS=$'	' read -r bs asm bp tax org inf tid stid rel asmn ftpp src rc gsz nruns run study inst libsel rdc bcc fq md5 fbytes cov tier; do
++  [ "$bs" = "biosample" ] && continue
++  [ -e "$ST/down__$bs.done" ] && continue
++  while (( $(jobs -rp | wc -l) >= DSLOTS )); do sleep 5; done
++  guard
++  down_one "$bs" "$gsz" &
++  dn=$((dn+1))
++  (( dn % 24 == 0 )) && { wait; guard; say "  downsample progress $dn | $(disk_line)"; }
+ done < "$COHORT"
++wait; guard
+ DD=$(ls "$ST"/down__*.done 2>/dev/null | wc -l); DF=$(ls "$ST"/down__*.failed 2>/dev/null | wc -l)
+ say "PHASE 2 done: validated $DD, failed $DF | $(disk_line)"
+ [ "$DD" -eq 150 ] || { say "ABORT: exact-pairing validation passed for only $DD of 150"; exit 24; }

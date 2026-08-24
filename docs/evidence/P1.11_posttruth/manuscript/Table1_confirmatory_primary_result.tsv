@@ -1,0 +1,5 @@
+method	operating_point	evidence_tier	n_eligible	n_evaluable	coverage	n_truth_positive	TP	FP	TN	FN	selective_PPV	selective_PPV_CI95	selective_recall	selective_recall_CI95	selective_F1	selective_F1_CI95	specificity	deployment_yield
+PlasmidCall v1.2-General	0.9285	CONFIRMATORY primary	7244	7244	1.0000	1209	942	33	6002	267	0.9662	[0.9449, 0.9836]	0.7792	[0.7353, 0.8239]	0.8626	[0.8342, 0.8901]	0.9945	0.7792
+PlasmidCall router (v1.2-General / v1.1)	frozen router	CONFIRMATORY	7244	7244	1.0000	1209	886	18	6017	323	0.9801	[0.9602, 0.9946]	0.7328	[0.6884, 0.7759]	0.8386	[0.8075, 0.8682]	0.9970	0.7328
+PlasmidCall v1.1	0.9524 (standard)	CONFIRMATORY	7244	7244	1.0000	1209	521	11	6024	688	0.9793	[0.9581, 0.9954]	0.4309	[0.3535, 0.5090]	0.5985	[0.5192, 0.6685]	0.9982	0.4309
+PlasmidCall v1.1	0.9605 (high-confidence)	CONFIRMATORY	7244	7244	1.0000	1209	469	8	6027	740	0.9832	[0.9640, 0.9979]	0.3879	[0.3171, 0.4588]	0.5563	[0.4794, 0.6255]	0.9987	0.3879

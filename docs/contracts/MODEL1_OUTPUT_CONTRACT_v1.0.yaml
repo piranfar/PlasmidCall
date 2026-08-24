@@ -1,0 +1,107 @@
+# MODEL 1 OUTPUT CONTRACT v1.0
+# The interface Model 1 exposes to downstream systems (including Model 2).
+# Frozen 2026-08-19. Supersedes no earlier contract (none existed).
+contract_id: MODEL1_OUTPUT_CONTRACT
+version: '1.0'
+date_utc: '2026-08-19'
+status: FROZEN
+governing_amendment: 'docs/plans/P1.10A_DEPLOYMENT_OPERATING_POINT_AMENDMENT.yaml'
+
+# ---------------------------------------------------------------- epistemic status
+status_of_this_output:
+  is: 'EVIDENCE — a plasmid-origin assessment derived from a 12-tool panel.'
+  is_not: 'genomic-context ground truth.'
+  rule: >
+    Model 1 output must never be substituted for a truth label. Where a benchmark truth exists
+    (P1.9C3 Product B / closed-reference truth), that truth is authoritative and Model 1 output is
+    the prediction being assessed against it. Downstream systems must not train on, or calibrate to,
+    Model 1 output as if it were observed genomic context.
+  validation_state: >
+    M0 is validated as a selective high-confidence rule-in detector with abstention (development
+    PPV 0.9541 at recall 0.3714; external P1.9 secondary PPV 0.983 at recall 0.400 — consistent).
+    M2 at the standard deployment threshold has NOT yet received a formal external target verdict;
+    the P1.9 re-scoring is a disclosed post-hoc erratum analysis and the verdict is deferred to P1.10.
+
+# ---------------------------------------------------------------- emitted fields
+fields:
+  identity:
+    - sample_id            # biological sample identifier
+    - contig_id            # Product A contig identifier, exact and reversible
+    - contig_length        # bp
+  continuous:
+    - M2_score             # P(plasmid) from the frozen HGB specification; ALWAYS emitted
+  m2_deployment_class:
+    field: deployment_class
+    values:
+      very_high_confidence_plasmid: 'M2_score >= 0.9776'
+      supported_plasmid:            '0.9605 <= M2_score < 0.9776'
+      not_selected:                 'M2_score < 0.9605'
+    not_selected_semantics: >
+      NO POSITIVE PLASMID EVIDENCE at the deployment threshold. NOT a chromosome call.
+      Preserves the frozen contract of 08_p17_frozen.py lines 13-14. A consumer needing a
+      chromosome assertion must take it from M0 or from truth.
+  m0_three_state:
+    field: M0_call
+    values: {plasmid: 1, chromosome: 0, abstain: -1}
+    rule: 'n_valid > 0 AND agreement >= 0.90 -> majority class; otherwise abstain (unfitted rule)'
+    abstain_semantics: >
+      INSUFFICIENT PANEL CONSENSUS — an informative third state. Never to be collapsed into
+      chromosome, into a negative, or into zero.
+  panel_evidence:
+    - tool_calls           # all 12 native calls, exact dev vocabulary:
+                           # plasmid | chromosome | unknown | unclassified | repeat
+    - tool_disagreement    # n_valid, n_plasmid, n_chrom, n_abstain, agreement
+    - failed_missing       # explicit FAILED / MISSING states, never mapped to a class or to zero
+  eligibility:
+    - ARG_bearing          # eligibility annotation only; never a truth label
+    - ARG_rule_id          # which frozen ARG rule produced it (see arg_rules below)
+  provenance:
+    - model_version        # this contract version + frozen model spec hash
+    - development_dataset_sha256
+    - prediction_matrix_sha256
+    - truth_bundle_sha256  # when a truth join is present
+    - parser_version
+    - tool_versions_and_databases
+
+# ---------------------------------------------------------------- frozen model specification
+model_specification:
+  M0: 'unfitted rule; agreement >= 0.90 over non-abstaining tools; majority class; else abstain'
+  M2: >
+    HistGradientBoostingClassifier(max_depth=3, max_iter=200, learning_rate=0.06,
+    min_samples_leaf=25, l2_regularization=1.0, random_state=20260816), featureset F_full_no_taxon
+    (12 one-hot tool calls + 12 abstention indicators + n_valid, n_plasmid, n_chrom, n_abstain,
+    frac_plasmid, frac_chrom, agreement, SR contig length, log10_len, log10(Number of SR contigs)),
+    fitted on the 1,460 ARG-bearing development rows.
+  class_orientation: 'predict_proba[:,1] == P(plasmid)'
+  development_reproduction_receipt: 'docs/evidence/P1.10B_dev_m2_reproduction_receipt.json'
+  reproduction_status: 'EXACT (TP 189 / FP 13 / TN 1167 / FN 91; PPV 0.9356435643564357; recall 0.675)'
+
+arg_rules:
+  P1.9C4_rule: 'AMRFinderPlus 4.2.7, Element type == AMR AND Element subtype == AMR (admits scope=plus,
+    includes EFFLUX). Produced the 64-contig P1.9 primary set.'
+  dev_parity_core_rule: 'AMRFinderPlus, Element type == AMR AND Element subtype == AMR AND scope == core
+    AND class != EFFLUX. Operational alignment to the development RGI/CARD non-efflux rule. This is the
+    rule frozen for P1.10.'
+
+# ---------------------------------------------------------------- consumption rules
+consumption_rules_for_model_2:
+  permitted: >
+    Model 1 may enter Model 2 only as a high-confidence rule-in / uncertainty-aware component.
+    M0 abstention and tool-level disagreement/missingness MUST be preserved through any downstream
+    representation - they are informative states, not negatives.
+  prohibited:
+    - treating any Model 1 output as genomic-context ground truth
+    - collapsing abstain / not_selected into a negative class
+    - discarding the continuous M2_score in favour of the class label alone
+    - fitting or tuning Model 2 features on the P1.9 test truth
+  authoritative_context_label: 'Product B / P1.9C3 clean-room truth for that benchmark.'
+
+known_limitations:
+  - 'Panel members PLASMe and geNomad degraded materially at deployment-era versions/databases
+     (P1.9 secondary PPV 0.465 and 0.478 vs development 0.681 and 0.712). The ensemble absorbed this.'
+  - 'All eight P1.9 samples belong to the MOB-suite development corpus (Robertson2018); MOB-recon
+     voted as a full panel member. A leave-MOB-recon-out sensitivity analysis is required for P1.10.'
+  - 'Four of the eight P1.9 samples carry SAME_GENOME_CLUSTER links (ANI 99.51-99.76) to development
+     genomes. P1.9 is therefore partially related to the development collection.'
+  - 'Model 1 was developed on a multi-species collection; P1.9 was pure E. coli. Species generalisation
+     beyond E. coli / Enterobacterales is NOT YET TESTED at deployment-era versions.'

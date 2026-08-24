@@ -1,0 +1,46 @@
+P1.13_PREDICTIONS_READY_FOR_FREEZE_APPROVAL
+============================================
+dated: 2026-08-23
+design: P1.13-PROSPECTIVE-PUBLIC-MULTIGENUS-EXTERNAL-VALIDATION
+status: CANDIDATE_ONLY_NOT_FROZEN - awaiting explicit operator approval
+
+What stands ready
+-----------------
+cohort                    : v3, 150 isolates, 25 per taxon
+                            sha256 874b0924deffef948dd50e00ee5c77c91d773354de4a1bb936162e4fec294205
+assemblies                : 150 accepted under the fail-closed atomic gate; reconciliation PASS
+                            (0 rejected, 0 missing, 0 conflicts, 4/4 rerun pilots byte-identical)
+panel                     : 1950 units terminal; 1878 OK, 72 tool-internal failures, all reviewed
+                            and classified (P1.13_PANEL_FAILURE_REVIEW.md); none infrastructure
+dependency audit          : 1950/1950 receipts on the 13 frozen image ids, one id per image,
+                            zero drift (P1.13_PANEL_DEPENDENCY_AUDIT.json)
+parsed table              : 231,841 rows, byte-identical across two passes
+                            sha256 e3e43a0269336f2e88a670ef...
+candidate contig table    : 19,320 contigs / 9,784 eligible >=1kb / 150 isolates
+                            sha256 440f16bc7002c15135ac73a233545613ad6869eddf7d421cca6dc0a1060114f8
+candidate manifest        : sha256 bbe15fc247163c604ca55135ab3d8031a57aa1ae62f6451794a269591e135708
+coverage gate             : PASS - v1.2-General 1.0000, v1.1 1.0000, router 1.0000, 0 isolates below
+deterministic rebuild     : identical, locally and on the parse (server)
+builder fixtures          : 48/48 pass against the derived builder
+environment               : identical to the P1.11 freeze environment
+                            (python 3.14.6, sklearn 1.9.0, numpy 2.5.0, pandas 3.0.3, Windows 11)
+lineage                   : builder and pipeline derived from the frozen P1.11 components by
+                            name substitution only (28 changed lines, diff captured);
+                            v11 scorer, freeze_v12, router, evaluators byte-identical
+
+Truth separation
+----------------
+No truth has been acquired, constructed, inspected, joined or scored.
+PREDICTIONS_FROZEN.json does NOT exist. Nothing in this state is frozen.
+
+What approval would do next (NOT executed)
+------------------------------------------
+1. freeze the candidate via a p111_freeze_predictions.py derivation pinned to
+   the checksums above
+2. only after the freeze: acquire truth via the corrected chain, map, and run
+   the locked evaluator
+
+Operator instruction honoured
+-----------------------------
+All compute-intensive jobs are stopped. The server is left running and is safe
+to archive and shut down manually.

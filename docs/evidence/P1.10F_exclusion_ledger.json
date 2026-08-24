@@ -1,0 +1,20 @@
+{
+ "utc": "2026-08-19T08:12:19Z",
+ "date_floor": "2025-09-11",
+ "date_floor_rationale": "day after the newest frozen panel database (PlasmidFinder DB tag 2.2.0 = commit 2025-09-10); all other panel DBs are older, so no candidate's own closed plasmids can be inside any frozen tool database",
+ "esearch_term": "txid562[Organism:exp] AND \"complete genome\"[Assembly Level] AND \"latest refseq\"[filter]",
+ "assemblies_returned": 5291,
+ "summarised": 5291,
+ "exclusions": {
+  "no_plasmid": 767,
+  "not_single_chromosome": 3,
+  "in_P1.9": 8,
+  "in_development_250": 0,
+  "date_below_floor": 3668
+ },
+ "pool_after_filters": 1454,
+ "biosamples_with_illumina_paired_wgs": 451,
+ "qualifying": 451,
+ "distinct_bioprojects": 65,
+ "distinct_submitters": 51
+}

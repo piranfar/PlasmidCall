@@ -1,0 +1,166 @@
+# P1.10 — STRICTLY INDEPENDENT VALIDATION COHORT AND EVALUATION CONTRACT
+# Frozen and hashed BEFORE any P1.10 inference. Nothing in this file may change after inference starts.
+contract_id: P1.10_COHORT_AND_EVALUATION_CONTRACT
+version: '1.0'
+date_utc: '2026-08-19'
+status: FROZEN_BEFORE_INFERENCE
+authorisation: 'Owner 2026-08-19: build a new strictly independent P1.10 validation cohort, freeze it
+  before any new inference, and stop before OCI execution.'
+governing_documents:
+  operating_points: 'docs/plans/P1.10A_DEPLOYMENT_OPERATING_POINT_AMENDMENT.yaml'
+  output_contract: 'docs/contracts/MODEL1_OUTPUT_CONTRACT_v1.0.yaml'
+  phase0_waiver: 'docs/plans/P1.10_PHASE0_FIT_WAIVER.md'
+  independence_protocol: 'docs/plans/P1.9_sequence_independence_protocol.yaml'
+  truth_protocol: 'docs/plans/P1.9_cleanroom_truth_protocol.yaml'
+
+# ---------------------------------------------------------------- 1. cohort
+cohort:
+  n_isolates: 39
+  species: 'Escherichia coli'
+  unit_of_independence: 'genome cluster at ANI 99.5 (single linkage); 39 isolates = 39 independent clusters'
+  plasmid_replicons_in_truth: 132
+  mean_plasmids_per_isolate: 3.4
+  plasmid_count_distribution: {1: 4, 2: 14, 3: 6, 4: 5, 5: 4, 6: 3, 7: 1, 8: 1, 9: 1}
+  genome_size_bp: {min: 4579564, median: 5183400, max: 5759116}
+  distinct_submitters: 24
+  distinct_bioprojects: 25
+  assembly_release_window: '2025-11-30 .. 2026-08-13'
+  cohort_file: 'p110/P1.10F_cohort_final.tsv'
+  size_rationale: >
+    39 is an OUTCOME of the frozen criteria, not a target (audit correction 6). The owner-suggested
+    20-30 range is exceeded because 39 independent clusters survived; none is dropped, since dropping
+    any would require a selection rule not specified in advance.
+
+# ---------------------------------------------------------------- 2. inclusion criteria (all mandatory)
+inclusion_criteria:
+  - 'Escherichia coli (txid562), RefSeq "latest", assembly level Complete Genome'
+  - 'exactly 1 assembled chromosome AND >= 1 plasmid replicon, per the NCBI assembly report'
+  - 'public ILLUMINA PAIRED library_source=GENOMIC library_strategy in {WGS,WGA} on the SAME BioSample'
+  - 'assembly first public on/after 2025-09-11 (tool-database date floor, see independence.date_floor)'
+  - 'no BioSample overlap with the 250 development isolates or the 8 P1.9 isolates'
+  - 'no ANI >= 99.5 link to any development isolate or any P1.9 reference (sequence-level, measured)'
+  - 'declustered: one representative per internal ANI >= 99.5 cluster'
+selection_blindness: >
+  Selection used ONLY metadata (organism, assembly level, replicon counts, release date, submitter,
+  BioProject, read availability) and measured ANI. No tool output, no Model 1 prediction, no ARG content
+  and no expected outcome participated in inclusion or exclusion. No performance-based inclusion/exclusion.
+
+# ---------------------------------------------------------------- 3. independence audit (measured, not asserted)
+independence:
+  date_floor: '2025-09-11'
+  date_floor_rationale: >
+    The newest content date across the twelve frozen panel databases is the PlasmidFinder DB
+    (bitbucket tag 2.2.0 = commit 2025-09-10). Every other panel database is older (Platon DB v1.5.0
+    2020-10; PlaScope DB 2018-01; HyAsP gene DB plasmids <= 2015-12-19; Plasmer DB v1.0 2022;
+    PLASMe DB 2023-04; MOB-suite DB v3.1.8 2023-12; geNomad DB v1.5 2023-09; plASgraph2 ESKAPEE model).
+    An isolate whose genome first became public after 2025-09-10 therefore CANNOT have its own closed
+    plasmid or chromosome sequence inside any frozen panel database.
+    This addresses audit correction 3, and it addresses it more completely than an accession blocklist:
+    for 9 of the 12 tools the circularity is reference-DATABASE membership, which no blocklist can fix,
+    whereas a deposition-date floor controls all twelve simultaneously.
+  measured_screen:
+    method: 'skani 0.2.2 (p19c2-cleanroom:1.0), --min-af 15, ANI threshold 99.5 per the frozen protocol'
+    queries: '80 shortlisted candidates'
+    references: '250 development genomes (250/250 BioSamples resolved to public assemblies) + 8 P1.9 RefSeq references'
+    result: '58 SAME_GENOME_CLUSTER hits (ANI >= 99.5) involving 24 of 80 candidates -> ALL 24 EXCLUDED
+             (51 hits to development, 7 to P1.9 references); highest excluded link ANI 99.930'
+    internal_declustering: '27 clonal pairs among the 56 clean candidates -> 39 independent clusters,
+                            one representative each (cluster sizes: 29x1, 6x2, 3x3, 1x6)'
+    artifacts: ['p110/p110_screen_vs_dev.tsv', 'p110/p110_screen_cand_vs_cand.tsv',
+                'p110/P1.10F_clean_candidates.txt', 'p110/P1.10F_declustered_representatives.txt']
+  significance: >
+    30 % of shortlisted candidates carried a clonal link that identifier comparison alone would have
+    missed. This is the first time the project has completed a sequence-level independence screen
+    against the FULL development collection; P1.9C1 recorded it as vs_DEV250_any: IDENTIFIER_INCOMPLETE.
+  residual_risks_disclosed:
+    - 'Homology to pre-2016 relatives inside tool databases is generalisation, not leakage, and is not excluded.'
+    - 'MOB-suite reference DB snapshot date is undocumented upstream; the 2025-09-11 floor is the control.'
+    - 'PLASMe/Plasmer chromosome training accessions are not enumerable upstream; the date floor is the control.'
+    - 'Geographic skew: many isolates are DDBJ/Japan submissions. Recorded, not corrected.'
+    - 'Species scope is E. coli only, whereas the development collection is Enterococcus-dominated
+       (E. coli 15/250). P1.10 therefore tests the same species-shifted regime as P1.9.'
+
+# ---------------------------------------------------------------- 4. inputs
+inputs:
+  product_A: 'short-read-only Unicycler assembly from the same-BioSample Illumina paired reads (Model 1 input)'
+  product_A_protocol: 'the frozen P1.9C2 short-read command: unicycler -1 R1 -2 R2 -o OUT -t 8 --keep 1
+                       (no -l; no long-read information may enter Product A)'
+  truth_source: >
+    The isolate's OWN same-BioSample complete RefSeq genome. Replicon roles (Chromosome / Plasmid) are
+    taken from the NCBI assembly report Assigned-Molecule-Location/Type, never from size.
+    Hybrid reassembly is NOT required because an authoritative same-isolate complete genome already
+    establishes replicon roles (permitted by the objective; the P1.9C3 doubling/folding rules still apply).
+  truth_thresholds: {identity: 0.95, merged_coverage: 0.80, margin: 0.10, min_contig_length: 1000}
+  circular_handling: 'reference doubling with modulo folding; coverage on merged query intervals, asserted <= 1.0'
+  raw_read_manifest: 'p110/P1.10F_cohort_final.tsv (primary_run, run_accessions, fastq_ftp, fastq_bytes)'
+
+# ---------------------------------------------------------------- 5. ARG eligibility (audit correction 5)
+arg_eligibility:
+  tool: 'AMRFinderPlus 4.2.7 (image p19c4-amrfinder:1.0), --plus, no --organism'
+  qualifying_rule: 'Element type == AMR AND Element subtype == AMR AND scope == core AND class != EFFLUX'
+  rationale: >
+    Operational alignment to the development definition (RGI v5.1.1 / CARD v3.2.9, excluding efflux and
+    loose hits). The P1.9C4 rule admitted scope=plus rows (30 of 98 qualifying, incl. 22 EFFLUX) and is
+    NOT used here.
+  retained_but_not_qualifying: 'scope=plus rows, EFFLUX class, STRESS/VIRULENCE — recorded for the record'
+  absence_semantics: 'no qualifying hit is NOT evidence of experimental ARG-negativity'
+  chromosome_arm_contingency:
+    problem: >
+      Applying this rule to P1.9 yields a degenerate population (33 plasmid / 2 chromosome) in which
+      specificity and MCC are meaningless.
+    predeclared_rule: >
+      If the P1.10 primary population contains FEWER THAN 30 truth-chromosome contigs, the primary
+      analysis is DEMOTED to a supporting analysis and the SECONDARY population (all truth-resolved
+      contigs >= 1 kb) becomes the primary reporting population. This contingency is declared HERE,
+      before any annotation or inference, and is not revisable afterwards.
+
+# ---------------------------------------------------------------- 6. model under test
+model_under_test:
+  specification: 'frozen M0 and frozen M2 (HistGradientBoosting) — see MODEL1_OUTPUT_CONTRACT_v1.0.yaml'
+  development_dataset_sha256: 'db558a6775f473662369fb1c358f28530f85883ea3767beb807d031d2646e091'
+  development_reproduction_receipt_sha256: 'a1476fd8031af4b77cc0bbad3aadf9ee01c89443948648a4fe7567dc0174624f'
+  operating_points: {standard: 0.9605, very_high_confidence: 0.9776}
+  prohibited: ['refitting on P1.10', 'threshold selection on P1.10', 'panel reduction', 'feature imputation',
+               'any change after outcomes are seen']
+
+# ---------------------------------------------------------------- 7. evaluation
+success_criteria:
+  primary: 'PPV >= 0.95 AND recall > 0.50 at the standard operating point 0.9605'
+  verdict_authority: >
+    P1.10 is the cohort that carries the FORMAL target verdict for Model 1. P1.9 does not
+    (see P1.10A amendment: the P1.9 re-scoring is a disclosed post-hoc erratum).
+populations:
+  primary: 'truth-resolved, core-ARG-bearing Product A contigs >= 1 kb (subject to the chromosome-arm contingency)'
+  secondary: 'all truth-resolved Product A contigs >= 1 kb'
+  never_pooled: true
+denominator_rules:
+  recall: 'TP / all truth plasmid contigs in the population (abstained and not_selected count as not detected)'
+  PPV: 'TP / (TP + FP) over contigs actually called plasmid'
+  coverage: '(TP+FP+TN+FN) / n; abstention rate reported separately'
+  selective_models: 'BOTH conditional-on-classification AND end-to-end metrics reported for M0'
+metrics: [confusion_matrix, PPV, recall, specificity, F1, balanced_accuracy, MCC, coverage,
+          abstention_rate, tool_failure_rate]
+reporting_levels: [contig, sample, replicon_event, genome_cluster, cohort]
+uncertainty: 'cluster bootstrap over the 39 independent genome clusters, 10000 replicates, seed 20260816,
+              percentile 95; n_clusters reported; intervals informational, never a pass/fail gate'
+separate_buckets_never_forced: [ambiguous, unmapped, below_1kb, non_core_ARG_resolved,
+                                tool_FAILED, tool_MISSING, model_abstentions]
+sensitivity_analyses_predeclared:
+  - 'leave-MOB-recon-out (its development corpus is Robertson2018; audit correction 3)'
+  - 'leave-PLASMe-out and leave-geNomad-out (both degraded materially at deployment-era versions in P1.9)'
+  - 'all six development-derived operating points as a threshold-sensitivity curve'
+
+# ---------------------------------------------------------------- 8. execution plan (NOT yet authorised)
+execution_plan:
+  server: 'the EXISTING stopped instance trace-arg-hybrid; no new OCI resources'
+  reuse: 'the 12 existing p19c4-* images and the verified databases where hashes match; do not rebuild'
+  order: ['start instance (owner action)', 'verify /data, docker root, containerd root',
+          'download 39 x Illumina runs (~15.7 GB) with md5 verification',
+          'Product A assembly (Unicycler short-read, frozen command)',
+          'download 39 complete genomes + assembly reports for truth',
+          'truth mapping (frozen thresholds)', 'AMRFinderPlus core-ARG annotation',
+          'truth-blind 12-tool inference', 'freeze predictions BEFORE truth join',
+          'transfer + verify locally', 'stop instance']
+  truth_blindness: 'truth artifacts held in a directory no inference container mounts; verified in receipts'
+  stop_instance_after: true
+  never: ['terminate the instance', 'delete the block volume', 'create new resources']

@@ -1,0 +1,238 @@
+amendment: P1.11 execution infrastructure - host resize and revised parallelism
+version: "1.0-DRAFT"
+status: PROPOSED - AWAITING SIZE DECISION AND OWNER-EXECUTED RESIZE
+declared_on: 2026-08-20
+scope: EXECUTION ONLY
+
+# ---------------------------------------------------------------------------- scope guard
+
+what_this_amendment_changes:
+  - the number of concurrent INDEPENDENT samples processed at once
+  - the host shape (OCPU and memory) of the existing instance
+
+what_this_amendment_does_NOT_change:
+  - per-sample scientific commands
+  - tool parameters, container CPU limits, container memory limits
+  - the frozen Product A protocol (unicycler -1 R1 -2 R2 -o /tmp/a -t 8 --keep 1)
+  - model thresholds (v1.2-General 0.9285; v1.1 0.9524 / 0.9605)
+  - cohort membership (the sealed 79 isolates)
+  - endpoint definitions, the completeness gate, or any evaluation rule
+  - images, databases, parsers, or any frozen provenance
+invariance_statement: >
+  Scientific methods, cohort membership and evaluation rules are unchanged. Only the number of
+  independent samples running concurrently changes. Each sample is still processed by exactly the
+  same command with exactly the same per-container CPU and memory limits it would have received on
+  the current host.
+
+# ---------------------------------------------------------------------------- current state
+
+current_configuration:
+  source: docs / P1.10_stage1_environment_receipt.txt, recorded 2026-08-19T09:03:01Z
+  instance: trace-arg-hybrid (existing; never terminated)
+  observed_vcpus: 16
+  observed_memory_gb: 94
+  inferred_shape: >
+    approximately 8 OCPU / 96 GB on an AMD Flex shape (OCI counts 1 OCPU = 2 vCPU on x86).
+    THE EXACT SHAPE NAME IS NOT CONFIRMED: no OCI CLI or credentials are available in the working
+    environment, so the shape, its series (E4 vs E5) and the region/AD quota could not be queried.
+    The owner must confirm in the console.
+  boot_volume: /dev/sda1 45 GB (42 GB free)
+  block_volume: /dev/sdb 492 GB mounted at /data, 277 GB used, 215 GB free
+  docker_root: /data/docker
+  containerd_root: /data/containerd
+  power_state_now: STOPPED
+
+# ---------------------------------------------------------------------------- measured basis
+
+measured_workload:
+  source: retained P1.10 and P1.9C4 receipts, not estimates
+  assembly:
+    cohort_measured: P1.10, 39 isolates
+    per_isolate_median_min: 35.3
+    per_isolate_mean_min: 47.6
+    per_isolate_max_min: 235.8
+    total_slot_hours_measured: 30.9
+    projected_slot_hours_for_79: 62.7
+    container_limits: "--cpus=8 --memory=12g"
+    retained_scratch_gb_median: 0.1
+    scratch_caveat: >
+      0.1 GB is the RETAINED scratch after --keep 1. PEAK intermediate usage during the SPAdes
+      phase was never measured and is materially larger. Disk headroom is sized conservatively.
+  inference:
+    cohort_measured: P1.9C4 receipts, 8 samples, 13 tools
+    per_sample_all_tools_min: 15.5
+    projected_slot_hours_for_79: 20.4
+    slowest_tools: [plasmer 216s, genomad 145s, plasme 142s, plasmidec 103s, gplas2 96s]
+    container_limits: "--cpus=8, --memory up to 24g (plascope observed)"
+    caveat: >
+      timings come from the P1.9C4 benchmark samples, not from P1.10. Per-sample tool cost should
+      be comparable but is indicative rather than exact.
+  fixed_overhead_hours: 5
+  fixed_overhead_components:
+    preflight_and_identity_verification: 0.5
+    acquisition_31_6_gb: 1.5
+    truth_generation: 2.0
+    evaluation_freeze_transfer: 1.0
+  estimate_uncertainty: >
+    Assembly time scales with read volume. P1.11 carries 67.9 Gbase over 79 isolates (mean 859
+    Mbase). Runtime projections should be read with roughly +/- 30% uncertainty.
+
+# ---------------------------------------------------------------------------- concurrency model
+
+concurrency_model:
+  binding_constraint_assembly: vCPU  # 8 vCPU per container
+  binding_constraint_inference: memory  # up to 24 GB per container
+  formula_assembly_slots: floor(vCPU / 8), capped by floor((RAM - 16 GB reserve) / 12 GB)
+  formula_inference_slots: floor((RAM - 16 GB reserve) / 24 GB)
+  wall_time_model: "max(total_slot_hours / slots, longest_single_job)"
+  longest_single_assembly_hours: 3.93
+  disk_throughput_risk: >
+    All slots share one 500 GB block volume. A Balanced volume is capped near 25,000 IOPS and
+    roughly 480 MB/s. The SPAdes phase is I/O heavy, so 6-8 concurrent assemblies may become
+    I/O bound rather than CPU bound. This is the main reason to start conservatively and measure.
+  database_access_pattern: >
+    Tool databases are mounted read-only and are read repeatedly. Large ones (plasme 13.6 GB,
+    plasmer 10.9 GB, genomad 0.85 GB) benefit from page cache, so RAM left free after container
+    limits has real throughput value. Memory should not be sized to the bare minimum.
+  ramp_policy:
+    start: conservative slot count (see options)
+    measure: [iowait, load average, free memory, per-sample wall time, block volume throughput]
+    increase: only after one full measurement window shows stable resources
+    never: change per-container CPU or memory limits to gain throughput
+
+# ---------------------------------------------------------------------------- options
+
+pricing_basis:
+  rates_used: {ocpu_per_hour_usd: 0.025, memory_gb_per_hour_usd: 0.0015}
+  caveat: >
+    AMD Flex list pricing. E5 may differ from E4 and regional or committed-use discounts are not
+    reflected. NOT queried from the account: no OCI CLI or credentials available. The owner must
+    confirm actual rates in the console before approving.
+  storage_note: >
+    Boot and block volume charges are unchanged by a resize and continue regardless. A 500 GB
+    block volume is roughly 0.018 USD/hour and is excluded from the comparison because it is
+    identical across all options.
+
+options:
+  - id: CURRENT
+    shape: existing (~8 OCPU / 96 GB)
+    assembly_slots: 2
+    inference_slots: 2
+    est_assembly_hours: 31.3
+    est_inference_hours: 10.2
+    est_total_hours: 46.5
+    est_hourly_usd: 0.344
+    est_total_usd: 16.00
+    note: baseline, roughly two days
+
+  - id: C_16_OCPU
+    shape: VM.Standard.E5.Flex 16 OCPU / 64 GB
+    vcpus: 32
+    assembly_slots_start: 4
+    inference_slots_start: 2
+    est_assembly_hours: 15.7
+    est_inference_hours: 10.2
+    est_total_hours: 30.9
+    est_hourly_usd: 0.496
+    est_total_usd: 15.33
+    concern: >
+      64 GB is the constraint, not the OCPUs. 4 assembly slots need 48 GB, leaving only about
+      16 GB for OS, Docker and page cache. Inference stays at 2 slots, so the inference phase is
+      no faster than today.
+
+  - id: B_24_OCPU
+    shape: VM.Standard.E5.Flex 24 OCPU / 96 GB
+    vcpus: 48
+    assembly_slots_start: 4
+    assembly_slots_ceiling: 6
+    inference_slots_start: 3
+    est_assembly_hours: 10.4
+    est_inference_hours: 6.8
+    est_total_hours: 22.2
+    est_hourly_usd: 0.744
+    est_total_usd: 16.52
+    note: balanced; memory per OCPU stays at the current 4 GB
+
+  - id: A_32_OCPU
+    shape: VM.Standard.E5.Flex 32 OCPU / 128 GB
+    vcpus: 64
+    assembly_slots_start: 4
+    assembly_slots_ceiling: 8
+    inference_slots_start: 4
+    inference_slots_ceiling: 4
+    est_assembly_hours: 7.8
+    est_inference_hours: 4.1
+    est_total_hours: 16.9
+    est_hourly_usd: 0.992
+    est_total_usd: 16.76
+    preferred_by_owner: true
+    concern: >
+      At 128 GB the INFERENCE phase becomes memory bound before it becomes CPU bound: 8 assembly
+      slots need 96 GB, and 24 GB inference containers allow only about 4 concurrent. Half the
+      64 vCPUs would sit idle during inference. 32 OCPU / 192 GB would lift inference to about 7
+      slots for roughly 0.10 USD/hour more, around 1.60 USD across the run.
+
+recommendation:
+  primary: A_32_OCPU with 192 GB rather than 128 GB, if quota allows
+  fallback: A_32_OCPU at 128 GB as specified
+  second_fallback: B_24_OCPU
+  rationale: >
+    Total cost is essentially flat across every option, between roughly 15 and 17 USD, because
+    compute price scales almost linearly with the speedup. The decision is therefore about wall
+    time and risk exposure, not money. Resizing to 32 OCPU turns about two days into about
+    seventeen hours at no meaningful cost difference. The only genuine trade-off is that higher
+    concurrency puts more load on a single block volume, which is why every option starts at 4
+    assembly slots and ramps only after measurement.
+
+# ---------------------------------------------------------------------------- resize procedure
+
+resize_procedure:
+  performed_by: the repository owner, in the OCI console. No OCI CLI or credentials exist in the
+    working environment, so the assistant cannot and will not perform the resize.
+  preconditions:
+    - instance is already STOPPED, which is what a Flex shape change requires
+    - confirm the E5.Flex OCPU service limit for the region and availability domain
+    - confirm E5 capacity exists in the instance availability domain
+  steps:
+    - Console -> Compute -> Instances -> trace-arg-hybrid
+    - Edit -> Edit shape
+    - select VM.Standard.E5.Flex
+    - set OCPUs and memory to the approved option
+    - Save changes
+    - Start the instance
+  preserved_by_this_operation:
+    - instance OCID
+    - boot volume and all its contents
+    - the 500 GB block volume and its attachment, including /data, Docker images and databases
+    - the primary VNIC, and therefore the private and public IP addresses
+    - SSH host keys and authorised keys
+    - every frozen provenance artefact
+  ip_address_expectation: >
+    The public IP is expected to be UNCHANGED. It is bound to the primary VNIC, which survives
+    both a stop/start cycle and a Flex shape change; only terminating the instance releases it.
+    The address has already survived several stop/start cycles across P1.9C2, P1.9C4 and P1.10.
+    This will nonetheless be VERIFIED on reconnect before any processing begins, and the run will
+    stop if it has changed.
+  failure_mode: >
+    If E5 capacity or quota is unavailable the resize is rejected and the instance simply remains
+    at its current shape. Nothing is lost. Fall back to option B, then C, then CURRENT.
+  prohibited_during_resize:
+    - creating any new instance, volume, IP, backup or snapshot
+    - terminating the instance
+    - detaching or deleting the block volume
+    - changing billing configuration beyond the approved shape change
+
+# ---------------------------------------------------------------------------- verification
+
+post_resize_verification:
+  required_before_any_p1_11_processing:
+    - SSH reachable at the recorded address, or the new address reported and confirmed
+    - nproc and free -g match the approved shape
+    - /data mounted with the block volume intact and free space unchanged
+    - docker images present, and the 13 as-executed image IDs still match the P1.10 stage-1 gate
+    - tool databases present at the recorded paths
+    - prior-identity verification passes, including the PlaScope functional replay
+    - panel preflight passes
+  gate: >
+    If any of these fail the run does not start. A resize must not be allowed to become an
+    untracked change to the execution environment.

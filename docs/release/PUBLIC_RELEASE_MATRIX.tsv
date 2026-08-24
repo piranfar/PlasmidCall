@@ -1,0 +1,28 @@
+artefact	scientific_role	proposed_destination	release_status	license	redistribution_basis	sensitivity	size	checksum_source	required_citation	release_blocker
+Pipeline code (scripts/)	the software contribution	GitHub + Zenodo	RELEASE	TBD - owner selection	our own work	none	~1 MB	CHECKSUMS.sha256	cite the paper	LICENCE NOT SELECTED
+v1.1 estimator (.pkl)	frozen model	GitHub + Zenodo	RELEASE	TBD	derived from public sequence data	none	167 KB	CHECKSUMS.sha256	cite the paper	LICENCE NOT SELECTED
+v1.2-General estimator (.pkl)	frozen model	GitHub + Zenodo	RELEASE	TBD	derived from public sequence data	none	~50 KB	CHECKSUMS.sha256	cite the paper	LICENCE NOT SELECTED
+v1.2 portable model (JSON) + coefficients + encoding spec	language-agnostic model	GitHub + Zenodo	RELEASE	TBD	our own work	none	~200 KB	CHECKSUMS.sha256	cite the paper	LICENCE NOT SELECTED
+Frozen prediction table (19,320 rows)	the sealed claim	Zenodo + SI	RELEASE	TBD	derived from public data	none	7.9 MB	in freeze receipt	cite the paper	LICENCE NOT SELECTED
+Prediction-freeze receipt	immutable provenance	GitHub + Zenodo	RELEASE	TBD	our own work	none	93 KB	98e7902ac09bcb54	cite the paper	LICENCE NOT SELECTED
+Parsed call table (231,841 rows)	normalised panel outputs	Zenodo	RELEASE	TBD	derived from public data	none	32 MB	e3e43a0269336f2e	cite the paper + all 12 tools	LICENCE NOT SELECTED
+Cohort v3 manifest	accessions + MD5s + retrieval recipe	GitHub + Zenodo + SI	RELEASE	TBD	public accession metadata	none	~60 KB	874b0924deffef94	cite ENA/NCBI	LICENCE NOT SELECTED
+Reads manifest (604 rows)	per-file SHA-256 of raw+downsampled	GitHub + Zenodo	RELEASE	TBD	our own checksums of public data	none	~70 KB	f42a193f1d675c89	cite ENA	LICENCE NOT SELECTED
+Raw FASTQ reads (86 GiB)	primary input	NOT RELEASED - already public at ENA	REFERENCE ONLY	ENA terms	already public; duplication adds nothing	none	86 GiB	per-file MD5 in cohort table	cite ENA run accessions	none - deliberate: retrieval recipe + checksums are released instead
+Assemblies (150 FASTA/GFA)	derived intermediate	Zenodo (proposed)	OWNER DECISION	TBD	derived from public reads	none	1.3 GB	in freeze receipt (per-isolate)	cite the paper	size vs value; deterministically regenerable from released recipe
+Native tool outputs (30 GB)	raw panel outputs	NOT RELEASED	ARCHIVE ONLY	mixed third-party formats	bulk; regenerable	none	30 GB	in evidence archive	n/a	size; superseded by the parsed table
+Execution receipts (1,950)	per-unit provenance	Zenodo	RELEASE	TBD	our own work	none	35 MB	in evidence archive	cite the paper	LICENCE NOT SELECTED
+Evidence archive (14.4 GiB)	complete audit trail	Zenodo (proposed)	OWNER DECISION	TBD	mixed	none	15,427,604,570 B	76201303af2a0322	cite the paper	size; may exceed default Zenodo quota - request increase
+Frozen design + amendments 001-005	the sealed protocol	GitHub + Zenodo + SI	RELEASE	TBD	our own work	none	~200 KB	CHECKSUMS.sha256	cite the paper	LICENCE NOT SELECTED
+Audits (dependency, failure review, reconciliation)	integrity evidence	GitHub + Zenodo + SI	RELEASE	TBD	our own work	none	~300 KB	CHECKSUMS.sha256	cite the paper	LICENCE NOT SELECTED
+Container images with third-party DBs	execution environment	NOT RELEASED - recipes + digests only	PROHIBITED	third-party	redistribution not permitted for bundled databases	none	~55 GB total	image digests in SOFTWARE_AND_DATABASE_VERSIONS.tsv	cite each tool	none - deliberate: digests + build recipes released instead
+Tool databases (AMRFinder, PlasmidFinder, geNomad, Platon, PlaScope, ...)	tool dependencies	NOT RELEASED	PROHIBITED	third-party	redistribution restricted	none	varies	version pinned in versions table	cite each tool	none - deliberate
+Documentation set	usability	GitHub	RELEASE	TBD	our own work	none	~150 KB	CHECKSUMS.sha256	n/a	LICENCE NOT SELECTED
+Manuscript + SI	the paper	bioRxiv + journal	OWNER DECISION	CC-BY (bioRxiv default)	our own work	none	~5 MB	CHECKSUMS.sha256	n/a	owner approval to post
+Truth artefacts	evaluation reference	NOT APPLICABLE	DOES NOT EXIST	n/a	never acquired	n/a	0	n/a	n/a	truth unblinding not authorized
+SSH keys / credentials / OCIDs / host addresses	infrastructure	NEVER RELEASED	PROHIBITED	n/a	n/a	SECRET	n/a	n/a	n/a	permanent prohibition
+Joined truth-prediction table (19,320 rows)	the scored table every reported metric is computed from	Zenodo archive (too large for the git repository)	release	CC BY 4.0	derived from public sequence data; contains no third-party database content	none	19,320 rows	RESULTS_FROZEN.json results_artefacts_sha256	this study	none
+Per-contig error catalogue (3,336 rows)	every false positive and false negative with its covariates	Zenodo archive (too large for the git repository)	release	CC BY 4.0	derived from public sequence data	none	3,336 rows	RESULTS_FROZEN.json results_artefacts_sha256	this study	none
+Result metric tables (primary, comparator, stratified, matched, ARG, inventory)	the reported results	git repository	release	CC BY 4.0	derived from public sequence data	none	< 100 KB total	RESULTS_FROZEN.json results_artefacts_sha256 + RELEASE_MANIFEST.tsv	this study	none
+Post-freeze analysis tables (24 files)	secondary, sensitivity, exploratory and integrity analyses	git repository	release	CC BY 4.0	derived from public sequence data	none	< 1 MB total	PF_VERIFICATION_RECEIPT.json artefact_sha256	this study	none
+Manuscript package (manuscript, preprint, SI, figures, source data)	the reported work and everything needed to check it	git repository	release	CC BY 4.0 for documentation and figures; MIT for code	own work	none	~20 MB	dist/MANUSCRIPT_PHASE_DELTA_MANIFEST.tsv	this study	owner approval to make public

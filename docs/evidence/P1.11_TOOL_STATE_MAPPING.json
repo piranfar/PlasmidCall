@@ -1,0 +1,408 @@
+{
+  "record": "P1.11 twelve-tool state mapping, frozen before truth access",
+  "mapping_rule": {
+    "plasmid": "positive",
+    "chromosome": "negative",
+    "unknown": "tool_abstain",
+    "unclassified": "tool_abstain",
+    "repeat": "tool_abstain",
+    "FAILED": "tool_abstain",
+    "MISSING": "tool_abstain"
+  },
+  "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+  "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation",
+  "chosen_without_truth": "Derived from the frozen P1.10 evaluation code and the frozen parser semantics. No P1.11 truth existed or was accessed.",
+  "n_rows": 39,
+  "rows": [
+    {
+      "tool_name": "HyAsP",
+      "native_state": "in_putative_plasmid",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "contig placed in a putative plasmid bin",
+      "tool_contract": "assembly-graph plasmid binner; every contig is placed in or out of a bin",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "HyAsP",
+      "native_state": "not_in_any_putative_plasmid",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "HyAsP partitions every contig; absence from all plasmid bins is an explicit not-plasmid decision, not a no-call. Frozen parser maps it to chromosome.",
+      "tool_contract": "assembly-graph plasmid binner; every contig is placed in or out of a bin",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "MOB-recon",
+      "native_state": "chromosome",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "explicit chromosome assignment",
+      "tool_contract": "replicon/relaxase typing with explicit chromosome and plasmid assignment",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "MOB-recon",
+      "native_state": "plasmid",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "explicit plasmid assignment",
+      "tool_contract": "replicon/relaxase typing with explicit chromosome and plasmid assignment",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "MOB-recon",
+      "native_state": "tool_status_FAILED",
+      "model1_code": "FAILED",
+      "evaluation_state": "tool_abstain",
+      "reason": "terminal execution failure",
+      "tool_contract": "replicon/relaxase typing with explicit chromosome and plasmid assignment",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PLASMe",
+      "native_state": "plasmid",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "predicted plasmid",
+      "tool_contract": "protein/transformer plasmid predictor with a declared length domain",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PLASMe",
+      "native_state": "not_predicted_plasmid",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "in-domain contig not predicted plasmid",
+      "tool_contract": "protein/transformer plasmid predictor with a declared length domain",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PLASMe",
+      "native_state": "gt350kb_rule",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "frozen >350 kb rule: too large to be a plasmid",
+      "tool_contract": "protein/transformer plasmid predictor with a declared length domain",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PLASMe",
+      "native_state": "outside_plasme_domain_lt1000",
+      "model1_code": "unknown",
+      "evaluation_state": "tool_abstain",
+      "reason": "contig is OUTSIDE the tool's declared domain; no prediction is made",
+      "tool_contract": "protein/transformer plasmid predictor with a declared length domain",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PLASMe",
+      "native_state": "outside_plasme_domain_lt1000_listed",
+      "model1_code": "unknown",
+      "evaluation_state": "tool_abstain",
+      "reason": "outside the declared domain; no prediction is made",
+      "tool_contract": "protein/transformer plasmid predictor with a declared length domain",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PlaScope",
+      "native_state": "plasmid_fraction=<p>",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "frozen parser thresholds the per-contig plasmid fraction; ties/ambiguous fractions become unclassified, which is a no-call",
+      "tool_contract": "species-scoped centrifuge classification producing a plasmid fraction",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PlaScope",
+      "native_state": "plasmid_fraction=<p>",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "frozen parser thresholds the per-contig plasmid fraction; ties/ambiguous fractions become unclassified, which is a no-call",
+      "tool_contract": "species-scoped centrifuge classification producing a plasmid fraction",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PlaScope",
+      "native_state": "plasmid_fraction=<p>",
+      "model1_code": "unclassified",
+      "evaluation_state": "tool_abstain",
+      "reason": "frozen parser thresholds the per-contig plasmid fraction; ties/ambiguous fractions become unclassified, which is a no-call",
+      "tool_contract": "species-scoped centrifuge classification producing a plasmid fraction",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "Plasmer",
+      "native_state": "plasmid",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "predicted plasmid",
+      "tool_contract": "k-mer + ML binary classifier",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "Plasmer",
+      "native_state": "chromosome",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "predicted chromosome",
+      "tool_contract": "k-mer + ML binary classifier",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "Plasmer",
+      "native_state": "<empty>",
+      "model1_code": "unknown",
+      "evaluation_state": "tool_abstain",
+      "reason": "no row emitted for the contig; no prediction",
+      "tool_contract": "k-mer + ML binary classifier",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PlasmidEC",
+      "native_state": "plasmid",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "ensemble plasmid call",
+      "tool_contract": "ensemble of binary classifiers",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PlasmidEC",
+      "native_state": "chromosome",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "ensemble chromosome call",
+      "tool_contract": "ensemble of binary classifiers",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PlasmidEC",
+      "native_state": "<empty>",
+      "model1_code": "unknown",
+      "evaluation_state": "tool_abstain",
+      "reason": "contig absent from the ensemble output; no prediction",
+      "tool_contract": "ensemble of binary classifiers",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PlasmidFinder",
+      "native_state": "plasmid",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "replicon marker detected",
+      "tool_contract": "POSITIVE-ONLY replicon-marker detector",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PlasmidFinder",
+      "native_state": "no_replicon_hit",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "PlasmidFinder's prediction contract is that a contig with no replicon hit is NOT called plasmid. The frozen P1.10 parser encodes that as chromosome, i.e. a NEGATIVE, not an abstention. This is the documented behaviour being ported unchanged; it is the reason PlasmidFinder shows very high PPV and low recall.",
+      "tool_contract": "POSITIVE-ONLY replicon-marker detector",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "PlasmidFinder",
+      "native_state": "tool_status_FAILED",
+      "model1_code": "FAILED",
+      "evaluation_state": "tool_abstain",
+      "reason": "terminal execution failure",
+      "tool_contract": "POSITIVE-ONLY replicon-marker detector",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "Platon",
+      "native_state": "plasmid",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "plasmid score above the frozen cut",
+      "tool_contract": "protein-score based binary classifier",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "Platon",
+      "native_state": "chromosome",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "chromosome call",
+      "tool_contract": "protein-score based binary classifier",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "RFPlasmid",
+      "native_state": "plasmid",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "predicted plasmid",
+      "tool_contract": "random forest over marker genes, binary",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "RFPlasmid",
+      "native_state": "chromosome",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "predicted chromosome",
+      "tool_contract": "random forest over marker genes, binary",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "geNomad",
+      "native_state": "plasmid",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "predicted plasmid",
+      "tool_contract": "neural + marker classifier",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "geNomad",
+      "native_state": "not_plasmid",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "explicit not-plasmid decision from a binary classifier",
+      "tool_contract": "neural + marker classifier",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "gplas2",
+      "native_state": "plasmid_bin_<n>",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "contig assigned to a plasmid bin",
+      "tool_contract": "graph-based binning downstream of PlasmidEC",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "gplas2",
+      "native_state": "initial_class_chromosome_not_reevaluated",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "kept as chromosome by the binner",
+      "tool_contract": "graph-based binning downstream of PlasmidEC",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "gplas2",
+      "native_state": "repeat",
+      "model1_code": "repeat",
+      "evaluation_state": "tool_abstain",
+      "reason": "repeat element; the binner declines to assign it",
+      "tool_contract": "graph-based binning downstream of PlasmidEC",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "gplas2",
+      "native_state": "chromosome_repeat",
+      "model1_code": "repeat",
+      "evaluation_state": "tool_abstain",
+      "reason": "repeat element; declines to assign",
+      "tool_contract": "graph-based binning downstream of PlasmidEC",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "gplas2",
+      "native_state": "plasmid_unbinned",
+      "model1_code": "unknown",
+      "evaluation_state": "tool_abstain",
+      "reason": "plasmid-like but not placed in a bin; no-call",
+      "tool_contract": "graph-based binning downstream of PlasmidEC",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "gplas2",
+      "native_state": "excluded_lt1000",
+      "model1_code": "unknown",
+      "evaluation_state": "tool_abstain",
+      "reason": "below the tool's own length floor; explicitly out of scope",
+      "tool_contract": "graph-based binning downstream of PlasmidEC",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "gplas2",
+      "native_state": "absent_from_gplas_results_initial_plasmid",
+      "model1_code": "unknown",
+      "evaluation_state": "tool_abstain",
+      "reason": "no result emitted",
+      "tool_contract": "graph-based binning downstream of PlasmidEC",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "gplas2",
+      "native_state": "tool_status_FAILED",
+      "model1_code": "FAILED",
+      "evaluation_state": "tool_abstain",
+      "reason": "terminal execution failure",
+      "tool_contract": "graph-based binning downstream of PlasmidEC",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "plASgraph2",
+      "native_state": "plasmid",
+      "model1_code": "plasmid",
+      "evaluation_state": "positive",
+      "reason": "predicted plasmid",
+      "tool_contract": "graph neural network, three-state output",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "plASgraph2",
+      "native_state": "chromosome",
+      "model1_code": "chromosome",
+      "evaluation_state": "negative",
+      "reason": "predicted chromosome",
+      "tool_contract": "graph neural network, three-state output",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    },
+    {
+      "tool_name": "plASgraph2",
+      "native_state": "ambiguous",
+      "model1_code": "unknown",
+      "evaluation_state": "tool_abstain",
+      "reason": "the tool's own explicit ambiguous state; a genuine no-call",
+      "tool_contract": "graph neural network, three-state output",
+      "P1.10_source": "scripts/p1_10/evaluate_model1_p110.py:197 map({'plasmid':1,'chromosome':0}).fillna(-1); metrics() excludes call<0 from TP/FP/TN/FN",
+      "documentation_source": "env/run/parsers.py (PARSER_VERSION p19c4-parsers/1.7) + P1.10 as-executed evaluation"
+    }
+  ]
+}

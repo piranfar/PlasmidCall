@@ -1,0 +1,141 @@
+{
+ "section": "8 - Docker image preservation",
+ "label": "EXPLORATORY_POST-TRUTH_MANUSCRIPT_SUPPORT (operational)",
+ "method": "a single `docker save` over all 16 images, so shared layers are stored once, piped through zstd -T0 -3. No image was rebuilt, re-tagged, pulled or modified.",
+ "n_images": 16,
+ "archive_file": "p112/POSTTRUTH/images/p112_all_images.tar.zst",
+ "archive_bytes": 15384173298,
+ "archive_gib": 14.33,
+ "archive_sha256": "abe433e7f0f1e09ae35fcacfcf33eadee694e3f5894188a1c58aa617dd8d2720",
+ "deduplicated_uncompressed_estimate_gib": 60.5,
+ "compression_ratio_approx": 4.22,
+ "images": [
+  {
+   "image": "hello-world:latest",
+   "oci_index_digest": "5dd0d3e6e255913fc30f90b9f2b1d359cc2cbdb48090cc4b65f1676e203243cc",
+   "live_docker_image_id": "5dd0d3e6e255913fc30f90b9f2b1d359cc2cbdb48090cc4b65f1676e203243cc",
+   "identity_preserved": true,
+   "size_on_host": "15077"
+  },
+  {
+   "image": "nekokoe/plasmer:23.04.20",
+   "oci_index_digest": "c64ba6e14f59f5ff2143d808d651f5a57175a6ea8226e4233b58c2c8d75ee5ac",
+   "live_docker_image_id": "c64ba6e14f59f5ff2143d808d651f5a57175a6ea8226e4233b58c2c8d75ee5ac",
+   "identity_preserved": true,
+   "size_on_host": "1054090531"
+  },
+  {
+   "image": "p19c2-cleanroom:1.0",
+   "oci_index_digest": "59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20",
+   "live_docker_image_id": "59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20",
+   "identity_preserved": true,
+   "size_on_host": "525387056"
+  },
+  {
+   "image": "p19c2-normalize:1.0",
+   "oci_index_digest": "6e46960381c9f58cf6b2d3bd3f57c58ba3210ad28a9b29e36d5c5b25d053c10c",
+   "live_docker_image_id": "6e46960381c9f58cf6b2d3bd3f57c58ba3210ad28a9b29e36d5c5b25d053c10c",
+   "identity_preserved": true,
+   "size_on_host": "54767894"
+  },
+  {
+   "image": "p19c4-amrfinder:1.0",
+   "oci_index_digest": "18580135caaf7ab0a28f8ad98bdc93b77051ed86301913646667d09938bb9821",
+   "live_docker_image_id": "18580135caaf7ab0a28f8ad98bdc93b77051ed86301913646667d09938bb9821",
+   "identity_preserved": true,
+   "size_on_host": "411891899"
+  },
+  {
+   "image": "p19c4-genomad:1.0",
+   "oci_index_digest": "98378fdda32a3219bf20905445f0326975e19f45f3f0940a857dcc315ec15861",
+   "live_docker_image_id": "98378fdda32a3219bf20905445f0326975e19f45f3f0940a857dcc315ec15861",
+   "identity_preserved": true,
+   "size_on_host": "839187085"
+  },
+  {
+   "image": "p19c4-gplas2:1.0",
+   "oci_index_digest": "88849320fa0b86f81e85940ce297c3d17050a1f03ff4be4aed9312ed145c6a03",
+   "live_docker_image_id": "88849320fa0b86f81e85940ce297c3d17050a1f03ff4be4aed9312ed145c6a03",
+   "identity_preserved": true,
+   "size_on_host": "858857019"
+  },
+  {
+   "image": "p19c4-hyasp:1.0",
+   "oci_index_digest": "6bfce30bd71ff2845530c744d73104cf542e413ef6760b0558095dfbaef3bfbe",
+   "live_docker_image_id": "6bfce30bd71ff2845530c744d73104cf542e413ef6760b0558095dfbaef3bfbe",
+   "identity_preserved": true,
+   "size_on_host": "423273380"
+  },
+  {
+   "image": "p19c4-mobsuite:1.0",
+   "oci_index_digest": "804f9ea5e88affaab2dd2a3959b1f4e715d1903deb3ac2e26bb9a037983d97f5",
+   "live_docker_image_id": "804f9ea5e88affaab2dd2a3959b1f4e715d1903deb3ac2e26bb9a037983d97f5",
+   "identity_preserved": true,
+   "size_on_host": "3053780705"
+  },
+  {
+   "image": "p19c4-plascope:1.0",
+   "oci_index_digest": "cfac6fdafa36ff942524b021abe51d4eb946a658bb30c990def3004612b0b3a5",
+   "live_docker_image_id": "cfac6fdafa36ff942524b021abe51d4eb946a658bb30c990def3004612b0b3a5",
+   "identity_preserved": true,
+   "size_on_host": "261666630"
+  },
+  {
+   "image": "p19c4-plasgraph2:1.0",
+   "oci_index_digest": "beadd23183f4fde7d4f157f3fa81328f52051649980533fe69ffaa1e82666d65",
+   "live_docker_image_id": "beadd23183f4fde7d4f157f3fa81328f52051649980533fe69ffaa1e82666d65",
+   "identity_preserved": true,
+   "size_on_host": "809123759"
+  },
+  {
+   "image": "p19c4-plasme:1.0",
+   "oci_index_digest": "05a577da11f970df4e8c662e832155d8dd2eb4a9dfc6fd1cb458ada1e9105ead",
+   "live_docker_image_id": "05a577da11f970df4e8c662e832155d8dd2eb4a9dfc6fd1cb458ada1e9105ead",
+   "identity_preserved": true,
+   "size_on_host": "2036394181"
+  },
+  {
+   "image": "p19c4-plasmidec:1.0",
+   "oci_index_digest": "6ae61ad78f3f2cbfc9fc94106124b72ad2df9464070be96a60ca76a02a0a56dd",
+   "live_docker_image_id": "6ae61ad78f3f2cbfc9fc94106124b72ad2df9464070be96a60ca76a02a0a56dd",
+   "identity_preserved": true,
+   "size_on_host": "2899294878"
+  },
+  {
+   "image": "p19c4-plasmidfinder:1.0",
+   "oci_index_digest": "8414abbe42588810e04d0623f4400092e5942035096ee7738af909556b9a2e58",
+   "live_docker_image_id": "8414abbe42588810e04d0623f4400092e5942035096ee7738af909556b9a2e58",
+   "identity_preserved": true,
+   "size_on_host": "497775768"
+  },
+  {
+   "image": "p19c4-platon:1.0",
+   "oci_index_digest": "8d860d7cfaca3f29bdf72dfa8f22bb0ea20be977dd3c371ad6e49884035ca31a",
+   "live_docker_image_id": "8d860d7cfaca3f29bdf72dfa8f22bb0ea20be977dd3c371ad6e49884035ca31a",
+   "identity_preserved": true,
+   "size_on_host": "504111289"
+  },
+  {
+   "image": "p19c4-rfplasmid:1.0",
+   "oci_index_digest": "3443e560bdf30c9a012e8d5d917a69b17284dbd63c8859e4183c13d623e88407",
+   "live_docker_image_id": "3443e560bdf30c9a012e8d5d917a69b17284dbd63c8859e4183c13d623e88407",
+   "identity_preserved": true,
+   "size_on_host": "1746291948"
+  }
+ ],
+ "identity_verification": {
+  "n_verified": 16,
+  "n_identity_preserved": 16,
+  "how": "the tarball is an OCI layout (Docker 29.1.3, containerd snapshotter). Its index.json manifest digests were compared against the live `docker image inspect .Id` for every image.",
+  "note_on_manifest_json": "the tarball also carries a legacy manifest.json compatibility shim whose Config digests differ from the image IDs. That is expected for OCI-layout exports and does NOT indicate a changed image: identity lives in index.json, which matches exactly.",
+  "cross_check_against_the_earlier_frozen_record": {
+   "p19c2-cleanroom:1.0": "59230d354a2aab46... matches the identifier recorded at P1.9C2",
+   "p19c2-normalize:1.0": "6e46960381c9f58c... matches the identifier recorded at P1.9C2"
+  }
+ },
+ "build_cache_excluded": {
+  "size": "94.22 GB",
+  "reason": "build cache is not an artefact; it is regenerable and is not needed to reproduce a run from the saved images"
+ },
+ "docker_system_df": "TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE\nImages          16        0         129.2GB   70.52GB (54%)\nContainers      0         0         0B        0B\nLocal Volumes   0         0         0B        0B\nBuild Cache     100       0         94.22GB   40.8GB"
+}

@@ -1,0 +1,16 @@
+{
+ "analysis": "PF08 truth-definition sensitivity",
+ "primary_definition_immutable": {"identity": 0.95, "coverage": 0.80, "margin": 0.10},
+ "grid_frozen_before_any_mapping": true,
+ "settings": [
+  {"tag": "strict",     "identity": 0.97, "coverage": 0.85, "margin": 0.10,
+   "rationale": "stricter identity and coverage: contigs must match the reference more exactly"},
+  {"tag": "permissive", "identity": 0.90, "coverage": 0.70, "margin": 0.10,
+   "rationale": "more permissive: recovers borderline contigs the primary calls unresolved"},
+  {"tag": "margin05",   "identity": 0.95, "coverage": 0.80, "margin": 0.05,
+   "rationale": "narrower ambiguity margin: fewer contigs declared ambiguous"},
+  {"tag": "margin15",   "identity": 0.95, "coverage": 0.80, "margin": 0.15,
+   "rationale": "wider ambiguity margin: more contigs declared ambiguous"}
+ ],
+ "rule": "no favourable threshold may be selected; all four settings are reported regardless of outcome"
+}
