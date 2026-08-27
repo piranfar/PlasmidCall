@@ -17,7 +17,8 @@ genuinely hard, existing classifiers disagree, and some fail outright on particu
 
 A prospectively sealed, truth-blind external validation. Design, cohort, eligibility rules,
 thresholds, analysis plan and stopping rules were hash-sealed before any read was retrieved.
-Predictions were frozen and independently reproduced byte-for-byte before any truth artefact was
+Predictions were frozen and self-re-executed twice byte-for-byte by the same operator,
+with no second participant, before any truth artefact was
 permitted onto the analysis system. 150 isolates across six taxa; 19,320 assembled contigs, 9,784 eligible
 at ≥ 1 kb, 9,371 truth-resolved. Nineteen predictor rows were evaluated on identical evidence: 12
 third-party tools, four PlasmidCall model and router rows, three predeclared baselines.
@@ -26,7 +27,7 @@ third-party tools, four PlasmidCall model and router rows, three predeclared bas
 
 **The cohort's resistance determinants were placed against each isolate's own finished
 genome, and their distribution is sharply structured.** Of 635 resistance-gene-bearing contigs, **266
-(41.9%) are plasmid-derived**. Across taxa the fraction runs from 57.5% in *Citrobacter* spp. to
+(41.9%) are plasmid-derived**. Across taxa the fraction runs from 57.4% in *Citrobacter* spp. to
 7.1% in *Serratia* spp.; across antimicrobial classes from 93.5% for sulfonamide resistance to
 zero of 48 contigs carrying fosfomycin resistance; and across gene families the distribution is
 bimodal, with 15 of 40 assessable families at or above 90% and 14 at or below 10%. *vanA*-type

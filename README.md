@@ -12,19 +12,21 @@ placement from short-read assemblies.
 
 ## The study in one paragraph
 
-150 bacterial genomes were assembled de novo from public short-read data across six genera of
-clinical importance. Each isolate was paired with its own closed reference genome and all
+150 bacterial genomes were assembled de novo from public short-read data across six
+bacterial taxa of clinical importance, three defined at species level and three at genus
+level. Each isolate was paired with its own closed reference genome and all
 19,320 assembled contigs were aligned back to that reference to establish the replicon each
 derives from. Resistance determinants were annotated on the same contigs. Those labels then
 served as truth for a prospectively sealed, truth-blind evaluation of 12 third-party
 classifiers and three predeclared baselines: the design, cohort, thresholds and analysis plan
-were hash-sealed before any read was retrieved, and predictions were frozen and independently
-reproduced before any truth artefact reached the analysis system.
+were hash-sealed before any read was retrieved, and predictions were frozen and self-re-executed
+twice by the same operator, with no second participant, before any truth artefact reached
+the analysis system.
 
 ## Principal result
 
 Of **635 resistance-gene-bearing contigs, 266 (41.9%) are plasmid-derived**. The proportion
-runs from 57.5% in *Citrobacter* spp. to 7.1% in *Serratia* spp., and across gene families the distribution is
+runs from 57.4% in *Citrobacter* spp. to 7.1% in *Serratia* spp., and across gene families the distribution is
 bimodal: of 40 families with at least 10 contigs, 15 sit at or above 90%
 plasmid-derived and 14 at or below 10%. These are truth counts obtained by alignment and do
 not depend on any classifier.
