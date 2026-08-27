@@ -14,9 +14,9 @@ placement from short-read assemblies.
 
 150 bacterial genomes were assembled de novo from public short-read data across six
 bacterial taxa of clinical importance, three defined at species level and three at genus
-level. Each isolate was paired with its own closed reference genome and all
-19,320 assembled contigs were aligned back to that reference to establish the replicon each
-derives from. Resistance determinants were annotated on the same contigs. Those labels then
+level. Each isolate was paired with its own closed reference genome, and the 9,784 of 19,320
+assembled contigs that met the 1 kb eligibility floor were aligned back to that reference to
+establish the replicon each derives from; 9,371 of them resolved to a single replicon class. Resistance determinants were annotated on the same contigs. Those labels then
 served as truth for a prospectively sealed, truth-blind evaluation of 12 third-party
 classifiers and three predeclared baselines: the design, cohort, thresholds and analysis plan
 were hash-sealed before any read was retrieved, and predictions were frozen and self-re-executed
@@ -34,8 +34,9 @@ not depend on any classifier.
 On the evaluation, PlasmidCall v1.2-General met its prespecified endpoint — precision 0.9770
 (95% CI 0.9642–0.9872) at recall 0.6631, coverage 1.0000 — and no third-party tool or predeclared
 baseline reached precision 0.95 at any observed coverage. Six evaluated rows achieved a higher
-pooled F1, precision fell below the floor in three of the six taxa, and the frozen router is
-reported as a validated negative result. Those limits are in `KNOWN_LIMITATIONS.md` and are not
+pooled F1, and precision fell below the floor in three of the six taxa. Separately from the
+endpoint above, the frozen two-domain router — not the classifier — is reported as a
+validated negative result. Those limits are in `KNOWN_LIMITATIONS.md` and are not
 footnotes to the claim; they are part of it.
 
 ## Layout
