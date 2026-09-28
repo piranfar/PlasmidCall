@@ -20,6 +20,17 @@ license: MIT
 license-url: "https://opensource.org/licenses/MIT"
 version: 1.1.0
 date-released: "2026-09-28"
+doi: "10.6084/m9.figshare.34018380.v1"
+identifiers:
+  - type: doi
+    value: "10.6084/m9.figshare.34018380.v1"
+    description: "Figshare archive of release v1.1.0"
+  - type: doi
+    value: "10.6084/m9.figshare.34018380"
+    description: "Figshare item; resolves to the latest archived release"
+  - type: url
+    value: "https://github.com/piranfar/PlasmidCall/releases/tag/v1.1.0"
+    description: "GitHub release v1.1.0"
 repository-code: "https://github.com/piranfar/PlasmidCall"
 keywords:
   - PlasmidCall

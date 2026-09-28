@@ -1,5 +1,6 @@
 # PlasmidCall
 
+[![Software DOI](https://img.shields.io/badge/software%20DOI-10.6084%2Fm9.figshare.34018380-blue.svg)](https://doi.org/10.6084/m9.figshare.34018380)
 [![Data DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22086356.svg)](https://doi.org/10.5281/zenodo.22086356)
 [![Code licence: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
 [![Data licence: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey.svg)](LICENSE-DATA)
@@ -9,7 +10,8 @@ determinants sit in bacterial genomes**, and of how well automated methods recov
 placement from short-read assemblies.
 
 > No article describing this work has been published yet, and nothing here has been peer
-> reviewed. The data DOI above belongs to the data deposit and resolves to its latest version.
+> reviewed. The software DOI above archives the releases of this repository on Figshare. The
+> data DOI belongs to the data deposit and resolves to its latest version.
 > The deposit holds no model files and is not an archive of this repository's code. Its Part 1
 > does hold as-executed copies of the P1.13 run scripts, including the frozen parser, under
 > CC BY 4.0. The models and the maintained code are in this repository.
@@ -123,8 +125,10 @@ One rule covers every file in this repository.
 
 ## Citation
 
-Cite this software as described in `CITATION.cff`, and the data deposit by its version DOI,
-**https://doi.org/10.5281/zenodo.22086357** (version 1.0.0). The concept DOI
+Cite this software by the DOI of the release you used. Release v1.1.0 is
+**https://doi.org/10.6084/m9.figshare.34018380.v1**; 10.6084/m9.figshare.34018380 resolves to
+the latest archived release. `CITATION.cff` gives the full metadata. Cite the data deposit by
+its version DOI, **https://doi.org/10.5281/zenodo.22086357** (version 1.0.0). The concept DOI
 10.5281/zenodo.22086356 resolves to the latest version of the deposit.
 
 ## Getting started
