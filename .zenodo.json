@@ -1,0 +1,38 @@
+{
+  "title": "PlasmidCall: code and frozen models for plasmid-origin classification of short-read contigs",
+  "upload_type": "software",
+  "version": "1.1.0",
+  "description": "<p>Code and frozen models of PlasmidCall, which classifies short-read assembly contigs as plasmid- or chromosome-derived from the calls of twelve published plasmid classifiers.</p><p>This release contains the frozen PlasmidCall v1.2-General model (a logistic regression on the twelve classifiers' categorical calls, provided as a portable JSON file that needs only numpy and as a scikit-learn pickle) and PlasmidCall v1.1 (histogram gradient boosting, a scikit-learn 1.9.0 pickle), with their SHA-256 digests; the frozen panel-output parser; a standalone scorer; tests showing that the scorer reproduces the frozen outputs of the 150-isolate evaluation exactly (the default run checks a 200-row fixture; the full 19,320-contig check runs when given the P1.13 table from the data deposit); and the design records, evidence receipts and derived tables of that evaluation.</p><p>The bulk data of the evaluation (parsed classifier calls, assemblies, execution receipts and the joined truth table) are in a separate data deposit, doi:10.5281/zenodo.22086357 (version 1.0.0; the concept DOI 10.5281/zenodo.22086356 resolves to the latest version). That deposit holds no model files; its Part 1 holds as-executed copies of the P1.13 run scripts, including the frozen parser, under CC BY 4.0. No third-party program or database is redistributed.</p><p>Licences: every .py, .sh and .diff file and the model files under models/ other than Markdown are under MIT (LICENSE); everything else, including documentation, tables, fixtures and metadata, is under CC BY 4.0 (LICENSE-DATA).</p>",
+  "creators": [
+    {
+      "name": "Piranfar, Vahhab",
+      "affiliation": "Independent Researcher, Jersey City, NJ, USA",
+      "orcid": "0000-0003-3653-5739"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "PlasmidCall",
+    "plasmid",
+    "plasmid-origin classification",
+    "contig classification",
+    "short-read assembly",
+    "antimicrobial resistance",
+    "bacterial genomics"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.22086357",
+      "relation": "isSupplementedBy",
+      "resource_type": "dataset",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1093/bib/bbaf589",
+      "relation": "references",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    }
+  ]
+}

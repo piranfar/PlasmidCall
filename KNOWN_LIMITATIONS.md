@@ -48,6 +48,7 @@ This page is a short index. Every figure below is read from the frozen result se
 * **Truth rests on one closed reference per isolate.** Four alternative definitions frozen in
   advance changed no label, but orthogonal long-read truth would be required to resolve the
   dependence fully.
-* **No independent laboratory cohort.** A replication protocol is prepared but unexecuted.
+* **No independent laboratory cohort.** An external replication on a further public cohort has
+  since been executed and will be reported separately.
 * **Engineering rigour is not performance.** The verification chain establishes that the reported
   numbers are what the pipeline produced, not that they are good.

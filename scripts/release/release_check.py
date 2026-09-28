@@ -5,8 +5,10 @@ Runs the checks required before any public release:
   secrets, cloud identifiers and host addresses
   personal absolute paths in publication-facing files
   oversized files
-  canonical artefact hash verification against the frozen inventory
-  frozen-artefact presence
+  canonical artefact hash verification against the frozen inventory, at the recorded path or
+    at the path the release build moved the file to; a digest that differs passes only when
+    the recorded release change is reversed here and gives the inventory digest exactly
+  frozen-artefact presence (an inventory path inside the repository that is not found)
   prohibited-claim scan across documentation
   stale cohort-v2 references and excluded-isolate leakage
   cross-phase contamination (P1.11/P1.12 numbers presented as P1.13)
@@ -92,18 +94,192 @@ for p in FILES:
 
 # ------------------------------------------------------------------ 4. canonical hashes
 INV = "docs/closure/P113_CANONICAL_ARTEFACT_INVENTORY.tsv"
-if os.path.exists(INV):
-    n_ok = n_skip = 0
-    for r in csv.DictReader(io.open(INV, encoding="utf-8"), delimiter="\t"):
-        p = r["canonical_path"]
-        if not os.path.exists(p):
-            n_skip += 1          # off-repo evidence paths are not release blockers
+# The inventory holds the digests of the files before the v1.0.0 build. That build rewrote line
+# endings and some path prefixes, and moved some directories
+# (docs/release/RELEASE_PATH_SUBSTITUTION.md). The record of those changes is not trusted on its
+# word. A file whose digest differs from the inventory passes only when this script rebuilds the
+# original bytes from the released bytes and the rebuilt bytes have the inventory digest.
+SUBST = "docs/release/RELEASE_PATH_SUBSTITUTION.tsv"
+# The two execution-host prefixes that the build replaced with /work. Both are public: they
+# appear in the as-executed scripts in Part 1 of the data deposit. The Windows prefixes that the
+# build replaced with <local> are withheld, so a row that needs one cannot be rebuilt here and
+# stays a finding.
+HOST_PREFIX = {"HOST_ROOT": ("/mnt/tah/trace-arg", "R"), "HOST_MOUNT": ("/mnt/tah", "M")}
+HOST_TOKEN_TEXT = b"/work"
+# The build's directory and file map, original -> released. It is the map in the "Layout
+# changes" table of RELEASE_PATH_SUBSTITUTION.md. An entry ending in "/" maps a directory; any
+# other entry maps one file.
+LAYOUT = [
+    ("scripts/p1_12/", "scripts/pipeline/"),
+    ("scripts/p1_13/", "scripts/evaluation/"),
+    ("scripts/p1_10/", "scripts/model/"),
+    ("scripts/p1_9/", "scripts/support/"),
+    ("scripts/manuscript/", "scripts/reporting/"),
+    ("docs/plans/", "docs/design/"),
+    ("docs/manuscript/tables/", "docs/results/tables/"),
+    ("docs/manuscript/figures/source_data/", "docs/results/figure_source_data/"),
+    ("docs/manuscript/supplementary_data/", "docs/results/supplementary_data/"),
+    ("docs/manuscript/PLASMIDCALL_CANONICAL_NUMBERS.json", "docs/results/CANONICAL_NUMBERS.json"),
+    ("docs/manuscript/PLASMIDCALL_CANONICAL_TABLES.json", "docs/results/CANONICAL_TABLES.json"),
+    ("docs/manuscript/PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json",
+     "docs/results/ARG_CONTEXT_BIOLOGY.json"),
+    ("docs/manuscript/PLASMIDCALL_CLAIM_AUDIT.tsv", "docs/results/CLAIM_AUDIT.tsv"),
+    ("docs/manuscript/PLASMIDCALL_CLAIM_TO_EVIDENCE_MATRIX.tsv",
+     "docs/results/CLAIM_TO_EVIDENCE_MATRIX.tsv"),
+    ("docs/manuscript/PLASMIDCALL_MANUSCRIPT_ASSET_INDEX.tsv", "docs/results/ASSET_INDEX.tsv"),
+    ("docs/release/THIRD_PARTY_LICENSE_AND_REDISTRIBUTION_AUDIT.tsv",
+     "docs/release/THIRD_PARTY_LICENSE_AUDIT.tsv"),
+]
+# Inventory rows with an absolute path name files on the evidence store, outside this
+# repository. Some of them ship as a copy of the same name in this directory. Such a copy is
+# checked like any other row.
+EVIDENCE_COPY_DIR = "docs/evidence/P1.13_provenance/"
+# Copies that shipped in v1.0.0. A missing one is a finding, not an off-repo row.
+SHIPPED_COPIES = {"P1.13_PREDICTION_FREEZE_CANDIDATE_MANIFEST.json",
+                  "P1.13_builder_validation.json", "P1.13_SELECTED_COHORT_v3.tsv"}
+
+
+def base_name(p):
+    return re.split(r"[\\/]", p)[-1]
+
+
+def released_path(p):
+    """Return (path in this repository, how it was found), or (None, "off-repo")."""
+    if re.match(r"^(?:[A-Za-z]:)?[\\/]", p):
+        copy = EVIDENCE_COPY_DIR + base_name(p)
+        if os.path.isfile(copy) or base_name(p) in SHIPPED_COPIES:
+            return copy, "copy"
+        return None, "off-repo"
+    if os.path.isfile(p):
+        return p, "recorded"
+    for old, new in LAYOUT:
+        if old.endswith("/") and p.startswith(old):
+            return new + p[len(old):], "moved"
+        if p == old:
+            return new, "moved"
+    return p, "recorded"
+
+
+def rebuild_original(data, row):
+    """Rebuild the bytes from before the v1.0.0 build, from the released bytes and a record row.
+
+    Returns (bytes, description) or (None, reason). Two changes can be reversed: LF back to
+    CRLF, and /work back to an execution-host prefix, walked from the top of the file in the
+    recorded order. Anything else cannot be rebuilt, and the caller reports it.
+    """
+    kind = row["difference_type"]
+    if kind == "line_endings":
+        if b"\r" in data:
+            return None, "the file already holds CR bytes"
+        return data.replace(b"\n", b"\r\n"), "LF to CRLF"
+    if kind not in ("path_substitution", "path_substitution+line_endings"):
+        return None, "a %s row cannot be rebuilt" % kind
+    counts, order, crlf = {}, None, False
+    for part in [s.strip() for s in row["substitution"].split(";") if s.strip()]:
+        if part == "CRLF->LF":
+            crlf = True
             continue
-        if sha(p) != r["sha256"]:
-            add("hash_mismatch", "%s: on-disk hash differs from the inventory" % p)
+        m = re.match(r"^order of /work: ([RML]+)$", part)
+        if m:
+            order = m.group(1)
+            continue
+        m = re.match(r"^(\S+)->/work x(\d+)$", part)
+        if not m or m.group(1) not in HOST_PREFIX:
+            return None, "rebuilding it needs a withheld prefix (%s)" % part
+        counts[m.group(1)] = int(m.group(2))
+    if not counts:
+        return None, "no execution-host substitution is recorded"
+    if crlf != (kind == "path_substitution+line_endings"):
+        return None, "the line-ending flag disagrees with the difference type"
+    pos, i = [], data.find(HOST_TOKEN_TEXT)
+    while i >= 0:
+        pos.append(i)
+        i = data.find(HOST_TOKEN_TEXT, i + len(HOST_TOKEN_TEXT))
+    if order is None:
+        if len(counts) != 1:
+            return None, "two prefixes are recorded without an order"
+        tok = list(counts)[0]
+        order = HOST_PREFIX[tok][1] * counts[tok]
+    if len(order) != len(pos):
+        return None, "the record covers %d /work, the file holds %d" % (len(order), len(pos))
+    for tok, n in counts.items():
+        if order.count(HOST_PREFIX[tok][1]) != n:
+            return None, "the count of %s disagrees with the recorded order" % tok
+    prefix = dict((code, text.encode("ascii")) for text, code in HOST_PREFIX.values())
+    out, last = [], 0
+    for at, code in zip(pos, order):
+        out.append(data[last:at])
+        out.append(HOST_TOKEN_TEXT if code == "L" else prefix[code])
+        last = at + len(HOST_TOKEN_TEXT)
+    out.append(data[last:])
+    data = b"".join(out)
+    how = ", ".join("%d x %s" % (n, t) for t, n in sorted(counts.items())) + " reversed"
+    if crlf:
+        data = data.replace(b"\n", b"\r\n")
+        how += ", LF to CRLF"
+    return data, how
+
+
+documented = {}
+if os.path.exists(SUBST):
+    for r in csv.DictReader(io.open(SUBST, encoding="utf-8"), delimiter="\t"):
+        documented[r["path"]] = r
+if os.path.exists(INV):
+    WHERE = ("recorded", "moved", "copy")
+    tally = dict(((o, w), 0) for o in ("exact", "rebuilt") for w in WHERE)
+    inv_rows = list(csv.DictReader(io.open(INV, encoding="utf-8"), delimiter="\t"))
+    off_repo, checked = [], set()
+    for r in inv_rows:
+        p, want = r["canonical_path"], r["sha256"]
+        rel, where = released_path(p)
+        if rel is None:
+            off_repo.append(r)
+            continue
+        shown = rel if where == "recorded" else "%s (inventory: %s)" % (
+            rel, base_name(p) if where == "copy" else p)
+        if not os.path.isfile(rel):
+            add("hash_mismatch", "%s: not found at the recorded or the released path"
+                % (base_name(p) if where == "copy" else p))
+            continue
+        if sha(rel) == want:
+            tally[("exact", where)] += 1
+            checked.add(want)
+            if where != "recorded":
+                print("  digest matches at the %s: %s" % (
+                    "released path" if where == "moved" else "repository copy", shown))
+            continue
+        row = documented.get(rel)
+        if row is None:
+            add("hash_mismatch", "%s: on-disk hash differs from the inventory, and no release "
+                                 "change is recorded for it" % shown)
+            continue
+        rebuilt, how = rebuild_original(io.open(rel, "rb").read(), row)
+        if rebuilt is None:
+            add("hash_mismatch", "%s: on-disk hash differs from the inventory; %s" % (shown, how))
+        elif hashlib.sha256(rebuilt).hexdigest() != want:
+            add("hash_mismatch", "%s: reversing the recorded release change (%s) does not give "
+                                 "the inventory digest" % (shown, how))
+        elif row["original_sha256"] != want:
+            add("hash_mismatch", "%s: the rebuilt bytes match the inventory, but the "
+                                 "substitution record gives another original digest" % shown)
         else:
-            n_ok += 1
-    print("  canonical artefacts verified in-repo: %d (off-repo skipped: %d)" % (n_ok, n_skip))
+            tally[("rebuilt", where)] += 1
+            checked.add(want)
+            print("  release change reversed and matched (%s; %s): %s"
+                  % (row["difference_type"], how, shown))
+
+    def line(outcome):
+        n = [tally[(outcome, w)] for w in WHERE]
+        return "%2d (recorded path %d, released path %d, repository copy %d)" % tuple([sum(n)] + n)
+
+    print("  canonical inventory: %d rows" % len(inv_rows))
+    print("    %-42s %s" % ("digest matches as released:", line("exact")))
+    print("    %-42s %s" % ("matches after reversing a release change:", line("rebuilt")))
+    print("    %-42s %2d" % ("off-repo, no copy in this repository:", len(off_repo)))
+    for r in off_repo:
+        print("        - %s%s" % (base_name(r["canonical_path"]),
+                                  " (same digest verified under another inventory row)"
+                                  if r["sha256"] in checked else ""))
 else:
     add("missing_inventory", INV)
 
@@ -135,11 +311,11 @@ for p in DOCS:
 # Documented exemptions. Each names WHY the v2 reference is correct, so the gate stays strict
 # for everything else rather than being loosened globally.
 COHORT_V2_EXEMPT = {
-    "scripts/p1_13/p113_replace.py":
+    "scripts/evaluation/p113_replace.py":
         "produced v3 from v2; reads v2 as cohort_before and records its hash",
-    "scripts/p1_13/p113_install_gate.py":
+    "scripts/evaluation/p113_install_gate.py":
         "performs the v2->v3 transition; v2 is its search term",
-    "scripts/p1_13/p113_final.py":
+    "scripts/evaluation/p113_final.py":
         "SUPERSEDED pre-execution verifier that ran against v2 before Amendment 005; "
         "retained as history, must not be run against the current cohort",
     "scripts/release/release_check.py":

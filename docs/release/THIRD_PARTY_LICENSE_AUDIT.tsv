@@ -1,16 +1,20 @@
-component	license_status	bundled_database	database_redistributable	obligation_on_us	doi
-geNomad	Apache-2.0 (verify at release)	geNomad DB	NO	cite Camargo et al. 2023; pull DB from upstream	10.1038/s41587-023-01953-y
-MOB-suite	Apache-2.0 (verify)	MOB-suite DB	NO	cite Robertson & Nash 2018	10.1099/mgen.0.000206
-Platon	GPL-3.0 (verify)	Platon DB	NO	cite Schwengers et al. 2020	10.1099/mgen.0.000398
-PlasmidFinder	Apache-2.0 (verify)	PlasmidFinder replicon DB	NO	cite Carattoli et al. 2014	10.1128/AAC.02412-14
-PlasmidEC / gplas2	(verify at release)	bundled classifiers	NO	cite Paganini et al. 2024	10.1099/mgen.0.001193
-PlaScope	(verify at release)	Centrifuge index	NO	cite Royer et al. 2018	10.1099/mgen.0.000211
-PLASMe	(verify at release)	plasmid DB + models	NO	cite Tang et al. 2023	10.1093/nar/gkad578
-plASgraph2	(verify at release)	trained GNN	NO	cite Sielemann et al. 2023	10.3389/fmicb.2023.1267695
-Plasmer	(verify at release)	k-mer DBs	NO	cite Zhu et al. 2023	10.1128/spectrum.04645-22
-RFPlasmid	(verify at release)	marker protein DBs	NO	cite van der Graaf-van Bloois et al. 2021	10.1099/mgen.0.000683
-HyAsP	(verify at release)	plasmid gene DB	NO	cite Muller & Chauve 2019	10.1093/bioinformatics/btz413
-AMRFinderPlus	US Government public domain (verify)	NCBI Reference Gene Catalog	NCBI terms	cite Feldgarden et al. 2022	10.1099/mgen.0.000832
-Unicycler / SPAdes	GPL-3.0 / GPLv2 (verify)	none	n/a	cite upstream	
-skani	MIT (verify)	none	n/a	cite upstream	
-ENA/NCBI sequence data	public archive terms	n/a	reference by accession	cite ENA/NCBI	
+component	license_status	bundled_database	database_redistributable	obligation_on_us	doi	license_source	checked_ref	verified_on
+geNomad	Lawrence Berkeley National Laboratory licence, academic, internal, research and development, non-commercial use only; condition (4) also says the user must be an accredited academic institution (quoted in LICENSE_REVIEW.md)	geNomad DB	NO	cite Camargo et al. 2023; not redistributed; users obtain geNomad and its DB from upstream under its licence	10.1038/s41587-023-01953-y	https://raw.githubusercontent.com/apcamargo/genomad/v1.7.1/LICENSE	tag v1.7.1; the same file is on the default branch	2026-09-28
+MOB-suite	Apache-2.0	MOB-suite DB	NO	cite Robertson & Nash 2018	10.1099/mgen.0.000206	https://raw.githubusercontent.com/phac-nml/mob-suite/3.1.7/LICENSE	tag 3.1.7	2026-09-28
+Platon	GPL-3.0	Platon DB	NO	cite Schwengers et al. 2020	10.1099/mgen.0.000398	https://raw.githubusercontent.com/oschwengers/platon/v1.6/LICENSE	tag v1.6	2026-09-28
+PlasmidFinder	Apache-2.0, stated in README.md; no licence file at the tag	PlasmidFinder replicon DB	NO	cite Carattoli et al. 2014	10.1128/AAC.02412-14	https://bitbucket.org/genomicepidemiology/plasmidfinder/raw/2.0.1/README.md	tag 2.0.1	2026-09-28
+PlasmidEC / gplas2	PlasmidEC MIT; gplas2 GPL-3.0	bundled classifiers	NO	cite Paganini et al. 2024	10.1099/mgen.0.001193	https://gitlab.com/mmb-umcu/plasmidEC/-/raw/1.3/LICENSE; https://gitlab.com/mmb-umcu/gplas2/-/raw/9ec35cf6674c41ad91afc582dcbe9b2eee9161b0/LICENSE	PlasmidEC GitLab tag 1.3; gplas2 commit 9ec35cf6674c	2026-09-28
+PlaScope	GPL-3.0; PlaScope's own script was not run, Centrifuge ran on the PlaScope index	Centrifuge index	NO	cite Royer et al. 2018	10.1099/mgen.0.000211	https://raw.githubusercontent.com/labgem/PlaScope/1213ac1340186d54b40659a10c27d88a5b13e4ae/LICENSE	commit 1213ac134018 (tag v1.3.1)	2026-09-28
+Centrifuge	GPL-3.0	none; ran on the PlaScope index	n/a	cite Kim et al. 2016	10.1101/gr.210641.116	https://raw.githubusercontent.com/DaehwanKimLab/centrifuge/v1.0.4/LICENSE; https://raw.githubusercontent.com/DaehwanKimLab/centrifuge/v1.0.3/LICENSE	tag v1.0.4 (the version p19c4-plascope:1.0 reports) and tag v1.0.3 (inside p19c4-plasmidec:1.0)	2026-09-28
+PLASMe	no licence file at the top level of the upstream repository at the tag	plasmid DB + models	NO	cite Tang et al. 2023	10.1093/nar/gkad578	https://github.com/HubertTang/PLASMe/tree/v1.1	tag v1.1 (commit ef0409bad9c8)	2026-09-28
+plASgraph2	no licence file at the top level of the upstream repository at the tag	trained GNN	NO	cite Sielemann et al. 2023	10.3389/fmicb.2023.1267695	https://github.com/cchauve/plASgraph2/tree/v1.0.0	tag v1.0.0 (commit 7bc4e92df857)	2026-09-28
+Plasmer	MIT	k-mer DBs	NO	cite Zhu et al. 2023	10.1128/spectrum.04645-22	https://raw.githubusercontent.com/nekokoe/Plasmer/main/LICENSE	default branch, as no source tag matches the image; the image's own /LICENSE is also MIT	2026-09-28
+RFPlasmid	GPL-3.0	marker protein DBs	NO	cite van der Graaf-van Bloois et al. 2021	10.1099/mgen.0.000683	https://raw.githubusercontent.com/aldertzomer/RFPlasmid/0.018/LICENSE	tag 0.018; the same file is on the default branch; the conda package rfplasmid 0.0.18 declares GPL-3.0	2026-09-28
+HyAsP	MIT	plasmid gene DB	NO	cite Muller & Chauve 2019	10.1093/bioinformatics/btz413	https://raw.githubusercontent.com/cchauve/HyAsP/c6cb414c7a265249475289282c8646ad021c7b64/LICENSE	commit c6cb414c7a26	2026-09-28
+AMRFinderPlus	United States Government Work, public domain notice	NCBI Reference Gene Catalog	NCBI terms	cite Feldgarden et al. 2022	10.1099/mgen.0.000832	https://raw.githubusercontent.com/ncbi/amr/amrfinder_v4.2.7/LICENSE	tag amrfinder_v4.2.7	2026-09-28
+BLAST+	United States Government Work, public domain notice	none	n/a	cite Camacho et al. 2009	10.1186/1471-2105-10-421	https://raw.githubusercontent.com/ncbi/ncbi-cxx-toolkit-public/master/scripts/projects/blast/LICENSE	default branch of the NCBI C++ Toolkit; the conda packages blast 2.16.0 (p19c2-cleanroom:1.0) and 2.12.0 (p19c4-hyasp:1.0) declare NCBI-PD and Public Domain	2026-09-28
+Unicycler / SPAdes	GPL-3.0 / GPL-2.0	none	n/a	cite upstream		https://raw.githubusercontent.com/rrwick/Unicycler/v0.5.1/LICENSE; https://raw.githubusercontent.com/ablab/spades/v3.15.5/assembler/LICENSE	tags v0.5.1 and v3.15.5	2026-09-28
+skani	MIT	none	n/a	cite upstream		https://raw.githubusercontent.com/bluenote-1577/skani/v0.2.2/LICENSE	tag v0.2.2	2026-09-28
+minimap2	MIT	none	n/a	cite Li 2018	10.1093/bioinformatics/bty191	https://raw.githubusercontent.com/lh3/minimap2/v2.28/LICENSE.txt	tag v2.28	2026-09-28
+SeqKit	MIT	none	n/a	cite Shen et al.	10.1371/journal.pone.0163962	https://raw.githubusercontent.com/shenwei356/seqkit/v2.8.2/LICENSE	tag v2.8.2	2026-09-28
+ENA/NCBI sequence data	public archive terms	n/a	reference by accession	cite ENA/NCBI				

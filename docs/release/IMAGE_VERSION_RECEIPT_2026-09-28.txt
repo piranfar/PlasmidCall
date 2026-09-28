@@ -1,0 +1,527 @@
+PlasmidCall release v1.1.0: image and version receipt
+Date: 2026-09-28
+
+# Purpose
+
+This receipt backs the versions, git commits and database identities stated in
+SOFTWARE_AND_DATABASE_VERSIONS.tsv, and the licence sources in
+docs/release/THIRD_PARTY_LICENSE_AUDIT.tsv. It lists each read-only command run on
+2026-09-28 and its output.
+
+# How it was made
+
+- The pinned images that ran are held by the author. Section A shows that their image IDs
+  equal the image_digest column of SOFTWARE_AND_DATABASE_VERSIONS.tsv.
+- Every container was started with --rm and --network none. No image was built, pulled,
+  tagged or changed.
+- Sections C and D are read-only HTTP GET requests to public records.
+- Each output is shown as printed. Where a command would also print an unrelated warning, the
+  command itself discards it (2>/dev/null), so the output shown is complete.
+- The file is ASCII. Five characters outside ASCII are written as Python escapes: \u201c and
+  \u201d (curly quotes) in the two geNomad licence excerpts, and \xa9 (copyright sign) in
+  the SeqKit licence excerpt, all in section D.
+
+# What it does not re-read
+
+- The geNomad, PLASMe, PlaScope, Plasmer, Platon and HyAsP databases were mounted at run time
+  and are not held with the images, so their md5 values were not recomputed here. Those md5
+  values are recorded in docs/design/P1.9C4_tool_compatibility_matrix.csv. Section C shows
+  that each public record named in the versions table holds files with the same md5 values.
+- That design file names the Plasmer database by record 7030674. Section C shows that 7030674
+  is the concept record and resolves to version record 7030675, the value in the versions
+  table.
+- The frozen docs/design/P1.9C4_tool_compatibility_matrix.csv (line 7) gives the Centrifuge
+  inside the PlasmidEC image as 1.0.4. The package list read from that image in section B shows
+  centrifuge 1.0.3. The versions table follows the image. The Centrifuge that ran for the
+  PlaScope column is a different installation, in p19c4-plascope, and is 1.0.4.
+- Run settings such as -s 'Escherichia coli' for PlasmidEC and --species Enterobacteriaceae
+  for RFPlasmid come from scripts/evaluation/p113_tool.sh, not from this receipt.
+- The licences in section D were read at the pinned tag or commit where upstream has one. For
+  Plasmer no source tag matches the image, so the default branch and the LICENSE file inside
+  the image were read. For BLAST+ the NCBI C++ Toolkit default branch was read, together with
+  the licence fields of the conda packages in p19c2-cleanroom:1.0 and p19c4-hyasp:1.0.
+
+# Index: value in SOFTWARE_AND_DATABASE_VERSIONS.tsv, and where it is shown
+
+- the 15 image digests: A
+- Unicycler 0.5.1, SPAdes 3.15.5, skani 0.2.2, BLAST+ 2.16.0+, minimap2 2.28-r1209:
+  B, p19c2-cleanroom
+- seqkit 2.8.2: B, p19c2-normalize
+- AMRFinderPlus 4.2.7 and database 2026-08-07.1: B, p19c4-amrfinder
+- MOB-suite 3.1.7; database from Zenodo record 3786915, fetched on 2026-08-19: B,
+  p19c4-mobsuite; C
+- PlasmidEC tag 1.3, commit 0f88a7622beb; Centrifuge 1.0.3, Platon 1.6 and RFPlasmid 0.0.18
+  inside it: B, p19c4-plasmidec
+- gplas2 1.1.0, commit 9ec35cf6674c: B, p19c4-gplas2
+- geNomad 1.7.1; 'genomad --version' prints 1.9.8, the version of rich-click: B,
+  p19c4-genomad
+- geNomad database v1.5, Zenodo record 8339387: C
+- PLASMe tag v1.1, commit ef0409bad9c8; database Zenodo record 8046934: B, p19c4-plasme; C
+- PlaScope 1.3.1, commit 1213ac134018; Centrifuge 1.0.4: B, p19c4-plascope
+- PlaScope database, Zenodo record 1311641: C
+- Plasmer image 23.04.20, 'Plasmer v0.1 20220816'; database Zenodo record 7030675: B,
+  nekokoe/plasmer; C
+- PlasmidFinder 2.0.1; plasmidfinder_db tag 2.2.0, commit 49c24c1c9401, dated 2025-09-10:
+  B, p19c4-plasmidfinder
+- Platon 1.6: B, p19c4-platon; database Zenodo record 4066768: C
+- RFPlasmid 0.0.18: B, p19c4-rfplasmid
+- HyAsP commit c6cb414c7a26, package 1.0.0, BLAST+ 2.12.0: B, p19c4-hyasp; database figshare
+  10.6084/m9.figshare.8001827.v1: C
+- plASgraph2 tag v1.0.0, commit 7bc4e92df857, TensorFlow 2.8.0: B, p19c4-plasgraph2
+- the licence of each program: D, and the conda licence fields in B
+
+## A. Image identities
+
+$ docker image inspect p19c2-cleanroom:1.0 --format '{{.Id}}'
+sha256:59230d354a2aab46936beb9460417cc16357a23d429806e0f9b40bef7f0aea20
+$ docker image inspect p19c2-normalize:1.0 --format '{{.Id}}'
+sha256:6e46960381c9f58cf6b2d3bd3f57c58ba3210ad28a9b29e36d5c5b25d053c10c
+$ docker image inspect p19c4-amrfinder:1.0 --format '{{.Id}}'
+sha256:18580135caaf7ab0a28f8ad98bdc93b77051ed86301913646667d09938bb9821
+$ docker image inspect p19c4-mobsuite:1.0 --format '{{.Id}}'
+sha256:804f9ea5e88affaab2dd2a3959b1f4e715d1903deb3ac2e26bb9a037983d97f5
+$ docker image inspect p19c4-plasmidec:1.0 --format '{{.Id}}'
+sha256:6ae61ad78f3f2cbfc9fc94106124b72ad2df9464070be96a60ca76a02a0a56dd
+$ docker image inspect p19c4-gplas2:1.0 --format '{{.Id}}'
+sha256:88849320fa0b86f81e85940ce297c3d17050a1f03ff4be4aed9312ed145c6a03
+$ docker image inspect p19c4-genomad:1.0 --format '{{.Id}}'
+sha256:98378fdda32a3219bf20905445f0326975e19f45f3f0940a857dcc315ec15861
+$ docker image inspect p19c4-plasme:1.0 --format '{{.Id}}'
+sha256:05a577da11f970df4e8c662e832155d8dd2eb4a9dfc6fd1cb458ada1e9105ead
+$ docker image inspect p19c4-plascope:1.0 --format '{{.Id}}'
+sha256:cfac6fdafa36ff942524b021abe51d4eb946a658bb30c990def3004612b0b3a5
+$ docker image inspect nekokoe/plasmer:23.04.20 --format '{{.Id}}'
+sha256:c64ba6e14f59f5ff2143d808d651f5a57175a6ea8226e4233b58c2c8d75ee5ac
+$ docker image inspect p19c4-plasmidfinder:1.0 --format '{{.Id}}'
+sha256:8414abbe42588810e04d0623f4400092e5942035096ee7738af909556b9a2e58
+$ docker image inspect p19c4-platon:1.0 --format '{{.Id}}'
+sha256:8d860d7cfaca3f29bdf72dfa8f22bb0ea20be977dd3c371ad6e49884035ca31a
+$ docker image inspect p19c4-rfplasmid:1.0 --format '{{.Id}}'
+sha256:3443e560bdf30c9a012e8d5d917a69b17284dbd63c8859e4183c13d623e88407
+$ docker image inspect p19c4-hyasp:1.0 --format '{{.Id}}'
+sha256:6bfce30bd71ff2845530c744d73104cf542e413ef6760b0558095dfbaef3bfbe
+$ docker image inspect p19c4-plasgraph2:1.0 --format '{{.Id}}'
+sha256:beadd23183f4fde7d4f157f3fa81328f52051649980533fe69ffaa1e82666d65
+
+## B. Versions, commits and database identities read inside the images
+
+### Unicycler, SPAdes, skani, BLAST+, minimap2 (p19c2-cleanroom:1.0)
+$ docker run --rm --network none p19c2-cleanroom:1.0 sh -c 'ls /opt/conda/conda-meta | grep -E "^(unicycler|spades|skani|blast|minimap2)-"'
+blast-2.16.0-h66d330f_5.json
+minimap2-2.28-h577a1d6_4.json
+skani-0.2.2-ha6fb395_2.json
+spades-3.15.5-h5fb382e_3.json
+unicycler-0.5.1-py310h5140242_3.json
+$ docker run --rm --network none p19c2-cleanroom:1.0 sh -c 'unicycler --version 2>/dev/null'
+Unicycler v0.5.1
+$ docker run --rm --network none p19c2-cleanroom:1.0 sh -c 'spades.py --version'
+SPAdes genome assembler v3.15.5
+$ docker run --rm --network none p19c2-cleanroom:1.0 sh -c 'skani --version'
+skani 0.2.2
+$ docker run --rm --network none p19c2-cleanroom:1.0 sh -c 'blastn -version | head -1'
+blastn: 2.16.0+
+$ docker run --rm --network none p19c2-cleanroom:1.0 sh -c 'minimap2 --version'
+2.28-r1209
+$ docker run --rm --network none p19c2-cleanroom:1.0 sh -c 'cd /opt/conda/conda-meta && grep -H -o '"'"'"license": *"[^"]*"'"'"' unicycler-[0-9]*.json spades-[0-9]*.json skani-[0-9]*.json blast-[0-9]*.json minimap2-[0-9]*.json'
+unicycler-0.5.1-py310h5140242_3.json:"license": "GPL-3.0-or-later"
+spades-3.15.5-h5fb382e_3.json:"license": "GPLv2"
+skani-0.2.2-ha6fb395_2.json:"license": "MIT"
+blast-2.16.0-h66d330f_5.json:"license": "NCBI-PD"
+minimap2-2.28-h577a1d6_4.json:"license": "MIT"
+
+### seqkit (p19c2-normalize:1.0)
+$ docker run --rm --network none p19c2-normalize:1.0 sh -c 'ls /opt/conda/conda-meta | grep -E "^(seqkit)-"'
+seqkit-2.8.2-h9ee0642_1.json
+$ docker run --rm --network none p19c2-normalize:1.0 sh -c 'seqkit version'
+seqkit v2.8.2
+$ docker run --rm --network none p19c2-normalize:1.0 sh -c 'cd /opt/conda/conda-meta && grep -H -o '"'"'"license": *"[^"]*"'"'"' seqkit-[0-9]*.json'
+seqkit-2.8.2-h9ee0642_1.json:"license": "MIT"
+
+### AMRFinderPlus and its database (p19c4-amrfinder:1.0)
+$ docker run --rm --network none p19c4-amrfinder:1.0 sh -c 'ls /opt/conda/conda-meta | grep -E "^(ncbi-amrfinderplus)-"'
+ncbi-amrfinderplus-4.2.7-hf69ffd2_0.json
+$ docker run --rm --network none p19c4-amrfinder:1.0 sh -c 'amrfinder --database_version 2>&1 | grep -E "^(Software|Database) version"'
+Software version: 4.2.7
+Database version: 2026-08-07.1
+$ docker run --rm --network none p19c4-amrfinder:1.0 sh -c 'cd /opt/conda/conda-meta && grep -H -o '"'"'"license": *"[^"]*"'"'"' ncbi-amrfinderplus-[0-9]*.json'
+ncbi-amrfinderplus-4.2.7-hf69ffd2_0.json:"license": "Public Domain"
+
+### MOB-suite and the database mob_init fetched (p19c4-mobsuite:1.0)
+$ docker run --rm --network none p19c4-mobsuite:1.0 sh -c 'ls /opt/conda/conda-meta | grep -E "^(mob_suite)-"'
+mob_suite-3.1.7-pyh7cba7a3_0.json
+$ docker run --rm --network none p19c4-mobsuite:1.0 sh -c 'grep -o -E "^[0-9-]+ [0-9:,]+ mob_suite.utils INFO: (Trying mirror [^ ]+|MOB init completed successfully)" /opt/mob_init.log'
+2026-08-19 01:50:29,930 mob_suite.utils INFO: Trying mirror https://zenodo.org/record/3786915/files/data.tar.gz?download=1
+2026-08-19 01:52:15,199 mob_suite.utils INFO: MOB init completed successfully
+$ docker run --rm --network none p19c4-mobsuite:1.0 sh -c 'cd /opt/conda/conda-meta && grep -H -o '"'"'"license": *"[^"]*"'"'"' mob_suite-[0-9]*.json'
+mob_suite-3.1.7-pyh7cba7a3_0.json:"license": "Apache-2.0"
+
+### PlasmidEC and its internal components (p19c4-plasmidec:1.0)
+$ docker run --rm --network none p19c4-plasmidec:1.0 sh -c 'cat /opt/plasmidec.commit'
+0f88a7622bebf8d1472e046234b95a3cce186dbf
+$ docker run --rm --network none p19c4-plasmidec:1.0 sh -c 'git -C /opt/plasmidEC describe --tags --exact-match'
+1.3
+$ docker run --rm --network none p19c4-plasmidec:1.0 sh -c 'grep -h -o -E "(centrifuge|platon|rfplasmid)-[0-9][^/]*[.]tar[.]bz2" /opt/lock_plasmidEC_centrifuge.txt /opt/lock_plasmidEC_platon.txt /opt/lock_plasmidEC_rfplasmid.txt'
+centrifuge-1.0.3-py36pl5.22.0_3.tar.bz2
+platon-1.6-pyhdfd78af_1.tar.bz2
+rfplasmid-0.0.18-pyhdfd78af_0.tar.bz2
+$ docker run --rm --network none p19c4-plasmidec:1.0 sh -c 'cd /opt/conda/envs/plasmidEC_centrifuge/conda-meta && grep -H -o '"'"'"license": *"[^"]*"'"'"' centrifuge-[0-9]*.json'
+centrifuge-1.0.3-py36pl5.22.0_3.json:"license": "GPL3"
+
+### gplas2 (p19c4-gplas2:1.0)
+$ docker run --rm --network none --entrypoint sh p19c4-gplas2:1.0 -c 'cat /opt/gplas2.commit'
+9ec35cf6674c41ad91afc582dcbe9b2eee9161b0
+$ docker run --rm --network none --entrypoint sh p19c4-gplas2:1.0 -c 'grep "^__version__" /opt/gplas2/gplas/version.py'
+__version__ = version = '1.1.0'
+
+### geNomad, and the 1.9.8 that --version prints (p19c4-genomad:1.0)
+$ docker run --rm --network none p19c4-genomad:1.0 sh -c 'ls /opt/conda/conda-meta | grep -E "^(genomad|rich-click)-"'
+genomad-1.7.1-pyhdfd78af_0.json
+rich-click-1.9.8-pyh8f84b5b_0.json
+$ docker run --rm --network none p19c4-genomad:1.0 sh -c 'genomad --version'
+geNomad, version 1.9.8
+$ docker run --rm --network none p19c4-genomad:1.0 sh -c 'python -c "from importlib.metadata import version; print('"'"'genomad'"'"', version('"'"'genomad'"'"')); print('"'"'rich-click'"'"', version('"'"'rich-click'"'"'))"'
+genomad 1.7.1
+rich-click 1.9.8
+$ docker run --rm --network none p19c4-genomad:1.0 sh -c 'cd /opt/conda/conda-meta && grep -H -o '"'"'"license": *"[^"]*"'"'"' genomad-[0-9]*.json'
+genomad-1.7.1-pyhdfd78af_0.json:"license": "Lawrence Berkeley National Labs BSD variant license"
+
+### PLASMe and the database record its installer names (p19c4-plasme:1.0)
+$ docker run --rm --network none p19c4-plasme:1.0 sh -c 'cat /opt/plasme.commit'
+ef0409bad9c8c9ee5d66d90812bf56b345d8dd1d
+$ docker run --rm --network none p19c4-plasme:1.0 sh -c 'git -C /opt/PLASMe describe --tags --exact-match'
+v1.1
+$ docker run --rm --network none p19c4-plasme:1.0 sh -c 'grep -n "zenodo.org/record" /opt/PLASMe/PLASMe_db.py'
+114:    curl_link = "https://zenodo.org/record/8046934/files/DB.zip?download=1"
+
+### PlaScope and Centrifuge (p19c4-plascope:1.0)
+$ docker run --rm --network none p19c4-plascope:1.0 sh -c 'cat /opt/plascope.commit'
+1213ac1340186d54b40659a10c27d88a5b13e4ae
+$ docker run --rm --network none p19c4-plascope:1.0 sh -c 'git -C /opt/PlaScope describe --tags --exact-match'
+v1.3.1
+$ docker run --rm --network none p19c4-plascope:1.0 sh -c 'grep -n "^VERSION=" /opt/PlaScope/plaScope.sh'
+25:VERSION=1.3.1
+$ docker run --rm --network none p19c4-plascope:1.0 sh -c 'centrifuge --version | head -1'
+/opt/conda/bin/centrifuge-class version 1.0.4
+$ docker run --rm --network none p19c4-plascope:1.0 sh -c 'grep -h -o '"'"'"license": *"[^"]*"'"'"' /opt/conda/conda-meta/centrifuge-[0-9]*.json'
+"license": "GPL-3.0-only"
+
+### Plasmer (nekokoe/plasmer:23.04.20)
+$ docker run --rm --network none nekokoe/plasmer:23.04.20 sh -c '/scripts/Plasmer -v'
+Plasmer v0.1 20220816
+$ docker run --rm --network none nekokoe/plasmer:23.04.20 sh -c 'grep -n -o "pre-built database are available at \[Zenodo\]([^)]*)" /README.md'
+20:pre-built database are available at [Zenodo](https://doi.org/10.5281/zenodo.7030674)
+$ docker run --rm --network none nekokoe/plasmer:23.04.20 sh -c 'head -1 /LICENSE'
+MIT License
+
+### PlasmidFinder and plasmidfinder_db (p19c4-plasmidfinder:1.0)
+$ docker run --rm --network none p19c4-plasmidfinder:1.0 sh -c 'ls /opt/conda/conda-meta | grep -E "^(plasmidfinder)-"'
+plasmidfinder-2.0.1-0.json
+$ docker run --rm --network none p19c4-plasmidfinder:1.0 sh -c 'cat /opt/plasmidfinder_db.commit'
+49c24c1c9401fa175fbcfdbd4b37227a160baca4
+$ docker run --rm --network none p19c4-plasmidfinder:1.0 sh -c 'git -C /opt/plasmidfinder_db tag --points-at HEAD'
+2.2.0
+plasmidfinder-3.0.0
+plasmidfinder-3.0.1
+plasmidfinder-3.0.2
+$ docker run --rm --network none p19c4-plasmidfinder:1.0 sh -c 'git -C /opt/plasmidfinder_db log -1 --format=%cs'
+2025-09-10
+$ docker run --rm --network none p19c4-plasmidfinder:1.0 sh -c 'cd /opt/conda/conda-meta && grep -H -o '"'"'"license": *"[^"]*"'"'"' plasmidfinder-[0-9]*.json'
+plasmidfinder-2.0.1-0.json:"license": "Apache-2.0"
+
+### Platon (p19c4-platon:1.0)
+$ docker run --rm --network none p19c4-platon:1.0 sh -c 'ls /opt/conda/conda-meta | grep -E "^(platon)-"'
+platon-1.6-pyhdfd78af_1.json
+$ docker run --rm --network none p19c4-platon:1.0 sh -c 'platon --version'
+platon 1.6
+$ docker run --rm --network none p19c4-platon:1.0 sh -c 'cd /opt/conda/conda-meta && grep -H -o '"'"'"license": *"[^"]*"'"'"' platon-[0-9]*.json'
+platon-1.6-pyhdfd78af_1.json:"license": "GPLv3"
+
+### RFPlasmid (p19c4-rfplasmid:1.0)
+$ docker run --rm --network none p19c4-rfplasmid:1.0 sh -c 'ls /opt/conda/conda-meta | grep -E "^(rfplasmid)-"'
+rfplasmid-0.0.18-pyhdfd78af_0.json
+$ docker run --rm --network none p19c4-rfplasmid:1.0 sh -c 'cd /opt/conda/conda-meta && grep -H -o '"'"'"license": *"[^"]*"'"'"' rfplasmid-[0-9]*.json'
+rfplasmid-0.0.18-pyhdfd78af_0.json:"license": "GNU General Public License v3 (GPL-3.0)"
+
+### HyAsP and its BLAST+ (p19c4-hyasp:1.0)
+$ docker run --rm --network none p19c4-hyasp:1.0 sh -c 'cat /opt/hyasp.commit'
+c6cb414c7a265249475289282c8646ad021c7b64
+$ docker run --rm --network none p19c4-hyasp:1.0 sh -c 'pip show HyAsP 2>/dev/null | grep -E "^(Name|Version):"'
+Name: HyAsP
+Version: 1.0.0
+$ docker run --rm --network none p19c4-hyasp:1.0 sh -c 'ls /opt/conda/conda-meta | grep -E "^(blast)-"'
+blast-2.12.0-hf3cf87c_4.json
+$ docker run --rm --network none p19c4-hyasp:1.0 sh -c 'cd /opt/conda/conda-meta && grep -H -o '"'"'"license": *"[^"]*"'"'"' blast-[0-9]*.json'
+blast-2.12.0-hf3cf87c_4.json:"license": "Public Domain"
+
+### plASgraph2 (p19c4-plasgraph2:1.0)
+$ docker run --rm --network none p19c4-plasgraph2:1.0 sh -c 'cat /opt/plasgraph2.commit'
+7bc4e92df8570ac2848599e57d5e59730ed5713f
+$ docker run --rm --network none p19c4-plasgraph2:1.0 sh -c 'git -C /opt/plASgraph2 describe --tags --exact-match'
+v1.0.0
+$ docker run --rm --network none p19c4-plasgraph2:1.0 sh -c 'pip freeze 2>/dev/null | grep -i "^tensorflow=="'
+tensorflow==2.8.0
+
+## C. Public records of the databases
+
+### Zenodo 3786915 (MOB-suite database)
+$ curl -sL https://zenodo.org/api/records/3786915 | python -c "import json,sys; d=json.load(sys.stdin); print('id', d['id'], 'concept', d['conceptrecid'], 'version', d['metadata'].get('version')); [print(f['key'], f['checksum'], f['size']) for f in d['files']]"
+id 3786915 concept 3785612 version 2.0.0
+data.tar.gz md5:5d2625bd4f4ea3750506e42e04b3f086 472531123
+
+### Zenodo 8339387 (geNomad database v1.5)
+$ curl -sL https://zenodo.org/api/records/8339387 | python -c "import json,sys; d=json.load(sys.stdin); print('id', d['id'], 'concept', d['conceptrecid'], 'version', d['metadata'].get('version')); [print(f['key'], f['checksum'], f['size']) for f in d['files']]"
+id 8339387 concept 6994741 version 1.5
+genomad_db_v1.5.tar.gz md5:20dcfac8cec3348bf31c751f537d4b02 849449717
+genomad_hmm_v1.5.tar.gz md5:3d7b981d35a5567949ce70a81c692b4c 3526509751
+genomad_msa_v1.5.tar.gz md5:446b3ffc99407b029202b45d72170143 694875252
+genomad_metadata_v1.5.tsv.gz md5:28b361ca36f0d662d89f2fb8f78c040d 6801782
+
+### Zenodo 8046934 (PLASMe database)
+$ curl -sL https://zenodo.org/api/records/8046934 | python -c "import json,sys; d=json.load(sys.stdin); print('id', d['id'], 'concept', d['conceptrecid'], 'version', d['metadata'].get('version')); [print(f['key'], f['checksum'], f['size']) for f in d['files']]"
+id 8046934 concept 8046933 version None
+DB.zip md5:b32263ad4fb20c04044700170b1609ef 13632339031
+
+### Zenodo 1311641 (PlaScope database)
+$ curl -sL https://zenodo.org/api/records/1311641 | python -c "import json,sys; d=json.load(sys.stdin); print('id', d['id'], 'concept', d['conceptrecid'], 'version', d['metadata'].get('version')); [print(f['key'], f['checksum'], f['size']) for f in d['files']]"
+id 1311641 concept 1245663 version Version 1.1
+chromosome_plasmid_db.tar.gz md5:1010ae59f1b1dcbd5c93dd463dbbcf85 330908939
+
+### Zenodo 7030674, the DOI the Plasmer image cites
+$ curl -sL https://zenodo.org/api/records/7030674 | python -c "import json,sys; d=json.load(sys.stdin); print('id', d['id'], 'concept', d['conceptrecid'], 'version', d['metadata'].get('version')); [print(f['key'], f['checksum'], f['size']) for f in d['files']]"
+id 7030675 concept 7030674 version 1.0
+plasmerMainDB.tar.xz md5:1233944d8fa69b7e44f55f2516b80996 10879150976
+customizedKraken2DB.tar.xz md5:223c3e683c5186a64a2a055e42bb796e 3424137248
+
+### Zenodo 4066768 (Platon database v1.5.0)
+$ curl -sL https://zenodo.org/api/records/4066768 | python -c "import json,sys; d=json.load(sys.stdin); print('id', d['id'], 'concept', d['conceptrecid'], 'version', d['metadata'].get('version')); [print(f['key'], f['checksum'], f['size']) for f in d['files']]"
+id 4066768 concept 3349651 version v1.5.0
+db.tar.gz md5:6712717fedea5819ef0d63d7b2460fa4 1690687855
+
+### figshare 8001827 version 1 (HyAsP database)
+$ curl -sL https://api.figshare.com/v2/articles/8001827/versions/1 | python -c "import json,sys; d=json.load(sys.stdin); print(d['doi']); [print(f['name'], 'md5:' + f['computed_md5'], f['size']) for f in d['files']]"
+10.6084/m9.figshare.8001827.v1
+ncbi_blacklist.txt md5:2e3e19bf2be69798b45beebbd3b8a653 148
+ncbi_database_genes.fasta.bz2 md5:27e0679f69fee73adc40867714e5335b 84829411
+README.md md5:b6f7607245518bebea367181f7d4fbbd 1486
+plasmids.csv md5:8d93f7446c50e250f850321cedea76d1 3219536
+
+## D. Upstream licence files
+
+### geNomad, tag v1.7.1
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/apcamargo/genomad/v1.7.1/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+2878b1cb109d8dde17ea2607f6def6e3225b003caccf1dba98ad7233e331db87  f
+*** License Agreement ***
+Lawrence Berkeley National Laboratory
+ACADEMIC, INTERNAL, RESEARCH & DEVELOPMENT, NON-COMMERCIAL USE ONLY, LICENSE
+geNomad Copyright (c) 2022, The Regents of the University of California,
+through Lawrence Berkeley National Laboratory (\u201cBerkeley Lab\u201d) subject to
+
+### geNomad, default branch
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/apcamargo/genomad/main/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+2878b1cb109d8dde17ea2607f6def6e3225b003caccf1dba98ad7233e331db87  f
+*** License Agreement ***
+Lawrence Berkeley National Laboratory
+ACADEMIC, INTERNAL, RESEARCH & DEVELOPMENT, NON-COMMERCIAL USE ONLY, LICENSE
+geNomad Copyright (c) 2022, The Regents of the University of California,
+through Lawrence Berkeley National Laboratory (\u201cBerkeley Lab\u201d) subject to
+
+### MOB-suite, tag 3.1.7
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/phac-nml/mob-suite/3.1.7/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30  f
+Apache License
+Version 2.0, January 2004
+http://www.apache.org/licenses/
+TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+1. Definitions.
+
+### Platon, tag v1.6
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/oschwengers/platon/v1.6/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2  f
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+### PlasmidEC, GitLab tag 1.3
+$ curl -sL -w '%{http_code}\n' -o f https://gitlab.com/mmb-umcu/plasmidEC/-/raw/1.3/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+19ee789ea3b576fb612c8ed2df02548195e302701cdb0470881bdccce9a2e06c  f
+MIT License
+Copyright (c) 2021 lisavader
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+
+### gplas2, commit 9ec35cf6674c
+$ curl -sL -w '%{http_code}\n' -o f https://gitlab.com/mmb-umcu/gplas2/-/raw/9ec35cf6674c41ad91afc582dcbe9b2eee9161b0/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+f7b0c116c798a2682bf37c345f6ee38ef8843d3cf02b1744a767c8a1f034c0e3  f
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+### PlaScope, commit 1213ac134018
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/labgem/PlaScope/1213ac1340186d54b40659a10c27d88a5b13e4ae/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b  f
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+### Centrifuge, tag v1.0.4 (the version p19c4-plascope:1.0 reports)
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/DaehwanKimLab/centrifuge/v1.0.4/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  f
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+### Centrifuge, tag v1.0.3 (inside p19c4-plasmidec:1.0)
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/DaehwanKimLab/centrifuge/v1.0.3/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  f
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+### PLASMe, tag v1.1
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/HubertTang/PLASMe/v1.1/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+404
+d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed  f
+404: Not Found
+
+### plASgraph2, tag v1.0.0
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/cchauve/plASgraph2/v1.0.0/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+404
+d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed  f
+404: Not Found
+
+### Plasmer, default branch (no source tag matches the image)
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/nekokoe/Plasmer/main/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+db3a229814289625d1d110a56a4c455c24ba03acba705841b9bc524e9e9ad09a  f
+MIT License
+Copyright (c) 2022 nekokoe
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+
+### RFPlasmid, tag 0.018
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/aldertzomer/RFPlasmid/0.018/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986  f
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+### HyAsP, commit c6cb414c7a26
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/cchauve/HyAsP/c6cb414c7a265249475289282c8646ad021c7b64/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+d7bda38f4890acd109cc685a82e575284c2769403f2b20724f72aa32e131ab8d  f
+The MIT License
+Copyright (c) 2018 Cedric Chauve
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+
+### AMRFinderPlus, tag amrfinder_v4.2.7
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/ncbi/amr/amrfinder_v4.2.7/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+94f765797694563615210593e5ca67abd4e648e3313601945f4874a5b0f946c8  f
+PUBLIC DOMAIN NOTICE
+National Center for Biotechnology Information
+This software/database is a "United States Government Work" under the
+terms of the United States Copyright Act.  It was written as part of
+the author's official duties as a United States Government employee and
+
+### Unicycler, tag v0.5.1
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/rrwick/Unicycler/v0.5.1/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903  f
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+### SPAdes, tag v3.15.5
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/ablab/spades/v3.15.5/assembler/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+467e802f3a80339f0e6ab27444d25714b90cd5783a9f0be1fd68adddae0bc17c  f
+SPADES: SAINT-PETERSBURG GENOME ASSEMBLER
+Copyright (c) 2015-2022 Saint Petersburg State University
+Copyright (c) 2011-2014 Saint Petersburg Academic University
+SPAdes is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, Version 2,
+
+### skani, tag v0.2.2
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/bluenote-1577/skani/v0.2.2/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+c4e1b9d29d2d5bc7e9301e1bbc5372e7ff604d94feb6dc9f29b9f7f411e88bae  f
+MIT License
+Copyright (c) 2022 Jim Shaw
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+
+### minimap2, tag v2.28
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/lh3/minimap2/v2.28/LICENSE.txt; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+b68a701dea24796190ef9e860ff56e79d578c96183722cf4ec3738793e8e75f4  f
+The MIT License
+Copyright (c) 2018-     Dana-Farber Cancer Institute
+2017-2018 Broad Institute, Inc.
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+
+### SeqKit, tag v2.8.2
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/shenwei356/seqkit/v2.8.2/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+ffa76e8a163f7a8785ccf4f517d601d562d2a68fbd019de9b2eccf49c9b89730  f
+The MIT License (MIT)
+Copyright \xa9 2016-2019 Wei Shen, 2019 Oxford Nanopore Technologies.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+
+### BLAST+, NCBI C++ Toolkit default branch
+$ curl -sL -w '%{http_code}\n' -o f https://raw.githubusercontent.com/ncbi/ncbi-cxx-toolkit-public/master/scripts/projects/blast/LICENSE; sha256sum f; grep -m5 -o '[^[:space:]].*' f
+200
+03e41388b1a72f2d0830d9fbce8906183e242cfd381f91f7e5a08bb7be1304ad  f
+PUBLIC DOMAIN NOTICE
+National Center for Biotechnology Information
+This software/database is a "United States Government Work" under the
+terms of the United States Copyright Act.  It was written as part of
+the author's official duties as a United States Government employee and
+
+### PLASMe files at tag v1.1
+$ curl -sL "https://api.github.com/repos/HubertTang/PLASMe/contents?ref=v1.1" | python -c "import json,sys; print(' '.join(x['name'] for x in json.load(sys.stdin)))"
+PLASMe.py PLASMe_db.py README.md bio_script.py plasme.yaml test.fasta trans_data.py trans_model.py
+
+### plASgraph2 files at tag v1.0.0
+$ curl -sL "https://api.github.com/repos/cchauve/plASgraph2/contents?ref=v1.0.0" | python -c "import json,sys; print(' '.join(x['name'] for x in json.load(sys.stdin)))"
+README.md doc example model requirements.txt src
+
+### PlasmidFinder files at tag 2.0.1
+$ curl -sL "https://api.bitbucket.org/2.0/repositories/genomicepidemiology/plasmidfinder/src/2.0.1/?pagelen=100" | python -c "import json,sys; print(' '.join(x['path'] for x in json.load(sys.stdin)['values']))"
+test .gitignore Dockerfile README.md plasmidfinder.py
+
+### PlasmidFinder README.md at tag 2.0.1
+$ curl -sL https://bitbucket.org/genomicepidemiology/plasmidfinder/raw/2.0.1/README.md | grep -E '^License$|Apache License'
+License
+Licensed under the Apache License, Version 2.0 (the "License");

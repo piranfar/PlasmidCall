@@ -1,6 +1,6 @@
 # PlasmidCall
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22086356.svg)](https://doi.org/10.5281/zenodo.22086356)
+[![Data DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22086356.svg)](https://doi.org/10.5281/zenodo.22086356)
 [![Code licence: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
 [![Data licence: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey.svg)](LICENSE-DATA)
 
@@ -8,7 +8,11 @@ Code, frozen models and derived data for a study of **where antimicrobial resist
 determinants sit in bacterial genomes**, and of how well automated methods recover that
 placement from short-read assemblies.
 
-> This repository accompanies a manuscript that has **not** been peer reviewed.
+> No article describing this work has been published yet, and nothing here has been peer
+> reviewed. The data DOI above belongs to the data deposit and resolves to its latest version.
+> The deposit holds no model files and is not an archive of this repository's code. Its Part 1
+> does hold as-executed copies of the P1.13 run scripts, including the frozen parser, under
+> CC BY 4.0. The models and the maintained code are in this repository.
 
 ## The study in one paragraph
 
@@ -42,17 +46,37 @@ footnotes to the claim; they are part of it.
 ## Layout
 
 ```
-scripts/pipeline/     acquisition, assembly and classifier-panel execution
-scripts/evaluation/   truth construction, metrics, bootstrap, verification
-scripts/model/        model build and the categorical encoding
+scripts/pipeline/     acquisition, assembly, classifier-panel execution, the v1.2-General fit
+                      (freeze_v12.py), the v1.1 scorer, the router and the contig-table builder
+scripts/evaluation/   P1.13 execution: builder, candidate pipeline and prediction freeze
+scripts/model/        the v1.1 development scripts (P1.10)
+scripts/parsers/      the frozen panel-output parser and parse_outputs.py
+scripts/score/        standalone scorer: v1.2-General with numpy only; v1.1 and the router optional
 scripts/reporting/    tables, figures and the manuscript build
-models/               the frozen v1.1 and v1.2-General estimators and the portable model
+scripts/release/      release checks
+tests/                scorer tests and their fixtures
+models/               the frozen v1.1 and v1.2-General models and the portable model
 docs/design/          the frozen design and every amendment, in the order they were made
 docs/evidence/        execution and verification receipts
 docs/results/         every reported table, figure source data, and the canonical number set
 docs/postfreeze/      analyses defined after the results freeze, labelled as such
 docs/closure/         technical report, intended use, limitations and non-claims
+docs/release/         release matrix, licence audit and the record of release-time path changes
 ```
+
+The P1.13 truth-construction and evaluation scripts are recorded by digest but did not survive
+the retirement of the execution host; `REPRODUCIBILITY.md` says what replaces them.
+
+## Scoring contigs with PlasmidCall
+
+PlasmidCall takes the calls of twelve plasmid classifiers on each contig and returns a score
+and a call. `scripts/parsers/parse_outputs.py` turns the classifiers' native outputs into those
+calls with the frozen parser (`docs/PARSING.md`). `scripts/score/plasmidcall_score.py` scores
+them: v1.2-General from the portable JSON with numpy only, and v1.1 and the router when
+scikit-learn 1.9.0 is installed. On the 19,320 contigs of the public P1.13 evaluation, the
+scorer reproduces the frozen v1.2-General, v1.1 and router outputs exactly. `tests/` checks
+this on all 19,320 contigs when given the P1.13 table from the data deposit; the default run
+checks a 200-row fixture. Model files, digests and inputs are described in `models/README.md`.
 
 ## Tracing a published number
 
@@ -70,8 +94,10 @@ the MD5 of every file as verified at acquisition, in
 `docs/results/supplementary_data/Supplementary_Data_1.tsv`. Not redistributed.
 
 **The bulk evidence.** The parsed classifier calls, the 150 assemblies, the execution receipts
-and the joined truth table are in the Zenodo deposit at https://doi.org/10.5281/zenodo.22086356, which is the
-citable archive for the data.
+and the joined truth table are in the Zenodo data deposit, doi:10.5281/zenodo.22086357
+(version 1.0.0), which is the citable archive for the data. The deposit holds no model files
+and is not an archive of this repository's code. Its Part 1 does hold as-executed copies of the
+P1.13 run scripts, including the frozen parser, under CC BY 4.0.
 The native unparsed tool outputs, about 31 GB, are retained by the author and available on
 request; no published value depends on them.
 
@@ -86,19 +112,23 @@ labelling recovers known structure blind, **not as new genetics**.
 
 ## Licences
 
+One rule covers every file in this repository.
+
 | What | Licence |
 |---|---|
-| Source code — `scripts/`, model definitions in `models/` | **MIT** — see `LICENSE` |
-| Data and documentation — `docs/` | **CC BY 4.0** — see `LICENSE-DATA` |
+| Code and models: every `.py`, `.sh` and `.diff` file anywhere in the repository, and the model files under `models/` other than Markdown | **MIT**, see `LICENSE` |
+| Everything else: documentation, tables, fixtures and metadata | **CC BY 4.0**, see `LICENSE-DATA` |
 | Raw reads | not ours to license; public archive records, cited by accession |
-| Third-party tools evaluated here | their own; see `docs/release/THIRD_PARTY_LICENSE_AUDIT.tsv` |
+| Third-party programs run here | their own; read on 2026-09-28 at the tag or commit that ran, where upstream has one; see `LICENSE_REVIEW.md` and `docs/release/THIRD_PARTY_LICENSE_AUDIT.tsv` |
 
 ## Citation
 
-Cite the data deposit as **https://doi.org/10.5281/zenodo.22086356** and, once it exists, the
-accompanying article. Machine-readable metadata is in `CITATION.cff`.
+Cite this software as described in `CITATION.cff`, and the data deposit by its version DOI,
+**https://doi.org/10.5281/zenodo.22086357** (version 1.0.0). The concept DOI
+10.5281/zenodo.22086356 resolves to the latest version of the deposit.
 
 ## Getting started
 
 `INSTALLATION.md`, then `QUICKSTART.md`. `REPRODUCIBILITY.md` describes what can be reproduced
-from this repository alone and what needs the Zenodo deposit.
+from this repository alone and what needs the Zenodo deposit. To score your own contigs, start
+with `docs/PARSING.md` and `models/README.md`.

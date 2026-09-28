@@ -2,12 +2,23 @@
 
 **Version** 2.0 · **Dated** 2026-08-24 (UTC) · **Status** validation complete; primary result frozen, joined, evaluated and independently verified
 
+> **Release status, 2026-09-28.** This report is a dated record of 2026-08-24 and is kept as
+> written, except that one dead link to an unpublished manuscript was replaced (see
+> `docs/closure/RELEASE_STATUS_2026-09.md`). Since then: the repository github.com/piranfar/PlasmidCall was created on 2026-08-24
+> and is public; the derived data are archived at doi:10.5281/zenodo.22086357 under CC BY 4.0;
+> code is under MIT (`LICENSE`) and documentation and data under CC BY 4.0 (`LICENSE-DATA`).
+> Section 25 lists open items as they stood on 2026-08-24. No manuscript is public. For the
+> current status, read [`RELEASE_STATUS_2026-09.md`](RELEASE_STATUS_2026-09.md). Values this
+> report states wrongly are corrected in the correction addendum; for example, the parsed call
+> table holds 231,840 rows, not 231,841 (E6).
+
 > **Status update (version 2.0).** This report was written while predictions were frozen and truth
 > was not authorised, so its result sections carried explicit `[AWAITING TRUTH AUTHORIZATION]`
 > placeholders. Truth has since been authorised, acquired, joined once and evaluated against the
-> prespecified endpoint, and the result is frozen. **For all results, read the manuscript
-> ([`../manuscript/PLASMIDCALL_MANUSCRIPT_RENDERED.md`](../manuscript/PLASMIDCALL_MANUSCRIPT_RENDERED.md)),
-> the executive summary and the correction addendum ([`../corrections/PLASMIDCALL_CORRECTION_ADDENDUM.md`](../corrections/PLASMIDCALL_CORRECTION_ADDENDUM.md)).**
+> prespecified endpoint, and the result is frozen. **For all results, read the canonical
+> number set and tables in [`../results/`](../results/) (`CANONICAL_NUMBERS.json`, `tables/`),
+> the executive summary ([`PLASMIDCALL_EXECUTIVE_SUMMARY.md`](PLASMIDCALL_EXECUTIVE_SUMMARY.md))
+> and the correction addendum ([`../corrections/PLASMIDCALL_CORRECTION_ADDENDUM.md`](../corrections/PLASMIDCALL_CORRECTION_ADDENDUM.md)).**
 > The execution and provenance sections of this report remain accurate and are unchanged.
 > The placeholders are retained deliberately: they are the record that no result was
 > estimated, imputed or inferred before truth existed.

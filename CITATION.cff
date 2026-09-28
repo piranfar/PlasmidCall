@@ -1,32 +1,45 @@
 cff-version: 1.2.0
-message: "If you use this software or these data, please cite the article and this repository."
-title: "PlasmidCall: code, frozen models and derived data"
+message: "If you use this software, please cite it using these metadata. If you use the derived data of the evaluation, please also cite the data deposit listed under references."
+title: "PlasmidCall: code and frozen models for plasmid-origin classification of short-read contigs"
 abstract: >-
-  Code, frozen models and derived data for a study of the genomic context of antimicrobial
-  resistance determinants in 150 bacterial genomes across six taxa, and of the prospectively
-  sealed evaluation of plasmid-origin classification built on those labels.
+  Code and the frozen PlasmidCall v1.1 and v1.2-General models, which classify short-read
+  assembly contigs as plasmid- or chromosome-derived from the calls of twelve published plasmid
+  classifiers, with the frozen panel-output parser, a standalone scorer and its tests, and the
+  design records, evidence receipts and derived tables of a prospectively sealed evaluation on
+  150 bacterial genomes across six taxa. Licences: every .py, .sh and .diff file and the model files
+  under models/ other than Markdown are under MIT (LICENSE); everything else, including
+  documentation, tables, fixtures and metadata, is under CC BY 4.0 (LICENSE-DATA).
 type: software
 authors:
   - family-names: Piranfar
     given-names: Vahhab
     affiliation: "Independent Researcher, Jersey City, NJ, USA"
+    orcid: "https://orcid.org/0000-0003-3653-5739"
     email: vahab.p@gmail.com
 license: MIT
 license-url: "https://opensource.org/licenses/MIT"
-version: 1.0.0
+version: 1.1.0
+date-released: "2026-09-28"
 repository-code: "https://github.com/piranfar/PlasmidCall"
-doi: "10.5281/zenodo.22086356"
-identifiers:
-  - type: doi
-    value: "10.5281/zenodo.22086356"
-    description: "Concept DOI, resolves to the current version of the data deposit"
-  - type: doi
-    value: "10.5281/zenodo.22086357"
-    description: "Version 1.0.0 of the data deposit, as used in the manuscript"
 keywords:
-  - antimicrobial resistance
+  - PlasmidCall
   - plasmid
-  - bacterial genomics
-  - short-read assembly
+  - plasmid-origin classification
   - contig classification
-  - prospective validation
+  - short-read assembly
+  - antimicrobial resistance
+  - bacterial genomics
+references:
+  - type: data
+    title: "Genomic context of resistance determinants in 150 bacterial genomes across six taxa: derived data and evaluation evidence"
+    authors:
+      - family-names: Piranfar
+        given-names: Vahhab
+        orcid: "https://orcid.org/0000-0003-3653-5739"
+    doi: "10.5281/zenodo.22086357"
+    version: "1.0.0"
+    year: 2026
+    publisher:
+      name: Zenodo
+    license: CC-BY-4.0
+    notes: "Concept DOI 10.5281/zenodo.22086356 resolves to the latest version of the data deposit."

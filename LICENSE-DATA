@@ -2,10 +2,13 @@ Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 Copyright (c) 2026 Vahhab Piranfar
 
-This licence covers the DATA AND DOCUMENTATION in this repository: everything under docs/,
-including the derived tables, figure source data, evaluation receipts, design records and
-verification artefacts. The source code is licensed separately under the MIT Licence; see
-LICENSE.
+This licence covers every file in this repository that is not code or a model file: the
+documentation, tables, test fixtures and metadata. For example, it covers the files under
+docs/, the Markdown and TSV files at the top level, CITATION.cff and .zenodo.json, the fixture
+tables and README under tests/fixtures/, and the Markdown files under models/.
+
+Code and models are licensed separately under the MIT Licence (see LICENSE): every .py, .sh and
+.diff file anywhere in the repository, and the model files under models/ other than Markdown.
 
 You are free to share and adapt this material for any purpose, including commercially, provided
 you give appropriate credit, provide a link to the licence, and indicate if changes were made.
@@ -13,7 +16,7 @@ you give appropriate credit, provide a link to the licence, and indicate if chan
 Full licence text: https://creativecommons.org/licenses/by/4.0/legalcode
 Summary:           https://creativecommons.org/licenses/by/4.0/
 
-ATTRIBUTION. Please cite the accompanying article and this repository. See CITATION.cff.
+ATTRIBUTION. Please cite this repository and the data deposit. See CITATION.cff.
 
 NOT COVERED BY THIS LICENCE. The raw sequencing reads analysed in this study are public archive
 records held at the European Nucleotide Archive and NCBI. They are not redistributed here and

@@ -1,7 +1,16 @@
 # PlasmidCall / P1.13 — project state reconciliation
 
 **Dated** 2026-08-24 (UTC) · **Phase** 0 of the scientific-closure programme
-**Repository** `https://github.com/piranfar/amr-evidence-warehouse` · branch `main`
+**Repository** `https://github.com/piranfar/amr-evidence-warehouse` (private working repository; not publicly accessible) · branch `main`
+
+> **Superseded, 2026-09-28.** This is a dated record of the state on 2026-08-24 and is kept
+> as written, except that the repository line above now notes that the working repository is
+> private (see `docs/closure/RELEASE_STATUS_2026-09.md`). The commits it cites are in the private working repository. Truth has since
+> been authorised, joined and evaluated, and the results are frozen
+> (`docs/evidence/P1.13_results/RESULTS_FROZEN.json`). The public repository is
+> github.com/piranfar/PlasmidCall, and the derived data are at doi:10.5281/zenodo.22086357.
+> For the current status, read [`RELEASE_STATUS_2026-09.md`](RELEASE_STATUS_2026-09.md).
+> The parsed call table holds 231,840 rows, not 231,841 (correction addendum, E6).
 
 ## 1. Repository state
 

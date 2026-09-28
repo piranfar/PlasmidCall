@@ -258,8 +258,10 @@ CLAIMS = [
  dict(id="C27", loc="Results 'Genomic context of resistance determinants'; Table 5; Fig. 8a",
       claim="The plasmid-derived proportion differed more than eightfold across the six taxa, from "
             "%.1f%% in Citrobacter spp. to %.1f%% in Serratia spp."
-            % (100 * AB["by_taxon"][0]["plasmid_fraction"],
-               100 * AB["by_taxon"][-1]["plasmid_fraction"]),
+            # from the counts: plasmid_fraction is stored rounded to 4 places, and 0.5745
+            # rounded again to 1 place gives 57.5, while 54/94 is 57.4%
+            % (100.0 * AB["by_taxon"][0]["plasmid_derived"] / AB["by_taxon"][0]["contigs"],
+               100.0 * AB["by_taxon"][-1]["plasmid_derived"] / AB["by_taxon"][-1]["contigs"]),
       anchor="from 57.5% in\n*Citrobacter* spp. down to 7.1% in *Serratia* spp.",
       category="genomic context (biology)",
       source="PLASMIDCALL_ARG_CONTEXT_BIOLOGY.json by_taxon",
