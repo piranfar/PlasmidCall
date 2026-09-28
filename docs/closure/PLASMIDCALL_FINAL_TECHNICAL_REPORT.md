@@ -3,8 +3,8 @@
 **Version** 2.0 · **Dated** 2026-08-24 (UTC) · **Status** validation complete; primary result frozen, joined, evaluated and independently verified
 
 > **Release status, 2026-09-28.** This report is a dated record of 2026-08-24 and is kept as
-> written, except that one dead link to an unpublished manuscript was replaced (see
-> `docs/closure/RELEASE_STATUS_2026-09.md`). Since then: the repository github.com/piranfar/PlasmidCall was created on 2026-08-24
+> written, except that one dead link to an unpublished manuscript was replaced and two rows of
+> the open-items table in section 25 were removed (see `docs/closure/RELEASE_STATUS_2026-09.md`). Since then: the repository github.com/piranfar/PlasmidCall was created on 2026-08-24
 > and is public; the derived data are archived at doi:10.5281/zenodo.22086357 under CC BY 4.0;
 > code is under MIT (`LICENSE`) and documentation and data under CC BY 4.0 (`LICENSE-DATA`).
 > Section 25 lists open items as they stood on 2026-08-24. No manuscript is public. For the
@@ -438,8 +438,6 @@ stratum-specific estimate.
 | # | Item | Owner decision required |
 |---|---|---|
 | 1 | Truth unblinding for `P1.13-PREDICTION-FREEZE-001` | **yes** — explicit authorization naming the freeze id |
-| 2 | Rotate the SSH key exposed in the 2026-08-23 transcript (still authenticates) | **yes** |
 | 3 | Software/data licence — none frozen in the repository | **yes** — options prepared, selection required |
 | 4 | Public release, Zenodo deposition, DOI minting | **yes** — after the release audit |
 | 5 | Server termination | blocked on the local archive copy completing; owner action in any case |
-| 6 | Independent Columbia pilot | **yes** — no contact made or authorized |

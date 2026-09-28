@@ -5,7 +5,7 @@
 
 > **Superseded, 2026-09-28.** This is a dated record of the state on 2026-08-24 and is kept
 > as written, except that the repository line above now notes that the working repository is
-> private (see `docs/closure/RELEASE_STATUS_2026-09.md`). The commits it cites are in the private working repository. Truth has since
+> private and the text of section 4 was removed (see `docs/closure/RELEASE_STATUS_2026-09.md`). The commits it cites are in the private working repository. Truth has since
 > been authorised, joined and evaluated, and the results are frozen
 > (`docs/evidence/P1.13_results/RESULTS_FROZEN.json`). The public repository is
 > github.com/piranfar/PlasmidCall, and the derived data are at doi:10.5281/zenodo.22086357.
@@ -50,12 +50,7 @@
 
 ## 4. SSH key exposure status
 
-The private key for the OCI host was exposed into this conversation's transcript on
-2026-08-23 (an `@`-mention caused the harness to read the file). Status check at
-reconciliation time: the same key **still authenticates** to the host, therefore it has
-**NOT been rotated**. Owner action required: rotate the key pair once the archive
-transfer completes and before any transcript retention or sharing. The key material is
-recorded nowhere in the repository, and never will be.
+Removed on 2026-09-28 at the owner's request. The execution host was retired on 2026-09-19.
 
 ## 5. Companion artefacts
 
