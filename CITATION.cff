@@ -42,7 +42,7 @@ keywords:
   - bacterial genomics
 references:
   - type: data
-    title: "Genomic context of resistance determinants in 150 bacterial genomes across six taxa: derived data and evaluation evidence"
+    title: "Prospective evaluation of PlasmidCall on 150 bacterial genomes across six taxa: assemblies, reference labels, classifier calls and evaluation evidence"
     authors:
       - family-names: Piranfar
         given-names: Vahhab
